@@ -1,0 +1,1646 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>webhub - Live Webinars & Professional Learning</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="font-flaticon/flaticon.css">
+    <link rel="stylesheet" href="css/dripicons.css">
+    <link rel="stylesheet" href="css/slick.css">
+
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /* Custom styles for pricing and content sections */
+        .single-services {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .single-services:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .services-icon {
+            font-size: 48px;
+            color: #a571aa;
+            margin-bottom: 20px;
+        }
+
+        .content-stats .badge {
+            background: #a571aa;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin: 5px;
+        }
+
+        .single-pricing {
+            background: #fff;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .single-pricing:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .single-pricing.featured {
+            border: 3px solid #a571aa;
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #a571aa;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .pricing-header .price {
+            margin: 20px 0;
+        }
+
+        .pricing-header .currency {
+            font-size: 24px;
+            vertical-align: top;
+        }
+
+        .pricing-header .amount {
+            font-size: 48px;
+            font-weight: bold;
+            color: #a571aa;
+        }
+
+        .pricing-header .period {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .pricing-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li.disabled {
+            color: #ccc;
+        }
+
+        .pricing-features i {
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        .pricing-features .fa-check {
+            color: #28a745;
+        }
+
+        .pricing-features .fa-times {
+            color: #dc3545;
+        }
+
+        .pricing-note {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .single-feature {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            color: #a571aa;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .feature-content h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Search icon styling */
+        .search-top2 {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .search-top2 ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-top2 li {
+            margin-left: 0;
+        }
+
+        .search-top2 li a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: #fff;
+            border: 2px solid #a571aa;
+            border-radius: 50%;
+            color: #a571aa;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 2.5px 4.33px 15px 0px rgba(165, 113, 170, 0.2);
+        }
+
+        .search-top2 li a:hover {
+            background-color: #a571aa;
+            color: #fff;
+            transform: scale(1.1);
+            box-shadow: 2.5px 4.33px 20px 0px rgba(165, 113, 170, 0.4);
+        }
+        /* Logo text styling */
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #769757;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Jost', sans-serif;
+            letter-spacing: -0.5px;
+        }
+        .logo-text span {
+            color: #a571aa;
+        }
+        /* Center navigation */
+        .main-menu ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .main-menu ul li {
+            margin: 0 15px;
+        }
+        /* Hide search on mobile, show in hamburger */
+        .search-mobile-hidden {
+            display: none;
+        }
+        /* Logo mobile styling */
+        .logo-text {
+            transition: all 0.3s ease;
+        }
+        @media (max-width: 991px) {
+            .search-top2 {
+                display: none !important;
+            }
+            .search-mobile-hidden {
+                display: block;
+            }
+            .main-menu {
+                display: none !important;
+            }
+            .logo-text {
+                font-size: 22px;
+            }
+        }
+
+
+            
+            /* Logo and hamburger alignment */
+            .header-right {
+                height: 70px;
+                display: flex !important;
+                align-items: center !important;
+            }
+            .logo {
+                height: 70px;
+                display: flex !important;
+                align-items: center !important;
+            }
+        
+
+        /* Logo text styling */
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #769757;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Jost', sans-serif;
+            letter-spacing: -0.5px;
+        }
+        .logo-text span {
+            color: #a571aa;
+        }
+        /* Center navigation */
+        .main-menu ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .main-menu ul li {
+            margin: 0 15px;
+        }
+        @media (max-width: 991px) {
+            .search-top2 {
+                display: none !important;
+            }
+            .logo-text {
+                font-size: 22px;
+            }
+            .main-menu {
+                display: none !important;
+            }
+        }
+
+
+
+        /* Ensure header is above mobile menu */
+        #header-sticky {
+            z-index: 10000;
+            background: white;
+        }
+
+        /* Logo and hamburger alignment */
+        .header-right {
+            height: 70px;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .logo {
+            height: 70px;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        /* Mobile Menu Button Styles */
+        .mobile-menu-btn {
+            background: rgba(0, 46, 91, 0.1);
+            border: 2px solid #769757;
+            padding: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.05);
+        }
+
+
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background-color: #769757;
+            margin: 2px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Hamburger animation when active */
+        .mobile-menu-btn.active {
+            border-color: #769757;
+        }
+
+        .mobile-menu-btn.active .hamburger-line {
+            background-color: #769757;
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+            transform: rotate(45deg) translate(-4px, -4px);
+        }
+
+        /* Hamburger visited state */
+        .mobile-menu-btn:visited .hamburger-line {
+            background-color: #769757;
+        }
+
+        /* Mobile menu dropdown */
+        .mobile-menu-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            display: none;
+            z-index: 9999;
+            box-shadow: 0 5px 15px rgba(165, 113, 170, 0.3);
+            max-height: calc(100vh - 70px);
+            overflow-y: auto;
+            border-radius: 0 0 10px 10px;
+            border-top: none;
+        }
+
+        /* Container for mobile menu */
+        .mobile-menu-container {
+            position: relative;
+        }
+
+        .mobile-menu-dropdown.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-menu-dropdown ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-menu-dropdown ul li {
+            border-bottom: 1px solid rgba(165, 113, 170, 0.2);
+        }
+
+        .mobile-menu-dropdown ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu-dropdown ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: #769757;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-menu-dropdown ul li a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: rgba(165, 113, 170, 0.1);
+            transition: width 0.3s ease;
+        }
+
+        .mobile-menu-dropdown ul li a:hover::before {
+            width: 100%;
+        }
+
+        .mobile-menu-dropdown ul li a:hover {
+            background-color: rgba(165, 113, 170, 0.1);
+            color: #a571aa;
+            transform: translateX(5px);
+        }
+
+        /* Search in mobile menu */
+        .mobile-search {
+            padding: 15px 20px;
+            border-bottom: 2px solid #a571aa;
+            background-color: rgba(165, 113, 170, 0.05);
+        }
+
+        .mobile-search a {
+            color: #769757;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .mobile-search a:hover {
+            color: #a571aa;
+            transform: translateX(5px);
+        }
+
+        .mobile-search i {
+            width: 20px;
+            height: 20px;
+            background: #a571aa;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .head{
+            display: flex;
+            align-items: center;
+        }
+
+        .df{
+            display: flex;
+            align-items: center;
+        }
+
+        .jc{
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Equal height pricing cards */
+        .pricing-row {
+            display: flex;
+            align-items: stretch;
+        }
+
+        .pricing-col {
+            display: flex;
+        }
+
+        .pricing-box {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+        }
+
+        .pricing-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .wt{
+            text-wrap: wrap;
+            line-height: 20px;
+        }
+
+        /* Webinar Modules Styles */
+        .webinar-modules-area {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .single-module {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid rgba(165, 113, 170, 0.1);
+        }
+
+        .module-content h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .module-content p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .module-features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .module-features li {
+            padding: 8px 0;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        .module-features li i {
+            color: #28a745;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .module-duration {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .module-duration span {
+            color: #a571aa;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .module-duration i {
+            margin-right: 8px;
+        }
+
+        /* Module Benefits Section */
+        .module-benefits-section {
+            background: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .benefits-content h3 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits-list li {
+            padding: 12px 0;
+            color: #555;
+            display: flex;
+            align-items: flex-start;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .benefits-list li:last-child {
+            border-bottom: none;
+        }
+
+        .benefits-list li i {
+            color: #a571aa;
+            margin-right: 15px;
+            margin-top: 3px;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .benefits-stats {
+            background: rgba(165, 113, 170, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        .stat-item {
+            margin-bottom: 25px;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #a571aa;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .single-module {
+                margin-bottom: 30px;
+            }
+            
+            .module-benefits-section {
+                padding: 25px;
+            }
+            
+            .benefits-stats {
+                margin-top: 30px;
+            }
+            
+            .stat-number {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header -->
+    <header class="header-area header-three">
+        <div id="header-sticky" class="menu-area">
+            <div class="container mobile-menu-container">
+                <div class="second-menu">
+                    <div class="row align-items-center">
+                        <!-- Logo - Left -->
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-6 head df">
+                            <a href="index.html">
+                                    <img src="img/logo/logo.png" alt="webhub Logo">
+                                </a>
+                            <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+                                
+                                <a href="index.html" style="font-size: 24px; color: #769757; font-weight: 700; font-family: 'Jost', sans-serif; text-decoration: none;">webhub</a>
+                            </div>
+                        </div>
+                        <!-- Navigation - Center (Desktop only) -->
+                        <div class="col-xl-6 col-lg-6 d-none d-lg-block">
+                            <div class="main-menu text-center">
+                                <nav id="mobile-menu" style="display: block;">
+                                    <ul>
+                                        <li class="sub wrap"><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
+                                        <li class="sub">
+                                            <a href="coaches.html">Valmentajat</a>
+                                        </li>
+                                        <li class="sub">
+                                            <a href="blog.html">Blogi</a>
+                                        </li>
+                                        <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- Search & Hamburger - Right -->
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-6">
+                            <div class="header-right d-flex align-items-center justify-content-end">
+                                <!-- Search icon for desktop -->
+                                <div class="search-top2 d-none d-lg-block">
+                                    <ul>
+                                        <li><a href="#" class="search-trigger" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fas fa-search"></i></a></li>
+                                    </ul>
+                                </div>
+                                <!-- Mobile menu toggle -->
+                                <div class="mobile-menu d-lg-none">
+                                    <button class="mobile-menu-btn" type="button">
+                                        <span class="hamburger-line"></span>
+                                        <span class="hamburger-line"></span>
+                                        <span class="hamburger-line"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile Menu Dropdown -->
+                    <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
+                        <div class="mobile-search">
+                            <a href="#" class="search-trigger" data-toggle="modal" data-target=".bs-example-modal-lg">
+                                <i class="fas fa-search"></i>
+                                <span>Search</span>
+                            </a>
+                        </div>
+                        <ul>
+                                    <li><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
+                                    <li><a href="coaches.html">Valmentajat</a></li>
+                                    <li><a href="blog.html">Blogi</a></li>
+                                    <li><a href="contact.html">Yhteystiedot</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    <!-- main-area -->
+    <main>
+
+        <!-- search-popup -->
+        <div class="modal fade bs-example-modal-lg search-bg popup1" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content search-popup">
+                    <div class="text-center">
+                        <a href="#" class="close2" data-dismiss="modal" aria-label="Close">× close</a>
+                    </div>
+                    <div class="row search-outer">
+                        <div class="col-md-11"><input type="text"
+                                placeholder="Search webinars, topics, or coaches..." /></div>
+                        <div class="col-md-1 text-right"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /search-popup -->
+        <!-- breadcrumb-area -->
+        <!-- <section class="breadcrumb-area d-flex align-items-center"
+            style="background-image:url(img/testimonial/test-bg.png)">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-12 col-lg-12">
+                        <div class="breadcrumb-wrap text-left">
+                            <div class="breadcrumb-title">
+                                <h2>About Us</h2>
+                                <div class="breadcrumb-wrap">
+
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">About</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section> -->
+        <!-- breadcrumb-area-end -->
+        <!-- content-pricing-intro -->
+        <!-- <section id="content-pricing" class="about-area about-p pt-120 pb-120 p-relative"
+            style="background: url(img/features/about-bg-aliments.png) no-repeat;background-position: center center;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
+                        <div class="s-about-img p-relative  wow fadeInLeft  animated" data-animation="fadeInLeft"
+                            data-delay=".4s">
+                            <img src="img/features/about_img.png" alt="img">
+                            <div class="about-text second-about">
+                                <div class="all-text">
+                                    <h3>500+</h3>
+                                    <span>Premium <br> Content</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="about-content s-about-content  wow fadeInRight  animated"
+                            data-animation="fadeInRight" data-delay=".4s">
+                            <div class="about-title second-atitle pb-25">
+                                <h5>Content & Pricing</h5>
+                                <h2>Premium Learning Content at Affordable Prices</h2>
+                            </div>
+
+                            <p>Discover our comprehensive library of professional webinars, courses, and educational
+                                content designed to accelerate your career growth. We offer flexible pricing plans to
+                                suit every learning budget and professional need.</p>
+
+                            <div class="about-content3">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <ul class="green">
+                                            <li>Access to 500+ premium webinars and courses across various industries
+                                            </li>
+                                            <li>Interactive live sessions with industry experts and thought leaders</li>
+                                            <li>Downloadable resources, certificates, and lifetime access to recorded
+                                                content</li>
+                                            <li>Flexible pricing plans starting from just $29/month</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slider-btn mt-10">
+                                <a href="#pricing-plans" class="btn ss-btn" data-animation="fadeInRight"
+                                    data-delay=".8s">View Pricing Plans</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        <!-- content-pricing-intro-end -->
+
+        <!-- pricing-plans -->
+        <!-- pricing-area -->
+        <section id="pricing" class="pricing-area pt-30 pb-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title center-align text-center mb-50">
+                            <h5>Webinaarivaihtoehdot</h5>
+                            <h2>
+                                Valitse sinulle sopivin
+                            </h2>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row jc pricing-row">
+                    <div class="col-lg-4 col-md-12 pricing-col">
+                        <div class="pricing-box text-center mb-60 ">
+                            <div class="pricing-head">
+                                <div class="glyph-icon flaticon-pie-chart"></div>
+                                <h4>Yksi moduli kerrallaan</h4>
+                            </div>
+                            <div class="pricing-body mb-30 text-center">
+                                <div>
+                                    <p>• Saat kyseisen modulin käyttöösi maksettuasi sen</p>
+                                    <p>• Jokaiseen webinaarimodu uliin kuuluu yksi live-tilaisuus</p>
+                                    <p>• Webinaaris sa esiteltävät materiaalit ja tehtävät</p>
+                                    <p>• Sähköpostit uki</p>
+                                    <p>• Mahdollisuus ostaa coaching tunti</p>
+                                    <p>• 125€ (+alv) / moduli</p>
+                                </div>
+                                <!-- <div class="price-count mb-30">
+                                    <h2>$29 <span>/ Monthly</span></h2>
+                                </div> -->
+                                <div class="pricing-btn">
+                                    <a href="#" class="buto">Osta 1. Moduli tästä</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 pricing-col">
+                        <div class="pricing-box active text-center mb-60 ">
+                            <div class="pricing-head">
+                                <div class="glyph-icon flaticon-graphic"></div>
+                                <h4>Webinaaripaketti</h4>
+                            </div>
+                            <div class="pricing-body mb-30 text-center">
+                                <div>
+                                    <p>• Koko 6:den webinaarimodu lin paketti edullisemmi n kuin yksi kerrallaan</p>
+                                    <p>• Uusi moduli joka kuukausi</p>
+                                    <p>• Yksi coaching tunti per moduli</p>
+                                    <p>• Lisäartikkel eita ja materiaalia sähköpostit se webinaario hjelman aikana</p>
+                                    <p>• Sähköpostit uki</p>
+                                    <p>• Puhelintuki ti ja to klo 17-18</p>
+                                    <p>• Sertifikaatti ohjelman lopussa</p>
+                                    <p>• 720€ (+alv)</p>
+                                </div>
+                                <!-- <div class="price-count mb-30">
+                                    <h2>$79 <span>/ Monthly</span></h2>
+                                </div> -->
+                                <div class="pricing-btn">
+                                    <a href="#" class="but wt">Osta webinaaripaketti (6 modulia) tästä</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-4 col-md-12">
+                        <div class="pricing-box text-center mb-60 ">
+                            <div class="pricing-head">
+                                <div class="glyph-icon flaticon-research"></div>
+                                <h4>Enterprise Webinar</h4>
+                            </div>
+                            <div class="pricing-body mb-30 text-center">
+                                <p>Complete solution for teams and organizations</p>
+                                <p>• Everything in Professional plan</p>
+                                <p>• Custom webinars for your team</p>
+                                <p>• Dedicated account manager</p>
+                                <p>• Advanced analytics & reporting</p>
+                                <p>• White-label options available</p>
+                                <p>• Priority technical support</p>
+                            </div>
+                            <div class="price-count mb-30">
+                                <h2>$199 <span>/ Monthly</span></h2>
+                            </div>
+                            <div class="pricing-btn">
+                                <a href="#" class="btn">Contact Sales</a>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+        <!-- pricing-plans-end -->
+
+        <!-- webinar-modules-section -->
+        <section id="webinar-modules" class="webinar-modules-area pt-80 pb-80" style="background-color: #f8f9fa;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title center-align text-center mb-60">
+                            <h5>Webinaarimoodulit</h5>
+                            <h2>6 Learning Modules</h2>
+                            <p>Each module includes in-depth information, practical exercises, and expert guidance</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <!-- Module 1 -->
+                    <div class="col-lg-4 col-md-6 mb-40">
+                        <div class="single-module">
+                            <div class="module-content">
+                                <h4>Moduli 1: Lorem, ipsum dolor.</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, blanditiis!</p>
+                                <ul class="module-features">
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit amet.</li>
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit amet consectetur.</li>
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit.</li>
+                                    <li><i class="fas fa-check"></i> Lorem, ipsum.</li>
+                                </ul>
+                                <div class="module-duration">
+                                    <span><i class="far fa-clock"></i> Duration: 2 hrs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 2 -->
+                    <div class="col-lg-4 col-md-6 mb-40">
+                        <div class="single-module">
+                            <div class="module-content">
+                                <h4>Moduli 2: Lorem, ipsum dolor.</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, blanditiis!</p>
+                                <ul class="module-features">
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit amet.</li>
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit amet consectetur.</li>
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit.</li>
+                                    <li><i class="fas fa-check"></i> Lorem, ipsum.</li>
+                                </ul>
+                                <div class="module-duration">
+                                    <span><i class="far fa-clock"></i> Duration: 2 hrs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 3 -->
+                    <div class="col-lg-4 col-md-6 mb-40">
+                        <div class="single-module">
+                            <div class="module-content">
+                                <h4>Moduli 3: Lorem, ipsum dolor.</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, blanditiis!</p>
+                                <ul class="module-features">
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit amet.</li>
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit amet consectetur.</li>
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit.</li>
+                                    <li><i class="fas fa-check"></i> Lorem, ipsum.</li>
+                                </ul>
+                                <div class="module-duration">
+                                    <span><i class="far fa-clock"></i> Duration: 2 hrs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 4 -->
+                    <div class="col-lg-4 col-md-6 mb-40">
+                        <div class="single-module">
+                            <div class="module-content">
+                                <h4>Moduli 4: Lorem, ipsum dolor.</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, blanditiis!</p>
+                                <ul class="module-features">
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit amet.</li>
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit amet consectetur.</li>
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit.</li>
+                                    <li><i class="fas fa-check"></i> Lorem, ipsum.</li>
+                                </ul>
+                                <div class="module-duration">
+                                    <span><i class="far fa-clock"></i> Duration: 2 hrs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 5 -->
+                    <div class="col-lg-4 col-md-6 mb-40">
+                        <div class="single-module">
+                            <div class="module-content">
+                                <h4>Moduli 5: Lorem, ipsum dolor.</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, blanditiis!</p>
+                                <ul class="module-features">
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit amet.</li>
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit amet consectetur.</li>
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit.</li>
+                                    <li><i class="fas fa-check"></i> Lorem, ipsum.</li>
+                                </ul>
+                                <div class="module-duration">
+                                    <span><i class="far fa-clock"></i> Duration: 2 hrs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 6 -->
+                    <div class="col-lg-4 col-md-6 mb-40">
+                        <div class="single-module">
+                            <div class="module-content">
+                                <h4>Moduli 6: Lorem, ipsum dolor.</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, blanditiis!</p>
+                                <ul class="module-features">
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit amet.</li>
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit amet consectetur.</li>
+                                    <li><i class="fas fa-check"></i> Lorem ipsum dolor sit.</li>
+                                    <li><i class="fas fa-check"></i> Lorem, ipsum.</li>
+                                </ul>
+                                <div class="module-duration">
+                                    <span><i class="far fa-clock"></i> Duration: 2 hrs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- webinar-modules-section-end -->
+
+        <!-- webinar-features -->
+
+        <!-- webinar-features-end -->
+
+        <!-- content-value-end -->
+        <!-- vedio-area -->
+        <!-- <section id="vedio" class="vedio-area pt-120 pb-90 fix"
+            style=" background-image: url(img/video/vedio-bg.png); background-repeat: no-repeat;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title center-align text-center">
+                            <h5>Watch Us</h5>
+                            <h2>
+                                Start Growing With Community
+                            </h2>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+
+                        <div class="video-img wow fadeInRight animated" data-animation="fadeInDown animated"
+                            data-delay=".2s"
+                            style="background-image:url(img/video/vedio-img.png); background-repeat: no-repeat; background-position: center;">
+                            <a href="https://www.youtube.com/watch?v=gyGsPlt06bo" class="video-i popup-video"> <img
+                                    src="img/video/play.svg" alt="img" class="active-icon"></a>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </section> -->
+        <!-- vedio-area-end -->
+        <!-- team-area -->
+        <!-- <section id="team" class="team-area pb-90 fix"
+            style=" background-image: url(img/bg/services-bg-aliments.png); background-repeat: no-repeat; background-position: center;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <div class="col-lg-12">
+                            <div class="section-title center-align text-center mb-50">
+                                <h5>Our Team</h5>
+                                <h2>
+                                    Our Team Members
+                                </h2>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-team text-center mb-30 ">
+                            <div class="team-thumb">
+                                <div class="brd">
+                                    <img src="img/team/team_img01.png" alt="img">
+                                </div>
+                            </div>
+                            <div class="team-info">
+                                <h4><a href="team-details.html">Rosalina D. William</a></h4>
+                                <span>Founder</span>
+                                <div class="team-social mt-20">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-behance"></i></a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-team text-center mb-30 ">
+                            <div class="team-thumb">
+                                <div class="brd">
+                                    <img src="img/team/team_img02.png" alt="img">
+                                </div>
+                            </div>
+                            <div class="team-info">
+                                <h4><a href="team-details.html">Alina Roboto William</a></h4>
+                                <span>CEO</span>
+                                <div class="team-social mt-20">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-behance"></i></a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-team text-center mb-30 ">
+                            <div class="team-thumb">
+                                <div class="brd">
+                                    <img src="img/team/team_img03.png" alt="img">
+                                </div>
+                            </div>
+                            <div class="team-info">
+                                <h4><a href="team-details.html">Rock Alane</a></h4>
+                                <span>Developer</span>
+                                <div class="team-social mt-20">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-behance"></i></a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-team text-center mb-30 ">
+                            <div class="team-thumb">
+                                <div class="brd">
+                                    <img src="img/team/team_img04.png" alt="img">
+                                </div>
+                            </div>
+                            <div class="team-info">
+                                <h4><a href="team-details.html">Rock Alane</a></h4>
+                                <span>Designer</span>
+                                <div class="team-social mt-20">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-behance"></i></a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section> -->
+        <!-- team-area-end -->
+        <!-- testimonial-area -->
+        <!-- <section class="testimonial-area pt-60 pb-60"
+            style=" background-image: url(img/testimonial/test-bg-aliments.png); background-repeat: no-repeat; background-position: center; background-color: #fff7f5;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="about-title second-atitle pt-15">
+                            <h5>Success Stories</h5>
+                            <h2>
+                                See What Our <br>Client Say’s
+                            </h2>
+                            <p class="pt-15">Discover how our interactive webinars and expert-led sessions have
+                                transformed careers and accelerated professional growth. Join thousands of satisfied
+                                learners who have achieved their goals through our comprehensive webinar platform.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="testimonial-active">
+                            <div class="single-testimonial">
+                                <div class="testi-author">
+                                    <img src="img/testimonial/testi_avatar.png" alt="img">
+                                    <div class="ta-info">
+                                        <h6>Sarah Johnson</h6>
+                                        <span>Marketing Manager</span>
+                                    </div>
+                                </div>
+                                <div class="qt-img">
+                                    <img src="img/testimonial/qt-icon.png" alt="img">
+                                </div>
+                                <p>The digital marketing webinars on webhub completely transformed my approach to
+                                    campaigns. The expert insights and interactive Q&A sessions provided actionable
+                                    strategies that I implemented immediately, resulting in a 40% increase in our
+                                    conversion rates!</p>
+
+                            </div>
+                            <div class="single-testimonial">
+                                <div class="testi-author">
+                                    <img src="img/testimonial/testi_avatar.png" alt="img">
+                                    <div class="ta-info">
+                                        <h6>Michael Chen</h6>
+                                        <span>Software Engineer</span>
+                                    </div>
+                                </div>
+                                <div class="qt-img">
+                                    <img src="img/testimonial/qt-icon.png" alt="img">
+                                </div>
+                                <p>As a developer, I was skeptical about webinars, but webhub's tech leadership
+                                    sessions changed my perspective. The live coding demonstrations and expert
+                                    discussions helped me advance to a senior role within 6 months. Highly recommend!
+                                </p>
+
+                            </div>
+                            <div class="single-testimonial">
+                                <div class="testi-author">
+                                    <img src="img/testimonial/testi_avatar.png" alt="img">
+                                    <div class="ta-info">
+                                        <h6>Emily Rodriguez</h6>
+                                        <span>Business Analyst</span>
+                                    </div>
+                                </div>
+                                <div class="qt-img">
+                                    <img src="img/testimonial/qt-icon.png" alt="img">
+                                </div>
+                                <p>The business strategy webinars provided exactly what I needed to transition into
+                                    consulting. The networking opportunities and expert mentorship through the platform
+                                    were invaluable. I've already landed three new clients using the techniques I
+                                    learned!</p>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        <!-- testimonial-area-end -->
+
+
+
+        <!-- blog-area -->
+        <!-- <section id="blog" class="blog-area  p-relative pt-120 pb-90 fix"
+            style=" background-image: url(img/bg/blog-bg-aliments.png); background-repeat: no-repeat; background-position: center;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <div class="col-lg-12">
+                            <div class="section-title center-align text-center mb-50">
+                                <h5>Our Blog</h5>
+                                <h2>
+                                    Latest News Feed
+                                </h2>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="single-post2 mb-30  wow fadeInDown  animated">
+                            <div class="blog-thumb2">
+                                <a href="blog-details.html"><img src="img/blog/blog_img01.png" alt="img"></a>
+
+                            </div>
+                            <div class="blog-content2 text-center">
+                                <div class="b-meta">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="date-b">
+                                                <i class="fal fa-calendar-alt"></i> 7 March, 2019
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4><a href="blog-details.html">How do I Sell Affiliate Products to My
+                                                Customers</a></h4>
+                                        <div class="blog-btn"><a href="blog-details.html"><i
+                                                    class="fal fa-chevron-circle-right"></i> Read More</a></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="single-post2 mb-30  wow fadeInUp  animated">
+                            <div class="blog-thumb2">
+                                <a href="blog-details.html"><img src="img/blog/blog_img02.png" alt="img"></a>
+
+                            </div>
+                            <div class="blog-content2 text-center">
+                                <div class="b-meta">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="date-b">
+                                                <i class="fal fa-calendar-alt"></i> 7 March, 2019
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4><a href="blog-details.html">How do I Sell Affiliate Products to My
+                                                Customers</a></h4>
+                                        <div class="blog-btn"><a href="blog-details.html"><i
+                                                    class="fal fa-chevron-circle-right"></i> Read More</a></div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="single-post2 mb-30 wow fadeInDown  animated">
+                            <div class="blog-thumb2">
+                                <a href="blog-details.html"><img src="img/blog/blog_img03.png" alt="img"></a>
+
+                            </div>
+                            <div class="blog-content2 text-center">
+                                <div class="b-meta">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="date-b">
+                                                <i class="fal fa-calendar-alt"></i> 7 March, 2019
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4><a href="blog-details.html">How do I Sell Affiliate Products to My
+                                                Customers</a></h4>
+                                        <div class="blog-btn"><a href="blog-details.html"><i
+                                                    class="fal fa-chevron-circle-right"></i> Read More</a></div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section> -->
+        <!-- blog-area-end -->
+
+
+
+
+    </main>
+    <!-- main-area-end -->
+    <!-- footer -->
+    <footer class="footer-bg footer-p fix"
+        style=" background-image: url(img/bg/footer-bg.png); background-repeat: no-repeat; background-position: center;">
+        <!-- <div class="footer-top  pt-70 pb-40">
+                  <div class="container">
+                   <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-sm-12">
+                            <div class="footer-widget mb-30">
+                             
+                                   <img src="img/logo/it-logo.png" alt="webinar logo">
+                                
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-7 col-sm-12">
+                            <div class="footer-widget footer-link mt-20 text-center">
+                                    <ul>                                        
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="about.html"> About Us</a></li>
+                                        <li><a href="services.html"> Courses </a></li>
+                                        <li><a href="contact.html"> Events</a></li>
+                                        <li><a href="blog.html">Blog </a></li>
+                                        <li><a href="blog.html">Contact Us </a></li>
+                                    </ul>
+                               
+                                
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-sm-12">
+                            <div class="footer-widget footer-social mt-15  text-right text-xl-right">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>  
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                     <a href="#"><i class="fab fa-twitter"></i></a>
+                                   
+                            </div>
+                        </div>
+                 </div>
+                 </div>
+            </div> -->
+        <div class="footer-center  pt-70 pb-40">
+            <div class="container">
+                <div class="row justify-content-between">
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Tietoa meistä</h2>
+                            </div>
+                            <div class="footer-link">
+                              Webhub connects professionals with industry experts for interactive learning and career growth.
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Ota yhteyttä</h2>
+                            </div>
+                            <div class="f-contact">
+                                <ul>
+                                    <li>
+                                        <i class="icon fal fa-map-marker-check"></i>
+                                        <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
+                                    </li>
+                                    <li>
+                                        <i class="icon fal fa-phone"></i>
+                                        <span>1800-121-3637<br>+91-7052-101-786</span>
+                                    </li>
+                                    <li><i class="icon fal fa-envelope"></i>
+                                        <span>
+                                            <a href="mailto:info@example.com">info@example.com</a>
+                                            <br>
+                                            <a href="mailto:help@example.com">help@example.com</a>
+                                        </span>
+                                    </li>
+
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Lakiasiat ja tuki</h2>
+                            </div>
+                            <div class="footer-link">
+                                <ul>
+                                    <li><a href="#">Yksityisyydensuoja</a></li>
+                                    <li><a href="#">Sopimusehdot</a></li>
+                                    <li><a href="#">Q&A</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Yrityksen tiedot</h2>
+                            </div>
+                            <div class="footer-link">
+                                webhub - Your premier destination for online learning and professional development
+                                through interactive webinars.
+                                <br>
+                                For enquiries and support, please visit the <a href="contact.html">Contact</a> page.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="copyright-wrap">
+            <div class="container">
+                <div class="row align-items-center" style="justify-content: center;">
+                    <div class="col-lg-6">
+                        Copyright &copy; 2025 webhub. All rights reserved.
+                    </div>
+                    <!-- <div class="col-lg-6 text-right text-xl-right">
+                        <ul>
+                            <li><a href="#">Yksityisyydensuoja</a></li>
+                            <li><a href="#">Sopimusehdot</a></li>
+                            <li><a href="#">Q&A</a></li>
+                        </ul>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer-end -->
+
+
+    <!-- JS here -->
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/one-page-nav-min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/ajax-form.js"></script>
+    <script src="js/paroller.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/js_isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.min.js"></script>
+    <script src="js/parallax.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+
+    <script src="js/parallax-scroll.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/element-in-view.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- Custom Mobile Menu Script -->
+    <script>
+        $(document).ready(function() {
+            // Mobile menu toggle functionality
+            $('.mobile-menu-btn').on('click', function(e) {
+                e.preventDefault();
+                $(this).toggleClass('active');
+                $('#mobileMenuDropdown').toggleClass('show');
+            });
+
+            // Close mobile menu when clicking outside
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('.mobile-menu, .mobile-menu-dropdown').length) {
+                    $('.mobile-menu-btn').removeClass('active');
+                    $('#mobileMenuDropdown').removeClass('show');
+                }
+            });
+
+            // Close mobile menu when clicking on a link
+            $('.mobile-menu-dropdown a').on('click', function() {
+                $('.mobile-menu-btn').removeClass('active');
+                $('#mobileMenuDropdown').removeClass('show');
+            });
+
+            // Close mobile menu on window resize if desktop
+            $(window).on('resize', function() {
+                if ($(window).width() >= 992) {
+                    $('.mobile-menu-btn').removeClass('active');
+                    $('#mobileMenuDropdown').removeClass('show');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

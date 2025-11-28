@@ -1,0 +1,1269 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>webhub - Live Webinars & Professional Learning</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="font-flaticon/flaticon.css">
+    <link rel="stylesheet" href="css/dripicons.css">
+    <link rel="stylesheet" href="css/slick.css">
+
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /* Search icon styling */
+        .search-top2 {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .search-top2 ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-top2 li {
+            margin-left: 0;
+        }
+
+        .search-top2 li a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: #fff;
+            border: 2px solid #a571aa;
+            border-radius: 50%;
+            color: #a571aa;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 2.5px 4.33px 15px 0px rgba(165, 113, 170, 0.2);
+        }
+
+        .search-top2 li a:hover {
+            background-color: #a571aa;
+            color: #fff;
+            transform: scale(1.1);
+            box-shadow: 2.5px 4.33px 20px 0px rgba(165, 113, 170, 0.4);
+        }
+
+        /* Logo text styling */
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #769757;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Jost', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: #a571aa;
+        }
+
+        /* Center navigation */
+        .main-menu ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-menu ul li {
+            margin: 0 15px;
+        }
+
+        /* Hide search on mobile, show in hamburger */
+        .search-mobile-hidden {
+            display: none;
+        }
+
+        /* Logo mobile styling */
+        .logo-text {
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 991px) {
+            .search-top2 {
+                display: none !important;
+            }
+
+            .search-mobile-hidden {
+                display: block;
+            }
+
+            .main-menu {
+                display: none !important;
+            }
+
+            .logo-text {
+                font-size: 22px;
+            }
+        }
+
+        /* Logo and hamburger alignment */
+        .header-right {
+            height: 70px;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .logo {
+            height: 70px;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+
+        /* Enhanced styles for Coaches section */
+        .coach-title {
+            font-weight: 700;
+        }
+
+        .coach-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .coach-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .coach-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            width: 280px;
+        }
+
+        .coach-img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            object-fit: cover;
+            object-position: center center;
+            border-radius: 0;
+        }
+
+        .coach-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px !important;
+        }
+
+        .coach-bio {
+            flex: 1;
+            margin-bottom: 15px;
+        }
+
+        .coach-contact {
+            margin-top: auto;
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .coach-card {
+                flex-direction: column;
+            }
+            
+            .coach-image-wrapper {
+                width: 100%;
+                height: 250px;
+            }
+            
+            .coach-img {
+                min-height: 250px;
+            }
+        }
+
+        .coach-name {
+            color: #333;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .coach-title-role {
+            color: #a571aa;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .coach-specialties {
+            margin-bottom: 15px;
+        }
+
+        .specialty-badge {
+            display: inline-block;
+            background: #a571aa;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin: 2px;
+        }
+
+        .coach-bio {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .coach-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item strong {
+            display: block;
+            font-size: 1.2rem;
+            color: #a571aa;
+            font-weight: 700;
+        }
+
+        .stat-item span {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .coach-contact {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            background: #f8f9fa;
+            color: #666;
+            border-radius: 50%;
+            margin-left: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #a571aa;
+            color: white;
+        }
+
+        .approach-item {
+            padding: 30px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .approach-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .approach-icon {
+            font-size: 3rem;
+            color: #a571aa;
+            margin-bottom: 20px;
+        }
+
+        .approach-item h4 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .success-story-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .story-content {
+            margin-bottom: 20px;
+        }
+
+        .story-content p {
+            font-style: italic;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .story-author {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .author-info h5 {
+            margin: 0;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .author-info span {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .result-badge {
+            background: #28a745;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .section-title h5 {
+            color: #a571aa;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title h2 {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        /* Search icon styling */
+        .search-top2 {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .search-top2 ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-top2 li {
+            margin-left: 0;
+        }
+
+        .search-top2 li a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: #fff;
+            border: 2px solid #a571aa;
+            border-radius: 50%;
+            color: #a571aa;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 2.5px 4.33px 15px 0px rgba(165, 113, 170, 0.2);
+        }
+
+        /* Ensure header is above mobile menu */
+        #header-sticky {
+            z-index: 10000;
+            background: white;
+        }
+
+        /* Logo and hamburger alignment */
+        .header-right {
+            height: 70px;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .logo {
+            height: 70px;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        /* Mobile Menu Button Styles */
+        .mobile-menu-btn {
+            background: rgba(0, 46, 91, 0.1);
+            border: 2px solid #769757;
+            padding: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.05);
+        }
+
+
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background-color: #769757;
+            margin: 2px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Hamburger animation when active */
+        .mobile-menu-btn.active {
+            border-color: #769757;
+        }
+
+        .mobile-menu-btn.active .hamburger-line {
+            background-color: #769757;
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+            transform: rotate(45deg) translate(-4px, -4px);
+        }
+
+        /* Hamburger visited state */
+        .mobile-menu-btn:visited .hamburger-line {
+            background-color: #769757;
+        }
+
+        /* Mobile menu dropdown */
+        .mobile-menu-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            display: none;
+            z-index: 9999;
+            box-shadow: 0 5px 15px rgba(165, 113, 170, 0.3);
+            max-height: calc(100vh - 70px);
+            overflow-y: auto;
+            border-radius: 0 0 10px 10px;
+            border-top: none;
+        }
+
+        /* Container for mobile menu */
+        .mobile-menu-container {
+            position: relative;
+        }
+
+        .mobile-menu-dropdown.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-menu-dropdown ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-menu-dropdown ul li {
+            border-bottom: 1px solid rgba(165, 113, 170, 0.2);
+        }
+
+        .mobile-menu-dropdown ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu-dropdown ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: #769757;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-menu-dropdown ul li a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: rgba(165, 113, 170, 0.1);
+            transition: width 0.3s ease;
+        }
+
+        .mobile-menu-dropdown ul li a:hover::before {
+            width: 100%;
+        }
+
+        .mobile-menu-dropdown ul li a:hover {
+            background-color: rgba(165, 113, 170, 0.1);
+            color: #a571aa;
+            transform: translateX(5px);
+        }
+
+        /* Search in mobile menu */
+        .mobile-search {
+            padding: 15px 20px;
+            border-bottom: 2px solid #a571aa;
+            background-color: rgba(165, 113, 170, 0.05);
+        }
+
+        .mobile-search a {
+            color: #769757;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .mobile-search a:hover {
+            color: #a571aa;
+            transform: translateX(5px);
+        }
+
+        .mobile-search i {
+            width: 20px;
+            height: 20px;
+            background: #a571aa;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* Custom hover color for outline primary buttons */
+        .btn-outline-primary:hover {
+            background-color: #a152a8 !important;
+            border-color: #a152a8 !important;
+        }
+
+        .head{
+            display: flex;
+            align-items: center;
+        }
+
+        .df{
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header -->
+    <header class="header-area header-three">
+        <div id="header-sticky" class="menu-area">
+            <div class="container mobile-menu-container">
+                <div class="second-menu">
+                    <div class="row align-items-center">
+                        <!-- Logo - Left -->
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-6 head df">
+                            <a href="index.html">
+                                    <img src="img/logo/logo.png" alt="webhub Logo">
+                                </a>
+                            <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+                                
+                                <a href="index.html" style="font-size: 24px; color: #769757; font-weight: 700; font-family: 'Jost', sans-serif; text-decoration: none;">webhub</a>
+                            </div>
+                        </div>
+                        <!-- Navigation - Center (Desktop only) -->
+                        <div class="col-xl-6 col-lg-6 d-none d-lg-block">
+                            <div class="main-menu text-center">
+                                <nav id="mobile-menu" style="display: block;">
+                                    <ul>
+                                        <li class="sub wrap"><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
+                                        <li class="sub">
+                                            <a href="coaches.html">Valmentajat</a>
+                                        </li>
+                                        <li class="sub">
+                                            <a href="blog.html">Blogi</a>
+                                        </li>
+                                        <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- Search & Hamburger - Right -->
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-6">
+                            <div class="header-right d-flex align-items-center justify-content-end">
+                                <!-- Search icon for desktop -->
+                                <div class="search-top2 d-none d-lg-block">
+                                    <ul>
+                                        <li><a href="#" class="search-trigger" data-toggle="modal"
+                                                data-target=".bs-example-modal-lg"><i class="fas fa-search"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Mobile menu toggle -->
+                                <div class="mobile-menu d-lg-none">
+                                    <button class="mobile-menu-btn" type="button">
+                                        <span class="hamburger-line"></span>
+                                        <span class="hamburger-line"></span>
+                                        <span class="hamburger-line"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu Dropdown -->
+                    <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
+                        <div class="mobile-search">
+                            <a href="#" class="search-trigger" data-toggle="modal" data-target=".bs-example-modal-lg">
+                                <i class="fas fa-search"></i>
+                                <span>Search</span>
+                            </a>
+                        </div>
+                        <ul>
+                                    <li><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
+                                    <li><a href="coaches.html">Valmentajat</a></li>
+                                    <li><a href="blog.html">Blogi</a></li>
+                                    <li><a href="contact.html">Yhteystiedot</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+
+    <!-- main-area -->
+    <main>
+
+        <!-- search-popup -->
+        <div class="modal fade bs-example-modal-lg search-bg popup1" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content search-popup">
+                    <div class="text-center">
+                        <a href="#" class="close2" data-dismiss="modal" aria-label="Close">× close</a>
+                    </div>
+                    <div class="row search-outer">
+                        <div class="col-md-11"><input type="text"
+                                placeholder="Search webinars, topics, or coaches..." /></div>
+                        <div class="col-md-1 text-right"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /search-popup -->
+        <!-- /search-popup -->
+        <!-- breadcrumb-area -->
+        <!-- <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/testimonial/test-bg.png)">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="breadcrumb-wrap text-left">
+                                <div class="breadcrumb-title">
+                                    <h2>Courses Details</h2>    
+                                    <div class="breadcrumb-wrap">
+                              
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Pricing</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section> -->
+        <!-- breadcrumb-area-end -->
+        <!-- coaches-intro -->
+        <section class="coaches-intro pt-30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title center-align text-center mb-50">
+                            <h5>Tutustu tiimiimme</h5>
+                            <h2>Valmentajat</h2>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- coaches-grid -->
+        <section class="coaches-grid pt-20 pb-60" style="background-color: #f8f9fa;">
+            <div class="container">
+                <div class="justify-content-center align-items-stretch">
+                    <div class="col-lg-6 col-md-12 mb-40 d-flex"></div>
+                        <div class="coach-card">
+                            <div class="coach-image-wrapper">
+                                <img class="coach-img" src="img/Coaches-pics/Coach-1.png"
+                                    alt="Sarah Johnson - Tech Leadership Coach">
+                            </div>
+                            <div class="coach-info p-4">
+                                <h4 class="coach-name">Marke Tyrväinen</h4>
+                                <p class="coach-title-role">KTM, Certified Business Coach, HHJ</p>
+                                <div class="coach-bio">
+                                    <p>Minulla on 30 vuoden kokemus monipuolisista ja vaativista talous- ja henkilöstöhallinnontehtävistä kansainvälisissä ja monikulttuurisissa liiketoiminnoissa, sekä Suomessa että ulkomailla. Olen työskennellyt valmistavassa teollisuudessa, IT-alalla ja startup-maailmassa sekä toiminut hallitusten jäsenenä.</p>
+                                    
+                                    <p>Olen toiminut esihenkilönä, johtoryhmän jäsenenä sekä toimitusjohtajan ja hallituksen puheenjohtajan läheisenä yhteistyökumppanina yli 25 vuoden ajan. Työskentelen vahvasti vuorovaikutuksessa niin oman tiimini, eri toimintojen kuin ulkoisten sidosryhmien kanssa.</p>
+                                    
+                                    <p>Johtamisessa minua on kuvattu empaattiseksi ja kuuntelevaksi, mutta samalla jämäkäksi ja ratkaisukeskeiseksi. Saan usein palautetta energisestä otteestani, kyvystäni tukea muita, käsitellä vaikeitakin asioita ja toimia paineen alla rauhallisesti.</p>
+                                    
+                                    <p>Olen kolmen nuoren aikuisen äiti, ja intohimoni on jakaa osaamistani sekä auttaa uran alkuvaiheessa olevia ammattilaisia tunnistamaan omat vahvuutensa, kirkastamaan tavoitteensa ja vahvistamaan omaa johtajuuttaan ja itsevarmuuttaan. Tavoitteeni on tukea pysyvää kasvua ja uusia toimintatapoja, jotka kantavat pitkälle tulevaisuuteen.</p>
+                                    
+                                    <p>Näen webhub:n mahdollisuutena toteuttaa unelmaani – tarjota nuorille johtajille ja asiantuntijoille oivalluksia, rohkaisua ja työkaluja oman johtajuuden kehittämiseen.</p>
+                                </div>
+                                <div class="coach-contact">
+                                    <div class="social-links">
+                                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12 mb-40 d-flex"></div>
+                        <div class="coach-card">
+                            <div class="coach-image-wrapper">
+                                <img class="coach-img" src="img/Coaches-pics/Coach-2.png"
+                                    alt="Michael Chen - Business Strategy Coach">
+                            </div>
+                            <div class="coach-info p-4">
+                                <h4 class="coach-name">Johanna Kartila-Malmivaara</h4>
+                                <p class="coach-title-role">Lorem ipsum dolor sit amet.</p>
+                                <p class="coach-bio">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint at deleniti, expedita deserunt dicta sed dignissimos nemo dolorum, soluta debitis eum error! Nisi, quaerat iure temporibus eum numquam expedita eos accusantium! Dolorem qui incidunt vel quia possimus. Nulla hic, fuga tenetur aliquam, amet facere a praesentium distinctio expedita rem illo blanditiis dolores? Modi blanditiis atque obcaecati ipsam doloribus, ea unde minima. Enim illo nam magni placeat itaque? Assumenda deleniti, laboriosam nobis molestiae odio aliquid ipsam perferendis vel maxime natus nemo rerum accusantium beatae voluptatum eius minima mollitia nulla eligendi et veritatis! Tempora voluptatibus beatae inventore officiis et fugit adipisci explicabo!</p>
+                                <div class="coach-contact">
+                                    <div class="social-links">
+                                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- coaching-approach -->
+        <!-- <section class="coaching-approach pt-60 pb-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title center-align text-center mb-50">
+                            <h5>Our Approach</h5>
+                            <h2>How Our Coaches Help You Succeed</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-30">
+                        <div class="approach-item text-center">
+                            <div class="approach-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <h4>Personalized Assessment</h4>
+                            <p>Each coaching journey starts with an assessment of your skills, goals, and aspirations.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-30">
+                        <div class="approach-item text-center">
+                            <div class="approach-icon">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <h4>Custom Learning Path</h4>
+                            <p>We design a personalized learning path with clear milestones and actions.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-30">
+                        <div class="approach-item text-center">
+                            <div class="approach-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h4>1-on-1 Sessions</h4>
+                            <p>Regular one-on-one sessions with your coach to discuss progress, challenges, and receive
+                                personalized guidance.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-30">
+                        <div class="approach-item text-center">
+                            <div class="approach-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Progress Tracking</h4>
+                            <p>Continuous monitoring of your progress with regular feedback and adjustments to your
+                                learning plan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- success-stories -->
+        <!-- <section class="success-stories pt-60 pb-60" style="background-color: #f8f9fa;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title center-align text-center mb-50">
+                            <h5>Success Stories</h5>
+                            <h2>Real Results from Real People</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-30">
+                        <div class="success-story-card">
+                            <div class="story-content">
+                                <p>"Sarah's coaching helped me transition from a developer to a tech lead in just 6
+                                    months. Her insights on leadership and technical strategy were invaluable."</p>
+                            </div>
+                            <div class="story-author">
+                                <div class="author-info">
+                                    <h5>Alex Martinez</h5>
+                                    <span>Senior Tech Lead at Google</span>
+                                </div>
+                                <div class="story-result">
+                                    <span class="result-badge">40% Salary Increase</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-30">
+                        <div class="success-story-card">
+                            <div class="story-content">
+                                <p>"Michael's business strategy coaching was the key to scaling our startup from $100K
+                                    to $2M ARR. His practical approach made all the difference."</p>
+                            </div>
+                            <div class="story-author">
+                                <div class="author-info">
+                                    <h5>Jennifer Park</h5>
+                                    <span>CEO at TechFlow Solutions</span>
+                                </div>
+                                <div class="story-result">
+                                    <span class="result-badge">20x Revenue Growth</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-30">
+                        <div class="success-story-card">
+                            <div class="story-content">
+                                <p>"Dr. Rodriguez made data science accessible and helped me land my dream job at
+                                    Netflix. Her teaching style is exceptional."</p>
+                            </div>
+                            <div class="story-author">
+                                <div class="author-info">
+                                    <h5>Robert Chen</h5>
+                                    <span>Data Scientist at Netflix</span>
+                                </div>
+                                <div class="story-result">
+                                    <span class="result-badge">Career Pivot Success</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+
+    </main>
+    <!-- main-area-end -->
+    <!-- footer -->
+    <footer class="footer-bg footer-p fix"
+        style=" background-image: url(img/bg/footer-bg.png); background-repeat: no-repeat; background-position: center;">
+        <!-- <div class="footer-top  pt-70 pb-40">
+                  <div class="container">
+                   <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-sm-12">
+                            <div class="footer-widget mb-30">
+                             
+                                   <img src="img/logo/it-logo.png" alt="webinar logo">
+                                
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-7 col-sm-12">
+                            <div class="footer-widget footer-link mt-20 text-center">
+                                    <ul>                                        
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="about.html"> About Us</a></li>
+                                        <li><a href="services.html"> Courses </a></li>
+                                        <li><a href="contact.html"> Events</a></li>
+                                        <li><a href="blog.html">Blog </a></li>
+                                        <li><a href="blog.html">Contact Us </a></li>
+                                    </ul>
+                               
+                                
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-sm-12">
+                            <div class="footer-widget footer-social mt-15  text-right text-xl-right">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>  
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                     <a href="#"><i class="fab fa-twitter"></i></a>
+                                   
+                            </div>
+                        </div>
+                 </div>
+                 </div>
+            </div> -->
+        <div class="footer-center  pt-70 pb-40">
+            <div class="container">
+                <div class="row justify-content-between">
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Tietoa meistä</h2>
+                            </div>
+                            <div class="footer-link">
+                               Webhub connects professionals with industry experts for interactive learning and career growth.
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Ota yhteyttä</h2>
+                            </div>
+                            <div class="f-contact">
+                                <ul>
+                                    <li>
+                                        <i class="icon fal fa-map-marker-check"></i>
+                                        <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
+                                    </li>
+                                    <li>
+                                        <i class="icon fal fa-phone"></i>
+                                        <span>1800-121-3637<br>+91-7052-101-786</span>
+                                    </li>
+                                    <li><i class="icon fal fa-envelope"></i>
+                                        <span>
+                                            <a href="mailto:info@example.com">info@example.com</a>
+                                            <br>
+                                            <a href="mailto:help@example.com">help@example.com</a>
+                                        </span>
+                                    </li>
+
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Lakiasiat ja tuki</h2>
+                            </div>
+                            <div class="footer-link">
+                                <ul>
+                                    <li><a href="#">Yksityisyydensuoja</a></li>
+                                    <li><a href="#">Sopimusehdot</a></li>
+                                    <li><a href="#">Q&A</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Yrityksen tiedot</h2>
+                            </div>
+                            <div class="footer-link">
+                                webhub - Your premier destination for online learning and professional development
+                                through interactive webinars.
+                                <br>
+                                For enquiries and support, please visit the <a href="contact.html">Contact</a> page.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="copyright-wrap">
+            <div class="container">
+                <div class="row align-items-center" style="justify-content: center;">
+                    <div class="col-lg-6">
+                        Copyright &copy; 2025 webhub. All rights reserved.
+                    </div>
+                    <!-- <div class="col-lg-6 text-right text-xl-right">
+                        <ul>
+                            <li><a href="#">Yksityisyydensuoja</a></li>
+                            <li><a href="#">Sopimusehdot</a></li>
+                            <li><a href="#">Q&A</a></li>
+                        </ul>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer-end -->
+
+
+    <!-- JS here -->
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/one-page-nav-min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/ajax-form.js"></script>
+    <script src="js/paroller.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/js_isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.min.js"></script>
+    <script src="js/parallax.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+
+    <script src="js/parallax-scroll.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/element-in-view.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Custom Mobile Menu Script -->
+    <script>
+        $(document).ready(function () {
+            // Mobile menu toggle functionality
+            $('.mobile-menu-btn').on('click', function (e) {
+                e.preventDefault();
+                $(this).toggleClass('active');
+                $('#mobileMenuDropdown').toggleClass('show');
+            });
+
+            // Close mobile menu when clicking outside
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('.mobile-menu, .mobile-menu-dropdown').length) {
+                    $('.mobile-menu-btn').removeClass('active');
+                    $('#mobileMenuDropdown').removeClass('show');
+                }
+            });
+
+            // Close mobile menu when clicking on a link
+            $('.mobile-menu-dropdown a').on('click', function () {
+                $('.mobile-menu-btn').removeClass('active');
+                $('#mobileMenuDropdown').removeClass('show');
+            });
+
+            // Close mobile menu on window resize if desktop
+            $(window).on('resize', function () {
+                if ($(window).width() >= 992) {
+                    $('.mobile-menu-btn').removeClass('active');
+                    $('#mobileMenuDropdown').removeClass('show');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
+<!-- The original course grid and pagination are commented out as requested.
+                    <div class="row align-items-center">
+                        ... original course cards ...
+                    </div>
+
+					<div class="row">
+
+                    <div class="col-12">
+
+                        <div class="pagination-wrap mt-50 text-center">
+
+                                <nav>
+
+                                    <ul class="pagination">
+
+                                        <li class="page-item"><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
+
+                                        <li class="page-item active"><a href="#">1</a></li>
+
+                                        <li class="page-item"><a href="#">2</a></li>
+
+                                        <li class="page-item"><a href="#">3</a></li>
+
+                                        <li class="page-item"><a href="#">...</a></li>
+
+                                        <li class="page-item"><a href="#">10</a></li>
+
+                                        <li class="page-item"><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
+
+                                    </ul>
+
+                                </nav>
+
+                            </div>
+
+                    </div>
+
+                    </div>
+                    -->
+</div>
+
+</section>
+
+<!-- shop-area-end -->
+
+
+
+
+
+</main>
+
+<!-- main-area-end -->
+
+<!-- footer -->
+
+<footer class="footer-bg footer-p fix"
+    style=" background-image: url(img/bg/footer-bg.png); background-repeat: no-repeat; background-position: center;">
+
+    <!-- <div class="footer-top  pt-70 pb-40">
+
+                  <div class="container">
+
+                   <div class="row">
+footer-center  pt-70 pb-40
+                        <div class="col-xl-3 col-lg-3 col-sm-12">
+
+                            <div class="footer-widget mb-30">
+
+                             
+
+                                   <img src="img/logo/it-logo.png" alt="webinar logo">
+
+                                
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xl-7 col-lg-7 col-sm-12">
+
+                            <div class="footer-widget footer-link mt-20 text-center">
+
+                                    <ul>                                        
+
+                                        <li><a href="index.html">Home</a></li>
+
+                                        <li><a href="about.html"> About Us</a></li>
+
+                                        <li><a href="services.html"> Courses </a></li>
+
+                                        <li><a href="contact.html"> Events</a></li>
+
+                                        <li><a href="blog.html">Blog </a></li>
+
+                                        <li><a href="blog.html">Contact Us </a></li>
+
+                                    </ul>
+
+                               
+
+                                
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xl-2 col-lg-2 col-sm-12">
+
+                            <div class="footer-widget footer-social mt-15  text-right text-xl-right">
+
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>  
+
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+
+                                     <a href="#"><i class="fab fa-twitter"></i></a>
+
+                                   
+
+                            </div>
+
+                        </div>
+
+                 </div>
+
+                 </div>
+
+            </div> -->
+
+
+</footer>
+
+<!-- footer-end -->

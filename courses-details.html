@@ -1,0 +1,1281 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>webhub - Live Webinars & Professional Learning</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.png">
+        <!-- Place favicon.ico in the root directory -->
+
+		<!-- CSS here -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/animate.min.css">
+        <link rel="stylesheet" href="css/magnific-popup.css">
+        <link rel="stylesheet" href="fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="font-flaticon/flaticon.css">
+        <link rel="stylesheet" href="css/dripicons.css">
+        <link rel="stylesheet" href="css/slick.css">
+        <link rel="stylesheet" href="css/default.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <style>
+            /* Mobile Menu Button Styles */
+            .mobile-menu-btn {
+                background: rgba(0, 46, 91, 0.1);
+                border: 2px solid #769757;
+                padding: 8px;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                position: relative;
+                border-radius: 6px;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu-btn:hover {
+                transform: scale(1.05);
+            }
+
+            .hamburger-line {
+                width: 25px;
+                height: 3px;
+                background-color: #769757;
+                margin: 2px 0;
+                transition: 0.3s;
+                border-radius: 2px;
+            }
+
+            .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+                transform: rotate(-45deg) translate(-4px, 4px);
+            }
+
+            .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+                transform: rotate(45deg) translate(-6px, -6px);
+            }
+
+            .mobile-menu-dropdown {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #fff;
+                display: none;
+                z-index: 9999;
+                box-shadow: 0 5px 15px rgba(165, 113, 170, 0.3);
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+                border-radius: 0 0 10px 10px;
+            }
+
+            .mobile-menu-container {
+                position: relative;
+            }
+
+            .mobile-menu-dropdown.show {
+                display: block;
+                animation: slideDown 0.3s ease-out;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .mobile-menu-dropdown ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .mobile-menu-dropdown ul li {
+                border-bottom: 1px solid rgba(165, 113, 170, 0.2);
+            }
+
+            .mobile-menu-dropdown ul li:last-child {
+                border-bottom: none;
+            }
+
+            .mobile-menu-dropdown ul li a {
+                display: block;
+                padding: 15px 20px;
+                color: #769757;
+                text-decoration: none;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu-dropdown ul li a:hover {
+                background-color: rgba(165, 113, 170, 0.1);
+                color: #a571aa;
+                transform: translateX(5px);
+            }
+
+            .mobile-search {
+                padding: 15px 20px;
+                border-bottom: 2px solid #a571aa;
+                background-color: rgba(165, 113, 170, 0.05);
+            }
+
+            .mobile-search a {
+                color: #769757;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 500;
+            }
+
+            .mobile-search a:hover {
+                color: #a571aa;
+            }
+
+            .mobile-search i {
+                width: 20px;
+                height: 20px;
+                background: #a571aa;
+                color: #fff;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px;
+            }
+
+            .search-top2 {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+
+            .search-top2 ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                align-items: center;
+            }
+
+            .search-top2 li a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 45px;
+                height: 45px;
+                background-color: #fff;
+                border: 2px solid #a571aa;
+                border-radius: 50%;
+                color: #a571aa;
+                font-size: 18px;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                box-shadow: 2.5px 4.33px 15px 0px rgba(165, 113, 170, 0.2);
+            }
+
+            .search-top2 li a:hover {
+                background-color: #a571aa;
+                color: #fff;
+                transform: scale(1.1);
+            }
+
+            @media (max-width: 991px) {
+                .search-top2 {
+                    display: none !important;
+                }
+            }
+
+            #header-sticky {
+                z-index: 10000;
+                background: white;
+            }
+
+            .header-right {
+                height: 70px;
+                display: flex !important;
+                align-items: center !important;
+            }
+
+            .logo {
+                height: 70px;
+                display: flex !important;
+                align-items: center !important;
+            }
+
+            .df{
+                display: flex;
+                align-items: center;
+            }
+
+            /* Custom Video Player Styles */
+            .custom-video-player {
+                position: relative;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .video-container {
+                position: relative;
+                width: 100%;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+                background: #000;
+            }
+
+            .video-element {
+                width: 100%;
+                display: block;
+                cursor: pointer;
+            }
+
+            .video-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0, 0, 0, 0.3);
+                transition: opacity 0.3s ease;
+                pointer-events: none;
+            }
+
+            .video-overlay.hidden {
+                opacity: 0;
+            }
+
+            .play-button-custom {
+                width: 80px;
+                height: 80px;
+                background: rgba(165, 113, 170, 0.95);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 2rem;
+                cursor: pointer;
+                pointer-events: all;
+                transition: all 0.3s ease;
+                box-shadow: 0 0 0 0 rgba(165, 113, 170, 0.7);
+                animation: pulse 2s infinite;
+            }
+
+            @keyframes pulse {
+                0% {
+                    box-shadow: 0 0 0 0 rgba(165, 113, 170, 0.7);
+                }
+                70% {
+                    box-shadow: 0 0 0 10px rgba(165, 113, 170, 0);
+                }
+                100% {
+                    box-shadow: 0 0 0 0 rgba(165, 113, 170, 0);
+                }
+            }
+
+            .play-button-custom:hover {
+                background: #a571aa;
+                transform: scale(1.1);
+            }
+
+            .video-controls {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+                padding: 20px 15px 15px;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .video-container:hover .video-controls,
+            .video-controls.show {
+                opacity: 1;
+            }
+
+            .progress-bar {
+                width: 100%;
+                height: 5px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 5px;
+                cursor: pointer;
+                margin-bottom: 10px;
+                position: relative;
+            }
+
+            .progress-filled {
+                height: 100%;
+                background: #a571aa;
+                border-radius: 5px;
+                width: 0%;
+                transition: width 0.1s linear;
+                position: relative;
+            }
+
+            .progress-filled::after {
+                content: '';
+                position: absolute;
+                right: -6px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 12px;
+                height: 12px;
+                background: #fff;
+                border-radius: 50%;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            }
+
+            .controls-bottom {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .control-btn {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 18px;
+                cursor: pointer;
+                padding: 5px 10px;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .control-btn:hover {
+                color: #a571aa;
+                transform: scale(1.1);
+            }
+
+            .time-display {
+                color: white;
+                font-size: 14px;
+                margin: 0 10px;
+                white-space: nowrap;
+            }
+
+            .volume-slider {
+                width: 80px;
+                height: 5px;
+                -webkit-appearance: none;
+                appearance: none;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 5px;
+                outline: none;
+                cursor: pointer;
+            }
+
+            .volume-slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 12px;
+                height: 12px;
+                background: #a571aa;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+
+            .volume-slider::-moz-range-thumb {
+                width: 12px;
+                height: 12px;
+                background: #a571aa;
+                border-radius: 50%;
+                cursor: pointer;
+                border: none;
+            }
+
+            @media (max-width: 768px) {
+                .volume-slider {
+                    width: 50px;
+                }
+                
+                .time-display {
+                    font-size: 12px;
+                    margin: 0 5px;
+                }
+                
+                .control-btn {
+                    font-size: 16px;
+                    padding: 5px;
+                }
+            }
+
+            /* Video Subscribe Popup Styles */
+            .video-subscribe-popup {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10000;
+                display: none;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .video-subscribe-popup.active {
+                display: flex;
+            }
+
+            .subscribe-popup-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.85);
+                backdrop-filter: blur(5px);
+            }
+
+            .subscribe-popup-content {
+                position: relative;
+                background: white;
+                border-radius: 20px;
+                max-width: 500px;
+                width: 90%;
+                max-height: 90vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                animation: popupSlideIn 0.4s ease-out;
+            }
+
+            @keyframes popupSlideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-30px) scale(0.9);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+            }
+
+            .subscribe-close-btn {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: rgba(0, 0, 0, 0.1);
+                border: none;
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                z-index: 10;
+            }
+
+            .subscribe-close-btn:hover {
+                background: rgba(0, 0, 0, 0.2);
+                transform: rotate(90deg);
+            }
+
+            .subscribe-close-btn i {
+                font-size: 18px;
+                color: #333;
+            }
+
+            .subscribe-popup-inner {
+                padding: 40px 30px;
+                text-align: center;
+            }
+
+            .subscribe-icon {
+                width: 80px;
+                height: 80px;
+                background: linear-gradient(135deg, #a571aa, #769757);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 20px;
+                animation: iconPulse 2s infinite;
+            }
+
+            @keyframes iconPulse {
+                0%, 100% {
+                    box-shadow: 0 0 0 0 rgba(165, 113, 170, 0.7);
+                }
+                50% {
+                    box-shadow: 0 0 0 15px rgba(165, 113, 170, 0);
+                }
+            }
+
+            .subscribe-icon i {
+                font-size: 35px;
+                color: white;
+            }
+
+            .subscribe-popup-inner h3 {
+                font-size: 28px;
+                color: #333;
+                margin-bottom: 30px;
+                font-weight: 700;
+                line-height: 1.3;
+            }
+
+            .subscribe-submit-btn {
+                width: 100%;
+                max-width: 300px;
+                padding: 18px 40px;
+                background: linear-gradient(135deg, #a571aa, #769757);
+                color: white;
+                border: none;
+                border-radius: 50px;
+                font-size: 18px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                margin: 0 auto;
+            }
+
+            .subscribe-submit-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 15px 35px rgba(165, 113, 170, 0.4);
+            }
+
+            .subscribe-submit-btn i {
+                font-size: 18px;
+            }
+
+            @media (max-width: 576px) {
+                .subscribe-popup-inner {
+                    padding: 30px 20px;
+                }
+
+                .subscribe-popup-inner h3 {
+                    font-size: 22px;
+                }
+
+                .subscribe-icon {
+                    width: 70px;
+                    height: 70px;
+                }
+
+                .subscribe-icon i {
+                    font-size: 30px;
+                }
+            }
+
+            /* Full width layout for mobile */
+            @media (max-width: 991px) {
+                .lower-content .row {
+                    flex-wrap: nowrap !important;
+                    flex-direction: column !important;
+                }
+
+                .lower-content .text-column,
+                .lower-content .col-lg-4 {
+                    max-width: 100% !important;
+                    flex: 0 0 100% !important;
+                    width: 100% !important;
+                }
+
+                .lower-content .sidebar-widget {
+                    margin-top: 30px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+     <!-- header -->
+        <header class="header-area header-three">
+            <div id="header-sticky" class="menu-area">
+                <div class="container mobile-menu-container">
+                    <div class="second-menu">
+                        <div class="row align-items-center">
+                            <!-- Logo - Left -->
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-6 df">
+                                <a href="index.html">
+                                        <img src="img/logo/logo.png" alt="webhub Logo">
+                                    </a>
+                                <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+                                    
+                                    <a href="index.html"
+                                        style="font-size: 24px; color: #769757; font-weight: 700; font-family: 'Jost', sans-serif; text-decoration: none;">webhub</a>
+                                </div>
+                            </div>
+                            <!-- Navigation - Center (Desktop only) -->
+                            <div class="col-xl-6 col-lg-6 d-none d-lg-block">
+                                <div class="main-menu text-center">
+                                    <nav id="mobile-menu" style="display: block;">
+                                        <ul>
+                                            <li class="sub wrap"><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
+                                            <li class="sub">
+                                                <a href="coaches.html">Valmentajat</a>
+                                            </li>
+                                            <li class="sub">
+                                                <a href="blog.html">Blogi</a>
+                                            </li>
+                                            <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <!-- Search & Hamburger - Right -->
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-6">
+                                <div class="header-right d-flex align-items-center justify-content-end">
+                                    <!-- Search icon for desktop -->
+                                    <div class="search-top2 d-none d-lg-block">
+                                        <ul>
+                                            <li><a href="#" class="search-trigger" data-toggle="modal"
+                                                    data-target=".bs-example-modal-lg"><i class="fas fa-search"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- Mobile menu toggle -->
+                                    <div class="mobile-menu d-lg-none">
+                                        <button class="mobile-menu-btn" type="button">
+                                            <span class="hamburger-line"></span>
+                                            <span class="hamburger-line"></span>
+                                            <span class="hamburger-line"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu Dropdown -->
+                    <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
+                        <div class="mobile-search">
+                            <a href="#" class="search-trigger" data-toggle="modal" data-target=".bs-example-modal-lg">
+                                <i class="fas fa-search"></i>
+                                <span>Search</span>
+                            </a>
+                        </div>
+                        <ul>
+                            <li><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
+                            <li><a href="coaches.html">Valmentajat</a></li>
+                            <li><a href="blog.html">Blogi</a></li>
+                            <li><a href="contact.html">Yhteystiedot</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header-end -->
+      
+        <!-- main-area -->
+        <main>
+            
+            <!-- search-popup -->
+		<div class="modal fade bs-example-modal-lg search-bg popup1" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content search-popup">
+					<div class="text-center">
+						<a href="#" class="close2" data-dismiss="modal" aria-label="Close">× close</a>
+					</div>
+					<div class="row search-outer">
+						<div class="col-md-11"><input type="text" placeholder="Search webinars, topics, or coaches..." /></div>
+						<div class="col-md-1 text-right"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /search-popup -->
+            <!-- breadcrumb-area -->
+            <!-- <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/testimonial/test-bg.png)">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="breadcrumb-wrap text-left">
+                                <div class="breadcrumb-title">
+                                    <h2>Courses Details</h2>    
+                                    <div class="breadcrumb-wrap">
+                              
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Pricing</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section> -->
+            <!-- breadcrumb-area-end -->
+			<!-- Project Detail -->
+    <section class="project-detail">
+        <div class="container">
+            <!-- Lower Content -->
+            <div class="lower-content">
+                <div class="row">
+                    <div class="text-column col-lg-8 col-md-8 col-sm-12">
+                        <h2>Webinaarimoduli 1</h2>
+                        <!-- <h3 style="color: #a571aa; margin-bottom: 20px;">Projektin aloitus</h3> -->
+                        <ul class="course-meta review style2 clearfix mb-30">
+                                <li class="author">
+                                    <div class="thumb">
+                                        <img src="img/testimonial/testi_avatar.png" alt="image">
+                                    </div>
+
+                                    <div class="text">
+                                        <a href="#">webhub</a>
+                                        <p>Instructor</p>
+                                    </div>
+                                </li>
+                                <!-- <li class="categories">
+                                    <a href="#" class="course-name">Projektijohtaminen</a>
+                                    <p>Category</p>
+                                </li> -->
+                                 <li class="categories">
+                                    <a href="#" class="course-name">Hinta: 120€</a>
+                                    <p>Tai pakettihinta</p>
+                                </li>
+                           
+                            </ul>
+                         <div class="upper-box">
+                            <div class="custom-video-player wow fadeInRight animated" data-animation="fadeInDown animated" data-delay=".2s">
+                                <div class="video-container">
+                                    <video id="customVideo" class="video-element">
+                                        <source src="img/video/webinar-section.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <div class="video-overlay" id="videoOverlay">
+                                        <div class="play-button-custom" id="playButton">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-controls" id="videoControls">
+                                        <div class="progress-bar" id="progressBar">
+                                            <div class="progress-filled" id="progressFilled"></div>
+                                        </div>
+                                        <div class="controls-bottom">
+                                            <button class="control-btn" id="playPauseBtn">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <div class="time-display">
+                                                <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                                            </div>
+                                            <button class="control-btn" id="muteBtn">
+                                                <i class="fas fa-volume-up"></i>
+                                            </button>
+                                            <input type="range" id="volumeSlider" min="0" max="100" value="100" class="volume-slider">
+                                            <button class="control-btn" id="fullscreenBtn">
+                                                <i class="fas fa-expand"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inner-column">
+                            
+                            <p><span class="dropcap">P</span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam sunt fugit in quisquam est voluptatum, necessitatibus eveniet ab. In aliquam quidem pariatur corrupti soluta aliquid omnis illum reprehenderit explicabo numquam aperiam eos ipsam ipsa odit accusantium impedit optio similique, non adipisci. Obcaecati illo animi quas consectetur excepturi fuga voluptatum officiis!</p>
+                         
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque facilis rerum reprehenderit dicta magni quasi eligendi consequatur provident cumque maxime, dolorum explicabo similique in sequi molestias quos possimus quia, eum quis quisquam optio suscipit quaerat! Maiores aperiam, adipisci nesciunt quam illo vitae facilis fugiat sed? Quos quam at eius odio eum consectetur rem quasi. Unde ad expedita vero est! Animi architecto ducimus, sequi facilis fugiat consectetur distinctio ratione quisquam nostrum?</p>
+                            
+                            <!-- <h4>Moduulin sisältö:</h4>
+                            <table class="table table-bordered mb-30">
+													<thead>
+														<tr>
+															<th>Aihe</th>
+															<th>Kesto</th>
+															<th>Taso</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Itsensä johtaminen</td>
+															<td>45 min</td>
+															<td>Perustaso</td>
+														</tr>
+														<tr>
+															<td>Projektin taustoitus ja määrittely</td>
+															<td>60 min</td>
+															<td>Perustaso</td>
+														</tr>
+														<tr>
+															<td>Muutos- ja viestintäsuunnitelma</td>
+															<td>45 min</td>
+															<td>Keskitaso</td>
+														</tr>
+														<tr>
+															<td>Tekoälyn hyödyntäminen</td>
+															<td>30 min</td>
+															<td>Perustaso</td>
+														</tr>
+													</tbody>
+												</table> -->
+                            
+                            <h4>Projektin aloitus</h4>
+                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eleifend donec sapien sed phase lusa pellentesque lacus. Vivamus lorem arcu semper duiac. Cras ornare arcu avamus nda leo Etiam ind arcu. Morbi justo mauris tempus pharetra interdum at congue semper purus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                            
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                             -->
+                            <ul class="pr-ul">
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                       Itsensä johtaminen
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Projektin taustoitus, määrittely ja päätös projektista
+                                    </div>
+                                </li>
+                                 <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                      Muutos- ja viestintäsuunnitelma
+                                    </div>
+                                </li>
+                                 <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                       Tekoälyn hyödyntäminen
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                       Käytännön esimerkit ja case-tutkimukset
+                                    </div>
+                                </li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                         <aside class="sidebar-widget">
+                          <section class="widget widget_search">
+                                <div class="course-widget-price">
+                               <h2 class="widget-title">Moduulin tiedot</h2>
+                                <ul>
+                                    <!-- <li>
+                                       <i class="fal fa-clock"></i>
+                                        <span>Alkaa</span>
+                                        <span class="time">Heti saatavilla</span>
+                                    </li> -->
+                                    <li>
+                                        <i class="fal fa-exclamation-circle"></i>
+                                        <span>Kesto</span>
+                                        <span class="time">3 tuntia</span>
+                                    </li>
+                                    <li>
+                                       <i class="fab fa-leanpub"></i>
+                                        <span>Formaatti</span>
+                                        <span class="time">Live webinaari</span>
+                                    </li>
+                                    <li>
+                                       <i class="fal fa-user-graduate"></i>
+                                        <span>Järjestäjä</span>
+                                        <span class="time">webhub</span>
+                                    </li>
+                                    <!-- <li>
+                                       <i class="fal fa-plus-hexagon"></i>
+                                        <span>Osallistujia</span>
+                                        <span class="time">Rajoittamaton</span>
+                                    </li> -->
+                                    <!-- <li>
+                                        <i class="fal fa-user"></i>
+                                        <span>Taso</span>
+                                        <span class="time">Perustaso</span>
+                                    </li> -->
+                                </ul>
+                                <h5 class="pt-20 pb-20">Hinta: <span>120€</span></h5>
+                                <a class="btn ss-btn" href="#">TILAA MODUULI</a>
+                            </div>
+                        
+                            
+                          </section>
+                         
+                          <!-- <section id="categories-1" class="widget widget_categories">
+                             <h2 class="widget-title">Aiheet</h2>
+                             <ul>
+                                <li class="cat-item cat-item-16"><a href="#">Itsensä johtaminen</a></li>
+                                <li class="cat-item cat-item-23"><a href="#">Projektijohtaminen</a></li>
+                                <li class="cat-item cat-item-18"><a href="#">Viestintä</a></li>
+                                <li class="cat-item cat-item-22"><a href="#">Tekoäly</a></li>
+                             </ul>
+                          </section> -->
+                          
+                       </aside>
+                    
+                      
+                        
+                    </div>
+
+                    
+                </div>
+                
+                
+            </div>
+
+
+        </div>
+    </section>
+    <!--End Project Detail -->
+         
+        </main>
+        <!-- main-area-end -->
+
+        <!-- Video Subscribe Popup -->
+        <div class="video-subscribe-popup" id="videoSubscribePopup">
+            <div class="subscribe-popup-overlay" id="subscribeOverlay"></div>
+            <div class="subscribe-popup-content">
+                <button class="subscribe-close-btn" id="subscribeCloseBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="subscribe-popup-inner">
+                    <div class="subscribe-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Subscribe to Watch Full Video</h3>
+                    <button class="subscribe-submit-btn" id="subscribeBtn">
+                        <i class="fas fa-bell"></i> Subscribe Now
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Video Subscribe Popup End -->
+
+       <!-- footer -->
+        <footer class="footer-bg footer-p fix" style=" background-image: url(img/bg/footer-bg.png); background-repeat: no-repeat; background-position: center;">
+            <div class="footer-center  pt-70 pb-40">
+                <div class="container">
+                    <div class="row justify-content-between">
+
+                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                            <div class="footer-widget mb-30">
+                                <div class="f-widget-title">
+                                    <h2>Tietoa meistä</h2>
+                                </div>
+                                <div class="footer-link">
+                                  Webhub connects professionals with industry experts for interactive learning and career growth.
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                            <div class="footer-widget mb-30">
+                                <div class="f-widget-title">
+                                    <h2>Ota yhteyttä</h2>
+                                </div>
+                                <div class="f-contact">
+                                    <ul>
+                                        <li>
+                                            <i class="icon fal fa-map-marker-check"></i>
+                                            <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon fal fa-phone"></i>
+                                            <span>1800-121-3637<br>+91-7052-101-786</span>
+                                        </li>
+                                        <li><i class="icon fal fa-envelope"></i>
+                                            <span>
+                                                <a href="mailto:info@example.com">info@example.com</a>
+                                                <br>
+                                                <a href="mailto:help@example.com">help@example.com</a>
+                                            </span>
+                                        </li>
+
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                            <div class="footer-widget mb-30">
+                                <div class="f-widget-title">
+                                    <h2>Yrityksen tiedot</h2>
+                                </div>
+                                <div class="footer-link">
+                                    webhub - Your premier destination for online learning and professional development
+                                    through interactive webinars.
+                                    <br>
+                                    For enquiries and support, please visit the <a href="contact.html">Contact</a> page.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-wrap">
+                <div class="container">
+                    <div class="row align-items-center" style="justify-content: center;">
+                    <div class="col-lg-6">
+                        Copyright &copy; 2025 webhub. All rights reserved.
+                    </div>
+                    <!-- <div class="col-lg-6 text-right text-xl-right">
+                        <ul>
+                            <li><a href="#">Yksityisyydensuoja</a></li>
+                            <li><a href="#">Sopimusehdot</a></li>
+                            <li><a href="#">Q&A</a></li>
+                        </ul>
+                    </div> -->
+
+                </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer-end -->
+
+
+		<!-- JS here -->
+        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/one-page-nav-min.js"></script>
+        <script src="js/slick.min.js"></script>
+        <script src="js/ajax-form.js"></script>
+        <script src="js/paroller.js"></script>
+        <script src="js/wow.min.js"></script>
+        <script src="js/js_isotope.pkgd.min.js"></script>
+        <script src="js/imagesloaded.min.js"></script>
+        <script src="js/parallax.min.js"></script>
+        <script src="js/jquery.waypoints.min.js"></script>
+        <script src="js/jquery.counterup.min.js"></script>
+        <script src="js/jquery.scrollUp.min.js"></script>
+        <script src="js/parallax-scroll.js"></script>
+        <script src="js/jquery.magnific-popup.min.js"></script>
+        <script src="js/element-in-view.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Custom Mobile Menu Script -->
+        <script>
+            $(document).ready(function () {
+                // Mobile menu toggle functionality
+                $('.mobile-menu-btn').on('click', function (e) {
+                    e.preventDefault();
+                    $(this).toggleClass('active');
+                    $('#mobileMenuDropdown').toggleClass('show');
+                });
+
+                // Close mobile menu when clicking outside
+                $(document).on('click', function (e) {
+                    if (!$(e.target).closest('.mobile-menu, .mobile-menu-dropdown').length) {
+                        $('.mobile-menu-btn').removeClass('active');
+                        $('#mobileMenuDropdown').removeClass('show');
+                    }
+                });
+
+                // Close mobile menu when clicking on a link
+                $('.mobile-menu-dropdown a').on('click', function () {
+                    $('.mobile-menu-btn').removeClass('active');
+                    $('#mobileMenuDropdown').removeClass('show');
+                });
+
+                // Close mobile menu on window resize if desktop
+                $(window).on('resize', function () {
+                    if ($(window).width() >= 992) {
+                        $('.mobile-menu-btn').removeClass('active');
+                        $('#mobileMenuDropdown').removeClass('show');
+                    }
+                });
+            });
+
+            // Custom Video Player Functionality
+            const video = document.getElementById('customVideo');
+            const playButton = document.getElementById('playButton');
+            const videoOverlay = document.getElementById('videoOverlay');
+            const videoControls = document.getElementById('videoControls');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const progressBar = document.getElementById('progressBar');
+            const progressFilled = document.getElementById('progressFilled');
+            const currentTimeDisplay = document.getElementById('currentTime');
+            const durationDisplay = document.getElementById('duration');
+            const muteBtn = document.getElementById('muteBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+            // Format time helper
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+
+            // Play/Pause functionality
+            function togglePlay() {
+                if (video.paused) {
+                    video.play();
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    videoOverlay.classList.add('hidden');
+                } else {
+                    video.pause();
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    videoOverlay.classList.remove('hidden');
+                }
+            }
+
+            playButton.addEventListener('click', togglePlay);
+            playPauseBtn.addEventListener('click', togglePlay);
+            video.addEventListener('click', togglePlay);
+
+            // Update progress bar
+            video.addEventListener('timeupdate', () => {
+                const percent = (video.currentTime / video.duration) * 100;
+                progressFilled.style.width = `${percent}%`;
+                currentTimeDisplay.textContent = formatTime(video.currentTime);
+            });
+
+            // Set duration when loaded
+            video.addEventListener('loadedmetadata', () => {
+                durationDisplay.textContent = formatTime(video.duration);
+            });
+
+            // Seek functionality
+            progressBar.addEventListener('click', (e) => {
+                const rect = progressBar.getBoundingClientRect();
+                const percent = (e.clientX - rect.left) / rect.width;
+                video.currentTime = percent * video.duration;
+            });
+
+            // Mute/Unmute
+            muteBtn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                if (video.muted) {
+                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    volumeSlider.value = 0;
+                } else {
+                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    volumeSlider.value = video.volume * 100;
+                }
+            });
+
+            // Volume control
+            volumeSlider.addEventListener('input', (e) => {
+                video.volume = e.target.value / 100;
+                if (video.volume === 0) {
+                    video.muted = true;
+                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                } else {
+                    video.muted = false;
+                    if (video.volume < 0.5) {
+                        muteBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+                    } else {
+                        muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    }
+                }
+            });
+
+            // Fullscreen
+            fullscreenBtn.addEventListener('click', () => {
+                const videoContainer = document.querySelector('.video-container');
+                if (!document.fullscreenElement) {
+                    if (videoContainer.requestFullscreen) {
+                        videoContainer.requestFullscreen();
+                    } else if (videoContainer.webkitRequestFullscreen) {
+                        videoContainer.webkitRequestFullscreen();
+                    } else if (videoContainer.msRequestFullscreen) {
+                        videoContainer.msRequestFullscreen();
+                    }
+                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                }
+            });
+
+            // Show controls on video end
+            video.addEventListener('ended', () => {
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                videoOverlay.classList.remove('hidden');
+                videoControls.classList.add('show');
+            });
+
+            // Hide overlay when video starts playing
+            video.addEventListener('play', () => {
+                videoOverlay.classList.add('hidden');
+            });
+
+            // Video Subscribe Popup Functionality
+            const subscribePopup = document.getElementById('videoSubscribePopup');
+            const subscribeOverlay = document.getElementById('subscribeOverlay');
+            const subscribeCloseBtn = document.getElementById('subscribeCloseBtn');
+            const subscribeBtn = document.getElementById('subscribeBtn');
+            let hasShownPopup = false;
+
+            // Show popup when video plays
+            video.addEventListener('play', () => {
+                if (!hasShownPopup) {
+                    setTimeout(() => {
+                        video.pause();
+                        subscribePopup.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }, 2000); // Show popup after 2 seconds of playing
+                }
+            });
+
+            // Close popup function
+            function closeSubscribePopup() {
+                subscribePopup.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Close popup on close button click
+            subscribeCloseBtn.addEventListener('click', closeSubscribePopup);
+
+            // Close popup on overlay click
+            subscribeOverlay.addEventListener('click', closeSubscribePopup);
+
+            // Handle subscribe button click
+            subscribeBtn.addEventListener('click', () => {
+                // Here you can add your subscription logic (e.g., redirect to subscription page)
+                console.log('Subscribe button clicked');
+                
+                // Show success message
+                alert('Thank you for subscribing! You can now continue watching the video.');
+                
+                // Mark as subscribed and close popup
+                hasShownPopup = true;
+                closeSubscribePopup();
+                
+                // Resume video
+                video.play();
+            });
+
+            // Close popup on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && subscribePopup.classList.contains('active')) {
+                    closeSubscribePopup();
+                }
+            });
+        </script>
+    </body>
+</html>
