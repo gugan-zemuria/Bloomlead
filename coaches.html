@@ -147,9 +147,13 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             overflow: hidden;
-            height: 100%;
-            display: flex;
-            flex-direction: row;
+            padding: 0;
+        }
+        
+        .coach-card::after {
+            content: "";
+            display: table;
+            clear: both;
         }
 
         .coach-card:hover {
@@ -160,49 +164,44 @@
         .coach-image-wrapper {
             position: relative;
             overflow: hidden;
-            flex-shrink: 0;
+            float: left;
             width: 280px;
+            margin-right: 20px;
         }
 
         .coach-img {
             display: block;
             width: 100%;
-            height: 100%;
-            min-height: 300px;
+            height: 400px;
             object-fit: cover;
             object-position: center center;
             border-radius: 0;
         }
 
         .coach-info {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
             padding: 20px !important;
+            overflow: visible;
         }
 
         .coach-bio {
-            flex: 1;
             margin-bottom: 15px;
         }
 
         .coach-contact {
-            margin-top: auto;
+            margin-top: 20px;
         }
 
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {
-            .coach-card {
-                flex-direction: column;
-            }
-            
             .coach-image-wrapper {
+                float: none;
                 width: 100%;
-                height: 250px;
+                margin-right: 0;
+                margin-bottom: 20px;
             }
             
             .coach-img {
-                min-height: 250px;
+                max-height: 300px;
             }
         }
 
@@ -634,7 +633,7 @@
                                 </a>
                             <div class="logo" style="display: flex; align-items: center; gap: 10px;">
                                 
-                                <a href="index.html" style="font-size: 24px; color: #769757; font-weight: 700; font-family: 'Jost', sans-serif; text-decoration: none;">webhub</a>
+                                <a href="index.html" style="font-size: 24px; color: #769757; font-weight: 700; font-family: 'Jost', sans-serif; text-decoration: none;">BloomLead</a>
                             </div>
                         </div>
                         <!-- Navigation - Center (Desktop only) -->
@@ -658,13 +657,13 @@
                         <div class="col-xl-3 col-lg-3 col-md-6 col-6">
                             <div class="header-right d-flex align-items-center justify-content-end">
                                 <!-- Search icon for desktop -->
-                                <div class="search-top2 d-none d-lg-block">
+                                <!-- <div class="search-top2 d-none d-lg-block">
                                     <ul>
                                         <li><a href="#" class="search-trigger" data-toggle="modal"
                                                 data-target=".bs-example-modal-lg"><i class="fas fa-search"></i></a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
                                 <!-- Mobile menu toggle -->
                                 <div class="mobile-menu d-lg-none">
                                     <button class="mobile-menu-btn" type="button">
@@ -801,8 +800,43 @@
                             </div>
                             <div class="coach-info p-4">
                                 <h4 class="coach-name">Johanna Kartila-Malmivaara</h4>
-                                <p class="coach-title-role">Lorem ipsum dolor sit amet.</p>
-                                <p class="coach-bio">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint at deleniti, expedita deserunt dicta sed dignissimos nemo dolorum, soluta debitis eum error! Nisi, quaerat iure temporibus eum numquam expedita eos accusantium! Dolorem qui incidunt vel quia possimus. Nulla hic, fuga tenetur aliquam, amet facere a praesentium distinctio expedita rem illo blanditiis dolores? Modi blanditiis atque obcaecati ipsam doloribus, ea unde minima. Enim illo nam magni placeat itaque? Assumenda deleniti, laboriosam nobis molestiae odio aliquid ipsam perferendis vel maxime natus nemo rerum accusantium beatae voluptatum eius minima mollitia nulla eligendi et veritatis! Tempora voluptatibus beatae inventore officiis et fugit adipisci explicabo!</p>
+                                <p class="coach-title-role">KTM, muutos- ja projektijohtaja &amp; AI asiantuntija</p>
+                                <p class="coach-bio">Olen muutosjohtaja ja projektipäällikkö, joka on toiminut pääosin isoissa
+                                    kansainvälisissä globaaleissa organisaatiossa teknologiaprojektien ja
+                                    transformaatiohankkeiden johtajana. Oma toimintatapani on sellainen, että työstän
+                                    projektia niin monelta eri kulmalta osaamiseeni perustuen, että saan sen jokaiselle
+                                    kerralla menestyksellisesti vietyä päätökseen. Siksi yksikään projekti ei ole jäänyt
+                                    minulta kesken tai jäänyt saavuttamatta tavoitteitaan. Resilienssi ja paineensietokyky
+                                    ovat tärkeitä sekä muutosjohtajalle että projektipäällikölle ja niitä tarvitaan jokaisessa
+                                    projektissa.</p>
+                                <p class="coach-bio">Pidän ihmisten kanssa toimimisesta ja erityisesti siitä, että näen kehitystä ja
+                                    innostusta ympärilläni. Yhdessä tekeminen, samojen arvojen jakaminen,
+                                    tavoitteellisuus ja luottaminen ovat avainasioita. Näillä olen menestyksellä johtanut
+                                    useita projekteja yli organisaatiorajojen, maanosien ja yritysten. Mielestäni on todella
+                                    tärkeää tuntea erilaisia muutosjohtamisen ja projektijohtamisen viitekehyksiä ja
+                                    teorioita, mutta vielä tärkeämpää on osata käyttää niitä soveltuvin osin niin, että
+                                    jokaisen projektin osalta käytetään juuri siihen sopivia käytäntöjä. Usein tähän
+                                    päästään vain kokemuksen kautta. Tähän päivään perinteiset muutosjohtamisen
+                                    (change management) kehykset ovat liian kankeita ja hitaita. On pakko olla
+                                    ketterämpi. Siksi pitää osata valita oikeat työkalut jokaiseen projektiin.
+                                    Projektijohtamiseen pätevät edelleen pääosin ketterien menetelmien viitekehykset,
+                                    mutta myös siihen on tullut tarvetta yhä ketterämpään ja muutoksia helpommin
+                                    prosessoivampaan toimintapaan.</p>
+                                <p class="coach-bio">Olen ollut jo muutamia vuosia tekemisissä tekoälyn (AI) kanssa, sillä olen päässyt
+                                    aikoinaan ensimmäisten joukossa kouluttamaan mailman suurimpia LLM (Large
+                                    Language Model) malleja suomen kielellä. Olen käynyt läpi useita testejä ja kokeita
+                                    projektien aikana, sillä kouluttajia on seulottu säännöllisesti aina uusien
+                                    projektivaiheiden alkaessa. Lisäksi olen jatkuvasti tehnyt yhteistyötä AI agentteja
+                                    kehittävien yritysten kanssa ja testannut heidän käyttötapauksiaan käytönnössä.
+                                    Myös tässä webinaarikokonaisuudessa meillä on AI agenttipohjaisia malleja
+                                    käytössä. Tekoäly on oiva apu sekä muutosjohtajalle että projektipäällikölle ja
+                                    käynkin webinaarien aikana läpi erilaisia hyödyntämiskohteita tähän liittyen.</p>
+                                <p class="coach-bio">Ihmiset ovat aina kaiken muutos- ja projektijohtamisen ytimessä. Uskon vahvasti,
+                                    että keskittymällä ihmisiin jokaisessa projektissa saavutetaan paras mahdollinen
+                                    lopputulos. Meille on tärkeää Saada jakaa osaamistamme nuorille osaajille, siksi
+                                    olemme koonneet tämän hyvin laajan webinaarisarjan. Se on tarkoitettu avuksi
+                                    kaikille nuorille uransa alussa projekteja johtaville osaajille.</p>
+                                
                                 <div class="coach-contact">
                                     <div class="social-links">
                                         <a href="#"><i class="fab fa-linkedin"></i></a>
@@ -988,7 +1022,10 @@
                                 <h2>Tietoa meistä</h2>
                             </div>
                             <div class="footer-link">
-                               Webhub connects professionals with industry experts for interactive learning and career growth.
+                                BloomLead yhdistää laaja-
+                                alaisesti ja käytännönläheisesti
+                                kaiken tarvittavan onnistuneen
+                                projektin johtamisesta.
                             </div>
 
                         </div>
@@ -1001,13 +1038,14 @@
                             </div>
                             <div class="f-contact">
                                 <ul>
-                                    <li>
-                                        <i class="icon fal fa-map-marker-check"></i>
-                                        <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
-                                    </li>
+                                    <!-- <li>
+                                            <i class="icon fal fa-map-marker-check"></i>
+                                            <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
+                                        </li> -->
                                     <li>
                                         <i class="icon fal fa-phone"></i>
-                                        <span>1800-121-3637<br>+91-7052-101-786</span>
+                                        <span>+358 44 388 3188,
+                                            <br>Ti ja To klo 17.00-18.00</span>
                                     </li>
                                     <li><i class="icon fal fa-envelope"></i>
                                         <span>
@@ -1023,21 +1061,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-sm-6">
-                        <div class="footer-widget mb-30">
-                            <div class="f-widget-title">
-                                <h2>Lakiasiat ja tuki</h2>
-                            </div>
-                            <div class="footer-link">
-                                <ul>
-                                    <li><a href="#">Yksityisyydensuoja</a></li>
-                                    <li><a href="#">Sopimusehdot</a></li>
-                                    <li><a href="#">Q&A</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
 
                     <div class="col-xl-3 col-lg-3 col-sm-6">
                         <div class="footer-widget mb-30">
@@ -1045,22 +1068,26 @@
                                 <h2>Yrityksen tiedot</h2>
                             </div>
                             <div class="footer-link">
-                                webhub - Your premier destination for online learning and professional development
-                                through interactive webinars.
-                                <br>
-                                For enquiries and support, please visit the <a href="contact.html">Contact</a> page.
+                                BloomLead – parasta oppia ja
+                                kehittymistä ammatillisesti itsensä
+                                johtamisesta projektijohtamiseen
+                                käytännönläheisesti live-
+                                webinaarien avulla.
+                                <!-- <br>
+                                For enquiries and support, please visit the <a href="contact.html">Contact</a> page. -->
                             </div>
                         </div>
                     </div>
 
                 </div>
+
             </div>
         </div>
         <div class="copyright-wrap">
             <div class="container">
                 <div class="row align-items-center" style="justify-content: center;">
                     <div class="col-lg-6">
-                        Copyright &copy; 2025 webhub. All rights reserved.
+                        Copyright &copy; 2025 BloomLead. All rights reserved.
                     </div>
                     <!-- <div class="col-lg-6 text-right text-xl-right">
                         <ul>
