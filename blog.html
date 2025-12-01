@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="font-flaticon/flaticon.css">
     <link rel="stylesheet" href="css/dripicons.css">
     <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/style.css">
@@ -529,24 +531,68 @@
 
 
         .df {
-      display: flex;
-      align-items: center;
-      margin-bottom: 12px;
-    }
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
 
-    .df .logo {
-      height: 50px !important;
+        .df .logo {
+            height: 50px !important;
 
-    }
+        }
 
-    .f-widget-title h2 {
-      margin-top: 12px;
-      font-size: 24px;
-    }
+        .f-widget-title h2 {
+            margin-top: 12px;
+            font-size: 24px;
+        }
 
-    .copyright-wrap p {
-      font-size: 14px;
-    }
+        .copyright-wrap p {
+            font-size: 14px;
+        }
+
+        /* Read More Button Styling */
+        .meta-info ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .meta-info ul li:last-child {
+            margin-left: auto;
+        }
+
+        .meta-info ul li a {
+            color: #777777 !important;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .meta-info ul li a:hover {
+            color: #303030;
+        }
+
+        .meta-info ul li a .material-symbols-outlined {
+            transition: margin-left 0.3s ease;
+            vertical-align: middle;
+            font-size: 20px;
+            color: #777777;
+        }
+
+        /* .meta-info ul li a:hover .material-symbols-outlined {
+            margin-right: 8px;
+        } */
+
+        .bsingle__post {
+            padding: 20px;
+            border: 2px solid #f3f3f3;
+            border-radius: 12px;
+        }
+
+        .bsingle__post-thumb img{
+            border-radius: 8px 8px 0 0;
+        }
+
+
 
     </style>
 </head>
@@ -652,7 +698,9 @@
         </div>
         <!-- /search-popup -->
         <!-- breadcrumb-area -->
-        <!-- <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/testimonial/test-bg.png)">
+        <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/about/Untitled\ design.png); box-shadow: 
+        inset 0px 11px 8px -10px #000000,
+        inset 0px -11px 8px -10px #000000; ">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-12 col-lg-12">
@@ -661,12 +709,12 @@
                                     <h2>Blog</h2>    
                                     <div class="breadcrumb-wrap">
                               
-                                <nav aria-label="breadcrumb">
+                                <!-- <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">Blog</li>
                                     </ol>
-                                </nav>
+                                </nav> -->
                             </div>
                                 </div>
                             </div>
@@ -674,21 +722,21 @@
                         
                     </div>
                 </div>
-            </section> -->
+            </section>
         <!-- breadcrumb-area-end -->
         <!-- inner-blog -->
         <section class="inner-blog pt-30 pb-0">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="bsingle__post mb-50" style="cursor: pointer;"
+                        <div class="bsingle__post mb-50 " style="cursor: pointer;"
                             onclick="window.location.href='blog-details.html'">
                             <div class="bsingle__post-thumb">
                                 <img src="img/blog/blog.png" alt="Digital Marketing Webinar">
                             </div>
                             <div class="bsingle__content">
                                 <div class="admin">
-                                    <a href="#"><i class="far fa-user"></i> by Marke Tyrväinen</a>
+                                    <a href="blog-details.html"><i class="far fa-user"></i> by Marke Tyrväinen</a>
                                 </div>
 
 
@@ -710,6 +758,8 @@
                                         <!-- <li><i class="fal fa-eye"></i> 1,250 Views  </li>
                                             <li><i class="fal fa-comments"></i> 42 Comments</li> -->
                                         <li><i class="fal fa-calendar-alt"></i> 19th November 2025</li>
+                                        <li><a href="blog-details.html">Read More <span
+                                                    class="material-symbols-outlined">chevron_right</span></a></li>
                                     </ul>
                                 </div>
 
@@ -723,7 +773,7 @@
                             </div>
                             <div class="bsingle__content">
                                 <div class="admin">
-                                    <a href="#"><i class="far fa-user"></i> By Johanna Kartila-Malmivaara</a>
+                                    <a href="blog-2.html"><i class="far fa-user"></i> By Johanna Kartila-Malmivaara</a>
                                 </div>
 
 
@@ -743,6 +793,8 @@
                                         <!-- <li><i class="fal fa-eye"></i> 2,180 Views  </li>
                                             <li><i class="fal fa-comments"></i> 67 Comments</li> -->
                                         <li><i class="fal fa-calendar-alt"></i> 8th January 2025</li>
+                                        <li><a href="blog-2.html">Read More <span
+                                                    class="material-symbols-outlined">chevron_right</span></a></li>
                                     </ul>
                                 </div>
 
@@ -754,9 +806,11 @@
                                 <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=400&q=80"
                                     alt="Professional Development Webinar">
                             </div>
+
                             <div class="bsingle__content">
+
                                 <div class="admin">
-                                    <a href="#"><i class="far fa-user"></i> By Johanna Kartila-Malmivaara</a>
+                                    <a href="blog-3.html"><i class="far fa-user"></i> By Johanna Kartila-Malmivaara</a>
                                 </div>
 
 
@@ -774,6 +828,8 @@
                                         <!-- <li><i class="fal fa-eye"></i> 2,180 Views  </li>
                                             <li><i class="fal fa-comments"></i> 67 Comments</li> -->
                                         <li><i class="fal fa-calendar-alt"></i> 8th January 2025</li>
+                                        <li><a href="blog-3.html">Read More <span
+                                                    class="material-symbols-outlined">chevron_right</span></a></li>
                                     </ul>
                                 </div>
 
@@ -877,6 +933,7 @@
                                 </nav>
                             </div> -->
                     </div>
+
                     <!-- #right side -->
                     <div class="col-sm-12 col-md-12 col-lg-4">
                         <aside class="sidebar-widget">
@@ -913,22 +970,24 @@
                                 <h2 class="widget-title">Viimeisimmät julkaisut</h2>
                                 <ul>
                                     <li>
-                                        <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo,
-                                            minima!</a>
-                                        <span class="post-date">January 15, 2025</span>
+                                        <a href="blog-details.html">Miten johdat itseäsi ja muita, kun projekti
+                                            käynnistyy? Kuinka valmennat onnistumiseen?</a>
+                                        <span class="post-date">19th November 2025</span>
                                     </li>
                                     <li>
-                                        <a href="#">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</a>
+                                        <a href="blog-2.html">Onko tekoäly, Artificial Intelligence (AI), hyvä apuri
+                                            projektipäällikölle projektin määrittelyvaiheessa?</a>
                                         <span class="post-date">January 8, 2025</span>
                                     </li>
                                     <li>
-                                        <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-                                        <span class="post-date">December 28, 2024</span>
+                                        <a href="blog-3.html">Miten teen projektin taustatyöt ja määrittelyn ja
+                                            valmistelen päätöksen projektista.</a><span class="post-date"> January 8,
+                                            2025</span>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
                                         <span class="post-date">December 20, 2024</span>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </section>
                             <!-- <section id="tag_cloud-1" class="widget widget_tag_cloud">
@@ -949,6 +1008,10 @@
                     <!-- #right side end -->
 
                 </div>
+
+                <!-- Load More Button - Full Width -->
+
+
             </div>
         </section>
         <!-- inner-blog-end -->
@@ -1003,10 +1066,10 @@
                         <div class="footer-widget mb-30">
                             <div class="df">
                                 <a href="index.html">
-                                    <img src="img/logo/logo.png" alt="webhub Logo" >
+                                    <img src="img/logo/logo.png" alt="webhub Logo">
                                 </a>
                                 <div class="logo" style="display: flex; align-items: center; gap: 10px;">
-    
+
                                     <a href="index.html"
                                         style="font-size: 24px; color: #769757; font-weight: 700; font-family: 'Jost', sans-serif; text-decoration: none;">BloomLead</a>
                                 </div>
@@ -1039,9 +1102,8 @@
                                     </li>
                                     <li><i class="icon fal fa-envelope"></i>
                                         <span>
-                                            <a href="mailto:info@example.com">info@example.com</a>
-                                            <br>
-                                            <a href="mailto:help@example.com">help@example.com</a>
+                                            <span style="display: block;">info@example.com</span>
+                                            <span style="display: block;">help@example.com</span>
                                         </span>
                                     </li>
 
@@ -1159,6 +1221,8 @@
                     $('#mobileMenuDropdown').removeClass('show');
                 }
             });
+
+
         });
     </script>
 </body>
