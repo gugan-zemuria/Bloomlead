@@ -121,13 +121,42 @@
             object-fit: cover;
         }
 
+        .blog-thumb2 {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
         .blog-thumb2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 10px;
             transition: transform 0.3s ease;
         }
 
         .single-post2:hover .blog-thumb2 img {
             transform: scale(1.05);
+        }
+
+        /* Responsive blog card images */
+        @media (max-width: 991px) {
+            .blog-thumb2 {
+                height: 280px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .blog-thumb2 {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .blog-thumb2 {
+                height: 220px;
+            }
         }
 
         .video-card {
@@ -1925,9 +1954,11 @@ div>i>div></div>""
                     <div class="col-lg-4 col-md-12">
                         <div class="single-post2 mb-30  wow fadeInUp  animated">
                             <div class="blog-thumb2">
-                                <a href="blog-2.html"><img
-                                        src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=250&q=80"
-                                        alt="AI trends in business"></a>
+                                <a href="blog-2.html">
+                                    <img
+                                        src="img/blog/Blog-images/blog-2-image.png "
+                                        alt="AI trends in business">
+                                </a>
 
                             </div>
                             <div class="blog-content2 text-center">
@@ -1963,8 +1994,7 @@ div>i>div></div>""
                         <div class="single-post2 mb-30 wow fadeInDown  animated">
                             <div class="blog-thumb2">
                                 <a href="blog-3.html"><img
-                                        src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=250&q=80"
-                                        alt="Professional development strategies"></a>
+                                        src="img/blog/Blog-images/blog-3-image.png"></a>
 
                             </div>
                             <div class="blog-content2 text-center">
