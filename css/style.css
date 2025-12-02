@@ -1428,6 +1428,15 @@ body {
     margin-left: -50px;
 }
 
+/* Round image - default desktop size */
+#round {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 50%;
+    max-width: 100%;
+}
+
 .about-text {
     position: absolute;
     bottom: 0px;
