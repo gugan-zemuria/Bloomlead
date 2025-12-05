@@ -404,7 +404,7 @@
       box-shadow: 0 5px 15px rgba(165, 113, 170, 0.3);
       max-height: calc(100vh - 70px);
       overflow-y: auto;
-      border-radius: 0 0 10px 10px;
+            border-radius: 10px;
       border-top: none;
     }
 
@@ -430,11 +430,50 @@
       }
     }
 
-    .mobile-menu-dropdown ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+        .mobile-menu-dropdown ul {
+            list-style: none;
+            padding: 8px 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-dropdown ul li {
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .mobile-menu-dropdown ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu-dropdown ul li a {
+            display: block;
+            padding: 20px 24px;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            position: relative;
+            transform: translateX(-16px);
+            opacity: 0;
+        }
+
+        .mobile-menu-dropdown.show ul li a {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(1) a { transition-delay: 0ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(2) a { transition-delay: 75ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(3) a { transition-delay: 150ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(4) a { transition-delay: 225ms; }
+
+        .mobile-menu-dropdown ul li a:hover {
+            background-color: rgba(118, 151, 87, 0.05);
+            padding-left: 32px;
+            color: #769757;
+        }
 
     .mobile-menu-dropdown ul li {
       border-bottom: 1px solid rgba(165, 113, 170, 0.2);
@@ -886,7 +925,7 @@
       box-shadow: 0 5px 15px rgba(165, 113, 170, 0.3);
       max-height: calc(100vh - 70px);
       overflow-y: auto;
-      border-radius: 0 0 10px 10px;
+            border-radius: 10px;
       border-top: none;
     }
 
@@ -912,11 +951,50 @@
       }
     }
 
-    .mobile-menu-dropdown ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+        .mobile-menu-dropdown ul {
+            list-style: none;
+            padding: 8px 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-dropdown ul li {
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .mobile-menu-dropdown ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu-dropdown ul li a {
+            display: block;
+            padding: 20px 24px;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            position: relative;
+            transform: translateX(-16px);
+            opacity: 0;
+        }
+
+        .mobile-menu-dropdown.show ul li a {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(1) a { transition-delay: 0ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(2) a { transition-delay: 75ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(3) a { transition-delay: 150ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(4) a { transition-delay: 225ms; }
+
+        .mobile-menu-dropdown ul li a:hover {
+            background-color: rgba(118, 151, 87, 0.05);
+            padding-left: 32px;
+            color: #769757;
+        }
 
     .mobile-menu-dropdown ul li {
       border-bottom: 1px solid rgba(165, 113, 170, 0.2);
@@ -1560,7 +1638,8 @@
             <div class="col-xl-6 col-lg-6 d-none d-lg-block">
               <div class="main-menu text-center">
                 <nav id="mobile-menu" style="display: block;">
-                  <ul>
+                  <div class="mobile-menu-content">
+                        <ul>
                     <li class="sub wrap">
                       <a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a>
                     </li>
@@ -1572,6 +1651,7 @@
                     </li>
                     <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
                   </ul>
+                        </div>
                 </nav>
               </div>
             </div>
@@ -1580,11 +1660,13 @@
               <div class="header-right d-flex align-items-center justify-content-end">
                 <!-- Search icon for desktop -->
                 <!-- <div class="search-top2 d-none d-lg-block">
-                                    <ul>
+                                    <div class="mobile-menu-content">
+                        <ul>
                                         <li><a href="#" class="search-trigger" data-toggle="modal"
                                                 data-target=".bs-example-modal-lg"><i class="fas fa-search"></i></a>
                                         </li>
                                     </ul>
+                        </div>
                                 </div> -->
                 <!-- Mobile menu toggle -->
                 <div class="mobile-menu d-lg-none">
@@ -1607,12 +1689,14 @@
               <span>Search</span>
             </a>
           </div>
-          <ul>
+          <div class="mobile-menu-content">
+                        <ul>
             <li><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
             <li><a href="coaches.html">Valmentajat</a></li>
             <li><a href="blog.html">Blogi</a></li>
             <li><a href="contact.html">Yhteystiedot</a></li>
           </ul>
+                        </div>
         </div>
       </div>
     </div>
@@ -1645,6 +1729,7 @@
                 <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="contact.html">Contact</a>
                 </li>
             </ul>
+                        </div>
         </div>
 
         <div id="cssmenu2" class="menu-one-page-menu-container">
@@ -1654,6 +1739,7 @@
                 <li class="menu-item menu-item-type-custom menu-item-object-custom"><a
                         href="#howitwork"><span>info@example.com</span></a></li>
             </ul>
+                        </div>
         </div>
     </div> -->
   <div class="offcanvas-overly"></div>
@@ -1713,11 +1799,13 @@
                   valmistelen päätöksen projektista</h2>
                 <div style="display: flex; justify-content: space-between;">
                   <div class="meta-info">
-                    <ul>
+                    <div class="mobile-menu-content">
+                        <ul>
                       <!-- <li><i class="fal fa-eye"></i> 2,847 Views </li>
                                         <li><i class="fal fa-comments"></i> 156 Comments</li> -->
                       <li><i class="fal fa-calendar-alt"></i> 9. lokakuuta 2025</li>
                     </ul>
+                        </div>
                   </div>
                   <div class="social-follow">
                     <a href="https://instagram.com/" target="_blank" class="instagram-follow">
@@ -1853,10 +1941,12 @@
                   ihmisten tilanteen ymmärtäminen ja projektissa toimivien ja siihen liittyvien ihmisten
                   hyvä motivaatio takaavat jokaisen projektin onnistumisen. Sitten vain oppimaan
                   kaikista näistä tärkeistä asioista!</p>
-                <ul>
+                <div class="mobile-menu-content">
+                        <ul>
                   <li>Lue myös Marken blogi aiheesta <a href="courses-details.html">itsensäjohtaminen</a>
                   </li>
                 </ul>
+                        </div>
                 <p>Tutustu ja tilaa webinaarimoduli 1 aiheesta
                   <a href="blog-details.html">projektin taustoitus ja määrittely!</a>
                 </p>
@@ -1876,13 +1966,15 @@
                                     <div class="col-xl-12 col-md-12">
                                         <div class="post__tag">
                                             <h5>Related Tags</h5>
-                                            <ul>
+                                            <div class="mobile-menu-content">
+                        <ul>
                                                 <li><a href="#">webinars</a></li>
                                                 <li><a href="#">professional-development</a></li>
                                                 <li><a href="#">online-learning</a></li>
                                                 <li><a href="#">career-growth</a></li>
                                                 <li><a href="#">interactive-training</a></li>
                                             </ul>
+                        </div>
                                         </div>
                                     </div>
 
@@ -2090,17 +2182,20 @@
                             </section>
                             <section id="categories-1" class="widget widget_categories">
                                 <h2 class="widget-title">Categories</h2>
-                                <ul>
+                                <div class="mobile-menu-content">
+                        <ul>
                                     <li class="cat-item cat-item-16"><a href="#">Webinar Best Practices</a> (12)</li>
                                     <li class="cat-item cat-item-23"><a href="#">Professional Development</a> (8)</li>
                                     <li class="cat-item cat-item-18"><a href="#">Online Learning</a> (15)</li>
                                     <li class="cat-item cat-item-22"><a href="#">Career Growth</a> (6)</li>
                                     <li class="cat-item cat-item-24"><a href="#">Industry Insights</a> (9)</li>
                                 </ul>
+                        </div>
                             </section>
                             <section id="recent-posts-4" class="widget widget_recent_entries">
                                 <h2 class="widget-title">Recent Posts</h2>
-                                <ul>
+                                <div class="mobile-menu-content">
+                        <ul>
                                     <li>
                                         <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
                                         <span class="post-date">January 10, 2025</span>
@@ -2114,6 +2209,7 @@
                                         <span class="post-date">January 5, 2025</span>
                                     </li>
                                 </ul>
+                        </div>
                             </section>
                             <section id="tag_cloud-1" class="widget widget_tag_cloud">
                                 <h2 class="widget-title">Popular Tags</h2>
@@ -2164,7 +2260,8 @@
                     </div>
                     <div class="col-xl-7 col-lg-7 col-sm-12">
                         <div class="footer-widget footer-link mt-20 text-center">
-                            <ul>
+                            <div class="mobile-menu-content">
+                        <ul>
                                 <li><a href="index.html">Home</a></li>
                                 <li><a href="about.html"> About Us</a></li>
                                 <li><a href="services.html"> Courses </a></li>
@@ -2172,6 +2269,7 @@
                                 <li><a href="blog.html">Blog </a></li>
                                 <li><a href="blog.html">Contact Us </a></li>
                             </ul>
+                        </div>
 
 
                         </div>
@@ -2219,7 +2317,8 @@
                 <h2>Ota yhteyttä</h2>
               </div>
               <div class="f-contact">
-                <ul>
+                <div class="mobile-menu-content">
+                        <ul>
                   <!-- <li>
                                             <i class="icon fal fa-map-marker-check"></i>
                                             <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
@@ -2239,6 +2338,7 @@
 
 
                 </ul>
+                        </div>
 
               </div>
             </div>
@@ -2284,11 +2384,13 @@ Pankkitili
             Copyright &copy; 2025 BloomLead. All rights reserved.
           </div>
           <!-- <div class="col-lg-6 text-right text-xl-right">
+                        <div class="mobile-menu-content">
                         <ul>
                             <li><a href="#">Yksityisyydensuoja</a></li>
                             <li><a href="#">Sopimusehdot</a></li>
                             <li><a href="#">Q&A</a></li>
                         </ul>
+                        </div>
                     </div> -->
 
         </div>
@@ -2323,28 +2425,44 @@ Pankkitili
   <!-- Custom Mobile Menu Script -->
   <script>
     $(document).ready(function () {
-      // Mobile menu toggle functionality
-      $('.mobile-menu-btn').on('click', function (e) {
-        e.preventDefault();
-        $(this).toggleClass('active');
-        $('#mobileMenuDropdown').toggleClass('show');
-      });
+            // Mobile menu toggle functionality
+            $('.mobile-menu-btn').on('click', function (e) {
+                e.preventDefault();
+                $(this).toggleClass('active');
+                $('#mobileMenuDropdown').toggleClass('show');
 
-      // Close mobile menu when clicking outside
-      $(document).on('click', function (e) {
-        if (!$(e.target).closest('.mobile-menu, .mobile-menu-dropdown').length) {
-          $('.mobile-menu-btn').removeClass('active');
-          $('#mobileMenuDropdown').removeClass('show');
-        }
-      });
+                // Lock/unlock body scroll
+                if ($('#mobileMenuDropdown').hasClass('show')) {
+                    $('body').css('overflow', 'hidden');
+                } else {
+                    $('body').css('overflow', '');
+                }
+            });
 
-      // Close mobile menu when clicking on a link
-      $('.mobile-menu-dropdown a').on('click', function () {
-        $('.mobile-menu-btn').removeClass('active');
-        $('#mobileMenuDropdown').removeClass('show');
-      });
+            // Close mobile menu when clicking backdrop
+            $('#mobileMenuDropdown').on('click', function (e) {
+                if (e.target === this) {
+                    $('.mobile-menu-btn').removeClass('active');
+                    $('#mobileMenuDropdown').removeClass('show');
+                    $('body').css('overflow', '');
+                }
+            });
 
-      // Close mobile menu on window resize if desktop
+            // Close mobile menu when clicking on a link
+            $('.mobile-menu-dropdown a').on('click', function () {
+                $('.mobile-menu-btn').removeClass('active');
+                $('#mobileMenuDropdown').removeClass('show');
+                $('body').css('overflow', '');
+            });
+
+            // Close mobile menu on window resize if desktop
+            $(window).on('resize', function () {
+                if ($(window).width() >= 992) {
+                    $('.mobile-menu-btn').removeClass('active');
+                    $('#mobileMenuDropdown').removeClass('show');
+                    $('body').css('overflow', '');
+                }
+            });
       $(window).on('resize', function () {
         if ($(window).width() >= 992) {
           $('.mobile-menu-btn').removeClass('active');

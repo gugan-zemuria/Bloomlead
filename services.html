@@ -210,7 +210,7 @@
             box-shadow: 0 5px 15px rgba(165, 113, 170, 0.3);
             max-height: calc(100vh - 70px);
             overflow-y: auto;
-            border-radius: 0 0 10px 10px;
+            border-radius: 10px;
             border-top: none;
         }
 
@@ -238,8 +238,47 @@
 
         .mobile-menu-dropdown ul {
             list-style: none;
-            padding: 0;
+            padding: 8px 0;
             margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-dropdown ul li {
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .mobile-menu-dropdown ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu-dropdown ul li a {
+            display: block;
+            padding: 20px 24px;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            position: relative;
+            transform: translateX(-16px);
+            opacity: 0;
+        }
+
+        .mobile-menu-dropdown.show ul li a {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(1) a { transition-delay: 0ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(2) a { transition-delay: 75ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(3) a { transition-delay: 150ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(4) a { transition-delay: 225ms; }
+
+        .mobile-menu-dropdown ul li a:hover {
+            background-color: rgba(118, 151, 87, 0.05);
+            padding-left: 32px;
+            color: #769757;
         }
 
         .mobile-menu-dropdown ul li {
@@ -364,7 +403,8 @@
                         <div class="col-xl-6 col-lg-6 d-none d-lg-block">
                             <div class="main-menu text-center">
                                 <nav id="mobile-menu" style="display: block;">
-                                    <ul>
+                                    <div class="mobile-menu-content">
+                        <ul>
                                         <li class="sub wrap"><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a>
                                         </li>
                                         <li class="sub">
@@ -375,6 +415,7 @@
                                         </li>
                                         <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
                                     </ul>
+                        </div>
                                 </nav>
                             </div>
                         </div>
@@ -383,11 +424,13 @@
                             <div class="header-right d-flex align-items-center justify-content-end">
                                 <!-- Search icon for desktop -->
                                 <!-- <div class="search-top2 d-none d-lg-block">
-                                    <ul>
+                                    <div class="mobile-menu-content">
+                        <ul>
                                         <li><a href="#" class="search-trigger" data-toggle="modal"
                                                 data-target=".bs-example-modal-lg"><i class="fas fa-search"></i></a>
                                         </li>
                                     </ul>
+                        </div>
                                 </div> -->
                                 <!-- Mobile menu toggle -->
                                 <div class="mobile-menu d-lg-none">
@@ -410,12 +453,14 @@
                             <span>Search</span>
                         </a>
                     </div>
-                    <ul>
+                    <div class="mobile-menu-content">
+                        <ul>
                         <li><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
                         <li><a href="coaches.html">Valmentajat</a></li>
                         <li><a href="blog.html">Blogi</a></li>
                         <li><a href="contact.html">Yhteystiedot</a></li>
                     </ul>
+                        </div>
                 </div>
             </div>
         </div>
@@ -779,7 +824,8 @@
                     </div>
                     <div class="col-xl-7 col-lg-7 col-sm-12">
                         <div class="footer-widget footer-link mt-20 text-center">
-                            <ul>
+                            <div class="mobile-menu-content">
+                        <ul>
                                 <li><a href="index.html">Home</a></li>
                                 <li><a href="about.html"> About Us</a></li>
                                 <li><a href="services.html"> Courses </a></li>
@@ -787,6 +833,7 @@
                                 <li><a href="blog.html">Blog </a></li>
                                 <li><a href="blog.html">Contact Us </a></li>
                             </ul>
+                        </div>
 
 
                         </div>
@@ -834,7 +881,8 @@
                                 <h2>Ota yhteyttä</h2>
                             </div>
                             <div class="f-contact">
-                                <ul>
+                                <div class="mobile-menu-content">
+                        <ul>
                                     <!-- <li>
                                             <i class="icon fal fa-map-marker-check"></i>
                                             <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
@@ -854,6 +902,7 @@
 
 
                                 </ul>
+                        </div>
 
                             </div>
                         </div>
@@ -899,11 +948,13 @@ Pankkitili
                         Copyright &copy; 2025 BloomLead. All rights reserved.
                     </div>
                     <!-- <div class="col-lg-6 text-right text-xl-right">
+                        <div class="mobile-menu-content">
                         <ul>
                             <li><a href="#">Yksityisyydensuoja</a></li>
                             <li><a href="#">Sopimusehdot</a></li>
                             <li><a href="#">Q&A</a></li>
                         </ul>
+                        </div>
                     </div> -->
 
                 </div>
@@ -943,13 +994,21 @@ Pankkitili
                 e.preventDefault();
                 $(this).toggleClass('active');
                 $('#mobileMenuDropdown').toggleClass('show');
+
+                // Lock/unlock body scroll
+                if ($('#mobileMenuDropdown').hasClass('show')) {
+                    $('body').css('overflow', 'hidden');
+                } else {
+                    $('body').css('overflow', '');
+                }
             });
 
-            // Close mobile menu when clicking outside
-            $(document).on('click', function (e) {
-                if (!$(e.target).closest('.mobile-menu, .mobile-menu-dropdown').length) {
+            // Close mobile menu when clicking backdrop
+            $('#mobileMenuDropdown').on('click', function (e) {
+                if (e.target === this) {
                     $('.mobile-menu-btn').removeClass('active');
                     $('#mobileMenuDropdown').removeClass('show');
+                    $('body').css('overflow', '');
                 }
             });
 
@@ -957,9 +1016,17 @@ Pankkitili
             $('.mobile-menu-dropdown a').on('click', function () {
                 $('.mobile-menu-btn').removeClass('active');
                 $('#mobileMenuDropdown').removeClass('show');
+                $('body').css('overflow', '');
             });
 
             // Close mobile menu on window resize if desktop
+            $(window).on('resize', function () {
+                if ($(window).width() >= 992) {
+                    $('.mobile-menu-btn').removeClass('active');
+                    $('#mobileMenuDropdown').removeClass('show');
+                    $('body').css('overflow', '');
+                }
+            });
             $(window).on('resize', function () {
                 if ($(window).width() >= 992) {
                     $('.mobile-menu-btn').removeClass('active');
