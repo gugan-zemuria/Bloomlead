@@ -6068,8 +6068,7 @@ iframe {
     display: none;
 }
 
-.footer-widget .tag-cloud-link,
-.footer-widget p {
+.footer-widget .tag-cloud-link {
     color: #fff;
 }
 

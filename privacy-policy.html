@@ -248,7 +248,7 @@
             border-bottom: 2px solid #f0f0f0;
         }
 
-      
+
 
         .terms-content h2 {
             color: #555;
@@ -313,24 +313,171 @@
             margin-bottom: 5px;
         }
 
-        @media (max-width: 768px) {
+        /* Responsive Design - Desktop */
+        @media (min-width: 992px) {
+            .terms-content {
+                padding: 50px;
+            }
+
+            .terms-content h1 {
+                font-size: 36px;
+            }
+
+            .terms-content h2 {
+                font-size: 24px;
+            }
+
+            .terms-content h3 {
+                font-size: 18px;
+            }
+
+            .terms-content p,
+            .terms-content ul li {
+                font-size: 15px;
+            }
+        }
+
+        /* Responsive Design - Tablet */
+        @media (max-width: 991px) and (min-width: 768px) {
+            .terms-content {
+                padding: 40px 25px;
+            }
+
+            .terms-content h1 {
+                font-size: 30px;
+            }
+
+            .terms-content h2 {
+                font-size: 22px;
+                margin-top: 35px;
+            }
+
+            .terms-content h3 {
+                font-size: 17px;
+            }
+
+            .terms-content p,
+            .terms-content ul li {
+                font-size: 14px;
+                line-height: 1.7;
+            }
+
+            .terms-content .company-info {
+                padding: 18px 35px;
+            }
+
+            .terms-content ul {
+                padding-left: 18px;
+            }
+        }
+
+        /* Responsive Design - Mobile */
+        @media (max-width: 767px) and (min-width: 577px) {
             .terms-content {
                 padding: 30px 20px;
             }
 
             .terms-content h1 {
-                font-size: 28px;
+                font-size: 26px;
+            }
+
+            .terms-content .subtitle {
+                font-size: 18px;
             }
 
             .terms-content h2 {
                 font-size: 20px;
+                margin-top: 30px;
+            }
+
+            .terms-content h3 {
+                font-size: 16px;
+                margin-top: 20px;
+            }
+
+            .terms-content p,
+            .terms-content ul li {
+                font-size: 14px;
+                line-height: 1.7;
+                margin-bottom: 12px;
+            }
+
+            .terms-content .company-info {
+                padding: 15px 30px;
+            }
+
+            .terms-content ul {
+                padding-left: 15px;
+            }
+
+            .terms-content ol>li {
+                margin-bottom: 25px;
+            }
+        }
+
+        /* Responsive Design - Small Mobile */
+        @media (max-width: 576px) {
+            .terms-content {
+                padding: 20px 15px;
+            }
+
+            .terms-content h1 {
+                font-size: 22px;
+                margin-bottom: 8px;
+            }
+
+            .terms-content .subtitle {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            .terms-content .effective-date {
+                font-size: 13px;
+                margin-bottom: 30px;
+                padding-bottom: 15px;
+            }
+
+            .terms-content h2 {
+                font-size: 18px;
+                margin-top: 25px;
+                margin-bottom: 12px;
+            }
+
+            .terms-content h3 {
+                font-size: 15px;
+                margin-top: 18px;
+                margin-bottom: 10px;
+            }
+
+            .terms-content p,
+            .terms-content ul li {
+                font-size: 13px;
+                line-height: 1.6;
+                margin-bottom: 10px;
+            }
+
+            .terms-content .company-info {
+                padding: 12px 20px;
+                padding-left: 25px;
+            }
+
+            .terms-content ul {
+                padding-left: 12px;
+                margin-left: 0;
+            }
+
+            .terms-content ol>li {
+                margin-bottom: 20px;
+            }
+
+            ol {
+                margin-top: 30px !important;
             }
         }
 
         ol {
             margin-top: 40px !important;
         }
-
     </style>
 </head>
 
@@ -411,7 +558,8 @@
                                     <h2>Rekisterin ylläpitäjä</h2>
                                     <div class="company-info">
                                         <p><strong>Iida Soininen Consulting Oy</strong></p>
-                                        <p>Y-tunnus: 2871122-6</p>
+                                        <p>Y-tunnus: <a href="https://tietopalvelu.ytj.fi">2871122-6</a></p>
+                                        
                                         <p>Postiosoite: Pursimiehenkatu 14 Helsinki</p>
                                     </div>
                                 </li>
@@ -488,7 +636,8 @@
                                             tallennusmuoto ei ole täysin turvallinen. Mental Toughness Iida Soininen ei
                                             pysty takaamaan 100% turvallisuutta. Mikäli yrityksen tietoon tulee
                                             tietoturvarikkomus, se ilmoittaa siitä asianosaisille käyttäjille, jotta he
-                                            voivat tehdä tarvittavat suojaustoimenpiteet. Yritys sitoutuu ilmoittamaan
+                                            voivat tehdä tarvittavat suojaustoimenpiteet.</p>
+                                        <p>Yritys sitoutuu ilmoittamaan
                                             asiakkailleen kaikista heidän tilinsä turvallisuutta koskevista asioista ja
                                             tarjoamaan heille kaikki tarvittavat tiedot, jotta he voisivat täyttää omat
                                             lakisääteiset ilmoitusvelvollisuudet.</p>
