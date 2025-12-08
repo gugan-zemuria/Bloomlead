@@ -133,10 +133,21 @@
             opacity: 1;
         }
 
-        .mobile-menu-dropdown.show ul li:nth-child(1) a { transition-delay: 0ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(2) a { transition-delay: 75ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(3) a { transition-delay: 150ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(4) a { transition-delay: 225ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(1) a {
+            transition-delay: 0ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(2) a {
+            transition-delay: 75ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(3) a {
+            transition-delay: 150ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(4) a {
+            transition-delay: 225ms;
+        }
 
         .mobile-menu-dropdown ul li a:hover {
             background-color: rgba(118, 151, 87, 0.05);
@@ -695,18 +706,19 @@
                             <div class="main-menu text-center">
                                 <nav id="mobile-menu" style="display: block;">
                                     <div class="mobile-menu-content">
-                        <ul>
-                                        <li class="sub wrap"><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a>
-                                        </li>
-                                        <li class="sub">
-                                            <a href="coaches.html">Valmentajat</a>
-                                        </li>
-                                        <li class="sub">
-                                            <a href="blog.html">Blogi</a>
-                                        </li>
-                                        <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
-                                    </ul>
-                        </div>
+                                        <ul>
+                                            <li class="sub wrap"><a href="pricing.html">Webinaarivaihtoehdot &
+                                                    Hinnat</a>
+                                            </li>
+                                            <li class="sub">
+                                                <a href="coaches.html">Valmentajat</a>
+                                            </li>
+                                            <li class="sub">
+                                                <a href="blog.html">Blogi</a>
+                                            </li>
+                                            <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
+                                        </ul>
+                                    </div>
                                 </nav>
                             </div>
                         </div>
@@ -746,12 +758,12 @@
                     </div>
                     <div class="mobile-menu-content">
                         <ul>
-                        <li><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
-                        <li><a href="coaches.html">Valmentajat</a></li>
-                        <li><a href="blog.html">Blogi</a></li>
-                        <li><a href="contact.html">Yhteystiedot</a></li>
-                    </ul>
-                        </div>
+                            <li><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
+                            <li><a href="coaches.html">Valmentajat</a></li>
+                            <li><a href="blog.html">Blogi</a></li>
+                            <li><a href="contact.html">Yhteystiedot</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -812,7 +824,7 @@
                         <div class="text-column col-lg-8 col-md-8 col-sm-12">
                             <h2>Webinaarimoduli 1</h2>
                             <!-- <h3 style="color: #a571aa; margin-bottom: 20px;">Projektin aloitus</h3> -->
-                            <ul class="course-meta review style2 clearfix mb-30">
+                            <!-- <ul class="course-meta review style2 clearfix mb-30">
                                 <li class="author">
                                     <div class="thumb">
                                         <img src="img/testimonial/testi_avatar.png" alt="image">
@@ -822,73 +834,100 @@
                                         <a href="#">BloomLead</a>
                                         <p>Instructor</p>
                                     </div>
-                                </li>
-                                <!-- <li class="categories">
+                                </li> -->
+                            <!-- <li class="categories">
                                     <a href="#" class="course-name">Projektijohtaminen</a>
                                     <p>Category</p>
                                 </li> -->
-                                <li class="categories">
+                            <!-- <li class="categories">
                                     <a href="#" class="course-name">Hinta 125€ (+ alv)</a>
                                     <p>Tai pakettihinta</p>
-                                </li>
+                                </li> -->
 
                             </ul>
                         </div>
-                            <div class="upper-box">
-                                <div class="custom-video-player wow fadeInRight animated"
-                                    data-animation="fadeInDown animated" data-delay=".2s">
-                                    <div class="video-container">
-                                        <video id="customVideo" class="video-element">
-                                            <source src="img/video/webinar-section.mp4" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                        <div class="video-overlay" id="videoOverlay">
-                                            <div class="play-button-custom" id="playButton">
-                                                <i class="fas fa-play"></i>
-                                            </div>
+                        <div class="upper-box">
+                            <div class="custom-video-player wow fadeInRight animated"
+                                data-animation="fadeInDown animated" data-delay=".2s">
+                                <div class="video-container">
+                                    <video id="customVideo" class="video-element">
+                                        <source src="img/video/webinar-section.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <div class="video-overlay" id="videoOverlay">
+                                        <div class="play-button-custom" id="playButton">
+                                            <i class="fas fa-play"></i>
                                         </div>
-                                        <div class="video-controls" id="videoControls">
-                                            <div class="progress-bar" id="progressBar">
-                                                <div class="progress-filled" id="progressFilled"></div>
+                                    </div>
+                                    <div class="video-controls" id="videoControls">
+                                        <div class="progress-bar" id="progressBar">
+                                            <div class="progress-filled" id="progressFilled"></div>
+                                        </div>
+                                        <div class="controls-bottom">
+                                            <button class="control-btn" id="playPauseBtn">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <div class="time-display">
+                                                <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
                                             </div>
-                                            <div class="controls-bottom">
-                                                <button class="control-btn" id="playPauseBtn">
-                                                    <i class="fas fa-play"></i>
-                                                </button>
-                                                <div class="time-display">
-                                                    <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                                                </div>
-                                                <button class="control-btn" id="muteBtn">
-                                                    <i class="fas fa-volume-up"></i>
-                                                </button>
-                                                <input type="range" id="volumeSlider" min="0" max="100" value="100"
-                                                    class="volume-slider">
-                                                <button class="control-btn" id="fullscreenBtn">
-                                                    <i class="fas fa-expand"></i>
-                                                </button>
-                                            </div>
+                                            <button class="control-btn" id="muteBtn">
+                                                <i class="fas fa-volume-up"></i>
+                                            </button>
+                                            <input type="range" id="volumeSlider" min="0" max="100" value="100"
+                                                class="volume-slider">
+                                            <button class="control-btn" id="fullscreenBtn">
+                                                <i class="fas fa-expand"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="inner-column">
+                        </div>
+                        <div class="inner-column">
 
-                                <p><span class="dropcap">P</span>Lorem ipsum dolor sit amet consectetur, adipisicing
-                                    elit. Numquam sunt fugit in quisquam est voluptatum, necessitatibus eveniet ab. In
-                                    aliquam quidem pariatur corrupti soluta aliquid omnis illum reprehenderit explicabo
-                                    numquam aperiam eos ipsam ipsa odit accusantium impedit optio similique, non
-                                    adipisci. Obcaecati illo animi quas consectetur excepturi fuga voluptatum officiis!
-                                </p>
+                            <p>Moduli 1 keskittyy kahteen
+                                peruspilariin: <strong>itsensä johtamiseen
+                                    </strong>ja<strong> projektijohtamisen taustoitus-
+                                    ja määrittelyvaiheisiin</strong>.
+                            </p>
 
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque facilis rerum
-                                    reprehenderit dicta magni quasi eligendi consequatur provident cumque maxime,
-                                    dolorum explicabo similique in sequi molestias quos possimus quia, eum quis quisquam
-                                    optio suscipit quaerat! Maiores aperiam, adipisci nesciunt quam illo vitae facilis
-                                    fugiat sed? Quos quam at eius odio eum consectetur rem quasi. Unde ad expedita vero
-                                    est! Animi architecto ducimus, sequi facilis fugiat consectetur distinctio ratione
-                                    quisquam nostrum?</p>
+                            <p>Ensimmäiseksi tutustut itsensä
+                                johtamisen keskeisiin viitekehyksiin
+                                ja opit soveltamaan niitä omassa
+                                arjessasi erilaisten harjoitusten
+                                avulla. Itsensä johtaminen on
+                                projektipäällikön tärkeä taito: kun
+                                johdat itseäsi hyvin, pystyt
+                                johtamaan myös muita. Siksi
+                                ohjelma alkaa tämän perustan
+                                vahvistamisesta ja jatkuvan
+                                harjoittelun merkityksestä.</p>
 
-                                <!-- <h4>Moduulin sisältö:</h4>
+                            <p>Toiseksi saat kokonaiskuvan
+                                projektijohtamisen vaiheista ja
+                                niihin liittyvistä muutosjohtamisen
+                                sekä viestinnän mekanismeista.
+                                Modulissa perehdytään tarkemmin
+                                projektin <strong>taustoitus- ja
+                                    määrittelyvaiheeseen</strong> (initiation,
+                                concepting): mitä vaihe sisältää,
+                                millaisia tehtäviä siihen kuuluu ja
+                                millaista dokumentaatiota
+                                onnistunut aloitus edellyttää.</p>
+
+                            <p>Järjestämme myös
+                                reflektiotapaamisen, jota ennen
+                                voit lähettää kysymyksiä
+                                valmentajille. Vastaamme
+                                jokaiseen kysymykseen joko
+                                tilaisuudessa tai sen jälkeen. Kutsu
+                                tulee sinulle sähköpostitse tähän
+                                tapaamiseen.</p>
+
+                            <p>Tule mukaan tälle yhteisölliselle
+                                oppimiskokemukselle!</p>
+
+                            <!-- <h4>Moduulin sisältö:</h4>
                             <table class="table table-bordered mb-30">
 													<thead>
 														<tr>
@@ -921,94 +960,128 @@
 													</tbody>
 												</table> -->
 
-                                <h4>Projektin aloitus</h4>
-                                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eleifend donec sapien sed phase lusa pellentesque lacus. Vivamus lorem arcu semper duiac. Cras ornare arcu avamus nda leo Etiam ind arcu. Morbi justo mauris tempus pharetra interdum at congue semper purus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                            <h4>Projektin määrittely &
+                                Johtaja luo suunnan</h4>
+                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eleifend donec sapien sed phase lusa pellentesque lacus. Vivamus lorem arcu semper duiac. Cras ornare arcu avamus nda leo Etiam ind arcu. Morbi justo mauris tempus pharetra interdum at congue semper purus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
                             
                             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
                              -->
-                                <ul class="pr-ul">
-                                    <li>
-                                        <div class="icon"><i class="fal fa-check"></i></div>
-                                        <div class="text">
-                                            Itsensä johtaminen
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon"><i class="fal fa-check"></i></div>
-                                        <div class="text">
-                                            Projektin taustoitus, määrittely ja päätös projektista
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon"><i class="fal fa-check"></i></div>
-                                        <div class="text">
-                                            Muutos- ja viestintäsuunnitelma
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon"><i class="fal fa-check"></i></div>
-                                        <div class="text">
-                                            Tekoälyn hyödyntäminen
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon"><i class="fal fa-check"></i></div>
-                                        <div class="text">
-                                            Käytännön esimerkit ja case-tutkimukset
-                                        </div>
-                                    </li>
+                            <ul class="pr-ul">
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Johtajan roolin
+                                        kirkastaminen
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Oman motivaation ja
+                                        arvojen tunnistaminen </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Tavoite – sisäistäminen ja
+                                        sitoutuminen </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Priorisointi ja ajanhallinta
+                                        johtajana </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Johtamisen harjoituksia
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Hyvinvointivinkki
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Projektin taustoitus
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Projektin määrittely
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Muutosjohtamis- ja
+                                        viestintäsuunnitelma
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Modulin 1 yhteenveto
+                                    </div>
+                                </li>
 
-                                </ul>
+
+                            </ul>
                         </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <aside class="sidebar-widget">
-                                <section class="widget widget_search">
-                                    <div class="course-widget-price">
-                                        <h2 class="widget-title">Moduulin tiedot</h2>
-                                        <div class="mobile-menu-content">
-                        <ul>
-                                            <!-- <li>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-4">
+                    <aside class="sidebar-widget">
+                        <section class="widget widget_search">
+                            <div class="course-widget-price">
+                                <h2 class="widget-title">Moduulin tiedot</h2>
+                                <div class="mobile-menu-content">
+                                    <ul> -->
+                <!-- <li>
                                        <i class="fal fa-clock"></i>
                                         <span>Alkaa</span>
                                         <span class="time">Heti saatavilla</span>
                                     </li> -->
-                                            <li>
-                                                <i class="fal fa-exclamation-circle"></i>
-                                                <span>Kesto</span>
-                                                <span class="time">3 tuntia</span>
-                                            </li>
-                                            <li>
-                                                <i class="fab fa-leanpub"></i>
-                                                <span>Formaatti</span>
-                                                <span class="time">Live webinaari</span>
-                                            </li>
-                                            <li>
-                                                <i class="fal fa-user-graduate"></i>
-                                                <span>Järjestäjä</span>
-                                                <span class="time">BloomLead</span>
-                                            </li>
-                                            <!-- <li>
+                <!-- <li>
+                                            <i class="fal fa-exclamation-circle"></i>
+                                            <span>Kesto</span>
+                                            <span class="time">3 tuntia</span>
+                                        </li>
+                                        <li>
+                                            <i class="fab fa-leanpub"></i>
+                                            <span>Formaatti</span>
+                                            <span class="time">Live webinaari</span>
+                                        </li>
+                                        <li>
+                                            <i class="fal fa-user-graduate"></i>
+                                            <span>Järjestäjä</span>
+                                            <span class="time">BloomLead</span>
+                                        </li> -->
+                <!-- <li>
                                        <i class="fal fa-plus-hexagon"></i>
                                         <span>Osallistujia</span>
                                         <span class="time">Rajoittamaton</span>
                                     </li> -->
-                                            <!-- <li>
+                <!-- <li>
                                         <i class="fal fa-user"></i>
                                         <span>Taso</span>
                                         <span class="time">Perustaso</span>
                                     </li> -->
-                                        </ul>
-                        </div>
-                                        <h5 class="pt-20 pb-20">Hinta: <span>125€ (+ alv)</span></h5>
-                                        <a class="btn ss-btn" href="#">TILAA MODUULI</a>
-                                    </div>
+                <!-- </ul>
+                                </div>
+                                <h5 class="pt-20 pb-20">Hinta: <span>125€ (+ alv)</span></h5>
+                                <a class="btn ss-btn" href="#">TILAA MODUULI</a>
+                            </div>
 
 
-                                </section>
+                        </section> -->
 
-                                <!-- <section id="categories-1" class="widget widget_categories">
+                <!-- <section id="categories-1" class="widget widget_categories">
                              <h2 class="widget-title">Aiheet</h2>
                              <div class="mobile-menu-content">
                         <ul>
@@ -1020,17 +1093,17 @@
                         </div>
                           </section> -->
 
-                            </aside>
+                <!-- </aside>
 
 
 
-                        </div>
+                </div> -->
 
 
-                    </div>
+            </div>
 
 
-                </div>
+            </div>
 
 
             </div>
@@ -1051,9 +1124,10 @@
                 <div class="subscribe-icon">
                     <i class="fas fa-video"></i>
                 </div>
-                <h3>Subscribe to Watch Full Video</h3>
+                <h3>Tilaa voidaksesi katsoa koko
+                    webinaarin</h3>
                 <button class="subscribe-submit-btn" id="subscribeBtn">
-                    <i class="fas fa-bell"></i> Subscribe Now
+                    <i class="fas fa-bell"></i> Tilaa nyt
                 </button>
             </div>
         </div>
@@ -1095,42 +1169,29 @@
                             </div>
                             <div class="f-contact">
                                 <div class="mobile-menu-content">
-                        <ul>
-                                    <!-- <li>
+                                    <ul>
+                                        <!-- <li>
                                                 <i class="icon fal fa-map-marker-check"></i>
                                                 <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
                                             </li> -->
-                                    
-                                    <li><i class="icon fal fa-envelope"></i>
-                                        <span>
-                                            <span style="display: block;">contact@bloomlead.io</span>
-                                            <!-- <span style="display: block;">help@example.com</span> -->
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <i class="icon fal fa-phone"></i>
-                                        <span>+358 44 388 3188,
-                                            <br>ti ja to klo 17.00-18.00</span>
-                                    </li>
+
+                                        <li><i class="icon fal fa-envelope"></i>
+                                            <span>
+                                                <span style="display: block;">contact@bloomlead.io</span>
+                                                <!-- <span style="display: block;">help@example.com</span> -->
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <i class="icon fal fa-phone"></i>
+                                            <span>+358 44 388 3188,
+                                                <br>ti ja to klo 17.00-18.00</span>
+                                        </li>
 
 
-                                </ul>
-                        </div>
+                                    </ul>
+                                </div>
 
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-lg-3 col-sm-6">
-                        <div class="footer-widget mb-30">
-                            <div class="f-widget-title">
-                                <h2>Sopimukset</h2>
-                            </div>
-                            <div class="footer-link">
-                                <p><a href="terms-and-conditions.html" style="color: inherit;">Käyttö- ja sopimusehdot</a></p>
-                                <p><a href="privacy-policy.html" style="color: inherit;">Tietosuojalauseke</a></p>
-                            </div>
-
                         </div>
                     </div>
 
@@ -1144,6 +1205,21 @@
                                 Y-tunnus 3166661-4<br>
                                 Pankkitili
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6 terms-and-condition-link-container">
+                        <div class="footer-widget terms-and-condition-link mb-30">
+                            <div class="f-widget-title">
+                                <!-- <h2>Sopimukset</h2> -->
+                            </div>
+                            <div class="footer-link">
+                                <p><a href="terms-and-conditions.html" style="color: inherit;">Käyttö- ja
+                                        sopimusehdot</a></p>
+                                <p><a href="privacy-policy.html" style="color: inherit;">Rekisteriseloste ja
+                                        Tietosuoja</a></p>
+                            </div>
+
                         </div>
                     </div>
 

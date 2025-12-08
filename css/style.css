@@ -6101,6 +6101,16 @@ iframe {
     color: #769757;
 }
 
+.terms-and-condition-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.terms-and-condition-link-container {
+    display: flex;
+}
+
 .bsingle__content h1,
 .bsingle__content h2,
 .bsingle__content h3,
@@ -6969,8 +6979,8 @@ img {
     }
 
     .col-md-12 {
-        padding-left: 0px ;
-        padding-right: 0px ;
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 
@@ -8514,6 +8524,7 @@ p.checkout-coupon input[type="text"] {
 
 .project-detail .pr-ul li {
     display: flex;
+    align-items: baseline;
     margin-bottom: 15px;
     float: left;
     width: 50%;
@@ -8526,8 +8537,8 @@ p.checkout-coupon input[type="text"] {
     border: 2px solid #EEEEEE;
     border-radius: 50%;
     text-align: center;
-    line-height: 40px;
-    margin-right: 20px;
+    line-height: 38px;
+    margin-right: 10px;
     color: #a571aa;
 }
 
