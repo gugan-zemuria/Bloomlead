@@ -1034,6 +1034,7 @@
 
     .project-detail .pr-ul li {
         display: flex;
+        align-items: center;
         margin-bottom: 15px;
         float: left;
         width: 100%;
