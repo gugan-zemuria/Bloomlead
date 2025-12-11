@@ -6105,6 +6105,7 @@ iframe {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    margin-top: -18px;
 }
 
 .terms-and-condition-link-container {
