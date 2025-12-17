@@ -907,8 +907,25 @@
         margin-bottom: 0;
     }
 
+     .f-contact li {
+        gap: 5px;
+    }
+
     .f-contact i {
         width: 62px;
+    }
+
+    .f-contact .icon {
+        margin-right: 0;
+    }
+
+    .col-md-10 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .services-box {
+        padding: 0 20px;
     }
 
     /* Hide mobile search functionality */
@@ -1117,6 +1134,10 @@
     /* .slider-active .slick-track::before {
         background: #fff5f4;
     } */
+
+    .contact-info {
+        padding: 12px 0 !important;
+    }
 
     #feature-top {
         margin-top: -40px;

@@ -7,7 +7,7 @@
     <title>BloomLead - Live Webinars & Professional Learning</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.webp">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/cookie-consent.css">
     <style>
         /* Mobile Menu Button Styles */
         .mobile-menu-btn {
@@ -420,6 +421,16 @@
             color: #a571aa;
             transform: scale(1.1);
         }
+        
+        #speedBtn {
+            min-width: 35px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        #speedDisplay {
+            color: inherit;
+        }
 
         .time-display {
             color: white;
@@ -693,7 +704,7 @@
                         <!-- Logo - Left -->
                         <div class="col-xl-3 col-lg-3 col-md-6 col-6 mb-0 df">
                             <a href="index.html">
-                                <img src="img/logo/logo.png" alt="BloomLead Logo">
+                                <img src="img/logo/logo.webp" alt="BloomLead Logo">
                             </a>
                             <div class="logo" style="display: flex; align-items: center; gap: 10px;">
 
@@ -827,7 +838,7 @@
                             <!-- <ul class="course-meta review style2 clearfix mb-30">
                                 <li class="author">
                                     <div class="thumb">
-                                        <img src="img/testimonial/testi_avatar.png" alt="image">
+                                        <img src="img/testimonial/testi_avatar.webp" alt="image">
                                     </div>
 
                                     <div class="text">
@@ -875,6 +886,9 @@
                                             </button>
                                             <input type="range" id="volumeSlider" min="0" max="100" value="100"
                                                 class="volume-slider">
+                                            <button class="control-btn" id="speedBtn" title="Playback Speed">
+                                                <span id="speedDisplay">1x</span>
+                                            </button>
                                             <button class="control-btn" id="fullscreenBtn">
                                                 <i class="fas fa-expand"></i>
                                             </button>
@@ -1144,7 +1158,7 @@
                         <div class="footer-widget mb-30">
                             <div class="df">
                                 <a href="index.html">
-                                    <img src="img/logo/logo.png" alt="BloomLead Logo">
+                                    <img src="img/logo/logo.webp" alt="BloomLead Logo">
                                 </a>
                                 <div class="logo" style="display: flex; align-items: center; gap: 10px;">
 
@@ -1266,6 +1280,13 @@
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/element-in-view.js"></script>
     <script src="js/main.js"></script>
+    
+    <!-- Cookie Consent System -->
+    <!-- <script src="js/cookie-config.js"></script> -->
+    <!-- <script src="js/cookie-consent-manager.js"></script> -->
+    
+    <!-- Functional Cookies -->
+    <!-- <script src="js/functional-cookies.js"></script> -->
 
     <!-- Custom Mobile Menu Script -->
     <script>
@@ -1316,7 +1337,7 @@
             });
         });
 
-        // Custom Video Player Functionality
+        // Custom Video Player Functionality with Functional Cookies
         const video = document.getElementById('customVideo');
         const playButton = document.getElementById('playButton');
         const videoOverlay = document.getElementById('videoOverlay');
@@ -1328,7 +1349,15 @@
         const durationDisplay = document.getElementById('duration');
         const muteBtn = document.getElementById('muteBtn');
         const volumeSlider = document.getElementById('volumeSlider');
+        const speedBtn = document.getElementById('speedBtn');
+        const speedDisplay = document.getElementById('speedDisplay');
         const fullscreenBtn = document.getElementById('fullscreenBtn');
+        
+        // Video ID for this specific module
+        const videoId = 'module-1-webinar';
+        
+        // Progress saving interval
+        let progressInterval;
 
         // Format time helper
         function formatTime(seconds) {
@@ -1361,9 +1390,43 @@
             currentTimeDisplay.textContent = formatTime(video.currentTime);
         });
 
-        // Set duration when loaded
+        // Set duration when loaded and restore saved preferences
         video.addEventListener('loadedmetadata', () => {
             durationDisplay.textContent = formatTime(video.duration);
+            
+            // Initialize video player with functional cookies
+            initializeVideoPlayer(video, videoId);
+            
+            /* TEMPORARILY DISABLED - Cookie functionality commented out
+            // Only restore preferences if functional cookies are allowed
+            if (FunctionalCookies.hasConsentFor('functional')) {
+                // Restore saved playback speed
+                const savedSpeed = FunctionalCookies.getPlaybackSpeed();
+                if (savedSpeed && savedSpeed !== 1.0) {
+                    video.playbackRate = savedSpeed;
+                    speedDisplay.textContent = `${savedSpeed}x`;
+                    // Find the correct speed index
+                    currentSpeedIndex = playbackSpeeds.indexOf(savedSpeed);
+                    if (currentSpeedIndex === -1) currentSpeedIndex = 2; // Default to 1x
+                }
+                
+                // Restore saved volume
+                const savedVolume = FunctionalCookies.getVolume();
+                if (savedVolume !== 1.0) {
+                    video.volume = savedVolume;
+                    volumeSlider.value = savedVolume * 100;
+                    
+                    // Update mute button icon based on volume
+                    if (savedVolume === 0) {
+                        muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    } else if (savedVolume < 0.5) {
+                        muteBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+                    } else {
+                        muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    }
+                }
+            }
+            */
         });
 
         // Seek functionality
@@ -1385,9 +1448,17 @@
             }
         });
 
-        // Volume control
+        // Volume control with functional cookies
         volumeSlider.addEventListener('input', (e) => {
             video.volume = e.target.value / 100;
+            
+            /* TEMPORARILY DISABLED - Cookie functionality commented out
+            // Save volume preference (only if functional cookies are allowed)
+            if (FunctionalCookies.hasConsentFor('functional')) {
+                FunctionalCookies.saveVolume(video.volume);
+            }
+            */
+            
             if (video.volume === 0) {
                 video.muted = true;
                 muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
@@ -1399,6 +1470,24 @@
                     muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
                 }
             }
+        });
+
+        // Playback speed control with functional cookies
+        const playbackSpeeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
+        let currentSpeedIndex = 2; // Default to 1x
+        
+        speedBtn.addEventListener('click', () => {
+            currentSpeedIndex = (currentSpeedIndex + 1) % playbackSpeeds.length;
+            const newSpeed = playbackSpeeds[currentSpeedIndex];
+            video.playbackRate = newSpeed;
+            speedDisplay.textContent = `${newSpeed}x`;
+            
+            /* TEMPORARILY DISABLED - Cookie functionality commented out
+            // Save playback speed preference (only if functional cookies are allowed)
+            if (FunctionalCookies.hasConsentFor('functional')) {
+                FunctionalCookies.savePlaybackSpeed(newSpeed);
+            }
+            */
         });
 
         // Fullscreen
@@ -1425,11 +1514,24 @@
             }
         });
 
-        // Show controls on video end
+        // Show controls on video end and stop progress tracking
         video.addEventListener('ended', () => {
             playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
             videoOverlay.classList.remove('hidden');
             videoControls.classList.add('show');
+            
+            // Stop progress tracking
+            if (progressInterval) {
+                clearInterval(progressInterval);
+                progressInterval = null;
+            }
+            
+            /* TEMPORARILY DISABLED - Cookie functionality commented out
+            // Save final progress (only if functional cookies are allowed)
+            if (FunctionalCookies.hasConsentFor('functional')) {
+                FunctionalCookies.saveVideoProgress(videoId, video.currentTime);
+            }
+            */
         });
 
         // Hide overlay when video starts playing
@@ -1444,8 +1546,23 @@
         const subscribeBtn = document.getElementById('subscribeBtn');
         let hasShownPopup = false;
 
-        // Show popup when video plays
+        // Show popup when video plays and start progress tracking
         video.addEventListener('play', () => {
+            /* TEMPORARILY DISABLED - Cookie functionality commented out
+            // Mark as last watched webinar (only if functional cookies are allowed)
+            if (FunctionalCookies.hasConsentFor('functional')) {
+                FunctionalCookies.saveLastWatched(videoId);
+                
+                // Start progress tracking
+                if (progressInterval) clearInterval(progressInterval);
+                progressInterval = setInterval(() => {
+                    if (!video.paused && FunctionalCookies.hasConsentFor('functional')) {
+                        FunctionalCookies.saveVideoProgress(videoId, video.currentTime);
+                    }
+                }, 5000); // Save every 5 seconds
+            }
+            */
+            
             if (!hasShownPopup) {
                 setTimeout(() => {
                     video.pause();
@@ -1488,6 +1605,27 @@
             if (e.key === 'Escape' && subscribePopup.classList.contains('active')) {
                 closeSubscribePopup();
             }
+        });
+        
+        // Stop progress tracking when video is paused
+        video.addEventListener('pause', () => {
+            if (progressInterval) {
+                clearInterval(progressInterval);
+                progressInterval = null;
+            }
+        });
+        
+        // Clean up on page unload
+        window.addEventListener('beforeunload', () => {
+            if (progressInterval) {
+                clearInterval(progressInterval);
+            }
+            /* TEMPORARILY DISABLED - Cookie functionality commented out
+            // Save final progress (only if functional cookies are allowed)
+            if (video && !video.paused && FunctionalCookies.hasConsentFor('functional')) {
+                FunctionalCookies.saveVideoProgress(videoId, video.currentTime);
+            }
+            */
         });
     </script>
 </body>

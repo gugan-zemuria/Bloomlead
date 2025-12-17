@@ -7,7 +7,7 @@
     <title>BloomLead - Live Webinars & Professional Learning</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.png  ">
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.webp">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -401,13 +401,60 @@
             gap: 10px;
         }
 
-        .f-contact-conatiner .icon{
+        .f-contact-conatiner .icon {
             margin-right: 0;
         }
 
         .f-contact li i {
             margin-top: 3px;
         }
+
+        /* Email Link Styles */
+        a[href^="mailto:"] {
+            transition: all 0.3s ease;
+            cursor: pointer !important;
+            position: relative;
+        }
+
+        a[href^="mailto:"]:hover {
+            color: #a571aa !important;
+            text-decoration: underline !important;
+            /* transform: translateX(2px); */
+        }
+
+        /* Contact info email links */
+        .contact-info a[href^="mailto:"] {
+            border-radius: 4px;
+            /* padding: 2px 4px; */
+            border: 1px solid transparent;
+        }
+
+        /* .contact-info a[href^="mailto:"]:hover {
+            background-color: rgba(165, 113, 170, 0.1);
+            color: #a571aa !important;
+            border-color: rgba(165, 113, 170, 0.3);
+            box-shadow: 0 2px 8px rgba(165, 113, 170, 0.2);
+        } */
+
+        /* Make email links more obvious */
+        .email-clickable {
+            cursor: pointer !important;
+            text-decoration: underline;
+            text-decoration-color: #777777;
+        }
+
+        .email-clickable:hover {
+            text-decoration-color: #a571aa;
+        }
+
+        @media(max-width:768px) {
+             .df .logo {
+            height: 30px !important;
+
+        }
+        }
+
+
     </style>
 </head>
 
@@ -421,7 +468,7 @@
                         <!-- Logo - Left -->
                         <div class="col-xl-3 col-lg-3 col-md-6 col-6 mb-0 head df">
                             <a href="index.html">
-                                <img src="img/logo/logo.png" alt="BloomLead Logo">
+                                <img src="img/logo/logo.webp" alt="BloomLead Logo">
                             </a>
                             <div class="logo" style="display: flex; align-items: center; gap: 10px;">
 
@@ -546,12 +593,12 @@
 
         <!-- contact-details-area -->
         <section id="contact-details" class="services-area pb-60 fix"
-            style=" background-image: url(img/bg/blog-bg-aliments.png); background-repeat: no-repeat; background-position: center center;background-attachment: fixed;">
+            style=" background-image: url(img/bg/blog-bg-aliments.webp); background-repeat: no-repeat; background-position: center center;background-attachment: fixed;">
             <div class="container pt-30">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="section-title center-align text-center mb-50">
-                            <h5>Ota yhteyttä meihin</h5>
+                        <div class="section-title center-align text-center">
+                            <h5>Ota meihin yhteyttä</h5>
                             <!-- <h2>
                                 Alla olevilla tavoilla
                             </h2> -->
@@ -563,17 +610,17 @@
                         <div class="services-box mt-0 mb-30 text-center">
                             <div class="services-content2">
 
-                                <div style="text-align: left; max-width: 400px; margin: 0 auto;">
-                                    <div class="df" style="justify-content: center; margin-bottom: 24px;">
+                                <div class="contact-info" style="text-align: left; max-width: 400px; margin: 0 auto;">
+                                    <!-- <div class="df" style="justify-content: center; margin-bottom: 24px;">
                                         <a href="index.html">
-                                            <img src="img/logo/logo.png" alt="BloomLead Logo">
+                                            <img src="img/logo/logo.webp" alt="BloomLead Logo">
                                         </a>
                                         <div class="logo" style="display: flex; align-items: center; gap: 10px;">
 
                                             <a href="index.html"
                                                 style="font-size: 24px; color: #a571aa; font-weight: 700; font-family: 'Jost', sans-serif; text-decoration: none;">BloomLead</a>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div style="margin-bottom: 20px;">
                                         <!-- <h5 style="color: #a571aa; margin-bottom: 10px;">BloomLead:</h5> -->
@@ -582,35 +629,42 @@
                                         <p>MT Coaching Oyj</p> -->
                                     </div>
 
+                                    
+
                                     <div style="margin-bottom: 20px;">
-                                        <h5 style="color: #a571aa; margin-bottom: 10px;">Sähköposti:</h5>
-                                        <ul class="f-contact f-contact-conatiner" style="padding-left: 0; list-style: none;">
+                                        <h5 style="color: #a571aa; margin-bottom: 10px;">Nettisivu</h5>
+                                        <div class="df">
+                                            <!-- <a href="index.html">
+                                                <img src="img/logo/logo.webp" alt="BloomLead Logo" width="46px"
+                                                    height="40px">
+                                            </a> -->
+                                            <div class="logo" style="display: flex; align-items: center; gap: 10px; ">
+
+                                                <a href="https://www.bloomlead.io"
+                                                    style=" color: #777777; ; font-family: 'Jost', sans-serif; text-decoration: underline; " target="_blank">www.bloomlead.io</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-bottom: 20px;">
+                                        <h5 style="color: #a571aa; margin-bottom: 10px;">Sähköposti</h5>
+                                        <ul class="f-contact f-contact-conatiner"
+                                            style="padding-left: 0; list-style: none;">
                                             <li><i class="icon fal fa-envelope"></i>
                                                 <span>
-                                                    <span
-                                                        style="display: block; color: #777777;">contact@bloomlead.io</span>
+                                                    <a href="mailto:contact@bloomlead.io" 
+                                                       class="email-clickable"
+                                                       style="display: block; color: #777777; cursor: pointer;"
+                                                       onclick="openEmailOptions('contact@bloomlead.io', 'main-contact-section'); return false;">
+                                                        contact@bloomlead.io
+                                                    </a>
                                                 </span>
                                             </li>
                                         </ul>
                                     </div>
 
                                     <div style="margin-bottom: 20px;">
-                                        <h5 style="color: #a571aa; margin-bottom: 10px;">Nettisivu:</h5>
-                                        <div class="df">
-                                            <a href="index.html">
-                                                <img src="img/logo/logo.png" alt="BloomLead Logo" width="46px"
-                                                    height="40px">
-                                            </a>
-                                            <div class="logo" style="display: flex; align-items: center; gap: 10px;">
-
-                                                <a href="index.html"
-                                                    style="font-size: 18px; color: #769757; ; font-family: 'Jost', sans-serif; text-decoration: none;">BloomLead.io</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div style="margin-bottom: 20px;">
-                                        <h5 style="color: #a571aa; margin-bottom: 10px;">Puhelin:</h5>
+                                        <h5 style="color: #a571aa; margin-bottom: 10px;">Puhelin</h5>
                                         <ul class="f-contact f-contact-conatiner">
                                             <!-- <li>
                                                     <i class="icon fal fa-map-marker-check"></i>
@@ -647,7 +701,7 @@
                     <div class="col-xl-3 col-lg-3 col-sm-12">
                         <div class="footer-widget mb-30">
 
-                            <img src="img/logo/it-logo.png" alt="webinar logo">
+                            <img src="img/logo/it-logo.webp" alt="webinar logo">
 
                         </div>
                     </div>
@@ -686,7 +740,7 @@
                         <div class="footer-widget mb-30">
                             <div class="df">
                                 <a href="index.html">
-                                    <img src="img/logo/logo.png" alt="BloomLead Logo">
+                                    <img src="img/logo/logo.webp" alt="BloomLead Logo">
                                 </a>
                                 <div class="logo" style="display: flex; align-items: center; gap: 10px;">
 
@@ -709,7 +763,7 @@
                             <div class="f-widget-title">
                                 <h2>Ota yhteyttä</h2>
                             </div>
-                            <div class="f-contact f-contact-conatiner">
+                            <div class="f-contact f-contact-conatiner contact-info">
                                 <div class="mobile-menu-content">
                                     <ul>
                                         <!-- <li>
@@ -719,7 +773,12 @@
 
                                         <li><i class="icon fal fa-envelope"></i>
                                             <span>
-                                                <span style="display: block;">contact@bloomlead.io</span>
+                                                <a href="mailto:contact@bloomlead.io" 
+                                                   class="email-clickable"
+                                                   style="display: block; color: inherit; cursor: pointer;"
+                                                   onclick="openEmailOptions('contact@bloomlead.io', 'footer-contact'); return false;">
+                                                    contact@bloomlead.io
+                                                </a>
                                                 <!-- <span style="display: block;">help@example.com</span> -->
                                             </span>
                                         </li>
@@ -742,7 +801,8 @@
                             <div class="f-widget-title">
                                 <h2>Yrityksen tiedot</h2>
                             </div>
-                            <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210 Tampere<br>Y-tunnus 3166661-4<br>Pankkitili</div>
+                            <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210
+                                Tampere<br>Y-tunnus 3166661-4<br>Pankkitili</div>
                         </div>
                     </div>
 
@@ -859,6 +919,28 @@
             });
         });
     </script>
+
+    <!-- Cookie Consent System -->
+    <!-- <script src="js/cookie-config.js"></script> -->
+    <!-- <script src="js/necessary-cookies.js"></script> -->
+    <!-- <script src="js/cookie-consent-manager.js"></script> -->
+    
+    <!-- Functional Cookies -->
+    <!-- <script src="js/functional-cookies.js"></script> -->
+    
+    <!-- Marketing Cookies System -->
+    <!-- <script src="js/marketing-cookies.js"></script> -->
+    <!-- <script src="js/webinar-marketing-integration.js"></script> -->
+    
+    <!-- Email Modal System -->
+    <script src="js/email-modal.js"></script>
+
+    <!-- Page-specific webinar tracking -->
+    <div data-webinar-page data-webinar-id="contact-page" data-webinar-title="Contact BloomLead"
+        data-webinar-topic="Contact" style="display: none;"></div>
+</body>
+
+</html>
 </body>
 
 </html>

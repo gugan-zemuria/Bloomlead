@@ -750,7 +750,7 @@ body {
 }
 
 .slider-active .slick-dots li.slick-active button::before {
-    background: url("../img/bg/active-dote.png");
+    background: url("../img/bg/active-dote.webp");
     opacity: 1;
 }
 
@@ -758,7 +758,7 @@ body {
     content: "";
     width: 19px;
     height: 19px;
-    background: url("../img/bg/dote.png");
+    background: url("../img/bg/dote.webp");
     float: left;
     position: relative;
     margin-top: -9px;
@@ -2335,7 +2335,7 @@ section:hover .section-title h2::before {
     border-radius: 10px;
     background-color: rgb(255, 255, 255);
     box-shadow: 1px 1.732px 40px 0px rgba(0, 0, 0, 0.08);
-    padding: 20px;
+    padding:0 0px;
     margin-top: 30px;
 }
 
@@ -3042,7 +3042,7 @@ section:hover .section-title h2::before {
 .team-active .slick-dots li.slick-active button {}
 
 .team-active .slick-dots li.slick-active button::before {
-    background: url("../img/bg/active-dote.png");
+    background: url("../img/bg/active-dote.webp");
     opacity: 1;
 }
 
@@ -3050,7 +3050,7 @@ section:hover .section-title h2::before {
     content: "";
     width: 19px;
     height: 19px;
-    background: url("../img/bg/dote.png");
+    background: url("../img/bg/dote.webp");
     float: left;
     position: relative;
     margin-top: -9px;
@@ -3957,7 +3957,7 @@ section:hover .section-title h2::before {
 .home-blog-active .slick-dots li.slick-active button {}
 
 .home-blog-active .slick-dots li.slick-active button::before {
-    background: url("../img/bg/active-dote.png");
+    background: url("../img/bg/active-dote.webp");
     opacity: 1;
 }
 
@@ -3965,7 +3965,7 @@ section:hover .section-title h2::before {
     content: "";
     width: 19px;
     height: 19px;
-    background: url("../img/bg/dote.png");
+    background: url("../img/bg/dote.webp");
     float: left;
     position: relative;
     margin-top: -9px;
@@ -4811,10 +4811,11 @@ section:hover .section-title h2::before {
 
 .f-contact {
     display: flex;
+    padding: 0 !important;
 }
 
 .f-contact a {
-    color: #c1c1c1 !important;
+    color: #c1c1c1;
 }
 
 .f-contact a:hover {
@@ -5478,7 +5479,7 @@ li.sub.has-mega-menu:hover>ul>li>ul {
 }
 
 .quote-post {
-    background: url(../images/quote_bg.png);
+    background: url(../images/quote_bg.webp);
 }
 
 .widget_media_image a:hover {
@@ -10594,8 +10595,8 @@ blockquote footer {
 
 .contact-info {
     padding: 30px 20px;
-    background: #3c3935;
-    background: #3c3935;
+    /* background: #3c3935;
+    background: #3c3935; */
 }
 
 .contact-info p {

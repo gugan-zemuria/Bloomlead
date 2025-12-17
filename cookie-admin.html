@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Consent Admin - BloomLead</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .admin-header {
+            background: linear-gradient(135deg, #a571aa, #769757);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .admin-card-header {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .admin-card-body {
+            padding: 1.5rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #a571aa;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .consent-chart {
+            height: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        .btn-admin {
+            background: linear-gradient(135deg, #a571aa, #769757);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-admin:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(165, 113, 170, 0.3);
+            color: white;
+        }
+        
+        .settings-group {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.3s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+        
+        .toggle-switch input:checked + .toggle-slider {
+            background: linear-gradient(135deg, #a571aa, #769757);
+        }
+        
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        .log-entry {
+            background: white;
+            border-left: 4px solid #a571aa;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .log-timestamp {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .log-message {
+            margin: 0;
+        }
+        
+        .export-section {
+            background: linear-gradient(135deg, rgba(165, 113, 170, 0.1), rgba(118, 151, 87, 0.1));
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1><i class="fas fa-cookie-bite me-3"></i>Cookie Consent Admin</h1>
+                    <p class="mb-0">Hallitse evästeiden suostumuksia ja asetuksia</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="index.html" class="btn btn-light">
+                        <i class="fas fa-arrow-left me-2"></i>Takaisin sivustolle
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Statistics Row -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalVisitors">-</div>
+                    <div class="stat-label">Kävijät yhteensä</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-number" id="consentGiven">-</div>
+                    <div class="stat-label">Suostumus annettu</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-number" id="analyticsEnabled">-</div>
+                    <div class="stat-label">Analytiikka käytössä</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-number" id="marketingEnabled">-</div>
+                    <div class="stat-label">Markkinointi käytössä</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Settings Panel -->
+            <div class="col-md-6">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3><i class="fas fa-cog me-2"></i>Asetukset</h3>
+                    </div>
+                    <div class="admin-card-body">
+                        <div class="settings-group">
+                            <h5>Yleisasetukset</h5>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <label>GDPR-yhteensopivuus</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="gdprCompliant" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <label>Näytä banneri uusille käyttäjille</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="showBanner" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <label>Estä skriptit ilman suostumusta</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="blockScripts" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <h5>Palveluasetukset</h5>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <label>Google Analytics</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="googleAnalytics">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <label>Facebook Pixel</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="facebookPixel">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <label>Video Analytics</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="videoAnalytics" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button class="btn btn-admin" onclick="saveSettings()">
+                                <i class="fas fa-save me-2"></i>Tallenna asetukset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consent Overview -->
+            <div class="col-md-6">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3><i class="fas fa-chart-pie me-2"></i>Suostumusjakauma</h3>
+                    </div>
+                    <div class="admin-card-body">
+                        <div class="consent-chart">
+                            <div class="text-center">
+                                <i class="fas fa-chart-pie fa-3x text-muted mb-3"></i>
+                                <p>Kaaviot ladataan kun analytiikka on käytössä</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Log -->
+        <div class="row">
+            <div class="col-12">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3><i class="fas fa-list me-2"></i>Toimintoloki</h3>
+                    </div>
+                    <div class="admin-card-body">
+                        <div id="activityLog">
+                            <div class="log-entry">
+                                <div class="log-timestamp">2025-12-12 10:30:15</div>
+                                <p class="log-message">Cookie consent system initialized</p>
+                            </div>
+                            <div class="log-entry">
+                                <div class="log-timestamp">2025-12-12 10:25:42</div>
+                                <p class="log-message">Admin panel accessed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export Section -->
+        <div class="row">
+            <div class="col-12">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3><i class="fas fa-download me-2"></i>Tietojen vienti</h3>
+                    </div>
+                    <div class="admin-card-body">
+                        <div class="export-section">
+                            <h4>Vie suostumustiedot</h4>
+                            <p>Lataa kaikki suostumustiedot GDPR-yhteensopivassa muodossa</p>
+                            <div class="mt-3">
+                                <button class="btn btn-admin me-2" onclick="exportConsentData()">
+                                    <i class="fas fa-file-csv me-2"></i>Vie CSV
+                                </button>
+                                <button class="btn btn-admin me-2" onclick="exportConsentJSON()">
+                                    <i class="fas fa-file-code me-2"></i>Vie JSON
+                                </button>
+                                <button class="btn btn-admin" onclick="generateReport()">
+                                    <i class="fas fa-file-pdf me-2"></i>Luo raportti
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        // Mock data for demonstration
+        const mockStats = {
+            totalVisitors: 1247,
+            consentGiven: 892,
+            analyticsEnabled: 654,
+            marketingEnabled: 423
+        };
+
+        // Initialize admin panel
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStatistics();
+            loadSettings();
+            addLogEntry('Admin panel loaded');
+        });
+
+        function loadStatistics() {
+            document.getElementById('totalVisitors').textContent = mockStats.totalVisitors.toLocaleString();
+            document.getElementById('consentGiven').textContent = mockStats.consentGiven.toLocaleString();
+            document.getElementById('analyticsEnabled').textContent = mockStats.analyticsEnabled.toLocaleString();
+            document.getElementById('marketingEnabled').textContent = mockStats.marketingEnabled.toLocaleString();
+        }
+
+        function loadSettings() {
+            // Load current settings from configuration
+            if (window.CookieConsentConfig) {
+                document.getElementById('gdprCompliant').checked = window.CookieConsentConfig.gdprCompliant;
+                document.getElementById('showBanner').checked = window.CookieConsentConfig.regionalConfig.showBannerOnFirstVisit;
+                document.getElementById('blockScripts').checked = window.CookieConsentConfig.regionalConfig.blockScriptsUntilConsent;
+                document.getElementById('googleAnalytics').checked = window.CookieConsentConfig.services.googleAnalytics.enabled;
+                document.getElementById('facebookPixel').checked = window.CookieConsentConfig.services.facebookPixel.enabled;
+                document.getElementById('videoAnalytics').checked = window.CookieConsentConfig.analytics.trackEvents.videoEngagement;
+            }
+        }
+
+        function saveSettings() {
+            const settings = {
+                gdprCompliant: document.getElementById('gdprCompliant').checked,
+                showBanner: document.getElementById('showBanner').checked,
+                blockScripts: document.getElementById('blockScripts').checked,
+                googleAnalytics: document.getElementById('googleAnalytics').checked,
+                facebookPixel: document.getElementById('facebookPixel').checked,
+                videoAnalytics: document.getElementById('videoAnalytics').checked
+            };
+
+            // In a real implementation, you would save these to your backend
+            console.log('Saving settings:', settings);
+            
+            // Update configuration
+            if (window.CookieConsentConfig) {
+                window.CookieConsentConfig.gdprCompliant = settings.gdprCompliant;
+                window.CookieConsentConfig.regionalConfig.showBannerOnFirstVisit = settings.showBanner;
+                window.CookieConsentConfig.regionalConfig.blockScriptsUntilConsent = settings.blockScripts;
+                window.CookieConsentConfig.services.googleAnalytics.enabled = settings.googleAnalytics;
+                window.CookieConsentConfig.services.facebookPixel.enabled = settings.facebookPixel;
+                window.CookieConsentConfig.analytics.trackEvents.videoEngagement = settings.videoAnalytics;
+            }
+
+            addLogEntry('Settings saved successfully');
+            
+            // Show success message
+            alert('Asetukset tallennettu onnistuneesti!');
+        }
+
+        function exportConsentData() {
+            // Mock consent data
+            const consentData = [
+                { timestamp: '2025-12-12T10:30:15Z', userId: 'user_001', necessary: true, functional: true, analytics: true, marketing: false },
+                { timestamp: '2025-12-12T09:15:32Z', userId: 'user_002', necessary: true, functional: false, analytics: false, marketing: false },
+                { timestamp: '2025-12-12T08:45:21Z', userId: 'user_003', necessary: true, functional: true, analytics: true, marketing: true }
+            ];
+
+            const csv = convertToCSV(consentData);
+            downloadFile(csv, 'consent-data.csv', 'text/csv');
+            addLogEntry('Consent data exported as CSV');
+        }
+
+        function exportConsentJSON() {
+            const consentData = {
+                exportDate: new Date().toISOString(),
+                totalRecords: mockStats.consentGiven,
+                summary: {
+                    necessary: mockStats.consentGiven,
+                    functional: Math.floor(mockStats.consentGiven * 0.7),
+                    analytics: mockStats.analyticsEnabled,
+                    marketing: mockStats.marketingEnabled
+                }
+            };
+
+            const json = JSON.stringify(consentData, null, 2);
+            downloadFile(json, 'consent-data.json', 'application/json');
+            addLogEntry('Consent data exported as JSON');
+        }
+
+        function generateReport() {
+            addLogEntry('GDPR compliance report generated');
+            alert('Raportti luodaan ja lähetetään sähköpostitse.');
+        }
+
+        function convertToCSV(data) {
+            const headers = Object.keys(data[0]);
+            const csvContent = [
+                headers.join(','),
+                ...data.map(row => headers.map(header => row[header]).join(','))
+            ].join('\n');
+            return csvContent;
+        }
+
+        function downloadFile(content, filename, contentType) {
+            const blob = new Blob([content], { type: contentType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function addLogEntry(message) {
+            const logContainer = document.getElementById('activityLog');
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry';
+            logEntry.innerHTML = `
+                <div class="log-timestamp">${new Date().toLocaleString('fi-FI')}</div>
+                <p class="log-message">${message}</p>
+            `;
+            logContainer.insertBefore(logEntry, logContainer.firstChild);
+        }
+    </script>
+</body>
+</html>
