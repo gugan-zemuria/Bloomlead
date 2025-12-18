@@ -91,7 +91,7 @@
         }
 
         .main-menu ul li {
-            margin: 0 15px;
+            margin: 0;
         }
 
         @media (max-width: 991px) {
@@ -277,10 +277,21 @@
             opacity: 1;
         }
 
-        .mobile-menu-dropdown.show ul li:nth-child(1) a { transition-delay: 0ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(2) a { transition-delay: 75ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(3) a { transition-delay: 150ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(4) a { transition-delay: 225ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(1) a {
+            transition-delay: 0ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(2) a {
+            transition-delay: 75ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(3) a {
+            transition-delay: 150ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(4) a {
+            transition-delay: 225ms;
+        }
 
         .mobile-menu-dropdown ul li a:hover {
             background-color: rgba(118, 151, 87, 0.05);
@@ -411,23 +422,27 @@
                             <div class="main-menu text-center">
                                 <nav id="mobile-menu" style="display: block;">
                                     <div class="mobile-menu-content">
-                        <ul>
-                                        <li class="sub wrap"><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a>
-                                        </li>
-                                        <li class="sub">
-                                            <a href="coaches.html">Valmentajat</a>
-                                        </li>
-                                        <li class="sub">
-                                            <a href="blog.html">Blogi</a>
-                                        </li>
-                                        <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
-                                    </ul>
-                        </div>
+                                        <ul>
+                                            <li class="sub">
+                                                <a href="coaches.html">Valmentajat</a>
+                                            </li>
+                                            <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
+                                            </li>
+                                            <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt &
+                                                    Hinnat</a>
+                                            </li>
+
+                                            <li class="sub">
+                                                <a href="blog.html">Blogi</a>
+                                            </li>
+                                            <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
+                                        </ul>
+                                    </div>
                                 </nav>
                             </div>
                         </div>
                         <!-- Search & Hamburger - Right -->
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-6">
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-6 header-right-container">
                             <div class="header-right d-flex align-items-center justify-content-end">
                                 <!-- Search icon for desktop -->
                                 <!-- <div class="search-top2 d-none d-lg-block">
@@ -460,12 +475,13 @@
                             </a>
                         </div>
                         <div class="mobile-menu-content">
-                        <ul>
-                            <li><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
-                            <li><a href="coaches.html">Valmentajat</a></li>
-                            <li><a href="blog.html">Blogi</a></li>
-                            <li><a href="contact.html">Yhteystiedot</a></li>
-                        </ul>
+                            <ul>
+                                <li><a href="coaches.html">Valmentajat</a></li>
+                                <li><a href="courses.html">Tilaa webinaarit</a></li>
+                                <li><a href="pricing.html">Webinaarien sisällöt & Hinnat</a></li>
+                                <li><a href="blog.html">Blogi</a></li>
+                                <li><a href="contact.html">Yhteystiedot</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -549,11 +565,11 @@
                                 <h5><a href="events-details.html">Digital Marketing Mastery: From Strategy to ROI</a>
                                 </h5>
                                 <div class="mobile-menu-content">
-                        <ul>
-                                    <li><i class="fal fa-clock"></i> 2:00PM - 3:30PM EST</li>
-                                    <li><i class="icon fal fa-video"></i> Online Webinar</li>
-                                </ul>
-                        </div>
+                                    <ul>
+                                        <li><i class="fal fa-clock"></i> 2:00PM - 3:30PM EST</li>
+                                        <li><i class="icon fal fa-video"></i> Online Webinar</li>
+                                    </ul>
+                                </div>
                                 <p>Learn proven digital marketing strategies that drive real results. Expert insights on
                                     SEO, social media, and conversion optimization with live Q&A session.</p>
                             </div>
@@ -571,11 +587,11 @@
                             <div class="text">
                                 <h5><a href="events-details.html">Leadership in the Digital Age</a></h5>
                                 <div class="mobile-menu-content">
-                        <ul>
-                                    <li><i class="fal fa-clock"></i> 1:00PM - 2:30PM EST</li>
-                                    <li><i class="icon fal fa-video"></i> Online Webinar</li>
-                                </ul>
-                        </div>
+                                    <ul>
+                                        <li><i class="fal fa-clock"></i> 1:00PM - 2:30PM EST</li>
+                                        <li><i class="icon fal fa-video"></i> Online Webinar</li>
+                                    </ul>
+                                </div>
                                 <p>Discover modern leadership techniques for remote teams. Interactive session on
                                     building trust, communication, and driving performance in digital workplaces.</p>
                             </div>
@@ -593,11 +609,11 @@
                             <div class="text">
                                 <h5><a href="events-details.html">AI & Machine Learning for Business</a></h5>
                                 <div class="mobile-menu-content">
-                        <ul>
-                                    <li><i class="fal fa-clock"></i> 3:00PM - 4:30PM EST</li>
-                                    <li><i class="icon fal fa-video"></i> Online Webinar</li>
-                                </ul>
-                        </div>
+                                    <ul>
+                                        <li><i class="fal fa-clock"></i> 3:00PM - 4:30PM EST</li>
+                                        <li><i class="icon fal fa-video"></i> Online Webinar</li>
+                                    </ul>
+                                </div>
                                 <p>Practical applications of AI in business operations. Learn how to implement machine
                                     learning solutions and automate processes for increased efficiency.</p>
                             </div>
@@ -615,11 +631,11 @@
                             <div class="text">
                                 <h5><a href="events-details.html">Financial Planning & Investment Strategies</a></h5>
                                 <div class="mobile-menu-content">
-                        <ul>
-                                    <li><i class="fal fa-clock"></i> 11:00AM - 12:30PM EST</li>
-                                    <li><i class="icon fal fa-video"></i> Online Webinar</li>
-                                </ul>
-                        </div>
+                                    <ul>
+                                        <li><i class="fal fa-clock"></i> 11:00AM - 12:30PM EST</li>
+                                        <li><i class="icon fal fa-video"></i> Online Webinar</li>
+                                    </ul>
+                                </div>
                                 <p>Master personal and business financial planning. Expert guidance on investment
                                     portfolios, risk management, and building long-term wealth strategies.</p>
                             </div>
@@ -637,11 +653,11 @@
                             <div class="text">
                                 <h5><a href="events-details.html">Public Speaking & Presentation Skills</a></h5>
                                 <div class="mobile-menu-content">
-                        <ul>
-                                    <li><i class="fal fa-clock"></i> 2:00PM - 3:30PM EST</li>
-                                    <li><i class="icon fal fa-video"></i> Online Webinar</li>
-                                </ul>
-                        </div>
+                                    <ul>
+                                        <li><i class="fal fa-clock"></i> 2:00PM - 3:30PM EST</li>
+                                        <li><i class="icon fal fa-video"></i> Online Webinar</li>
+                                    </ul>
+                                </div>
                                 <p>Overcome speaking anxiety and deliver compelling presentations. Interactive workshop
                                     with practical exercises and personalized feedback from expert coaches.</p>
                             </div>
@@ -659,11 +675,11 @@
                             <div class="text">
                                 <h5><a href="events-details.html">E-commerce Growth Strategies</a></h5>
                                 <div class="mobile-menu-content">
-                        <ul>
-                                    <li><i class="fal fa-clock"></i> 4:00PM - 5:30PM EST</li>
-                                    <li><i class="icon fal fa-video"></i> Online Webinar</li>
-                                </ul>
-                        </div>
+                                    <ul>
+                                        <li><i class="fal fa-clock"></i> 4:00PM - 5:30PM EST</li>
+                                        <li><i class="icon fal fa-video"></i> Online Webinar</li>
+                                    </ul>
+                                </div>
                                 <p>Scale your online business with proven e-commerce tactics. Learn about customer
                                     acquisition, retention strategies, and optimizing conversion rates.</p>
                             </div>
@@ -681,11 +697,11 @@
                             <div class="text">
                                 <h5><a href="events-details.html">Data Analytics & Business Intelligence</a></h5>
                                 <div class="mobile-menu-content">
-                        <ul>
-                                    <li><i class="fal fa-clock"></i> 1:00PM - 2:30PM EST</li>
-                                    <li><i class="icon fal fa-video"></i> Online Webinar</li>
-                                </ul>
-                        </div>
+                                    <ul>
+                                        <li><i class="fal fa-clock"></i> 1:00PM - 2:30PM EST</li>
+                                        <li><i class="icon fal fa-video"></i> Online Webinar</li>
+                                    </ul>
+                                </div>
                                 <p>Transform data into actionable business insights. Learn visualization techniques,
                                     dashboard creation, and data-driven decision making processes.</p>
                             </div>
@@ -703,11 +719,11 @@
                             <div class="text">
                                 <h5><a href="events-details.html">Cybersecurity Essentials for Business</a></h5>
                                 <div class="mobile-menu-content">
-                        <ul>
-                                    <li><i class="fal fa-clock"></i> 3:00PM - 4:30PM EST</li>
-                                    <li><i class="icon fal fa-video"></i> Online Webinar</li>
-                                </ul>
-                        </div>
+                                    <ul>
+                                        <li><i class="fal fa-clock"></i> 3:00PM - 4:30PM EST</li>
+                                        <li><i class="icon fal fa-video"></i> Online Webinar</li>
+                                    </ul>
+                                </div>
                                 <p>Protect your business from cyber threats. Comprehensive guide to security protocols,
                                     risk assessment, and building a robust cybersecurity framework.</p>
                             </div>
@@ -728,12 +744,12 @@
                                     <li class="page-item"><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
                                 </ul>
                         </div>
-                            </nav>
-                        </div>
+                        </nav>
                     </div>
-
-
                 </div>
+
+
+            </div>
 
             </div>
         </section>
@@ -813,27 +829,27 @@
                             </div>
                             <div class="f-contact">
                                 <div class="mobile-menu-content">
-                        <ul>
-                                    <!-- <li>
+                                    <ul>
+                                        <!-- <li>
                                             <i class="icon fal fa-map-marker-check"></i>
                                             <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
                                         </li> -->
-                                    
-                                    <li><i class="icon fal fa-envelope"></i>
-                                        <span>
-                                            <span style="display: block;">contact@bloomlead.io</span>
-                                            <!-- <span style="display: block;">help@example.com</span> -->
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <i class="icon fal fa-phone"></i>
-                                        <span>+358 44 388 3188,
-                                            <br>ti ja to klo 17.00-18.00</span>
-                                    </li>
+
+                                        <li><i class="icon fal fa-envelope"></i>
+                                            <span>
+                                                <span style="display: block;">contact@bloomlead.io</span>
+                                                <!-- <span style="display: block;">help@example.com</span> -->
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <i class="icon fal fa-phone"></i>
+                                            <span>+358 44 388 3188,
+                                                <br>ti ja to klo 17.00-18.00</span>
+                                        </li>
 
 
-                                </ul>
-                        </div>
+                                    </ul>
+                                </div>
 
                             </div>
                         </div>
@@ -844,7 +860,8 @@
                             <div class="f-widget-title">
                                 <h2>Yrityksen tiedot</h2>
                             </div>
-                            <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210 Tampere<br>Y-tunnus 3166661-4<br>Pankkitili</div>
+                            <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210
+                                Tampere<br>Y-tunnus 3166661-4<br>Pankkitili</div>
                         </div>
                     </div>
 
@@ -916,19 +933,20 @@
     <!-- <script src="js/cookie-config.js"></script> -->
     <!-- <script src="js/necessary-cookies.js"></script> -->
     <!-- <script src="js/cookie-consent-manager.js"></script> -->
-    
+
     <!-- Functional Cookies -->
     <!-- <script src="js/functional-cookies.js"></script> -->
-    
+
     <!-- Marketing Cookies System -->
     <!-- <script src="js/marketing-cookies.js"></script> -->
     <!-- <script src="js/webinar-marketing-integration.js"></script> -->
-    
+
     <!-- Email Modal System -->
     <script src="js/email-modal.js"></script>
 
     <!-- Page-specific webinar tracking -->
-    <div data-webinar-page data-webinar-id="events-page" data-webinar-title="BloomLead Events" data-webinar-topic="Events" style="display: none;"></div>
+    <div data-webinar-page data-webinar-id="events-page" data-webinar-title="BloomLead Events"
+        data-webinar-topic="Events" style="display: none;"></div>
 
     <!-- Custom Mobile Menu Script -->
     <script>

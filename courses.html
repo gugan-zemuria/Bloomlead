@@ -134,10 +134,30 @@
             opacity: 1;
         }
 
-        .mobile-menu-dropdown.show ul li:nth-child(1) a { transition-delay: 0ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(2) a { transition-delay: 75ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(3) a { transition-delay: 150ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(4) a { transition-delay: 225ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(1) a {
+            transition-delay: 0ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(2) a {
+            transition-delay: 75ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(3) a {
+            transition-delay: 150ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(4) a {
+            transition-delay: 225ms;
+        }
+
+        .main-menu ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
 
         .mobile-menu-dropdown ul li a:hover {
             background-color: rgba(118, 151, 87, 0.05);
@@ -315,7 +335,7 @@
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
-            
+
         }
 
         .video-meta span {
@@ -352,6 +372,96 @@
         .copyright-wrap p {
             font-size: 14px;
         }
+
+        /* CTA Package Button Styles */
+        .package-cta-section {
+            /* padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(165, 113, 170, 0.05), rgba(118, 151, 87, 0.05));
+            border-radius: 20px; */
+            margin-top: 20px;
+            margin-bottom: 4px;
+        }
+
+        .package-cta-btn {
+            background:#a571aa !important;
+            border: none !important;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 50px;
+            color: white !important;
+            text-decoration: none !important;
+            box-shadow: 0 8px 25px rgba(165, 113, 170, 0.3);
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: none !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-cta-btn:hover {
+            box-shadow: 0 12px 35px rgba(165, 113, 170, 0.4);
+            color: white !important;
+        }
+
+        .package-cta-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .package-cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .package-cta-btn:hover::before {
+            left: 100%;
+        }
+
+        
+
+        /* Tablet Styles */
+        @media (max-width: 1024px) {
+            .package-cta-btn {
+                padding: 16px 35px;
+                font-size: 18px;
+            }
+
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            
+
+            .package-cta-btn {
+                padding: 14px ;
+                font-size: 16px;
+                width: 100%;
+                max-width: 320px;
+                text-align: center;
+            }
+
+            
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+           
+
+            .package-cta-btn {
+                padding: 12px 20px;
+                font-size: 15px;
+                width: 100%;
+            }
+
+
+            
+        }
     </style>
 </head>
 
@@ -377,35 +487,34 @@
                         <div class="col-xl-6 col-lg-6 d-none d-lg-block">
                             <div class="main-menu text-center">
                                 <nav id="mobile-menu" style="display: block;">
-                                    <div class="mobile-menu-content">
-                        <ul>
-                                        <li class="sub wrap"><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a>
-                                        </li>
+                                    <ul>
                                         <li class="sub">
                                             <a href="coaches.html">Valmentajat</a>
                                         </li>
+                                        <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
+                                        </li>
+                                        <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt & Hinnat</a>
+                                        </li>
+                                        
                                         <li class="sub">
                                             <a href="blog.html">Blogi</a>
                                         </li>
                                         <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
                                     </ul>
-                        </div>
                                 </nav>
                             </div>
                         </div>
                         <!-- Search & Hamburger - Right -->
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-6">
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-6 header-right-container">
                             <div class="header-right d-flex align-items-center justify-content-end">
                                 <!-- Search icon for desktop -->
                                 <!-- <div class="search-top2 d-none d-lg-block">
-                                        <div class="mobile-menu-content">
-                        <ul>
-                                            <li><a href="#" class="search-trigger" data-toggle="modal"
-                                                    data-target=".bs-example-modal-lg"><i class="fas fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                        </div>
-                                    </div> -->
+                                    <ul>
+                                        <li><a href="#" class="search-trigger" data-toggle="modal"
+                                                data-target=".bs-example-modal-lg"><i class="fas fa-search"></i></a>
+                                        </li>
+                                    </ul>
+                                </div> -->
                                 <!-- Mobile menu toggle -->
                                 <div class="mobile-menu d-lg-none">
                                     <button class="mobile-menu-btn" type="button">
@@ -427,14 +536,14 @@
                             <span>Search</span>
                         </a>
                     </div>
-                    <div class="mobile-menu-content">
-                        <ul>
-                        <li><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
+                    <ul>
                         <li><a href="coaches.html">Valmentajat</a></li>
+                        <li><a href="courses.html">Tilaa webinaarit</a></li>
+                        <li><a href="pricing.html">Webinaarien sisällöt & Hinnat</a></li>
+                        
                         <li><a href="blog.html">Blogi</a></li>
                         <li><a href="contact.html">Yhteystiedot</a></li>
                     </ul>
-                        </div>
                 </div>
             </div>
         </div>
@@ -495,19 +604,22 @@
                             <h5>Voit tilata webinaarit alta</h5>
                             <h2>Valitse sopiva webinaarikokonaisuus</h2>
                             <p>Yksittäinen webinaarimoduli
-tai kuuden webinaarin
-paketti</p>
+                                tai kuuden webinaarin
+                                paketti</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Continue Watching Section -->
                 <div class="row" id="continueWatchingSection" style="display: none;">
                     <div class="col-lg-12">
-                        <div class="continue-watching-banner" style="background: linear-gradient(135deg, #a571aa, #769757); border-radius: 15px; padding: 20px; margin-bottom: 40px; color: white; text-align: center;">
+                        <div class="continue-watching-banner"
+                            style="background: linear-gradient(135deg, #a571aa, #769757); border-radius: 15px; padding: 20px; margin-bottom: 40px; color: white; text-align: center;">
                             <h4 style="margin-bottom: 10px; color: white;">Jatka katsomista</h4>
-                            <p style="margin-bottom: 15px; color: rgba(255,255,255,0.9);">Sinulla on keskeneräinen webinaari</p>
-                            <a href="courses-details.html" class="btn" style="background: white; color: #a571aa; padding: 12px 30px; border-radius: 25px; font-weight: 600; text-decoration: none;">
+                            <p style="margin-bottom: 15px; color: rgba(255,255,255,0.9);">Sinulla on keskeneräinen
+                                webinaari</p>
+                            <a href="courses-details.html" class="btn"
+                                style="background: white; color: #a571aa; padding: 12px 30px; border-radius: 25px; font-weight: 600; text-decoration: none;">
                                 <i class="fas fa-play" style="margin-right: 8px;"></i>Jatka katsomista
                             </a>
                         </div>
@@ -524,7 +636,7 @@ paketti</p>
                             <div class="video-info mt-20">
                                 <h5>Moduli 1</h5>
                                 <h5 style="color: #a571aa;">Projektin määrittely &<br>
-Johtaja luo suunnan</h5>
+                                    Johtaja luo suunnan</h5>
                                 <div class="video-meta mb-20">
                                     <span style="font-size: 16px; font-weight: 400; color: #a571aa;">Hinnat<br>
                                         125 € /moduli<br>
@@ -551,7 +663,7 @@ Johtaja luo suunnan</h5>
                             <div class="video-info mt-20">
                                 <h5>Moduli 2</h5>
                                 <h5 style="color: #a571aa;">Projektin suunnittelu &<br>
-Johtaja rakentaa perustan</h5>
+                                    Johtaja rakentaa perustan</h5>
                                 <div class="video-meta mb-20">
                                     <span style="font-size: 16px; font-weight: 400; color: #a571aa;">
                                         125 € /moduli<br>
@@ -581,7 +693,7 @@ Johtaja rakentaa perustan</h5>
                             <div class="video-info mt-20">
                                 <h5>Moduli 3</h5>
                                 <h5 style="color: #a571aa;">Projektin toteutus &<br>
-Johtaja ohjaa arkea</h5>
+                                    Johtaja ohjaa arkea</h5>
                                 <div class="video-meta mb-20">
                                     <span style="font-size: 18px; font-weight: 600; color: #a571aa;">
                                         125 € /moduli<br>
@@ -611,7 +723,7 @@ Johtaja ohjaa arkea</h5>
                             <div class="video-info mt-20">
                                 <h5 style="color: #999;">Moduli 4</h5>
                                 <h5 style="color: #999;">Projektin GO LIVE, seuranta &<br>
-Johtaja kannattelee muutoksessa</h5>
+                                    Johtaja kannattelee muutoksessa</h5>
                                 <div class="video-meta mb-20">
                                     <span style="font-size: 16px; font-weight: 400; color: #a571aa;">
                                         125 € /moduli<br>
@@ -644,8 +756,8 @@ Johtaja kannattelee muutoksessa</h5>
                             <div class="video-info mt-20">
                                 <h5 style="color: #999;">Moduli 5</h5>
                                 <h5 style="color: #999;">Projektin kehitysvaiheen
-päättäminen, siirto eteenpäin &<br>
-Johtaja päättää viisaasti</h5>
+                                    päättäminen, siirto eteenpäin &<br>
+                                    Johtaja päättää viisaasti</h5>
                                 <div class="video-meta mb-20">
                                     <span style="font-size: 16px; font-weight: 400; color: #a571aa;">
                                         125 € /moduli<br>
@@ -678,8 +790,8 @@ Johtaja päättää viisaasti</h5>
                             <div class="video-info mt-20">
                                 <h5 style="color: #999;">Moduli 6</h5>
                                 <h5 style="color: #999;">Projektin hyötyjen seuranta,
-jatkuva kehittäminen &<br>
-Johtaja kasvaa jatkuvasti</h5>
+                                    jatkuva kehittäminen &<br>
+                                    Johtaja kasvaa jatkuvasti</h5>
                                 <div class="video-meta mb-20">
                                     <span style="font-size: 16px; font-weight: 400; color: #a571aa;">
                                         125 € /moduli<br>
@@ -703,14 +815,29 @@ Johtaja kasvaa jatkuvasti</h5>
                     </div>
                 </div>
 
-                <!-- <div class="row">
+                <!-- Primary CTA Button - Order Complete Package -->
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="package-cta-section">
+                            
+                            <div class="cta-button">
+                                <a href="#" class="btn btn-primary package-cta-btn">
+                                   
+                                    Tilaa koko webinaaripaketti tästä
+                                </a>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <!-- <div class="row">
                         <div class="col-lg-12 text-center">
                             <div class="slider-btn mt-30">
                                 <a href="courses.html" class="btn ss-btn">Katso kaikki modulit</a>
                             </div>
                         </div>
                     </div> -->
-            </div>
+                </div>
         </section>
         <!-- shop-area-end -->
 
@@ -752,27 +879,27 @@ Johtaja kasvaa jatkuvasti</h5>
                             </div>
                             <div class="f-contact">
                                 <div class="mobile-menu-content">
-                        <ul>
-                                    <!-- <li>
+                                    <ul>
+                                        <!-- <li>
                                             <i class="icon fal fa-map-marker-check"></i>
                                             <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
                                         </li> -->
-                                    
-                                    <li><i class="icon fal fa-envelope"></i>
-                                        <span>
-                                            <span style="display: block;">contact@bloomlead.io</span>
-                                            <!-- <span style="display: block;">help@example.com</span> -->
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <i class="icon fal fa-phone"></i>
-                                        <span>+358 44 388 3188,
-                                            <br>ti ja to klo 17.00-18.00</span>
-                                    </li>
+
+                                        <li><i class="icon fal fa-envelope"></i>
+                                            <span>
+                                                <span style="display: block;">contact@bloomlead.io</span>
+                                                <!-- <span style="display: block;">help@example.com</span> -->
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <i class="icon fal fa-phone"></i>
+                                            <span>+358 44 388 3188,
+                                                <br>ti ja to klo 17.00-18.00</span>
+                                        </li>
 
 
-                                </ul>
-                        </div>
+                                    </ul>
+                                </div>
 
                             </div>
                         </div>
@@ -783,7 +910,8 @@ Johtaja kasvaa jatkuvasti</h5>
                             <div class="f-widget-title">
                                 <h2>Yrityksen tiedot</h2>
                             </div>
-                            <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210 Tampere<br>Y-tunnus 3166661-4<br>Pankkitili</div>
+                            <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210
+                                Tampere<br>Y-tunnus 3166661-4<br>Pankkitili</div>
                         </div>
                     </div>
 
@@ -849,11 +977,11 @@ Johtaja kasvaa jatkuvasti</h5>
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/element-in-view.js"></script>
     <script src="js/main.js"></script>
-    
+
     <!-- Cookie Consent System -->
     <!-- <script src="js/cookie-config.js"></script> -->
     <!-- <script src="js/cookie-consent-manager.js"></script> -->
-    
+
     <!-- Functional Cookies -->
     <!-- <script src="js/functional-cookies.js"></script> -->
 
@@ -905,7 +1033,7 @@ Johtaja kasvaa jatkuvasti</h5>
                 }
             });
         });
-        
+
         // Show Continue Watching section if user has progress and functional cookies are allowed
         /* TEMPORARILY DISABLED - Cookie functionality commented out
         document.addEventListener('DOMContentLoaded', function() {
@@ -954,16 +1082,13 @@ Johtaja kasvaa jatkuvasti</h5>
     <!-- Marketing Cookies System -->
     <!-- <script src="js/marketing-cookies.js"></script> -->
     <!-- <script src="js/webinar-marketing-integration.js"></script> -->
-    
+
     <!-- Email Modal System -->
     <script src="js/email-modal.js"></script>
-    
+
     <!-- Page-specific webinar tracking -->
-    <div data-webinar-page 
-         data-webinar-id="courses-page" 
-         data-webinar-title="BloomLead Courses" 
-         data-webinar-topic="Professional Development" 
-         style="display: none;"></div>
+    <div data-webinar-page data-webinar-id="courses-page" data-webinar-title="BloomLead Courses"
+        data-webinar-topic="Professional Development" style="display: none;"></div>
 </body>
 
 </html>

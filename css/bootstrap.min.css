@@ -514,6 +514,8 @@ mark {
   height: auto
 }
 
+
+
 .figure {
   display: inline-block
 }
@@ -579,7 +581,7 @@ pre code {
 
 @media (min-width:576px) {
   .container {
-    max-width: 540px
+    max-width: 540px;
   }
 }
 
@@ -1555,8 +1557,12 @@ pre code {
 
   .col-lg-3 {
     -ms-flex: 0 0 25%;
-    flex: 0 0 25%;
-    max-width: 25%
+    flex: 0 0 30%;
+    max-width: 30%
+  }
+
+  .header-right-container {
+    max-width: 10px;
   }
 
   .col-lg-4 {
@@ -1828,8 +1834,8 @@ pre code {
 
   .col-xl-6 {
     -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 50%
+    flex: 0 0 57%;
+    max-width: 57%
   }
 
   .col-xl-7 {
@@ -3720,7 +3726,13 @@ input[type=submit].btn-block {
     right: 0;
     left: auto
   }
+
+  .header-right-container {
+    max-width: 10px !important;
+  }
 }
+
+
 
 .dropup .dropdown-menu {
   top: auto;
@@ -7942,7 +7954,7 @@ button.bg-dark:hover {
 
 .align-items-center {
   -ms-flex-align: center !important;
-  align-items: center !important
+  align-items: flex-start !important
 }
 
 .align-items-baseline {
