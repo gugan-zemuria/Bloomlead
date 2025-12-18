@@ -48,7 +48,7 @@
         }
 
         .main-menu ul li {
-            margin: 0 15px;
+            margin: 0;
         }
 
         @media (max-width: 991px) {
@@ -153,6 +153,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -247,7 +248,7 @@
             border-bottom: 2px solid #f0f0f0;
         }
 
-      
+
         .terms-content h2 {
             color: #555;
             font-size: 24px;
@@ -277,21 +278,21 @@
             padding-left: 0;
         }
 
-        .terms-content ol > li {
+        .terms-content ol>li {
             counter-increment: item;
             /* margin-bottom: 12px; */
             padding-left: 0;
         }
 
-        .terms-content ol > li::before {
+        .terms-content ol>li::before {
             content: counter(item) ". ";
             color: #555;
             font-weight: 700;
             font-size: 24px;
-            
+
         }
 
-        .terms-content ol > li h2 {
+        .terms-content ol>li h2 {
             display: inline;
             margin: 0;
             padding: 0;
@@ -321,7 +322,7 @@
             /* margin-bottom: 30px; */
         }
 
-       
+
         .terms-content .company-info ul {
             margin-left: 0;
         }
@@ -400,7 +401,7 @@
                 padding: 15px;
             }
 
-            .terms-content ol > li::before {
+            .terms-content ol>li::before {
                 font-size: 18px;
             }
         }
@@ -446,11 +447,11 @@
                 margin-bottom: 12px;
             }
 
-            .terms-content ol > li {
+            .terms-content ol>li {
                 margin-bottom: 12px;
             }
 
-            .terms-content ol > li::before {
+            .terms-content ol>li::before {
                 font-size: 16px;
                 margin-right: 8px;
             }
@@ -501,8 +502,11 @@
                             <div class="main-menu text-center">
                                 <nav id="mobile-menu" style="display: block;">
                                     <ul>
-                                        <li class="sub wrap"><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
                                         <li class="sub"><a href="coaches.html">Valmentajat</a></li>
+                                        <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a></li>
+                                        <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt & Hinnat</a>
+                                        </li>
+
                                         <li class="sub"><a href="blog.html">Blogi</a></li>
                                         <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
                                     </ul>
@@ -510,7 +514,7 @@
                             </div>
                         </div>
                         <!-- Search & Hamburger - Right -->
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-6">
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-6 header-right-container">
                             <div class="header-right d-flex align-items-center justify-content-end">
                                 <!-- Mobile menu toggle -->
                                 <div class="mobile-menu d-lg-none">
@@ -527,8 +531,9 @@
                     <!-- Mobile Menu Dropdown -->
                     <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
                         <ul>
-                            <li><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
                             <li><a href="coaches.html">Valmentajat</a></li>
+                            <li><a href="courses.html">Tilaa webinaarit</a></li>
+                            <li><a href="pricing.html">Webinaarien sisällöt & Hinnat</a></li>
                             <li><a href="blog.html">Blogi</a></li>
                             <li><a href="contact.html">Yhteystiedot</a></li>
                         </ul>
@@ -564,21 +569,30 @@
                                 <li>
                                     <h2>Yleistä</h2>
                                     <div class="company-info">
-                                        <p>Näitä sopimusehtoja sovelletaan kuluttajan, yrityksen tai yhteisön (jäljempänä "asiakas") ja MT Coaching Oy (jäljempänä "yritys") välisessä suhteessa. Yritys tarjoaa palveluinaan digitaalista sisältöä (mm. verkkokursseja).</p>
+                                        <p>Näitä sopimusehtoja sovelletaan kuluttajan, yrityksen tai yhteisön
+                                            (jäljempänä "asiakas") ja MT Coaching Oy (jäljempänä "yritys") välisessä
+                                            suhteessa. Yritys tarjoaa palveluinaan digitaalista sisältöä (mm.
+                                            verkkokursseja).</p>
                                     </div>
                                 </li>
 
                                 <li>
                                     <h2>Sopimuksen voimassaolo</h2>
                                     <div class="company-info">
-                                        <p>Sopimus asiakkaan ja yrityksen välillä on kertaluontoinen. Kertaluontoinen sopimus syntyy, kun asiakas ostaa yritykseltä palvelun. Asiakas ei ole tämän jälkeen velvollinen ostamaan muita tuotteita eikä sitoudu kuukausittaisiin maksuihin tai ostoihin. Sopimus päättyy, kun palvelu on suoritettu loppuun.</p>
+                                        <p>Sopimus asiakkaan ja yrityksen välillä on kertaluontoinen. Kertaluontoinen
+                                            sopimus syntyy, kun asiakas ostaa yritykseltä palvelun. Asiakas ei ole tämän
+                                            jälkeen velvollinen ostamaan muita tuotteita eikä sitoudu kuukausittaisiin
+                                            maksuihin tai ostoihin. Sopimus päättyy, kun palvelu on suoritettu loppuun.
+                                        </p>
                                     </div>
                                 </li>
 
                                 <li>
                                     <h2>Hinnat</h2>
                                     <div class="company-info">
-                                        <p>Yrityksellä on oikeus muuttaa palveluidensa hintoja. Verkkokaupassa näkyvä hinta on voimassa oleva hinta kyseiselle palvelulle. Hinnat sisältävät arvonlisäveron ALV 25,5 %.</p>
+                                        <p>Yrityksellä on oikeus muuttaa palveluidensa hintoja. Verkkokaupassa näkyvä
+                                            hinta on voimassa oleva hinta kyseiselle palvelulle. Hinnat sisältävät
+                                            arvonlisäveron ALV 25,5 %.</p>
                                     </div>
                                 </li>
 
@@ -586,9 +600,19 @@
                                     <h2>Maksuehdot</h2>
                                     <div class="company-info">
                                         <ul>
-                                            <li>Yritys tarjoaa palveluille laskumaksua ja Mobilepayta maksutapoina. Käytettävissä olevat maksutavat näkyvät ostoksen tekemisen yhteydessä.</li>
-                                            <li>Viivästyneistä maksuista peritään korkolain mukainen viivästyskorko sekä maksumuistutuksista ja muista perintätoimista aiheutuneet kulut. Yritys siirtää maksamattomat saatavat huomautuksen jälkeen perintätoimiston perittäviksi. Perintätoimisto käyttää maksamattomien laskujen perintään vapaaehtoista ja oikeudellista perintää. Laskuihin lisätään perintätoimiston hinnaston mukaiset perintäkulut.</li>
-                                            <li>Yritys voi katkaista asiakkaan pääsyn ostamiinsa palveluihin viivästyneiden tai maksamattomien maksujen (myös osamaksuerien) takia, jos maksu ei ole saapunut eräpäivään mennessä. Tämä ei kuitenkaan poista asiakkaan maksuvelvollisuutta.</li>
+                                            <li>Yritys tarjoaa palveluille laskumaksua ja Mobilepayta maksutapoina.
+                                                Käytettävissä olevat maksutavat näkyvät ostoksen tekemisen yhteydessä.
+                                            </li>
+                                            <li>Viivästyneistä maksuista peritään korkolain mukainen viivästyskorko sekä
+                                                maksumuistutuksista ja muista perintätoimista aiheutuneet kulut. Yritys
+                                                siirtää maksamattomat saatavat huomautuksen jälkeen perintätoimiston
+                                                perittäviksi. Perintätoimisto käyttää maksamattomien laskujen perintään
+                                                vapaaehtoista ja oikeudellista perintää. Laskuihin lisätään
+                                                perintätoimiston hinnaston mukaiset perintäkulut.</li>
+                                            <li>Yritys voi katkaista asiakkaan pääsyn ostamiinsa palveluihin
+                                                viivästyneiden tai maksamattomien maksujen (myös osamaksuerien) takia,
+                                                jos maksu ei ole saapunut eräpäivään mennessä. Tämä ei kuitenkaan poista
+                                                asiakkaan maksuvelvollisuutta.</li>
                                         </ul>
                                     </div>
                                 </li>
@@ -597,10 +621,22 @@
                                     <h2>Palveluiden käyttöoikeus</h2>
                                     <div class="company-info">
                                         <ul>
-                                            <li>Asiakas saa palvelun ostettuaan siihen käyttöoikeuden niin pitkäksi aikaa kuin palvelu on saatavilla yrityksen verkkosivuilla tai kurssialustalla. Käyttöoikeus on rajattu eli palveluiden ja sisältöjen omistus- ja tekijän- ja teollisoikeudet eivät siirry asiakkaalle.</li>
-                                            <li>Käyttöoikeus on asiakkaalle henkilökohtainen ja antaa asiakkaalle oikeuden käyttää ostamaansa palvelua vain omassa yksityisessä tai oman yrityksen käytössä näiden ehtojen mukaisesti.</li>
-                                            <li>Asiakas ei saa jakaa käyttöoikeutta kenenkään kanssa, eikä siirtää sitä kenellekään. Asiakas ei saa näyttää tai levittää käyttöoikeutta vaativien palveluiden sisältöä millään tavalla (esim. internetissä), ellei yritys anna siihen erikseen lupaa. Asiakkaan käyttäjätilin tai käyttöoikeuden jakaminen tai levittäminen on sopimusrikkomus ja voi johtaa palveluiden katkaisuun ja mahdollisiin korvausvaatimuksiin.</li>
-                                            <li>Käyttöoikeutta vaativa sisältö voidaan yrityksen yksipuolisella päätöksellä ja ilman ilmoitusta muuttua vapaasti saatavilla olevaksi ja päinvastoin.</li>
+                                            <li>Asiakas saa palvelun ostettuaan siihen käyttöoikeuden niin pitkäksi
+                                                aikaa kuin palvelu on saatavilla yrityksen verkkosivuilla tai
+                                                kurssialustalla. Käyttöoikeus on rajattu eli palveluiden ja sisältöjen
+                                                omistus- ja tekijän- ja teollisoikeudet eivät siirry asiakkaalle.</li>
+                                            <li>Käyttöoikeus on asiakkaalle henkilökohtainen ja antaa asiakkaalle
+                                                oikeuden käyttää ostamaansa palvelua vain omassa yksityisessä tai oman
+                                                yrityksen käytössä näiden ehtojen mukaisesti.</li>
+                                            <li>Asiakas ei saa jakaa käyttöoikeutta kenenkään kanssa, eikä siirtää sitä
+                                                kenellekään. Asiakas ei saa näyttää tai levittää käyttöoikeutta
+                                                vaativien palveluiden sisältöä millään tavalla (esim. internetissä),
+                                                ellei yritys anna siihen erikseen lupaa. Asiakkaan käyttäjätilin tai
+                                                käyttöoikeuden jakaminen tai levittäminen on sopimusrikkomus ja voi
+                                                johtaa palveluiden katkaisuun ja mahdollisiin korvausvaatimuksiin.</li>
+                                            <li>Käyttöoikeutta vaativa sisältö voidaan yrityksen yksipuolisella
+                                                päätöksellä ja ilman ilmoitusta muuttua vapaasti saatavilla olevaksi ja
+                                                päinvastoin.</li>
                                         </ul>
                                     </div>
                                 </li>
@@ -609,9 +645,18 @@
                                     <h2>Palveluiden saatavuus ja toimivuus</h2>
                                     <div class="company-info">
                                         <ul>
-                                            <li>Palvelun käyttö edellyttää rekisteröitymistä. Rekisteröitymisvaiheessa asiakkaan tulee ilmoittaa etunimi, sukunimi sekä käytössä oleva sähköpostiosoite.</li>
-                                            <li>Palvelun ostamisen yhteydessä asiakkaan tulee ilmoittaa etu- ja sukunimi, osoite sekä mahdollisesti muita henkilötietoja. Asiakas vastaa tietojen ajantasaisuudesta ja oikeellisuudesta. Yritys ei vastaa väärien tietojen antamisen johdosta aiheutuvista mahdollisista vahingoista.</li>
-                                            <li>Osassa yrityksen palveluita voidaan hyödyntää kolmansien osapuolien ympäristöjä ja sovelluksia, kuten Facebookia. Asiakas vastaa itse tällaisten sovellusten asentamisesta ja käyttämisestä. Yritys ei vastaa kolmansien osapuolien ympäristöjen ja sovellusten toimintahäiriöistä eikä tarjoa teknistä tukea niiden käyttämiseen.</li>
+                                            <li>Palvelun käyttö edellyttää rekisteröitymistä. Rekisteröitymisvaiheessa
+                                                asiakkaan tulee ilmoittaa etunimi, sukunimi sekä käytössä oleva
+                                                sähköpostiosoite.</li>
+                                            <li>Palvelun ostamisen yhteydessä asiakkaan tulee ilmoittaa etu- ja
+                                                sukunimi, osoite sekä mahdollisesti muita henkilötietoja. Asiakas vastaa
+                                                tietojen ajantasaisuudesta ja oikeellisuudesta. Yritys ei vastaa väärien
+                                                tietojen antamisen johdosta aiheutuvista mahdollisista vahingoista.</li>
+                                            <li>Osassa yrityksen palveluita voidaan hyödyntää kolmansien osapuolien
+                                                ympäristöjä ja sovelluksia, kuten Facebookia. Asiakas vastaa itse
+                                                tällaisten sovellusten asentamisesta ja käyttämisestä. Yritys ei vastaa
+                                                kolmansien osapuolien ympäristöjen ja sovellusten toimintahäiriöistä
+                                                eikä tarjoa teknistä tukea niiden käyttämiseen.</li>
                                         </ul>
                                     </div>
                                 </li>
@@ -620,8 +665,14 @@
                                     <h2>Materiaalien ja yhteisön käyttöoikeus</h2>
                                     <div class="company-info">
                                         <ul>
-                                            <li>Asiakas saa BloomLead Projektijohtamisen verkkovalmennuksen ja sen opetusmateriaalien käyttöoikeuden rajoituksetta ja pysyvästi. Käyttöoikeus on henkilökohtainen eikä sitä saa siirtää tai jakaa kolmansille osapuolille.</li>
-                                            <li>Pääsy valmennuksen yhteisöön ja valmentajan tukeen on voimassa webinaarimodulikohtaisesti kymmenen (10) viikon ajan valmennuksen aloituspäivästä lukien. Tämän jälkeen asiakas saa jatkaa fasilitoidun yhteisön jäsenenä.</li>
+                                            <li>Asiakas saa BloomLead Projektijohtamisen verkkovalmennuksen ja sen
+                                                opetusmateriaalien käyttöoikeuden rajoituksetta ja pysyvästi.
+                                                Käyttöoikeus on henkilökohtainen eikä sitä saa siirtää tai jakaa
+                                                kolmansille osapuolille.</li>
+                                            <li>Pääsy valmennuksen yhteisöön ja valmentajan tukeen on voimassa
+                                                webinaarimodulikohtaisesti kymmenen (10) viikon ajan valmennuksen
+                                                aloituspäivästä lukien. Tämän jälkeen asiakas saa jatkaa fasilitoidun
+                                                yhteisön jäsenenä.</li>
                                         </ul>
                                     </div>
                                 </li>
@@ -629,7 +680,11 @@
                                 <li>
                                     <h2>Ehtojen muutos</h2>
                                     <div class="company-info">
-                                        <p>Yritys pidättää itselleen oikeuden muuttaa sopimusehtoja. Asiakas on velvollinen tarkistamaan sopimusehtojen sisällön ja päättämään sen jälkeen, haluaako hän jatkaa sopimusehtojen noudattamista. Mikäli asiakas ei halua noudattaa näitä tai myöhemmin muutettuja sopimusehtoja, yrityksen sivustojen ja palveluiden käyttö tulee välittömästi lopettaa.</p>
+                                        <p>Yritys pidättää itselleen oikeuden muuttaa sopimusehtoja. Asiakas on
+                                            velvollinen tarkistamaan sopimusehtojen sisällön ja päättämään sen jälkeen,
+                                            haluaako hän jatkaa sopimusehtojen noudattamista. Mikäli asiakas ei halua
+                                            noudattaa näitä tai myöhemmin muutettuja sopimusehtoja, yrityksen sivustojen
+                                            ja palveluiden käyttö tulee välittömästi lopettaa.</p>
                                     </div>
                                 </li>
 
@@ -637,8 +692,13 @@
                                     <h2>Peruutusehdot</h2>
                                     <div class="company-info">
                                         <ul>
-                                            <li>Kuluttaja-asiakas hyväksyy, ettei tällä ole Suomen kuluttajansuojalain mukaista peruuttamisoikeutta sen vuoksi, että kyseessä on palvelu, jonka asiakas saa digitaalisesti heti käyttöönsä. Kuluttajansuojalain mukaista 14 päivän peruuttamisoikeutta ei tällöin ole, ellei yritys ole sitä itse erikseen antanut.</li>
-                                            <li>Myöskään yritys- ja yhteisöasiakkaalla ei ole peruuttamisoikeutta, ellei yritys ole sitä itse erikseen mainitusti antanut.</li>
+                                            <li>Kuluttaja-asiakas hyväksyy, ettei tällä ole Suomen kuluttajansuojalain
+                                                mukaista peruuttamisoikeutta sen vuoksi, että kyseessä on palvelu, jonka
+                                                asiakas saa digitaalisesti heti käyttöönsä. Kuluttajansuojalain mukaista
+                                                14 päivän peruuttamisoikeutta ei tällöin ole, ellei yritys ole sitä itse
+                                                erikseen antanut.</li>
+                                            <li>Myöskään yritys- ja yhteisöasiakkaalla ei ole peruuttamisoikeutta, ellei
+                                                yritys ole sitä itse erikseen mainitusti antanut.</li>
                                         </ul>
                                     </div>
                                 </li>
@@ -646,7 +706,9 @@
                                 <li>
                                     <h2>Henkilötietojen kerääminen ja luovuttaminen</h2>
                                     <div class="company-info">
-                                        <p>Yritys noudattaa kaikessa henkilötietojen keräämisessä ja käsittelyssä tietosuojalakia. <br>Yrityksen rekisteri- ja tietosuojaseloste löytyvät yrityksen verkkosivuilla.</p>
+                                        <p>Yritys noudattaa kaikessa henkilötietojen keräämisessä ja käsittelyssä
+                                            tietosuojalakia. <br>Yrityksen rekisteri- ja tietosuojaseloste löytyvät
+                                            yrityksen verkkosivuilla.</p>
                                     </div>
                                 </li>
 
@@ -654,9 +716,22 @@
                                     <h2>Vastuunrajoitukset</h2>
                                     <div class="company-info">
                                         <ul>
-                                            <li>Yritys ei vastaa mistään tilaukseen, toimitukseen tai tuotteeseen liittyvästä tai mistään edellä mainitusta aiheutuneesta välillisestä tai välittömästä tai muusta vahingosta paitsi siihen asti kuin pakottava määräys kuluttajanasuojalaissa tai muussa pakottavassa laissa on kyseisen vahingon osalta toisin määrännyt.</li>
-                                            <li>Yritys ei vastaa verkkosivuston käytön yhteydessä esiintyneistä teknisistä häiriöistä ja siitä seuraavasta puutteellisesta tilausten käsittelyssä eikä kolmansien osapuolien tarjoamien palveluiden, kuten kurssialustan, toimintahäiriöistä (kuten järjestelmien toimintahäiriöt ja viiveet maksujen siirtymisessä) eikä sopimuksista, jotka asiakas tekee kolmansien osapuolten kanssa ostaessaan tuotteita.</li>
-                                            <li>Yritys ei missään tapauksessa vastaa palvelujen, tuotteiden tai näiden sisältämien materiaalien pohjalta ja johdosta tehtyjen asiakkaan päätösten seurauksista tai näiden aikaansaamisista tuloksista. Yritys ei näin ollen takaa sitä, että tämän palvelut välittömästi tuottavat asiakkaalle rahallista tuottoa.</li>
+                                            <li>Yritys ei vastaa mistään tilaukseen, toimitukseen tai tuotteeseen
+                                                liittyvästä tai mistään edellä mainitusta aiheutuneesta välillisestä tai
+                                                välittömästä tai muusta vahingosta paitsi siihen asti kuin pakottava
+                                                määräys kuluttajanasuojalaissa tai muussa pakottavassa laissa on
+                                                kyseisen vahingon osalta toisin määrännyt.</li>
+                                            <li>Yritys ei vastaa verkkosivuston käytön yhteydessä esiintyneistä
+                                                teknisistä häiriöistä ja siitä seuraavasta puutteellisesta tilausten
+                                                käsittelyssä eikä kolmansien osapuolien tarjoamien palveluiden, kuten
+                                                kurssialustan, toimintahäiriöistä (kuten järjestelmien toimintahäiriöt
+                                                ja viiveet maksujen siirtymisessä) eikä sopimuksista, jotka asiakas
+                                                tekee kolmansien osapuolten kanssa ostaessaan tuotteita.</li>
+                                            <li>Yritys ei missään tapauksessa vastaa palvelujen, tuotteiden tai näiden
+                                                sisältämien materiaalien pohjalta ja johdosta tehtyjen asiakkaan
+                                                päätösten seurauksista tai näiden aikaansaamisista tuloksista. Yritys ei
+                                                näin ollen takaa sitä, että tämän palvelut välittömästi tuottavat
+                                                asiakkaalle rahallista tuottoa.</li>
                                         </ul>
                                     </div>
                                 </li>
@@ -665,9 +740,24 @@
                                     <h2>Erimielisyydet ja sovellettava laki</h2>
                                     <div class="company-info">
                                         <ul>
-                                            <li>Nämä sopimusehdot on laadittu, jotta erimielisyyksiä ei syntyisi. Mikäli kuitenkin erimielisyyksiä syntyy palveluista tai sopimuksesta muutoin, pyritään ne ratkaisemaan asiakkaan ja yrityksen välisillä neuvotteluilla.</li>
-                                            <li><strong>Kuluttaja-asiakas:</strong> mikäli palveluita tai muutoin sopimusta koskevaa erimielisyyttä ei saada ratkaistuksi osapuolten välisillä neuvotteluilla, kuluttaja voi saattaa asian kuluttajariitalautakunnan käsiteltäväksi ottamalla yhteyttä kuluttajariitalautakuntaan (<a href="https://www.kuluttajariita.fi" target="_blank" style="color: #a571aa;">www.kuluttajariita.fi</a>). Ennen asian viemistä kuluttajariitalautakunnan käsittelyyn, kuluttaja voi olla myös yhteydessä maistraattien kuluttajaneuvontaan (<a href="https://www.kuluttajaneuvonta.fi" target="_blank" style="color: #a571aa;">www.kuluttajaneuvonta.fi</a>).</li>
-                                            <li>Tähän sopimukseen sovelletaan Suomen lakia. Palveluista tai sopimuksesta muutoin aiheutuvat erimielisyydet ratkaistaan yrityksen kotipaikan mukaisessa tuomioistuimessa, elleivät asiakas ja yritys pääse asiassa neuvotteluilla sovintoon.</li>
+                                            <li>Nämä sopimusehdot on laadittu, jotta erimielisyyksiä ei syntyisi. Mikäli
+                                                kuitenkin erimielisyyksiä syntyy palveluista tai sopimuksesta muutoin,
+                                                pyritään ne ratkaisemaan asiakkaan ja yrityksen välisillä
+                                                neuvotteluilla.</li>
+                                            <li><strong>Kuluttaja-asiakas:</strong> mikäli palveluita tai muutoin
+                                                sopimusta koskevaa erimielisyyttä ei saada ratkaistuksi osapuolten
+                                                välisillä neuvotteluilla, kuluttaja voi saattaa asian
+                                                kuluttajariitalautakunnan käsiteltäväksi ottamalla yhteyttä
+                                                kuluttajariitalautakuntaan (<a href="https://www.kuluttajariita.fi"
+                                                    target="_blank" style="color: #a571aa;">www.kuluttajariita.fi</a>).
+                                                Ennen asian viemistä kuluttajariitalautakunnan käsittelyyn, kuluttaja
+                                                voi olla myös yhteydessä maistraattien kuluttajaneuvontaan (<a
+                                                    href="https://www.kuluttajaneuvonta.fi" target="_blank"
+                                                    style="color: #a571aa;">www.kuluttajaneuvonta.fi</a>).</li>
+                                            <li>Tähän sopimukseen sovelletaan Suomen lakia. Palveluista tai sopimuksesta
+                                                muutoin aiheutuvat erimielisyydet ratkaistaan yrityksen kotipaikan
+                                                mukaisessa tuomioistuimessa, elleivät asiakas ja yritys pääse asiassa
+                                                neuvotteluilla sovintoon.</li>
                                         </ul>
                                     </div>
                                 </li>
@@ -697,7 +787,8 @@
                                 </div>
                             </div>
                             <div class="footer-link px-2">
-                                BloomLead – auttaa projektin tavoitteiden ja ROI:n toteutuksessa yhdistämällä ihmisten ja projektin johtamisen, muutoksen ja AI:n.
+                                BloomLead – auttaa projektin tavoitteiden ja ROI:n toteutuksessa yhdistämällä ihmisten
+                                ja projektin johtamisen, muutoksen ja AI:n.
                             </div>
                         </div>
                     </div>
@@ -729,7 +820,8 @@
                             <div class="f-widget-title">
                                 <h2>Yrityksen tiedot</h2>
                             </div>
-                            <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210 Tampere<br>Y-tunnus 3166661-4<br>Pankkitili</div>
+                            <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210
+                                Tampere<br>Y-tunnus 3166661-4<br>Pankkitili</div>
                         </div>
                     </div>
 
@@ -786,12 +878,12 @@
 
     <script>
         // Mobile menu toggle
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const menuBtn = document.querySelector('.mobile-menu-btn');
             const menuDropdown = document.querySelector('.mobile-menu-dropdown');
-            
+
             if (menuBtn && menuDropdown) {
-                menuBtn.addEventListener('click', function() {
+                menuBtn.addEventListener('click', function () {
                     this.classList.toggle('active');
                     menuDropdown.classList.toggle('show');
                 });
@@ -799,4 +891,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -91,7 +91,7 @@
         }
 
         .main-menu ul li {
-            margin: 0 15px;
+            margin: 0;
         }
 
         @media (max-width: 991px) {
@@ -448,13 +448,11 @@
         }
 
         @media(max-width:768px) {
-             .df .logo {
-            height: 30px !important;
+            .df .logo {
+                height: 30px !important;
 
+            }
         }
-        }
-
-
     </style>
 </head>
 
@@ -482,12 +480,14 @@
                                 <nav id="mobile-menu" style="display: block;">
                                     <div class="mobile-menu-content">
                                         <ul>
-                                            <li class="sub wrap"><a href="pricing.html">Webinaarivaihtoehdot &
-                                                    Hinnat</a>
-                                            </li>
                                             <li class="sub">
                                                 <a href="coaches.html">Valmentajat</a>
                                             </li>
+                                            <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
+
+                                            <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt & Hinnat</a>
+                                            </li>
+                                           
                                             <li class="sub">
                                                 <a href="blog.html">Blogi</a>
                                             </li>
@@ -498,7 +498,7 @@
                             </div>
                         </div>
                         <!-- Search & Hamburger - Right -->
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-6">
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-6 header-right-container">
                             <div class="header-right d-flex align-items-center justify-content-end">
                                 <!-- Search icon for desktop -->
                                 <!-- <div class="search-top2 d-none d-lg-block">
@@ -532,8 +532,10 @@
                         </div>
                         <div class="mobile-menu-content">
                             <ul>
-                                <li><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
                                 <li><a href="coaches.html">Valmentajat</a></li>
+                                <li><a href="courses.html">Tilaa webinaarit</a></li>
+                                <li><a href="pricing.html">Webinaarien sisällöt & Hinnat</a></li>
+                                
                                 <li><a href="blog.html">Blogi</a></li>
                                 <li><a href="contact.html">Yhteystiedot</a></li>
                             </ul>
@@ -629,7 +631,7 @@
                                         <p>MT Coaching Oyj</p> -->
                                     </div>
 
-                                    
+
 
                                     <div style="margin-bottom: 20px;">
                                         <h5 style="color: #a571aa; margin-bottom: 10px;">Nettisivu</h5>
@@ -641,7 +643,8 @@
                                             <div class="logo" style="display: flex; align-items: center; gap: 10px; ">
 
                                                 <a href="https://www.bloomlead.io"
-                                                    style=" color: #777777; ; font-family: 'Jost', sans-serif; text-decoration: underline; " target="_blank">www.bloomlead.io</a>
+                                                    style=" color: #777777; ; font-family: 'Jost', sans-serif; text-decoration: underline; "
+                                                    target="_blank">www.bloomlead.io</a>
                                             </div>
                                         </div>
                                     </div>
@@ -652,10 +655,9 @@
                                             style="padding-left: 0; list-style: none;">
                                             <li><i class="icon fal fa-envelope"></i>
                                                 <span>
-                                                    <a href="mailto:contact@bloomlead.io" 
-                                                       class="email-clickable"
-                                                       style="display: block; color: #777777; cursor: pointer;"
-                                                       onclick="openEmailOptions('contact@bloomlead.io', 'main-contact-section'); return false;">
+                                                    <a href="mailto:contact@bloomlead.io" class="email-clickable"
+                                                        style="display: block; color: #777777; cursor: pointer;"
+                                                        onclick="openEmailOptions('contact@bloomlead.io', 'main-contact-section'); return false;">
                                                         contact@bloomlead.io
                                                     </a>
                                                 </span>
@@ -773,10 +775,9 @@
 
                                         <li><i class="icon fal fa-envelope"></i>
                                             <span>
-                                                <a href="mailto:contact@bloomlead.io" 
-                                                   class="email-clickable"
-                                                   style="display: block; color: inherit; cursor: pointer;"
-                                                   onclick="openEmailOptions('contact@bloomlead.io', 'footer-contact'); return false;">
+                                                <a href="mailto:contact@bloomlead.io" class="email-clickable"
+                                                    style="display: block; color: inherit; cursor: pointer;"
+                                                    onclick="openEmailOptions('contact@bloomlead.io', 'footer-contact'); return false;">
                                                     contact@bloomlead.io
                                                 </a>
                                                 <!-- <span style="display: block;">help@example.com</span> -->
@@ -924,14 +925,14 @@
     <!-- <script src="js/cookie-config.js"></script> -->
     <!-- <script src="js/necessary-cookies.js"></script> -->
     <!-- <script src="js/cookie-consent-manager.js"></script> -->
-    
+
     <!-- Functional Cookies -->
     <!-- <script src="js/functional-cookies.js"></script> -->
-    
+
     <!-- Marketing Cookies System -->
     <!-- <script src="js/marketing-cookies.js"></script> -->
     <!-- <script src="js/webinar-marketing-integration.js"></script> -->
-    
+
     <!-- Email Modal System -->
     <script src="js/email-modal.js"></script>
 

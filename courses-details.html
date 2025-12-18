@@ -580,6 +580,15 @@
             animation: iconPulse 2s infinite;
         }
 
+        .main-menu ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
         @keyframes iconPulse {
 
             0%,
@@ -716,36 +725,34 @@
                         <div class="col-xl-6 col-lg-6 d-none d-lg-block">
                             <div class="main-menu text-center">
                                 <nav id="mobile-menu" style="display: block;">
-                                    <div class="mobile-menu-content">
-                                        <ul>
-                                            <li class="sub wrap"><a href="pricing.html">Webinaarivaihtoehdot &
-                                                    Hinnat</a>
-                                            </li>
-                                            <li class="sub">
-                                                <a href="coaches.html">Valmentajat</a>
-                                            </li>
-                                            <li class="sub">
-                                                <a href="blog.html">Blogi</a>
-                                            </li>
-                                            <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
-                                        </ul>
-                                    </div>
+                                    <ul>
+                                        <li class="sub">
+                                            <a href="coaches.html">Valmentajat</a>
+                                        </li>
+                                        <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
+                                        </li>
+                                        <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt & Hinnat</a>
+                                        </li>
+                                        
+                                        <li class="sub">
+                                            <a href="blog.html">Blogi</a>
+                                        </li>
+                                        <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
+                                    </ul>
                                 </nav>
                             </div>
                         </div>
                         <!-- Search & Hamburger - Right -->
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-6">
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-6 header-right-container">
                             <div class="header-right d-flex align-items-center justify-content-end">
                                 <!-- Search icon for desktop -->
                                 <!-- <div class="search-top2 d-none d-lg-block">
-                                        <div class="mobile-menu-content">
-                        <ul>
-                                            <li><a href="#" class="search-trigger" data-toggle="modal"
-                                                    data-target=".bs-example-modal-lg"><i class="fas fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                        </div>
-                                    </div> -->
+                                    <ul>
+                                        <li><a href="#" class="search-trigger" data-toggle="modal"
+                                                data-target=".bs-example-modal-lg"><i class="fas fa-search"></i></a>
+                                        </li>
+                                    </ul>
+                                </div> -->
                                 <!-- Mobile menu toggle -->
                                 <div class="mobile-menu d-lg-none">
                                     <button class="mobile-menu-btn" type="button">
@@ -767,14 +774,14 @@
                             <span>Search</span>
                         </a>
                     </div>
-                    <div class="mobile-menu-content">
-                        <ul>
-                            <li><a href="pricing.html">Webinaarivaihtoehdot & Hinnat</a></li>
-                            <li><a href="coaches.html">Valmentajat</a></li>
-                            <li><a href="blog.html">Blogi</a></li>
-                            <li><a href="contact.html">Yhteystiedot</a></li>
-                        </ul>
-                    </div>
+                    <ul>
+                        <li><a href="coaches.html">Valmentajat</a></li>
+                        <li><a href="courses.html">Tilaa webinaarit</a></li>
+                        <li><a href="pricing.html">Webinaarien sisällöt & Hinnat</a></li>
+                        
+                        <li><a href="blog.html">Blogi</a></li>
+                        <li><a href="contact.html">Yhteystiedot</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
