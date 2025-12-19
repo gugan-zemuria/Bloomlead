@@ -934,7 +934,7 @@ body {
 
 .about-img {
     margin-top: 12px;
-    border-radius: 12px !important;
+    border-radius: 15px !important;
     width: 100%;
     max-width: 500px;
     height: auto;
