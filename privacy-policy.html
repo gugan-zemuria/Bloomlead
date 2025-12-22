@@ -506,9 +506,10 @@
                                         <li class="sub">
                                             <a href="coaches.html">Valmentajat</a>
                                         </li>
-                                        <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
-                                        </li>
+
                                         <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt & Hinnat</a>
+                                        </li>
+                                        <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
                                         </li>
                                         <li class="sub"><a href="blog.html">Blogi</a></li>
                                         <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
@@ -535,9 +536,9 @@
                     <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
                         <ul>
                             <li><a href="coaches.html">Valmentajat</a></li>
-                            <li><a href="courses.html">Tilaa webinaarit</a></li>
                             <li><a href="pricing.html">Webinaarien sisällöt & Hinnat</a></li>
-                            
+                            <li><a href="courses.html">Tilaa webinaarit</a></li>
+
                             <li><a href="blog.html">Blogi</a></li>
                             <li><a href="contact.html">Yhteystiedot</a></li>
                         </ul>
@@ -556,11 +557,12 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="terms-content">
-                            <h1>Rekisteriseloste ja Tietosuoja</h1>
+                            <h1>Rekisteriseloste ja tietosuoja</h1>
                             <p class="effective-date"></p>
 
                             <ol>
                                 <li>
+                                    <h2>Asiakas- ja markkinointirekisteri</h2>
                                     <h2>Rekisterin ylläpitäjä</h2>
                                     <div class="company-info">
                                         <p><strong>MT Business Coaching Oy</strong></p>
@@ -573,8 +575,13 @@
                                 <li>
                                     <h2>Rekisterin yhteyshenkilö</h2>
                                     <div class="company-info">
-                                        <p>Johanna Kartila-Malmivaara, <a href="mailto:iida@vapautasupervoimasi.fi"
-                                                style="color: #a571aa;">contact@bloomlead.io</a></p>
+                                        <p>Johanna Kartila-Malmivaara <a href="mailto:contact@bloomlead.io" class="email-clickable"
+                                                    style=" color: #a571aa; cursor: pointer;"
+                                                    onclick="openEmailOptions('contact@bloomlead.io', 'footer-contact'); return false;">
+                                                    contact@bloomlead.io
+                                                </a></p>
+
+                                                
 
                                     </div>
                                 </li>
@@ -582,37 +589,68 @@
                                 <li>
                                     <h2>Rekisterin pitämisen peruste</h2>
                                     <div class="company-info">
-                                        <p>Sähköpostilistan kerääminen</p>
+                                        <p>Rekisteriin tallennettavia tietoja käsitellään seuraavin perustein:</p>
+                                        <ul style="margin-left: 12px;">
+                                            <li><strong>Asiakassuhteen muodostuminen ja sopimuksen
+                                                    täytäntöönpano</strong>
+                                                (webinaarien ostaminen, laskutus, asiakaspalvelu).</li>
+                                            <li><strong>Rekisterinpitäjän oikeutettu etu </strong>(asiakasviestintä ja
+                                                asiakasprofiilien
+                                                ylläpito).</li>
+                                            <li><Strong>Rekisteröidyn suostumus</Strong> (uutiskirjeet,
+                                                markkinointiviestintä ja
+                                                maksuttomien materiaalien lähettäminen).</li>
+                                        </ul>
+                                        <p>Rekisteröity voi <strong>peruuttaa markkinointia koskevan
+                                                suostumuksensa</strong> milloin
+                                            tahansa.</p>
                                     </div>
                                 </li>
 
                                 <li>
-                                    <h2>Mikä on tietojen keräämisen tarkoitus?</h2>
+                                    <h2>Tietojen käsittelyn tarkoitus</h2>
                                     <div class="company-info">
-                                        <p>Rekisterin henkilötietoja käytetään yhteydenpitoon sekä yrityksen ja
-                                            asiakkaiden välisen asiakassuhteen ylläpitoon. Henkilö itse hyväksyy
-                                            markkinoinnin sekä markkinointitutkimusmateriaalin hyödyntämisen
-                                            sähköpostilistan avulla.</p>
+                                        <p>Rekisterin henkilötietoja käytetään:</p>
+                                        <ul style="margin-left: 12px;">
+                                            <li>asiakasrekisterin ylläpitämiseen</li>
+                                            <li>sopimuksen ja tilausten käsittelyyn (esim. webinaarien ostot, laskutus)
+                                            </li>
+                                            <li>asiakassuhteen hoitoon ja palveluiden toimittamiseen</li>
+                                            <li>markkinointiviestintään ja markkinointiluvan mukaiseen materiaaliin</li>
+                                            <li>BloomLead-yhteisön ylläpitoon ja viestintään</li>
+                                        </ul>
                                     </div>
                                 </li>
 
                                 <li>
                                     <h2>Rekisterin sisältö</h2>
                                     <div class="company-info">
-                                        <p>Rekisteriin kerätään seuraavia tietoja: Etunimi ja Sähköpostiosoite.
-                                            Postilistalle liittynyt voi koska tahansa poistua rekisteristä kirjeessä
-                                            mainitun linkin "unsubscribe" kautta.</p>
+                                        <p>Rekisteriin voidaan tallentaa seuraavia tietoja:</p>
+                                        <ul style="margin-left: 12px;">
+                                            <li>nimi</li>
+                                            <li>sähköpostiosoite</li>
+                                            <li>puhelinnumero (jos annettu)</li>
+                                            <li>suostumustiedot (markkinointi, viestintä)</li>
+                                            <li>verkkokurssin osallistujan käyttäjätunnus ja salasanan tiiviste</li>
+                                            <li>ostotiedot ja tilausrivit (webinaarit ja muut tuotteet)</li>
+                                            <li>laskutustiedot</li>
+                                            <li>asiakassuhteen ylläpitoon liittyvät viestit ja toimenpiteet</li>
+                                            <li>uutiskirjeen avaus- ja klikkaustieto (jos suostumus)</li>
+                                        </ul>
 
                                     </div>
                                 </li>
                                 <li>
-                                    <h2>Lisäksi:</h2>
+                                    <h2>Tietojen säilytysaika:</h2>
                                     <div class="company-info">
                                         <ul>
-                                            <li>Sähköpostilistalla olevien sähköpostiviestit</li>
-                                            <li>Sivuston käyttäjien suostumukset</li>
-                                            <li>Asiakassuhteen ylläpitoon tarvittavat tiedot</li>
-                                            <li>Verkkokurssille osallistuneiden yksilöity käyttäjätunnus ja salasana
+                                            <li><strong>Markkinointirekisterin tiedot</strong>: säilytetään, kunnes
+                                                rekisteröity peruuttaa
+                                                suostumuksensa tai tiedon käsittelylle ei enää ole tarvetta.</li>
+                                            <li><strong>Asiakassuhteeseen liittyvät tiedot</strong>: säilytetään
+                                                sopimuksen voimassaolon
+                                                ajan ja kirjanpitolain mukaisesti enintään 6 vuotta.</li>
+                                            <li><strong>Tunnistautumistiedot</strong>: säilytetään palvelun käytön ajan.
                                             </li>
                                         </ul>
                                     </div>
@@ -620,116 +658,145 @@
                                 </li>
 
                                 <li>
-                                    <h2>Henkilötietojen luovuttaminen</h2>
+                                    <h2>Tietojen luovuttaminen ja EU/ETA-alueen ulkopuoliset siirrot</h2>
                                     <div class="company-info">
-                                        <p>Sähköpostilistan kerääminen tapahtuu Hostingpalvelua ja webinaaria varten
-                                            kehitettyä AI agenttia hyödyntäen. Hostingpalveluun siirtyvät käyttäjän
-                                            etunimi,
-                                            sukunimi sekä Sähköpostiosoite.</p>
+                                        <p>Tietoja voidaan luovuttaa seuraaville palveluntarjoajille, jotka toimivat</p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>henkilötietojen käsittelijöinä:</h2>
+                                    <div class="company-info">
+                                        <ul>
+                                            <li>hosting-palvelu ja tekninen alusta (esim. sähköpostijärjestelmä,
+                                                kurssialusta)</li>
+                                            <li>webinaarialustan AI-agentti, jota käytetään rekisterin ylläpitoon</li>
+                                            <li>laskutus- ja maksupalveluntarjoajat</li>
+                                        </ul>
+                                        <p>Jos palveluntarjoaja sijaitsee <strong>EU- tai ETA-alueen
+                                                ulkopuolella</strong>, siirrot tehdään
+                                            GDPR:n edellyttämin suojatoimin, kuten <strong>EU:n mallisopimuslausekkein
+                                                (SCC)</strong>.</p>
+                                        <p>Tietoja ei luovuteta muille kolmansille osapuolille ilman lain mukaista
+                                            perustetta.</p>
                                     </div>
                                 </li>
 
                                 <li>
                                     <h2>Rekisterin tietolähteet</h2>
                                     <div class="company-info">
-                                        <p>Henkilötiedot saadaan, mikäli henkilö tilaa viikkokirjeen tai lataa
-                                            maksutonta
-                                            materiaalia tai tilaa ja ostaa webinaarimoduleita.</p>
+                                        <p>Henkilötietoja saadaan:</p>
+                                        <ul style="margin-left: 12px;">
+                                            <li>rekisteröidyltä itseltään uutiskirjeen tilauksen yhteydessä</li>
+                                            <li>maksuttomien materiaalien lataamisen yhteydessä</li>
+                                            <li>webinaarien ostamisen yhteydessä</li>
+                                            <li>asiakasviestinnän ja asioinnin yhteydessä</li>
+                                        </ul>
                                     </div>
                                 </li>
 
                                 <li>
-                                    <h2>Rikkomuksista ilmoittaminen</h2>
+                                    <h2>Suojauksen periaatteet</h2>
                                     <div class="company-info">
-                                        <p>Valitettavasti mikään internetin tiedonsiirtomenetelmä tai sähköinen
-                                            tallennusmuoto
-                                            ei ole täysin turvallinen. MT Business Coaching Oy ei pysty takaamaan 100%
-                                            turvallisuutta. Mikäli yrityksen tietoon tulee tietoturvarikkomus, ilmoittaa
-                                            yritys
-                                            asiasta asianosaisille käyttäjille viipymättä, jotta he voivat tehdä
-                                            tarvittavat
-                                            suojaustoimenpiteet.</p>
-                                        <p>Yritys sitoutuu ilmoittamaan asiakkailleen kaikista heidän tilinsä
-                                            turvallisuutta
-                                            koskevista asioista ja tarjoamaan heille kaikki tarvittavat tiedot, jotta he
-                                            voivat täyttää
-                                            omat lakisääteiset ilmoitusvelvollisuudet.</p>
+                                        <p>Henkilötietoja käsitellään <strong>huolellisesti,
+                                                luottamuksellisesti</strong> ja teknisesti suojatuissa
+                                            järjestelmissä.</p>
+                                        <p>Pääsy tietoihin on rajattu vain niille henkilöille ja kumppaneille, jotka
+                                            tarvitsevat
+                                            tietoja työtehtäviensä hoitamiseksi.</p>
+                                        <p>Mikäli tietoturvaloukkaus havaitaan, siitä ilmoitetaan asianomaisille
+                                            rekisteröidyille
+                                            <strong>viipymättä</strong>, ja tarvittavat suojatoimenpiteet toteutetaan.
+                                        </p>
                                     </div>
                                 </li>
 
                                 <li>
                                     <h2>Käyttäjän velvollisuudet</h2>
                                     <div class="company-info">
-                                        <p>Käyttäjän tulee itse varmistaa omien tiliensä tietoturva sekä turvallisuus
-                                            käyttämällä
-                                            riittävän monimutkaisia salasanoja, vaihtamalla ne säännöllisesti sekä
-                                            säilyttämällä
-                                            niitä asianmukaisesti. Käyttäjän on myös itse varmistettava omien laitteiden
-                                            turvallisuus.</p>
+                                        <p>Käyttäjä vastaa oman laitteistonsa ja kirjautumistietojensa asianmukaisesta
+                                            suojaamisesta (esim. salasanan turvallinen käyttö).</p>
+
                                     </div>
                                 </li>
 
                                 <li>
-                                    <h2>Käyttäjän oikeudet</h2>
+                                    <h2>Rekisteröidyn oikeudet</h2>
                                     <div class="company-info">
-                                        <p>Sivustojen käyttäjällä on seuraavat oikeudet:</p>
+                                        <p>Rekisteröidyllä on seuraavat oikeudet:</p>
                                         <ul style="margin-left: 12px;">
-                                            <li>Tiedonsaantioikeus</li>
-                                            <li>Käsittelän rajoittamisen oikeus</li>
-                                            <li>Korjausoikeus</li>
-                                            <li>Oikeus tulla unohdetuksi</li>
-                                            <li>Suostumuksen peruuttamisen oikeus</li>
-                                            <li>Tietojen siirto-oikeus</li>
+                                            <li>oikeus saada pääsy omiin tietoihinsa</li>
+                                            <li>oikeus tietojen oikaisemiseen</li>
+                                            <li>oikeus tietojen poistamiseen (“oikeus tulla unohdetuksi”)</li>
+                                            <li>oikeus käsittelyn rajoittamiseen</li>
+                                            <li>oikeus vastustaa tietojen käsittelyä</li>
+                                            <li>oikeus siirtää tiedot järjestelmästä toiseen</li>
+                                            <li>oikeus peruuttaa suostumus milloin tahansa</li>
+                                            <li>oikeus tehdä valitus <strong>tietosuojavaltuutetulle</strong></li>
                                         </ul>
                                     </div>
                                 </li>
 
                                 <li>
-                                    <h2>Linkit kolmansien osapuolien verkkosivuille</h2>
+                                    <h2>Oikeuksien käyttäminen</h2>
                                     <div class="company-info">
-                                        <p>Maksuttomat oppaat sekä viikkokirjeet voivat sisältää linkkejä kolmansien
-                                            osapuolten verkkosivustoille. Linkitetyt verkkosivustot eivät ole yrityksen
-                                            hallinnassa, eikä se vastaa kolmansien osapuolten verkkosivustojen
-                                            sisällöstä tai verkkosivustojen sisältämistä linkeistä. Osa linkeistä voi
-                                            olla ns. affiliate-linkkejä, joiden kautta yritys saa myyntiprovisioita.</p>
+                                        <p>Oikeuksien käyttämiseksi rekisteröity voi ottaa yhteyttä sähköpostitse:
+                                            <strong><a href="mailto:contact@bloomlead.io" class="email-clickable"
+                                                    style=" color: inherit; cursor: pointer;"
+                                                    onclick="openEmailOptions('contact@bloomlead.io', 'footer-contact'); return false;">
+                                                    contact@bloomlead.io
+                                                </a></strong>
+                                        </p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>Linkit kolmansien osapuolten sivustoihin</h2>
+                                    <div class="company-info">
+                                        <p>Uutiskirjeet ja maksuttomat materiaalit voivat sisältää linkkejä kolmansien
+                                            osapuolten
+                                            sivustoille.</p>
+                                        <p>Yritys ei vastaa näiden sivustojen sisällöstä.</p>
+                                        <p>Osa linkeistä voi olla <strong>affiliate-linkkejä</strong>, joista yritys voi
+                                            saada palkkion.</p>
                                     </div>
                                 </li>
 
                                 <li>
                                     <h2>Evästeet</h2>
                                     <div class="company-info">
-                                        <p>Käyttämällä yrityksen sivustoja annat suostumuksen evästeiden käyttöön tällä
-                                            sivustolla kuvatulla tavalla.</p>
+                                        <p>Sivusto käyttää evästeitä, jotta palvelu toimii teknisesti ja markkinointi
+                                            voidaan
+                                            toteuttaa tehokkaasti.
+                                        </p>
+                                        <p>Käyttäjä voi poistaa evästeet selaimestaan tai estää niiden käytön.</p>
                                     </div>
+
                                 </li>
 
                                 <li>
-                                    <h2>Yritys käyttää:</h2>
+                                    <h2>Muutosoikeus</h2>
                                     <div class="company-info">
-                                        <p>Kirjautumis- ja toimintaevästeitä (esimerkiksi asetusten tallentaminen
-                                            kirjautumisen
-                                            yhteydessä) Analyysievästeitä (Google Analytics, tiedon avulla yritys
-                                            parantaa
-
-                                            sivuston toimivuutta) Kohdistettuja- tai mainosevästeitä (Facebook ja
-                                            Google,
-                                            mainonnan kustannustehokas käyttö, eivät sisällä henkilötietoja)</p>
-                                        <p>Sinulla on oikeus poistaa evästeet sekä estää niiden käyttö oman selaimesi
-                                            avulla.
-                                            Jos et hyväksy evästeiden käyttämistä sivustolla, sivuston käyttäminen tulee
-                                            lopettaa.</p>
+                                        <p>Yrityksellä on oikeus <strong>muuttaa tämän selosteen sisältöä
+                                                yksipuolisesti</strong>
+                                            toimintansa, lainsäädännön tai palveluiden muuttuessa. Päivitetty versio
+                                            julkaistaan
+                                            verkkosivuilla.</p>
                                     </div>
-
                                 </li>
 
                                 <li>
                                     <h2>Lisätietoja</h2>
                                     <div class="company-info">
-                                        <p>Rekisteriin liittyvissä kysymyksissä voit olla yhteydessä sähköpostilla<a
-                                                href="mailto:iida@vapautasupervoimasi.fi"
-                                                style="color: #a571aa;"> contact@bloomlead.io</a></p>
-                                        <p><strong>Rekisteriseloste ja tietosuoja päivitetty GDPR:n vaatimusten
-                                                mukaisesti 01.12.2025</strong></p>
+                                        <p>Rekisteriin liittyvissä kysymyksissä voi olla yhteydessä:
+                                            <strong><a href="mailto:contact@bloomlead.io" class="email-clickable"
+                                                    style=" color: inherit; cursor: pointer;"
+                                                    onclick="openEmailOptions('contact@bloomlead.io', 'footer-contact'); return false;">
+                                                    contact@bloomlead.io
+                                                </a></strong>
+                                        </p>
+                                        <p>Tietosuojaseloste päivitetty GDPR:n mukaisesti <strong>21.12.2025</strong>.
+                                        </p>
                                     </div>
                                 </li>
                             </ol>
@@ -791,7 +858,8 @@
                             <div class="f-widget-title">
                                 <h2>Yrityksen tiedot</h2>
                             </div>
-                            <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210 Tampere<br>Y-tunnus 3166661-4<br>Pankkitili</div>
+                            <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210
+                                Tampere<br>Y-tunnus 3166661-4</div>
                         </div>
                     </div>
 

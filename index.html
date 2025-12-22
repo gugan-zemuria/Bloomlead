@@ -1058,6 +1058,17 @@
             font-size: 18px;
         }
 
+        #about .container .align-items-center {
+            flex-direction: column;
+        }
+
+        #about .container .align-items-center .col-lg-6{
+            display: flex;
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin: 20px auto;
+        }
+
         .green li {
             display: flex;
             align-items: first baseline;
@@ -1069,6 +1080,26 @@
             margin-right: 10px;
             font-size: 14px;
         }
+
+        #about-round {
+            width: 300px !important;
+            width: 300px !important;
+            margin: 12px auto;
+        }
+
+        @media(max-width:768px) {
+            #about .container .align-items-center .col-lg-6{
+            flex-direction: column;
+            margin: 12px auto;
+        }
+
+        .s-about-img {
+            margin: 0 !important;
+        }
+
+        }
+
+
     </style>
 </head>
 
@@ -1098,9 +1129,10 @@
                                         <li class="sub">
                                             <a href="coaches.html">Valmentajat</a>
                                         </li>
-                                        <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
-                                        </li>
+                                        
                                         <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt & Hinnat</a>
+                                        </li>
+                                        <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
                                         </li>
                                         
                                         <li class="sub">
@@ -1145,9 +1177,9 @@
                     </div>
                     <ul>
                         <li><a href="coaches.html">Valmentajat</a></li>
-                        <li><a href="courses.html">Tilaa webinaarit</a></li>
-                        <li><a href="pricing.html">Webinaarien sisällöt & Hinnat</a></li>
                         
+                        <li><a href="pricing.html">Webinaarien sisällöt & Hinnat</a></li>
+                        <li><a href="courses.html">Tilaa webinaarit</a></li>
                         <li><a href="blog.html">Blogi</a></li>
                         <li><a href="contact.html">Yhteystiedot</a></li>
                     </ul>
@@ -1370,7 +1402,7 @@
                     <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
                         <div class="s-about-img p-relative  wow fadeInLeft  animated" data-animation="fadeInLeft"
                             data-delay=".4s">
-                            <img id="round" class="about-img" src="img/about/About-image.webp" alt="Team collaboration and learning">
+                            <img id="about-round" src="img/about/About-image.webp" alt="Team collaboration and learning">
                             <!-- <div class="col-lg-5">
                                 <div class="about-img" data-animation="fadeInUp" data-delay=".4s">
                                     <img src="img/about/About-image.webp"
@@ -1384,6 +1416,21 @@
                                 </div>
 
                             </div> -->
+                            <p>Olemme Marke ja Johanna – kokeneita
+                                projektien, muutosten ja tiimien
+                                johtamisen ammattilaisia,
+                                koulutukseltamme <strong>kauppatieteiden
+                                    maistereita ja ekonomeja</strong>. Haluamme
+                                jakaa käytännönläheisen osaamisemme
+                                ja tukea uransa alkuvaiheessa olevia
+                                projektipäälliköitä onnistumaan ja
+                                kehittymään luottavaisin askelin.
+                                Valmennamme selkeästi ja
+                                konkreettisesti, moderneja viitekehyksiä
+                                ja tekoälyn mahdollisuuksia
+                                hyödyntäen. BloomLead-yhteisössä
+                                tarjoamme myös verkostoja ja tukea
+                                matkan varrella.</p>
                         </div>
 
                     </div>
@@ -1888,7 +1935,7 @@ div>i>div></div>""
         <!-- eventes-area-end -->
 
         <!-- webinar-modules-section -->
-        <section class="webinar-modules-section pt-60 pb-60" style="background-color: #f8f9fa;">
+        <!-- <section class="webinar-modules-section pt-60 pb-60" style="background-color: #f8f9fa;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -1901,9 +1948,9 @@ div>i>div></div>""
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row"> -->
                     <!-- Module 1 -->
-                    <div class="col-lg-4 col-md-6 col-12 mb-30">
+                    <!-- <div class="col-lg-4 col-md-6 col-12 mb-30">
                         <div class="video-card module-active">
                             <div class="video-thumbnail"
                                 style="background-image: url(img/video/image.webp); background-size: cover; background-position: center; height: 200px; border-radius: 10px; position: relative;">
@@ -1930,10 +1977,10 @@ div>i>div></div>""
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Module 2 -->
-                    <div class="col-lg-4 col-md-6 col-12 mb-30">
+                    <!-- <div class="col-lg-4 col-md-6 col-12 mb-30">
                         <div class="video-card module-active" style="opacity: 0.6; filter: grayscale(100%)">
                             <div class="video-thumbnail"
                                 style="background-image: url(img/module-img/Picture2.webp); background-size: cover; background-position: center; height: 200px; border-radius: 10px; position: relative;">
@@ -1946,26 +1993,26 @@ div>i>div></div>""
                                 <div class="video-meta mb-20">
                                     <span style="font-size: 16px; font-weight: 400; color: #a571aa;">
                                         125 € /moduli<br>
-                                        125 € + alv /moduli yrityshinta
+                                        125 € + alv /moduli yrityshinta -->
                                         <!-- <span
                                             style="color: #666; font-weight: 400; margin-left: 12px;">yrityshinta
                                         </span> -->
-
+<!-- 
                                     </span>
                                 </div>
                                 <div class="video-meta mb-20" style="margin-top: auto; justify-content: center;">
                                     <span style="color: #769757; font-weight: 600;">Julkaistaan 15.1.2026</span>
-                                </div>
+                                </div> -->
                                 <!-- <div class="module-actions cen">
                                     <a href="courses-details.html" class="btn btn-outline-primary me-2"
                                         style="margin-right: 10px;">Lue lisää ja tilaa</a>
                                 </div> -->
-                            </div>
+                            <!-- </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Module 3 -->
-                    <div class="col-lg-4 col-md-6 col-12 mb-30">
+                    <!-- <div class="col-lg-4 col-md-6 col-12 mb-30">
                         <div class="video-card module-active" style="opacity: 0.6; filter: grayscale(100%)">
                             <div class="video-thumbnail"
                                 style="background-image: url(img/module-img/Picture3.webp); background-size: cover; background-position: center; height: 200px; border-radius: 10px; position: relative;">
@@ -1978,21 +2025,21 @@ div>i>div></div>""
                                 <div class="video-meta mb-20">
                                     <span style="font-size: 16px; font-weight: 400; color: #a571aa;">
                                         125 € /moduli<br>
-                                        125 € + alv /moduli yrityshinta
+                                        125 € + alv /moduli yrityshinta -->
                                         <!-- <span
                                             style="color: #666; font-weight: 400; margin-left: 12px;">yrityshinta
                                         </span> -->
 
-                                    </span>
+                                    <!-- </span>
                                 </div>
                                 <div class="video-meta mb-20" style="margin-top: auto; justify-content: center;">
                                     <span style="color: #769757; font-weight: 600;">Julkaistaan 15.2.2026</span>
-                                </div>
+                                </div> -->
                                 <!-- <div class="module-actions cen">
                                     <a href="courses-details.html" class="btn btn-outline-primary me-2"
                                         style="margin-right: 10px;">Lue lisää ja tilaa</a>
                                 </div> -->
-                            </div>
+                            <!-- </div>
                         </div>
                     </div>
                 </div>
@@ -2004,7 +2051,7 @@ div>i>div></div>""
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- webinar-modules-section-end -->
 
         <!-- testimonial-area -->
@@ -2359,7 +2406,7 @@ div>i>div></div>""
                                 <h2>Yrityksen tiedot</h2>
                             </div>
                             <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210
-                                Tampere<br>Y-tunnus 3166661-4<br>Pankkitili</div>
+                                Tampere<br>Y-tunnus 3166661-4</div>
                         </div>
                     </div>
 
