@@ -282,7 +282,7 @@
         .video-card {
             background: white;
             border-radius: 15px;
-            padding: 20px;
+            padding: 20px 20px 20px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
             height: 100%;
@@ -294,10 +294,10 @@
 
         .module-number {
             position: absolute;
-            top: 15px;
-            left: 15px;
-            width: 40px;
-            height: 40px;
+            top: 6px;
+            left: 6px;
+            width: 30px;
+            height: 30px;
             background: rgba(165, 113, 170, 0.9);
             color: white;
             border-radius: 50%;
@@ -305,7 +305,7 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 16px;
             z-index: 2;
         }
 
@@ -385,10 +385,11 @@
         .package-cta-btn {
             background:#a571aa !important;
             border: none !important;
-            padding: 18px 40px;
+            padding: 18px 45px;
+            margin-top: 34px;
             font-size: 20px;
             font-weight: 700;
-            border-radius: 50px;
+            border-radius: .25rem;
             color: white !important;
             text-decoration: none !important;
             box-shadow: 0 8px 25px rgba(165, 113, 170, 0.3);
@@ -491,11 +492,11 @@
                                         <li class="sub">
                                             <a href="coaches.html">Valmentajat</a>
                                         </li>
-                                        <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
-                                        </li>
+                                        
                                         <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt & Hinnat</a>
                                         </li>
-                                        
+                                        <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
+                                        </li>
                                         <li class="sub">
                                             <a href="blog.html">Blogi</a>
                                         </li>
@@ -538,9 +539,8 @@
                     </div>
                     <ul>
                         <li><a href="coaches.html">Valmentajat</a></li>
-                        <li><a href="courses.html">Tilaa webinaarit</a></li>
                         <li><a href="pricing.html">Webinaarien sisällöt & Hinnat</a></li>
-                        
+                        <li><a href="courses.html">Tilaa webinaarit</a></li>
                         <li><a href="blog.html">Blogi</a></li>
                         <li><a href="contact.html">Yhteystiedot</a></li>
                     </ul>
@@ -628,9 +628,9 @@
                 <div class="row">
                     <!-- Module 1 -->
                     <div class="col-lg-4 col-md-6 col-12 mb-30">
-                        <div class="video-card module-active">
+                        <div class="video-card module-active" style="opacity: 0.6; filter: grayscale(100%)">
                             <div class="video-thumbnail"
-                                style="background-image: url(img/video/image.webp); background-size: cover; background-position: center; height: 200px; border-radius: 10px; position: relative;">
+                                style="background-image: url(img/video/image_1.webp); background-size: cover; background-position: center; height: 200px; border-radius: 10px; position: relative;">
                                 <div class="module-number">1</div>
                             </div>
                             <div class="video-info mt-20">
@@ -641,14 +641,16 @@
                                     <span style="font-size: 16px; font-weight: 400; color: #a571aa;">Hinnat<br>
                                         125 € /moduli<br>
                                         125 € + alv /moduli yrityshinta<br>
-                                        <span style="color: #666; font-weight: 400; ">Julkaistaan 5.1.2026 </span>
 
                                     </span>
                                 </div>
-                                <div class="module-actions cen">
+                                <div class="video-meta-2 mb-20">
+                                    <span style="color: #769757; font-weight: 600; ">Julkaistaan 5.1.2026 </span>
+                                </div>
+                                <!-- <div class="module-actions cen">
                                     <a href="courses-details.html" class="btn btn-outline-primary me-2"
                                         style="margin-right: 10px;">Lue lisää ja tilaa</a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -821,10 +823,15 @@
                         <div class="package-cta-section">
                             
                             <div class="cta-button">
-                                <a href="#" class="btn btn-primary package-cta-btn">
+                                <!-- <a href="#" class="btn btn-primary package-cta-btn">
                                    
                                     Tilaa koko webinaaripaketti tästä
-                                </a>
+                                </a> -->
+                                <a href="mailto:contact@bloomlead.io, marke.tyrvainen@elisanet.fi, jkartilamalmivaara@gmail.com" class="email-clickable btn btn-primary package-cta-btn"
+                                                    style="display: block; color: inherit; cursor: pointer;"
+                                                    onclick="openEmailOptions('contact@bloomlead.io, marke.tyrvainen@elisanet.fi;, jkartilamalmivaara@gmail.com', 'footer-contact'); return false;">
+                                                    Tilaa koko webinaaripaketti tästä
+                                                </a>
                             </div>
                             
                         </div>
@@ -911,7 +918,7 @@
                                 <h2>Yrityksen tiedot</h2>
                             </div>
                             <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210
-                                Tampere<br>Y-tunnus 3166661-4<br>Pankkitili</div>
+                                Tampere<br>Y-tunnus 3166661-4</div>
                         </div>
                     </div>
 
