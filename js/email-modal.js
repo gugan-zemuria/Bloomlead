@@ -301,12 +301,11 @@ Odotan innolla kuulevani teiltä!
 
 Ystävällisin terveisin`);
         
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=contact@bloomlead.io&su=${subject}&body=${body}`;
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=contact@bloomlead.io&from=${encodeURIComponent(userEmail)}&su=${subject}&body=${body}`;
         window.open(gmailUrl, '_blank');
         
-        // Clear the form and show success message
+        // Clear the form only - no success message
         emailInput.value = '';
-        showNewsletterSuccess();
         
     } catch (error) {
         console.error('Error handling newsletter submission:', error);
