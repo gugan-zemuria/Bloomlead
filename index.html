@@ -107,6 +107,10 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
+        .s-about-img p {
+            font-size: 18px;
+        }
+
         .box-courses img {
             transition: transform 0.3s ease;
         }
@@ -1062,7 +1066,7 @@
             flex-direction: column;
         }
 
-        #about .container .align-items-center .col-lg-6{
+        #about .container .align-items-center .col-lg-6 {
             display: flex;
             flex: 0 0 100%;
             max-width: 100%;
@@ -1088,18 +1092,16 @@
         }
 
         @media(max-width:768px) {
-            #about .container .align-items-center .col-lg-6{
-            flex-direction: column;
-            margin: 12px auto;
+            #about .container .align-items-center .col-lg-6 {
+                flex-direction: column;
+                margin: 12px auto;
+            }
+
+            .s-about-img {
+                margin: 0 !important;
+            }
+
         }
-
-        .s-about-img {
-            margin: 0 !important;
-        }
-
-        }
-
-
     </style>
 </head>
 
@@ -1129,12 +1131,12 @@
                                         <li class="sub">
                                             <a href="coaches.html">Valmentajat</a>
                                         </li>
-                                        
+
                                         <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt & Hinnat</a>
                                         </li>
                                         <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
                                         </li>
-                                        
+
                                         <li class="sub">
                                             <a href="blog.html">Blogi</a>
                                         </li>
@@ -1177,7 +1179,7 @@
                     </div>
                     <ul>
                         <li><a href="coaches.html">Valmentajat</a></li>
-                        
+
                         <li><a href="pricing.html">Webinaarien sisällöt & Hinnat</a></li>
                         <li><a href="courses.html">Tilaa webinaarit</a></li>
                         <li><a href="blog.html">Blogi</a></li>
@@ -1223,9 +1225,9 @@
 
                                     <h2 data-animation="fadeInUp" data-delay=".4s">
                                         Me mahdollistamme nuorten
-                                        projektijohtajien
-                                        kehittymisen tuloksellisiksi
-                                        vahvoiksi johtajiksi.</h2>
+                                        projektijohtajien kehittymisen
+                                        tuloksellisiksi ja vahvoiksi
+                                        johtajiksi.</h2>
                                     <p data-animation="fadeInUp" data-delay=".6s">
                                         Yhdistämme koko projektin
                                         elinkaaren johtamisen,
@@ -1292,7 +1294,7 @@
                                             class="ml">Sähköpostiosoite</span></label>
                                     <input type="email" id="email2" name="email2" class="header-input"
                                         placeholder="Anna sähköpostiosoitteesi tähän..." required>
-                                    <button type="submit" class="btn header-btn" > Vastaanota webinaaritietoa </button>
+                                    <button type="submit" class="btn header-btn"> Vastaanota webinaaritietoa </button>
                                 </form>
                             </div>
                             <!-- <div>
@@ -1402,7 +1404,8 @@
                     <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
                         <div class="s-about-img p-relative  wow fadeInLeft  animated" data-animation="fadeInLeft"
                             data-delay=".4s">
-                            <img id="about-round" src="img/about/About-image.webp" alt="Team collaboration and learning">
+                            <img id="about-round" src="img/about/About-image.webp"
+                                alt="Team collaboration and learning">
                             <!-- <div class="col-lg-5">
                                 <div class="about-img" data-animation="fadeInUp" data-delay=".4s">
                                     <img src="img/about/About-image.webp"
@@ -1450,9 +1453,8 @@
                                     <div class="col-md-12">
                                         <!-- <p>Jokaisessa BloomLeadin osiossa saat</p> -->
                                         <ul class="green module-features">
-                                            <li><i class="fas fa-check"></i>Varmaa itsesijohtamista
-                                                paineessa -
-                                                Työkalut ajanhallintaan,
+                                            <li><i class="fas fa-check"></i>Varmaa itsesi johtamista
+                                                paineessa - Työkalut ajanhallintaan,
                                                 motivointiin ja
                                                 päätöksentekoon projektin
                                                 kaikissa vaiheissa.</li>
@@ -1544,8 +1546,8 @@
                                                 tekemistä yli tiimirajojen.</li>
                                             <li><i class="fas fa-check"></i>Projektien
                                                 liiketoimintahyötyjen
-                                                parempi toteutuminen
-                                                Fokus ei lopu go liveen –
+                                                parempi toteutuminen,
+                                                fokus ei lopu go liveen –
                                                 hyödyt seurataan ja
                                                 viedään maaliin.</li>
                                             <li><i class="fas fa-check"></i>Selkeä ROI:n parannus
@@ -1949,8 +1951,8 @@ div>i>div></div>""
                     </div>
                 </div>
                 <div class="row"> -->
-                    <!-- Module 1 -->
-                    <!-- <div class="col-lg-4 col-md-6 col-12 mb-30">
+        <!-- Module 1 -->
+        <!-- <div class="col-lg-4 col-md-6 col-12 mb-30">
                         <div class="video-card module-active">
                             <div class="video-thumbnail"
                                 style="background-image: url(img/video/image.webp); background-size: cover; background-position: center; height: 200px; border-radius: 10px; position: relative;">
@@ -1979,8 +1981,8 @@ div>i>div></div>""
                         </div>
                     </div> -->
 
-                    <!-- Module 2 -->
-                    <!-- <div class="col-lg-4 col-md-6 col-12 mb-30">
+        <!-- Module 2 -->
+        <!-- <div class="col-lg-4 col-md-6 col-12 mb-30">
                         <div class="video-card module-active" style="opacity: 0.6; filter: grayscale(100%)">
                             <div class="video-thumbnail"
                                 style="background-image: url(img/module-img/Picture2.webp); background-size: cover; background-position: center; height: 200px; border-radius: 10px; position: relative;">
@@ -1994,25 +1996,25 @@ div>i>div></div>""
                                     <span style="font-size: 16px; font-weight: 400; color: #a571aa;">
                                         125 € /moduli<br>
                                         125 € + alv /moduli yrityshinta -->
-                                        <!-- <span
+        <!-- <span
                                             style="color: #666; font-weight: 400; margin-left: 12px;">yrityshinta
                                         </span> -->
-<!-- 
+        <!-- 
                                     </span>
                                 </div>
                                 <div class="video-meta mb-20" style="margin-top: auto; justify-content: center;">
                                     <span style="color: #769757; font-weight: 600;">Julkaistaan 15.1.2026</span>
                                 </div> -->
-                                <!-- <div class="module-actions cen">
+        <!-- <div class="module-actions cen">
                                     <a href="courses-details.html" class="btn btn-outline-primary me-2"
                                         style="margin-right: 10px;">Lue lisää ja tilaa</a>
                                 </div> -->
-                            <!-- </div>
+        <!-- </div>
                         </div>
                     </div> -->
 
-                    <!-- Module 3 -->
-                    <!-- <div class="col-lg-4 col-md-6 col-12 mb-30">
+        <!-- Module 3 -->
+        <!-- <div class="col-lg-4 col-md-6 col-12 mb-30">
                         <div class="video-card module-active" style="opacity: 0.6; filter: grayscale(100%)">
                             <div class="video-thumbnail"
                                 style="background-image: url(img/module-img/Picture3.webp); background-size: cover; background-position: center; height: 200px; border-radius: 10px; position: relative;">
@@ -2026,20 +2028,20 @@ div>i>div></div>""
                                     <span style="font-size: 16px; font-weight: 400; color: #a571aa;">
                                         125 € /moduli<br>
                                         125 € + alv /moduli yrityshinta -->
-                                        <!-- <span
+        <!-- <span
                                             style="color: #666; font-weight: 400; margin-left: 12px;">yrityshinta
                                         </span> -->
 
-                                    <!-- </span>
+        <!-- </span>
                                 </div>
                                 <div class="video-meta mb-20" style="margin-top: auto; justify-content: center;">
                                     <span style="color: #769757; font-weight: 600;">Julkaistaan 15.2.2026</span>
                                 </div> -->
-                                <!-- <div class="module-actions cen">
+        <!-- <div class="module-actions cen">
                                     <a href="courses-details.html" class="btn btn-outline-primary me-2"
                                         style="margin-right: 10px;">Lue lisää ja tilaa</a>
                                 </div> -->
-                            <!-- </div>
+        <!-- </div>
                         </div>
                     </div>
                 </div>
@@ -2371,7 +2373,7 @@ div>i>div></div>""
                                 <h2>Ota yhteyttä</h2>
                             </div>
                             <div class="f-contact">
-                                <ul>
+                                <ul >
                                     <!-- <li>
                                             <i class="icon fal fa-map-marker-check"></i>
                                             <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
@@ -2382,10 +2384,12 @@ div>i>div></div>""
                                             <!-- <span style="display: block;">help@example.com</span> -->
                                         </span>
                                     </li>
-                                    <li>
+                                    <li >
                                         <i class="icon fal fa-phone"></i>
-                                        <span>+358 44 388 3188,
-                                            <br>ti ja to klo 17.00-18.00</span>
+                                        <span >+358 388 3188,
+                                            <br>ti ja to klo 17.00-18.00
+                                        <br>(12.1.2026 alkaen)</span>
+
                                     </li>
 
 
