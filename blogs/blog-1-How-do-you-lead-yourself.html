@@ -254,7 +254,7 @@
         }
 
         .main-menu ul li {
-            margin: 0 ;
+            margin: 0;
         }
 
         /* Hide search on mobile, show in hamburger */
@@ -458,10 +458,21 @@
             opacity: 1;
         }
 
-        .mobile-menu-dropdown.show ul li:nth-child(1) a { transition-delay: 0ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(2) a { transition-delay: 75ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(3) a { transition-delay: 150ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(4) a { transition-delay: 225ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(1) a {
+            transition-delay: 0ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(2) a {
+            transition-delay: 75ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(3) a {
+            transition-delay: 150ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(4) a {
+            transition-delay: 225ms;
+        }
 
         .mobile-menu-dropdown ul li a:hover {
             background-color: rgba(118, 151, 87, 0.05);
@@ -979,10 +990,21 @@
             opacity: 1;
         }
 
-        .mobile-menu-dropdown.show ul li:nth-child(1) a { transition-delay: 0ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(2) a { transition-delay: 75ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(3) a { transition-delay: 150ms; }
-        .mobile-menu-dropdown.show ul li:nth-child(4) a { transition-delay: 225ms; }
+        .mobile-menu-dropdown.show ul li:nth-child(1) a {
+            transition-delay: 0ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(2) a {
+            transition-delay: 75ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(3) a {
+            transition-delay: 150ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(4) a {
+            transition-delay: 225ms;
+        }
 
         .mobile-menu-dropdown ul li a:hover {
             background-color: rgba(118, 151, 87, 0.05);
@@ -1340,8 +1362,16 @@
             }
         }
 
+        .blog-text-content ul li{
+            list-style: disc;
+        }
+
+        .blog-text-content ul {
+            list-style: disc;
+        }
+
         /* Decorative List Styles for Blog Content */
-        .blog-text-content ul,
+        /* .blog-text-content ul,
         .details__content ul:not(.meta-info ul) {
             list-style: none;
             padding-left: 0;
@@ -1402,10 +1432,10 @@
         .details__content ul:not(.meta-info ul) li a:hover {
             color: #a571aa;
             text-decoration: underline;
-        }
+        } */
 
         /* Decorative Ordered List Styles */
-        .blog-text-content ol,
+        /* .blog-text-content ol,
         .details__content ol {
             list-style: none;
             counter-reset: custom-counter;
@@ -1416,7 +1446,7 @@
 
         .blog-text-content ol li,
         .details__content ol li {
-            list-style: decimal;
+            list-style: decimal; */
 
             /* position: relative;
             padding: 15px 20px 15px 60px;
@@ -1428,8 +1458,9 @@
             transition: all 0.3s ease;
             font-size: 16px;
             line-height: 1.6;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); */
-        }
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+     } */
+        
 
         /*
 
@@ -1596,6 +1627,28 @@
         .copyright-wrap p {
             font-size: 14px;
         }
+
+        /* Restore bullet points for content lists - Maximum specificity */
+        div.mobile-menu-content ul.content li,
+        .mobile-menu-content ul.content li,
+        .content ul li {
+            list-style-type: disc !important;
+            list-style-position: outside !important;
+            margin-left: 30px !important;
+            margin-bottom: 8px !important;
+            padding-left: 5px !important;
+            display: list-item !important;
+        }
+        
+        div.mobile-menu-content ul.content,
+        .mobile-menu-content ul.content,
+        .content ul {
+            padding-left: 0 !important;
+            margin-left: 12px !important;
+            list-style-type: disc !important;
+        }
+        
+        
     </style>
 </head>
 
@@ -1622,22 +1675,24 @@
                             <div class="main-menu text-center">
                                 <nav id="mobile-menu" style="display: block;">
                                     <div class="mobile-menu-content">
-                        <ul>
-                                        <li class="sub wrap">
-                                            <a href="../courses.html">Tilaa webinaarit</a>
-                                        </li>
-                                        <li class="sub wrap">
-                                            <a href="../pricing.html">Webinaarien sisällöt & Hinnat</a>
-                                        </li>
-                                        <li class="sub">
-                                            <a href="../coaches.html">Valmentajat</a>
-                                        </li>
-                                        <li class="sub">
-                                            <a href="../blog.html">Blogi</a>
-                                        </li>
-                                        <li class="sub"><a href="../contact.html">Yhteystiedot</a></li>
-                                    </ul>
-                        </div>
+                                        <ul>
+                                            <li class="sub">
+                                                <a href="../coaches.html">Valmentajat</a>
+                                            </li>
+                                            <li class="sub wrap">
+                                                <a href="../pricing.html">Webinaarien sisällöt & Hinnat</a>
+                                            </li>
+                                            <li class="sub wrap">
+                                                <a href="../courses.html">Tilaa webinaarit</a>
+                                            </li>
+                                            
+                                            
+                                            <li class="sub">
+                                                <a href="../blog.html">Blogi</a>
+                                            </li>
+                                            <li class="sub"><a href="../contact.html">Yhteystiedot</a></li>
+                                        </ul>
+                                    </div>
                                 </nav>
                             </div>
                         </div>
@@ -1677,13 +1732,14 @@
                     </div>
                     <div class="mobile-menu-content">
                         <ul>
-                        <li><a href="../courses.html">Tilaa webinaarit</a></li>
-                        <li><a href="../pricing.html">Webinaarien sisällöt & Hinnat</a></li>
-                        <li><a href="../coaches.html">Valmentajat</a></li>
-                        <li><a href="../blog.html">Blogi</a></li>
-                        <li><a href="../contact.html">Yhteystiedot</a></li>
-                    </ul>
-                        </div>
+                            <li><a href="../coaches.html">Valmentajat</a></li>
+                            <li><a href="../pricing.html">Webinaarien sisällöt & Hinnat</a></li>
+
+                            <li><a href="../courses.html">Tilaa webinaarit</a></li>
+                            <li><a href="../blog.html">Blogi</a></li>
+                            <li><a href="../contact.html">Yhteystiedot</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1788,12 +1844,12 @@
                                 <div style="display: flex; justify-content: space-between;">
                                     <div class="meta-info">
                                         <div class="mobile-menu-content">
-                        <ul>
-                                            <!-- <li><i class="fal fa-eye"></i> 2,847 Views </li>
+                                            <ul>
+                                                <!-- <li><i class="fal fa-eye"></i> 2,847 Views </li>
                                         <li><i class="fal fa-comments"></i> 156 Comments</li> -->
-                                            <li><i class="fal fa-calendar-alt"></i> 19. marraskuuta, 2025</li>
-                                        </ul>
-                        </div>
+                                                <li><i class="fal fa-calendar-alt"></i> 19. marraskuuta, 2025</li>
+                                            </ul>
+                                        </div>
                                     </div>
                                     <div class="social-follow">
                                         <a href="https://instagram.com/" target="_blank" class="instagram-follow">
@@ -1806,14 +1862,14 @@
                                 <div class="blog-content-with-image">
                                     <!-- Featured Blog Image - Left Side -->
                                     <div class="blog-featured-image-left">
-                                        <img src="../img/blog/blog1.webp" alt="Projektijohtaminen ja valmentava johtaminen"
-                                            class="img-fluid">
+                                        <img src="../img/blog/blog1.webp"
+                                            alt="Projektijohtaminen ja valmentava johtaminen" class="img-fluid">
                                     </div>
 
                                     <!-- Content that wraps around the image -->
                                     <div class="blog-text-content">
                                         <!-- class="drop-cap-paragraph" -->
-                                        <p >Projektin alkaessa moni meistä haluaa vaikuttaa,
+                                        <p>Projektin alkaessa moni meistä haluaa vaikuttaa,
                                             saada aikaan ja onnistua. Mutta
                                             miten
                                             johdat itseäsi ja muita, kun aikataulut painavat, odotukset risteilevät ja
@@ -1823,7 +1879,7 @@
                                             <strong>Hyvä projektijohtaja johtaa sekä itseään että muita ja luo
                                                 edellytykset yhdessä
                                                 onnistumiselle.</strong>
-                                        Tässä blogissa keskityn <strong>itsensä johtamiseen projektin
+                                            Tässä blogissa keskityn <strong>itsensä johtamiseen projektin
                                                 alkaessa</strong> ja kuinka hyödynnät
                                             <strong>valmentavaa näkökulmaa.</strong>
                                         </p>
@@ -1982,19 +2038,20 @@
                                 </p>
                                 <p>
                                 <div class="mobile-menu-content">
-                        <ul>
-                                    <li>Lue myös kolleegani
-                                        Johannan blogi
-                                        aiheesta: <a href="blog-2-preparing-a-decision-on-the-project.html">Miten teen
-                                            projektin taustatyöt
-                                            ja määrittelyn ja
-                                            valmistelen
-                                            päätöksen
-                                            projektista</a></li>
-                                    <li>Ilmoittaudu mukaan webinaariimme [tähän linkkiKenelle webinaari on suunnattu?
-                                    </li>
-                                </ul>
-                        </div>
+                                    <ul class="content">
+                                        <li>Lue myös kolleegani
+                                            Johannan blogi
+                                            aiheesta: <a href="../courses.html">Miten teen
+                                                projektin taustatyöt
+                                                ja määrittelyn ja
+                                                valmistelen
+                                                päätöksen
+                                                projektista</a></li>
+                                        <li>Ilmoittaudu mukaan webinaariimme [tähän linkkiKenelle webinaari on
+                                            suunnattu?
+                                        </li>
+                                    </ul>
+                                </div>
                                 </p>
                                 <!-- <figure>
                                     <img src="https://picsum.photos/800/500?random=2"
@@ -2326,8 +2383,10 @@
                                     </li>
                                     <li>
                                         <i class="icon fal fa-phone"></i>
-                                        <span>+358 44 388 3188,
-                                            <br>ti ja to klo 17.00-18.00</span>
+                                        <span>+358 388 3188,
+                                            <br>ti ja to klo 17.00-18.00
+                                        <br>(12.1.2026 alkaen)</span>
+
                                     </li>
                                 </ul>
                             </div>

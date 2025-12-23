@@ -36,7 +36,23 @@
       border-radius: 50%;
     }
 
-
+    /* Restore bullet points for content lists - Maximum specificity */
+    ul.content li {
+      list-style-type: disc !important;
+      list-style-position: outside !important;
+      margin-left: 30px !important;
+      margin-bottom: 8px !important;
+      padding-left: 5px !important;
+      display: list-item !important;
+    }
+    
+    ul.content {
+      padding-left: 0 !important;
+      margin-left: 20px !important;
+      list-style-type: disc !important;
+    }
+    
+    
 
     .f-contact ul li {
       list-style: none;
@@ -260,7 +276,7 @@
     }
 
     .main-menu ul li {
-      margin: 0 ;
+      margin: 0;
     }
 
     /* Hide search on mobile, show in hamburger */
@@ -1144,7 +1160,7 @@
     }
 
     .main-menu ul li {
-      margin: 0 ;
+      margin: 0;
     }
 
     @media (max-width: 991px) {
@@ -1375,16 +1391,19 @@
     }
 
     /* Decorative List Styles for Blog Content */
-    .blog-text-content ul,
-    .details__content ul:not(.meta-info ul) {
-      list-style: none;
+    .blog-text-content ul{
+      list-style: disc !important;
       padding-left: 0;
-      margin: 25px auto;
+      margin: 25px 0;
       max-width: 850px;
       width: 100%;
     }
 
-    .blog-text-content ul li,
+    .blog-text-content ul li {
+      list-style: disc !important;
+    }
+
+    /* .blog-text-content ul li,
     .details__content ul:not(.meta-info ul) li {
       position: relative;
       padding: 12px 0 12px 40px;
@@ -1395,16 +1414,16 @@
       transition: all 0.3s ease;
       font-size: 16px;
       line-height: 1.6;
-    }
+    } */
 
-    .blog-text-content ul li:hover,
+    /* .blog-text-content ul li:hover,
     .details__content ul:not(.meta-info ul) li:hover {
       background: linear-gradient(135deg, rgba(165, 113, 170, 0.1) 0%, rgba(118, 151, 87, 0.1) 100%);
       transform: translateX(5px);
       box-shadow: 0 4px 15px rgba(165, 113, 170, 0.15);
-    }
+    } */
 
-    .blog-text-content ul li::before,
+    /* .blog-text-content ul li::before,
     .details__content ul:not(.meta-info ul) li::before {
       content: "✓";
       position: absolute;
@@ -1422,9 +1441,9 @@
       font-size: 12px;
       font-weight: bold;
       box-shadow: 0 2px 8px rgba(165, 113, 170, 0.3);
-    }
+    } */
 
-    .blog-text-content ul li a,
+    /* .blog-text-content ul li a,
     .details__content ul:not(.meta-info ul) li a {
       color: #333;
       text-decoration: none;
@@ -1436,20 +1455,20 @@
     .details__content ul:not(.meta-info ul) li a:hover {
       color: #a571aa;
       text-decoration: underline;
-    }
+    } */
 
     /* Decorative Ordered List Styles */
-    .blog-text-content ol,
+    /* .blog-text-content ol,
     .details__content ol {
-      list-style: none;
+      list-style: disc !important;
       counter-reset: custom-counter;
       padding-left: 0;
-      margin: 25px auto;
+      margin: 25px 0;
       max-width: 850px;
       width: 100%;
-    }
+    } */
 
-    .blog-text-content ol li,
+    /* .blog-text-content ol li,
     .details__content ol li {
       list-style: decimal;
 
@@ -1457,7 +1476,7 @@
         list-style: disc !important;
       }
 
-      /* position: relative;
+      position: relative;
             padding: 15px 20px 15px 60px;
             margin-bottom: 12px;
             background: linear-gradient(135deg, rgba(165, 113, 170, 0.08) 0%, rgba(118, 151, 87, 0.08) 100%);
@@ -1467,8 +1486,8 @@
             transition: all 0.3s ease;
             font-size: 16px;
             line-height: 1.6;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); */
-    }
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    } */
 
     /*
 
@@ -1658,28 +1677,30 @@
             </div>
             <!-- Navigation - Center (Desktop only) -->
             <div class="col-xl-6 col-lg-6 d-none d-lg-block">
-              <div class="main-menu text-center">
-                <nav id="mobile-menu" style="display: block;">
-                  <div class="mobile-menu-content">
-                    <ul>
-                      <li class="sub wrap">
-                        <a href="../courses.html">Tilaa webinaarit</a>
-                      </li>
-                      <li class="sub wrap">
-                        <a href="../pricing.html">Webinaarien sisällöt & Hinnat</a>
-                      </li>
-                      <li class="sub">
-                        <a href="../coaches.html">Valmentajat</a>
-                      </li>
-                      <li class="sub">
-                        <a href="../blog.html">Blogi</a>
-                      </li>
-                      <li class="sub"><a href="../contact.html">Yhteystiedot</a></li>
-                    </ul>
-                  </div>
-                </nav>
-              </div>
-            </div>
+                            <div class="main-menu text-center">
+                                <nav id="mobile-menu" style="display: block;">
+                                    <div class="mobile-menu-content">
+                                        <ul>
+                                            <li class="sub">
+                                                <a href="../coaches.html">Valmentajat</a>
+                                            </li>
+                                            <li class="sub wrap">
+                                                <a href="../pricing.html">Webinaarien sisällöt & Hinnat</a>
+                                            </li>
+                                            <li class="sub wrap">
+                                                <a href="../courses.html">Tilaa webinaarit</a>
+                                            </li>
+                                            
+                                            
+                                            <li class="sub">
+                                                <a href="../blog.html">Blogi</a>
+                                            </li>
+                                            <li class="sub"><a href="../contact.html">Yhteystiedot</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
             <!-- Search & Hamburger - Right -->
             <div class="col-xl-3 col-lg-3 col-md-6 col-6 header-right-container">
               <div class="header-right d-flex align-items-center justify-content-end">
@@ -1708,22 +1729,23 @@
 
         <!-- Mobile Menu Dropdown -->
         <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
-          <div class="mobile-search">
-            <a href="#" class="search-trigger" data-toggle="modal" data-target=".bs-example-modal-lg">
-              <i class="fas fa-search"></i>
-              <span>Search</span>
-            </a>
-          </div>
-          <div class="mobile-menu-content">
-            <ul>
-              <li><a href="../courses.html">Tilaa webinaarit</a></li>
-              <li><a href="../pricing.html">Webinaarien sisällöt & Hinnat</a></li>
-              <li><a href="../coaches.html">Valmentajat</a></li>
-              <li><a href="../blog.html">Blogi</a></li>
-              <li><a href="../contact.html">Yhteystiedot</a></li>
-            </ul>
-          </div>
-        </div>
+                    <div class="mobile-search">
+                        <a href="#" class="search-trigger" data-toggle="modal" data-target=".bs-example-modal-lg">
+                            <i class="fas fa-search"></i>
+                            <span>Search</span>
+                        </a>
+                    </div>
+                    <div class="mobile-menu-content">
+                        <ul>
+                            <li><a href="../coaches.html">Valmentajat</a></li>
+                            <li><a href="../pricing.html">Webinaarien sisällöt & Hinnat</a></li>
+
+                            <li><a href="../courses.html">Tilaa webinaarit</a></li>
+                            <li><a href="../blog.html">Blogi</a></li>
+                            <li><a href="../contact.html">Yhteystiedot</a></li>
+                        </ul>
+                    </div>
+                </div>
       </div>
     </div>
   </header>
@@ -1821,8 +1843,8 @@
           <div class="">
             <div class="blog-details-wrap">
               <div class="details__content pb-30">
-                <h2>Miten teen projektin taustatyöt ja määrittelyn ja
-                  valmistelen päätöksen projektista</h2>
+                <h2>Miksi projektin taustoitus ja määrittelyvaihe ovat
+tärkeitä projektin kannalta?</h2>
                 <div style="display: flex; justify-content: space-between;">
                   <div class="meta-info">
                     <div class="mobile-menu-content">
@@ -1852,132 +1874,127 @@
                   <div class="blog-text-content">
                     <!-- class="drop-cap-paragraph" -->
 
-                    <p>Edessä olevan projektin johtaminen voi aluksi tuntua kuin vuoren
-                      huipulle
-                      kiipeämiseltä – erityisesti jos sinulla on edessäsi urasi ensimmäinen projekti. Hyvä
-                      valmistautuminen, oikeisiin asioihin perehtyminen, suunnittelu ja oikeat työkalut
-                      tekevät matkastasi menestyksellisen. Tässä blogissa käyn läpi keskeisiä projektin
-                      valmisteluun liittyviä asioita. Näitä ovat projektin taustojen selvitys, tarpeen
-                      määrittely, valmistelut päätöksentekoa varten ja alustava projektin perustaminen
-                      tarvittavalla tasolla.
-                    </p>
-                    <p>Marken blogissa: <a href="blog-1-How-do-you-lead-yourself.html">Miten johdat itseäsi ja muita, kun projekti
-                        käynnistyy? Kuinka valmennat
-                        onnistumiseen?</a>, käydään läpi itsensä johtamista. Siitä kannattaa aina aloittaa, sillä on
-                      tärkeää pystyä johtamaan ensin itseään ja sitten vasta muita. Projektipäällikkönä
-                      sinulla on hyvä tilaisuus sopia ja tehdä päätös projektin työskentelytavoista ja
-                      periaatteista ihmisiä unohtamatta. Tekoälyn hyödyntäminen projektinhallinnassa ja
-                      dokumentaatiossa on nykyisin hieno mahdollisuus, joka säästää sinulta aikaa, jos
-                      osaat hyödyntää sitä oikealla tavalla. Kaiken lisäksi muutosjohtamisen
-                      peruslainalaisuuksien ymmärtäminen, auttaa sinua teknisten
-                      projektinhallintametodien lisäksi huomioimaan myös projektin tuotoksia käyttävät
-                      ihmiset ja varsinaisen muutoksen, jota projektilla tavoitellaan. Näitä kaikkia projektin
-                      johtamisen aspekteja käymme läpi webinaarikokonaisuudessamme vaihe vaiheelta,
-                      joten kannattaa tutustua webinaarien sisältöön.
-                    </p>
-                    <h3>Projektin taustat ja tarpeen määrittely</h3>
-                    <p>Jokainen hyvin käynnistetty projekti perustuu aitoon tarpeeseen. Ensimmäinen
-                      tehtäväsi onkin ymmärtää ja dokumentoida, miksi projekti käynnistetään ja mitä
-                      sillä halutaan saavuttaa. Usein projektin taustalla on liiketoimintatarve, kuten uusi
-                      markkina-avaus, sääntelymuutos tai teknologian uudistaminen. Kyse voi olla myös
-                      organisaation muutosprojektista tai vaikkapa tilinpäätöksestä. Projekteja on
-                      monenlaisia.</p>
+                    <p>Edessä olevan projektin johtaminen voi aluksi tuntua kuin vuoren huipulle
+kiipeämiseltä – erityisesti jos sinulla on edessäsi urasi ensimmäinen projekti. Hyvä
+valmistautuminen, oikeisiin asioihin perehtyminen, suunnittelu ja oikeat työkalut
+tekevät matkastasi menestyksellisen. Tässä blogissa käyn läpi keskeisiä projektin
+valmisteluun liittyviä asioita. Näitä ovat projektin taustojen selvitys, tarpeen
+määrittely, valmistelut päätöksentekoa varten ja alustava projektin perustaminen
+tarvittavalla tasolla.</p>
+<p>Marken blogissa: <a href="blog-1-How-do-you-lead-yourself.html">Miten johdat itseäsi ja muita, kun projekti käynnistyy? Kuinka valmennat
+onnistumiseen?</a>, käydään läpi itsensä johtamista. Siitä kannattaa aina aloittaa, sillä on
+tärkeää pystyä johtamaan ensin itseään ja sitten vasta muita. Projektipäällikkönä
+sinulla on hyvä tilaisuus sopia yhdessä tiimisi kanssa ja tehdä päätös projektin
+työskentelytavoista ja periaatteista arvoja unohtamatta. Tekoälyn hyödyntäminen
+projektinhallinnassa ja dokumentaatiossa on nykyisin hieno mahdollisuus, joka
+säästää sinulta aikaa, jos osaat hyödyntää sitä oikealla tavalla. Kaiken lisäksi
+muutosjohtamisen perusviitekehysten ymmärtäminen auttaa sinua teknisten
+projektinhallintametodien lisäksi huomioimaan myös projektin tuotoksia käyttävät
+ihmiset sekä sen varsinaisen muutoksen, jota projektilla tavoitellaan. Näitä kaikkia
+projektin johtamisen näkökantoja käymme läpi BloomLeadin
+webinaarikokonaisuudessamme vaihe vaiheelta, joten kannattaa tutustua
+webinaarimoduliemme sisältöön.</p>
 
-                    <p>Jokatapauksessa taustatyö kannattaa aina tehdä perusteellisesti. Sillä säästät aikaa
-                      ja työtä tulevissa projektin vaiheissa. Erityyppiset projektit vaativat erilaista tausta- ja
-                      määrittelytyötä. Joissakin projekteissa riittää kevyt dokumentointi ja toisissa
-                      projekteissa taustatyö ja määrittely on tehtävä hyvin yksityiskohtaisesti, jotta
-                      varmasti kaikki näkökannat ja päätökset on varmasti dokumentoitu ja lainmukaisia.
-                    </p>
-                    <p>Muutoksen kannalta tässä vaiheessa pitäisi pystyä vastaamaan kysymykseen, miksi
-                      projekti tehdään. Projektin tausta ja määrittely on useimmiten lähtöisin yrityksen tai
+<h3>Projektin taustat ja tarpeen määrittely</h3>
+<p>Jokainen hyvin käynnistetty projekti perustuu aitoon tarpeeseen. Ensimmäinen
+tehtäväsi projektipäällikkönä onkin ymmärtää ja dokumentoida, <strong>miksi projekti
+käynnistetään</strong> ja mitä sillä halutaan saavuttaa. Usein projektin taustalla on
+liiketoimintatarve, kuten uusi markkina-avaus, sääntelymuutos tai teknologian
+uudistaminen. Kyse voi olla myös organisaation muutosprojektista tai vaikkapa
+tilinpäätöksestä. Projekteja on monenlaisia.</p>
+<p>Joka tapauksessa taustatyö kannattaa aina tehdä perusteellisesti. Sillä säästät aikaa
+ja työtä tulevissa projektin vaiheissa. Erityyppiset projektit vaativat erilaista tausta- ja
+määrittelytyötä. Joissakin projekteissa riittää kevyt yhteenveto ja dokumentointi ja
 
-                      organisaation strategiatyöstä ja strategisista prioriteeteistä. Silloin projektin taustat
-                      on mietitty pitkällä tähtäimellä jo jonkin aikaa sitten, mikä helpottaa myös
-                      vastaamista kysymykseen <strong>“miksi projekti tehdään?”</strong></p>
-                    <h3>Projektin määrittelyvaihe</h3>
-                    <p>Määrittelyvaiheeseen on mahdollista käyttää huomattavasti aikaa. Joskus se on
-                      myös järkevää riippuen projektin laajuudesta ja vaatimuksista. Tätä vaihetta
-                      kutsutaan myös konseptointivaiheeksi. Siihen tuodaan yleensä kaikki
-                      taustaselivitykset ja materiaalit, joka on koostetti joskus aiemmin ja on saatavilla
-                      projektiin liittyen. Kysymys voi olla arkkitehtuurimateriaalista, erilaisten työpajojen
-                      tuloksista tai keskusteluista, joista on olemassa muistioita tai pöytäkirjoja.</p>
-                    <p>Strategiamateriaalit ovat luonnollisesti oleellisia, jotta ymmärretään isossa kuvassa,
-                      mitä tavoitteita projektilla on. Tässä vaiheessa vastataan kysymykseen: <strong>mitä
-                        tehdään</strong>. Muutosjohtamisen kannalta, erityisen tärkeää on tässä kohtaa ymmärtää,
-                      millainen valmius vastaanottavalla organisaatiolla tai tiimillä on projektin tuotosten
-                      hyödyntämiseen ja millaista osaamista projektin tuotosten hyödyntäminen vaatii, kun
-                      se on saatu vietyä loppuun. Muutosvision määrittely auttaa tässä vaiheessa
-                      hahmottamaan, miksi ja mitä ollaan tekemässä.</p>
-                  </div>
-                </div>
+toisissa projekteissa taustatyö ja määrittely on tehtävä hyvin yksityiskohtaisesti ja
+siihen voi mennä kuukausia tai vuosia kuten laivanrakennusprojektissa.</p>
+<p>Muutoksen kannalta taustoitus- ja määrittelyvaiheessa pitäisi pystyä vastaamaan
+kysymykseen, miksi projekti tehdään. Projektin tausta ja määrittely linkittyy
+useimmiten yrityksen tai organisaation strategiatyöhön ja strategisiin prioriteetteihin.
+Silloin projektin taustatyötä on mietitty pitkällä tähtäimellä jo jonkin aikaa, mikä
+helpottaa myös vastaamista kysymykseen <strong>“miksi projekti tehdään?”</strong></p>
 
-                <!-- Content continues below the image -->
+<h3>Projektin määrittelyvaihe</h3>
+<p>Projektin määrittelyvaiheeseen on mahdollista käyttää huomattavasti aikaa. Joskus
+se on myös järkevää riippuen projektin laajuudesta ja vaatimuksista. Tätä vaihetta
+kutsutaan myös konseptointivaiheeksi. Siihen tuodaan yleensä kaikki
+taustaselvitykset ja materiaalit, joka on koostettu joskus aiemmin ja on saatavilla
+projektiin liittyen. Kysymys voi olla arkkitehtuurimateriaalista, erilaisten työpajojen
+tuloksista tai keskusteluista, joista on olemassa muistioita tai pöytäkirjoja.</p>
+<p>Strategiamateriaalit ovat luonnollisesti oleellisia, jotta ymmärretään isossa kuvassa,
+mitä tavoitteita projektilla on. Tässä vaiheessa vastataan kysymykseen: <strong>mitä
+tehdään</strong>. Muutosjohtamisen kannalta, erityisen tärkeää on tässä kohtaa ymmärtää,
+millainen valmius vastaanottavalla organisaatiolla tai tiimillä voisi olla projektin
+tuotosten hyödyntämiseen ja millaista osaamista projektin tuotosten hyödyntäminen
+vaatii, kun sen kehitysosuus on saatu vietyä loppuun. Muutosvision määrittely auttaa
+tässä vaiheessa hahmottamaan, miksi ja mitä ollaan tekemässä.</p>
 
+<h3>Päätös projektin toteuttamisesta</h3>
+<p>Projektin varsinainen toteutus alkaa sen jälkeen, kun sen toteutuksesta on tehty
+<strong>virallinen päätös</strong>. Päätöstä varten on sinun projektipäällikkönä osattava valmistella
+oikeanlainen tietopaketti päätöksentekijöille, jotta he voivat tehdä mahdollisimman
+informatiivisen tosiasioihin perustuvan päätöksen. On oleellista selkeyttää tässä
+kohtaa mistä päätetään, mitä projektin laajuuteen kuuluu, millaiset odotukset
+projektille asetetaan, millaisella aikataululla ja millaisella budjetilla se on aikomus
+toteuttaa sekä onko projektille mahdollisuus varata resursseja ja tarvittavaa
+osaamista.</p>
+<p>Muutoksen näkökannalta tässä kohtaa selvitetään, kuka projektin omistaja tai
+sponsori on ja, keitä muutostiimiin kuuluu. Muutostiimi on oleellinen osa onnistuneen
+projektin tukitiimiä, sillä se on mukana koko ajan projektin edetessä ja huolehtii siitä,
+että tarvittava osaaminen kehittyy käyttää projektin tuotoksia. Se voi myös edelleen
+jakaa tietoa ja kouluttaa muita organisaatiossa käyttämään projektin tuotoksia oikein.</p>
+<p>Muutoksen kannalta on tärkeää, että kaikki mahdolliset pullonkaulat ja riskit
+keskustellaan läpi ja listataan, jotta niitä pystytään seuraavamaan projektin
+edetessä. Siten asioiden kyseenalaistaminen, kysymysten esittäminen ja eri
 
-                <h3>Päätös projektin toteuttamisesta</h3>
-                <p>Projektin varsinainen toteutus alkaa sen jälkeen, kun siitä on tehty <strong>virallinen
-                    päätös</strong>. Päätöstä varten on sinun projektinpäällikkönä osattava valmistella
-                  oikeanlainen paketti päätöksentekijöille, jotta he voivat tehdä mahdollisimman
-                  informatiivisen tosiasioihin perustuvan päätöksen. On oleellista selkeyttää tässä
-                  kohtaa mistä päätetään, mitä projektin laajuuteen kuuluu, millaiset odotukset
-                  projektille asetetaan, millaisella aikataululla ja millaisella budjetilla se tulee toteuttaa
-                  sekä onko projektille mahdollisuus varata resursseja ja osaamista.</p>
-                <p>Muutoksen näkökannalta tässä kohtaa selvitetään, kuka projektin omistaja tai
-                  sponsori on ja keitä muutostiimiin kuuluu. Muutostiimi on oleellinen osa onnistuneen
-                  projektin tukitiimiä, sillä he ovat mukana koko ajan projektin edetessä ja huolehtivat,
-                  että heillä on tarvittava osaaminen käyttää projektin tuotoksia. He voivat myös
-                  edelleen jakaa tietoa ja kouluttaa muita organisaatiossa käyttämään projektin
-                  tuotoksia oikein.</p>
-                <p>Tässä vaiheessa on tärkeää, että kaikki mahdolliset pullonkaulat ja riskit
-                  keskustellaan läpi ja listataan, jotta niitä pystytään seuraavamaan projektin
-                  edetessä. Siten asioiden kyseenalaistaminen, kysymysten esittäminen ja eri
-                  näkökantojen tuominen esille, on ensiarvoisen tärkeää ennen kuin varsinainen
-                  projekti lähtee käyntiin. Kun päätös projektista on saatu tehtyä, on aika tehdä
-                  ensimmäiset valmistelut projektin aloittamiseksi.</p>
+näkökantojen tuominen esille, on ensiarvoisen tärkeää ennen kuin varsinainen
+projekti lähtee käyntiin. Kun päätös projektista on saatu tehtyä, on aika tehdä
+ensimmäiset valmistelut projektin aloittamiseksi.</p>
 
-                <h3>Projektin perustaminen: tiimi, suunnitelmat ja tavat toimia</h3>
-                <p>Projektin perustaminen on tekninen toimenpide, joka kannattaa tehdä viimeistään
-                  tässä vaiheessa. Projektin seurantaa varten voi olla erilaisia työkaluja, kuten JIRA,
-                  Trello tai jokin muu. Projektipäällikölle on olemassa hyviä tarkistuslistoja, joita tässä
-                  kohtaa kannattaa hyödyntää. Samoin tekoälyn tekemät tukilistat toimivat tässä
-                  kohtaa hyvin. Ennen kaikkea tässä kohtaa vahvistetaan, keitä projektissa
-                  työskentelee, miten tehtäviä jaetaan, miten niitä seurataan, mitä viestintäkanavia
-                  käytetään ja, miten projektin seurantaa tullaan hoitamaan.</p>
-                <h3>Muutosjohtaminen projektin rinnalla</h3>
-                <p>Muutosjohtaminen kulkee projektin ohessa heti alusta saakka. Ensimmäisiä asioita
-                  on tärkeiden sidosryhmien määrittely ja yksilöiminen sekä tapa toimia heidän
-                  kanssaan niin, että itse muutokseen liittyvät asiat ovat läpinäkyviä. Tähän on erilaisia
-                  käytäntöjä ja webinaareissa käydään tarkemmin läpi tätä teemaa. Näinä aikoina isot
-                  ja jatkuvat muutokset ulkoisessa toimintaympäristössä vaikuttavat yritysten ja
-                  organisaatioiden toimintaan ja sen vuoksi, muutosvalmius pitää koko projektin
-                  aikana olla riittävällä tasolla sekä projektia toteuttavalla projektitiimillä että
-                  muutoksen vastaanottavalla organisaatiolla. Ketterien tapojen ymmärtäminen
-                  äkillisiin ja jatkuviin muutoksiin liittyen on tärkeää.</p>
+<h3>Projektin perustaminen: tiimi, suunnitelmat ja tavat toimia</h3>
+<p>Projektin perustaminen on tekninen toimenpide, joka kannattaa tehdä viimeistään
+siinä vaiheessa, kun päätös projektin toteutuksesta on realisoitunut. Projektin
+seurantaa varten voi olla erilaisia työkaluja, kuten JIRA, Trello tai jokin muu.
+Projektipäällikölle on olemassa hyviä tarkistuslistoja, joita tässä kohtaa kannattaa
+hyödyntää. Samoin tekoälyn tekemät tukilistat toimivat tässä kohtaa hyvin. Ennen
+kaikkea tässä kohtaa vahvistetaan, keitä projektissa työskentelee, miten tehtäviä
+jaetaan, miten niitä seurataan, mitä viestintäkanavia käytetään ja, miten projektin
+seurantaa tullaan hoitamaan.</p>
 
-                <h3>Projektin johtaminen on onnistuu hyvin oikeilla työkaluilla</h3>
-                <p>Onnistunut projekti perustuu paljolti siihen, kuinka hyvin projektipäällikkö tehtävänsä
-                  osaa hoitaa ja toisaalta, kuinka hyvin hän pystyy tiimejään motivoimaan. Mitä
-                  paremmin projektipäällikkö perehtyy ja kasvattaa omaa osaamistaan itsensä ja
-                  muiden johtamiseen liittyen sekä projektinhallintaan liittyvissä perusasioissa, sen
-                  varmemmin hän onnistuu. Projektiin liittyy melkein aina joitakin muutoksen
-                  elementtejä ja siksi muutoshallinnan jonkinlainen osaaminen auttaa erityisesti
-                  projektin loppupuolella, kun tuotoksia testaillaan ja viedään käytäntöön. Ennen
-                  kaikkea jokaisessa projektissa on kysymys ihmisistä, joten luottamuksen luominen,
-                  ihmisten tilanteen ymmärtäminen ja projektissa toimivien ja siihen liittyvien ihmisten
-                  hyvä motivaatio takaavat jokaisen projektin onnistumisen. Sitten vain oppimaan
-                  kaikista näistä tärkeistä asioista!</p>
-                <div class="mobile-menu-content">
-                  <ul>
+<h3>Muutosjohtaminen projektin rinnalla</h3>
+<p>Muutosjohtaminen kulkee projektihallinnan osana tai ohessa heti alusta saakka.
+Ensimmäisiä asioita on tärkeiden sidosryhmien määrittely ja yksilöiminen sekä tapa
+toimia niiden kanssa niin, että itse muutokseen liittyvät asiat ovat läpinäkyviä. Tähän
+on erilaisia käytäntöjä ja webinaareissa käydään tarkemmin läpi tätäkin teemaa.
+Näinä aikoina isot ja jatkuvat muutokset ulkoisessa toimintaympäristössä vaikuttavat
+yritysten ja organisaatioiden toimintaan ja sen vuoksi, muutosvalmius pitää koko
+projektin aikana olla riittävällä tasolla sekä projektia toteuttavalla projektitiimillä, että
+muutoksen vastaanottavalla organisaatiolla. Ketterien toimintatapojen soveltaminen
+ja äkillisiin ja jatkuviin muutoksiin liittyen on tärkeää.</p>
+
+<h3>Projektin johtaminen onnistuu hyvin oikeilla työkaluilla</h3>
+<p>Onnistunut projekti perustuu paljolti siihen, kuinka hyvin projektipäällikkö tehtävänsä
+osaa hoitaa ja toisaalta, kuinka hyvin hän pystyy tiimejään motivoimaan. Mitä
+paremmin projektipäällikkö perehtyy ja kasvattaa omaa osaamistaan itsensä ja
+muiden johtamiseen liittyen sekä projektinhallintaan liittyvissä perusasioissa, sen
+varmemmin hän onnistuu. Projektiin liittyy melkein aina joitakin muutoksen
+elementtejä ja siksi muutoshallinnan jonkinlainen osaaminen auttaa erityisesti
+projektin loppupuolella, kun tuotoksia testaillaan ja viedään käytäntöön. Ennen
+kaikkea jokaisessa projektissa on kysymys ihmisistä, joten luottamuksen luominen,
+ihmisten tilanteen ymmärtäminen ja projektissa toimivien ja siihen liittyvien ihmisten
+hyvä motivaatio takaavat jokaisen projektin onnistumisen. Sitten vain oppimaan
+kaikista näistä tärkeistä asioista!</p>
+              
+                  <ul class="content">
                     <li>Lue myös Marken blogi aiheesta <a href="../courses-details.html">itsensäjohtaminen</a>
                     </li>
                     <li>
                       Tutustu ja tilaa webinaarimoduli 1 aiheesta
-                      <a href="blog-1-How-do-you-lead-yourself.html">projektin taustoitus ja määrittely!</a>
+                      <a href="../courses.html">projektin taustoitus ja määrittely!</a>
 
                     </li>
                   </ul>
-                </div>
+                
 
 
 
@@ -2277,85 +2294,87 @@
   <!-- footer -->
   <footer class="footer-bg footer-p fix">
     <div class="footer-center pt-70 pb-40">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-xl-3 col-lg-3 col-sm-6">
-                    <div class="footer-widget mb-30">
-                        <div class="df">
-                            <a href="index.html">
-                                <img src="../img/logo/logo.webp" alt="BloomLead Logo">
-                            </a>
-                            <div class="logo" style="display: flex; align-items: center; gap: 10px;">
-                                <a href="index.html"
-                                    style="font-size: 24px; color: #769757; font-weight: 700; font-family: 'Jost', sans-serif; text-decoration: none;">BloomLead</a>
-                            </div>
-                        </div>
-                        <div class="footer-link px-2">
-                            BloomLead – auttaa projektin tavoitteiden ja ROI:n toteutuksessa yhdistämällä ihmisten
-                            ja projektin johtamisen, muutoksen ja AI:n.
-                        </div>
-                    </div>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-xl-3 col-lg-3 col-sm-6">
+            <div class="footer-widget mb-30">
+              <div class="df">
+                <a href="index.html">
+                  <img src="../img/logo/logo.webp" alt="BloomLead Logo">
+                </a>
+                <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+                  <a href="index.html"
+                    style="font-size: 24px; color: #769757; font-weight: 700; font-family: 'Jost', sans-serif; text-decoration: none;">BloomLead</a>
                 </div>
-
-                <div class="col-xl-3 col-lg-3 col-sm-6">
-                    <div class="footer-widget mb-30">
-                        <div class="f-widget-title">
-                            <h2>Ota yhteyttä</h2>
-                        </div>
-                        <div class="f-contact">
-                            <ul>
-                                <li><i class="icon fal fa-envelope"></i>
-                                    <span>
-                                        <span style="display: block;">contact@bloomlead.io</span>
-                                    </span>
-                                </li>
-                                <li>
-                                    <i class="icon fal fa-phone"></i>
-                                    <span>+358 44 388 3188,
-                                        <br>ti ja to klo 17.00-18.00</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-3 col-sm-6">
-                    <div class="footer-widget mb-30">
-                        <div class="f-widget-title">
-                            <h2>Yrityksen tiedot</h2>
-                        </div>
-                        <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210
-                            Tampere<br>Y-tunnus 3166661-4</div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-3 col-sm-6 terms-and-condition-link-container">
-                    <div class="footer-widget terms-and-condition-link mb-30">
-                        <div class="f-widget-title">
-                            <!-- <h2>Sopimukset</h2> -->
-                        </div>
-                        <div class="footer-link">
-                            <p><a href="terms-and-conditions.html" style="color: inherit;">Käyttö- ja
-                                    sopimusehdot</a></p>
-                            <p><a href="privacy-policy.html" style="color: inherit;">Rekisteriseloste ja
-                                    Tietosuoja</a></p>
-                        </div>
-
-                    </div>
-                </div>
+              </div>
+              <div class="footer-link px-2">
+                BloomLead – auttaa projektin tavoitteiden ja ROI:n toteutuksessa yhdistämällä ihmisten
+                ja projektin johtamisen, muutoksen ja AI:n.
+              </div>
             </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-sm-6">
+            <div class="footer-widget mb-30">
+              <div class="f-widget-title">
+                <h2>Ota yhteyttä</h2>
+              </div>
+              <div class="f-contact">
+                <ul>
+                  <li><i class="icon fal fa-envelope"></i>
+                    <span>
+                      <span style="display: block;">contact@bloomlead.io</span>
+                    </span>
+                  </li>
+                  <li>
+                                        <i class="icon fal fa-phone"></i>
+                                        <span>+358 388 3188,
+                                            <br>ti ja to klo 17.00-18.00
+                                        <br>(12.1.2026 alkaen)</span>
+
+                                    </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-sm-6">
+            <div class="footer-widget mb-30">
+              <div class="f-widget-title">
+                <h2>Yrityksen tiedot</h2>
+              </div>
+              <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210
+                Tampere<br>Y-tunnus 3166661-4</div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-sm-6 terms-and-condition-link-container">
+            <div class="footer-widget terms-and-condition-link mb-30">
+              <div class="f-widget-title">
+                <!-- <h2>Sopimukset</h2> -->
+              </div>
+              <div class="footer-link">
+                <p><a href="terms-and-conditions.html" style="color: inherit;">Käyttö- ja
+                    sopimusehdot</a></p>
+                <p><a href="privacy-policy.html" style="color: inherit;">Rekisteriseloste ja
+                    Tietosuoja</a></p>
+              </div>
+
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <div class="copyright-wrap">
-        <div class="container">
-            <div class="row align-items-center" style="justify-content: center;">
-                <div class="col-lg-6">
-                    Copyright &copy; 2025 BloomLead. All rights reserved.
-                </div>
-            </div>
+      <div class="container">
+        <div class="row align-items-center" style="justify-content: center;">
+          <div class="col-lg-6">
+            Copyright &copy; 2025 BloomLead. All rights reserved.
+          </div>
         </div>
+      </div>
     </div>
-</footer>
+  </footer>
   <!-- footer-end -->
 
 
