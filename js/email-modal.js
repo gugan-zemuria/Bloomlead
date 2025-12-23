@@ -35,8 +35,8 @@ function openEmailOptions(email, source) {
     // Track the click first
     trackContactEmail(source);
     
-    // Show email options modal
-    showEmailModal(email);
+    // Directly open Gmail instead of showing modal
+    openGmail(email);
 }
 
 function showEmailModal(email) {
@@ -240,7 +240,146 @@ function openGmail(email) {
     const body = encodeURIComponent('Hello BloomLead Team,\n\nI am interested in learning more about your webinar services.\n\nBest regards');
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
     window.open(gmailUrl, '_blank');
-    closeEmailModal();
+}
+
+function handleNewsletterSubmit(event) {
+    event.preventDefault(); // Prevent default form submission
+    
+    try {
+        const form = event.target;
+        const emailInput = form.querySelector('input[type="email"]');
+        const userEmail = emailInput.value.trim();
+        
+        if (!userEmail) {
+            alert('Syötä sähköpostiosoitteesi ensin.');
+            return;
+        }
+        
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(userEmail)) {
+            alert('Syötä kelvollinen sähköpostiosoite.');
+            return;
+        }
+        
+        // Track the newsletter signup attempt
+        if (typeof WebinarEventTracking !== 'undefined') {
+            WebinarEventTracking.trackContactFormSubmission('newsletter_signup', {
+                source: 'hero-section',
+                userEmail: userEmail,
+                action: 'gmail_compose'
+            });
+        }
+        
+        // Track as marketing event
+        if (typeof MarketingCookies !== 'undefined' && typeof MarketingIntegration !== 'undefined' && MarketingIntegration.hasMarketingConsent()) {
+            MarketingCookies.sendMarketingEvent('newsletter_signup', {
+                source: 'hero-section',
+                userEmail: userEmail,
+                timestamp: new Date().toISOString()
+            });
+            
+            MarketingCookies.trackConversion('newsletter_interest', null, {
+                source: 'hero-section',
+                contactMethod: 'email',
+                page: window.location.pathname
+            });
+        }
+        
+        // Open Gmail with pre-filled content - always TO contact@bloomlead.io
+        const subject = encodeURIComponent('Webinaaritietojen tilaus - BloomLead');
+        const body = encodeURIComponent(`Hei BloomLead-tiimi,
+
+Haluaisin tilata webinaaritietoja ja saada lisätietoja palveluistanne.
+
+Olen kiinnostunut erityisesti:
+- Webinaarien aikatauluista ja sisällöstä
+- Hinnoittelusta ja paketeista
+- Räätälöidyistä ratkaisuista yritykselleni
+
+Odotan innolla kuulevani teiltä!
+
+Ystävällisin terveisin`);
+        
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=contact@bloomlead.io&su=${subject}&body=${body}`;
+        window.open(gmailUrl, '_blank');
+        
+        // Clear the form and show success message
+        emailInput.value = '';
+        showNewsletterSuccess();
+        
+    } catch (error) {
+        console.error('Error handling newsletter submission:', error);
+        alert('Tapahtui virhe. Yritä uudelleen tai ota yhteyttä suoraan osoitteeseen contact@bloomlead.io');
+    }
+}
+
+function showNewsletterSuccess() {
+    try {
+        // Create a temporary success message
+        const form = document.querySelector('[data-form-type="newsletter"]');
+        if (!form) return;
+        
+        const originalContent = form.innerHTML;
+        
+        form.innerHTML = `
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 48px; margin-bottom: 15px; color: #28a745;">✅</div>
+                <h4 style="color: #28a745; margin-bottom: 10px; font-weight: 600;">Gmail avattu!</h4>
+                <p style="color: #666; font-size: 14px; margin-bottom: 15px; line-height: 1.4;">
+                    Gmail-ikkuna on avattu valmiiksi täytetyllä viestillä.<br>
+                    Lähetä viesti saadaksesi webinaaritietoja.
+                </p>
+                <button onclick="resetNewsletterForm()" style="
+                    background: #a571aa; 
+                    color: white; 
+                    border: none; 
+                    padding: 12px 24px; 
+                    border-radius: 5px; 
+                    cursor: pointer;
+                    font-size: 14px;
+                    font-weight: 500;
+                    transition: background-color 0.2s ease;
+                " onmouseover="this.style.background='#8e5a96'" onmouseout="this.style.background='#a571aa'">
+                    Takaisin lomakkeeseen
+                </button>
+            </div>
+        `;
+        
+        // Store original content for reset
+        form.setAttribute('data-original-content', originalContent);
+        
+        // Auto-reset after 10 seconds
+        setTimeout(() => {
+            if (form.getAttribute('data-original-content')) {
+                resetNewsletterForm();
+            }
+        }, 10000);
+        
+    } catch (error) {
+        console.error('Error showing newsletter success:', error);
+    }
+}
+
+function resetNewsletterForm() {
+    try {
+        const form = document.querySelector('[data-form-type="newsletter"]');
+        if (!form) return;
+        
+        const originalContent = form.getAttribute('data-original-content');
+        
+        if (originalContent) {
+            form.innerHTML = originalContent;
+            form.removeAttribute('data-original-content');
+            
+            // Re-attach event listener
+            form.addEventListener('submit', handleNewsletterSubmit);
+        }
+    } catch (error) {
+        console.error('Error resetting newsletter form:', error);
+        // Fallback: reload the page
+        window.location.reload();
+    }
 }
 
 function openOutlook(email) {
@@ -329,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const allSpans = document.querySelectorAll('span');
     allSpans.forEach(span => {
         if (span.textContent.trim() === 'contact@bloomlead.io' && !span.querySelector('a')) {
-            // Convert plain text email to clickable link
+            // Convert plain text email to clickable link that directly opens Gmail
             const email = 'contact@bloomlead.io';
             const source = 'footer-auto';
             
@@ -342,27 +481,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-
-});
-
-// Close modal when clicking outside
-document.addEventListener('click', function(event) {
-    const modal = document.getElementById('emailModal');
-    if (modal && event.target === modal) {
-        closeEmailModal();
-    }
-});
-
-// Close modal with Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeEmailModal();
+    // Attach newsletter form handler
+    const newsletterForm = document.querySelector('[data-form-type="newsletter"]');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', handleNewsletterSubmit);
     }
 });
 
 // Make functions globally available
 window.openEmailOptions = openEmailOptions;
-window.showEmailModal = showEmailModal;
-window.closeEmailModal = closeEmailModal;
 window.trackContactEmail = trackContactEmail;
+window.handleNewsletterSubmit = handleNewsletterSubmit;
+window.showNewsletterSuccess = showNewsletterSuccess;
+window.resetNewsletterForm = resetNewsletterForm;
 
