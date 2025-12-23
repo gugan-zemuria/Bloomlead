@@ -1,7 +1,13 @@
 /**
  * Email Modal System for BloomLead
  * Provides cross-platform email functionality with marketing tracking
+ * Mobile-optimized to open Gmail app directly
  */
+
+// Mobile detection utility
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 
 // Email Modal Functions
 function trackContactEmail(source) {
@@ -35,8 +41,8 @@ function openEmailOptions(email, source) {
     // Track the click first
     trackContactEmail(source);
     
-    // Directly open Gmail instead of showing modal
-    openGmail(email);
+    // Always open Gmail directly (mobile-optimized)
+    openGmailMobileOptimized(email);
 }
 
 function showEmailModal(email) {
@@ -238,8 +244,46 @@ function openDefaultEmail(email) {
 function openGmail(email) {
     const subject = encodeURIComponent('Inquiry from BloomLead Website');
     const body = encodeURIComponent('Hello BloomLead Team,\n\nI am interested in learning more about your webinar services.\n\nBest regards');
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
-    window.open(gmailUrl, '_blank');
+    
+    if (isMobileDevice()) {
+        // On mobile, use mailto for better compatibility
+        const mailtoUrl = `mailto:${email}?subject=${subject}&body=${body}`;
+        const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
+        
+        try {
+            window.location.href = mailtoUrl;
+        } catch (error) {
+            window.open(gmailWebUrl, '_blank');
+        }
+    } else {
+        // Desktop: open web Gmail
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
+        window.open(gmailUrl, '_blank');
+    }
+}
+
+function openGmailMobileOptimized(email) {
+    const subject = encodeURIComponent('Inquiry from BloomLead Website');
+    const body = encodeURIComponent('Hello BloomLead Team,\n\nI am interested in learning more about your webinar services.\n\nBest regards');
+    
+    if (isMobileDevice()) {
+        // On mobile, prioritize mailto for better compatibility
+        const mailtoUrl = `mailto:${email}?subject=${subject}&body=${body}`;
+        const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
+        
+        try {
+            // Try mailto first (works with any installed mail app including Gmail)
+            window.location.href = mailtoUrl;
+        } catch (error) {
+            // Fallback to web Gmail
+            window.open(gmailWebUrl, '_blank');
+        }
+        
+    } else {
+        // Desktop: open web Gmail
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
+        window.open(gmailUrl, '_blank');
+    }
 }
 
 function handleNewsletterSubmit(event) {
@@ -286,7 +330,7 @@ function handleNewsletterSubmit(event) {
             });
         }
         
-        // Open Gmail with pre-filled content - always TO contact@bloomlead.io
+        // Open Gmail with pre-filled content - mobile optimized
         const subject = encodeURIComponent('Webinaaritietojen tilaus - BloomLead');
         const body = encodeURIComponent(`Hei BloomLead-tiimi,
 
@@ -301,8 +345,24 @@ Odotan innolla kuulevani teiltä!
 
 Ystävällisin terveisin`);
         
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=contact@bloomlead.io&from=${encodeURIComponent(userEmail)}&su=${subject}&body=${body}`;
-        window.open(gmailUrl, '_blank');
+        if (isMobileDevice()) {
+            // On mobile, prioritize mailto for better compatibility
+            const mailtoUrl = `mailto:contact@bloomlead.io?subject=${subject}&body=${body}`;
+            const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=contact@bloomlead.io&from=${encodeURIComponent(userEmail)}&su=${subject}&body=${body}`;
+            
+            try {
+                // Try mailto first (works with any installed mail app including Gmail)
+                window.location.href = mailtoUrl;
+            } catch (error) {
+                // Fallback to web Gmail
+                window.open(gmailWebUrl, '_blank');
+            }
+            
+        } else {
+            // Desktop: open web Gmail
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=contact@bloomlead.io&from=${encodeURIComponent(userEmail)}&su=${subject}&body=${body}`;
+            window.open(gmailUrl, '_blank');
+        }
         
         // Clear the form only - no success message
         emailInput.value = '';
@@ -493,4 +553,6 @@ window.trackContactEmail = trackContactEmail;
 window.handleNewsletterSubmit = handleNewsletterSubmit;
 window.showNewsletterSuccess = showNewsletterSuccess;
 window.resetNewsletterForm = resetNewsletterForm;
+window.isMobileDevice = isMobileDevice;
+window.openGmailMobileOptimized = openGmailMobileOptimized;
 
