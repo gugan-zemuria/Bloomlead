@@ -1,0 +1,104 @@
+# Environment Variables
+.env
+.env.local
+.env.production
+.env.development
+.env.example
+
+# Configuration files
+config/
+package.json
+.prettierrc.json
+.prettierignore
+
+# Scripts and utilities
+scripts/
+src/core/
+
+# Test files (except main test files)
+test-cookie-popup.html
+test-responsive-cookie.html
+
+# JavaScript config and credential files
+js/config.js
+js/cookie-credentials.js
+js/env-loader.js
+js/facebook-pixel-safe.js
+js/marketing-platforms.js
+
+# Documentation files
+*.md
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Build outputs
+dist/
+build/
+out/
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Credentials and secrets
+credentials.json
+secrets.json
+*.pem
+*.key
+*.crt

@@ -257,8 +257,8 @@ class WebinarAnalytics {
             });
         });
         
-        // Track when user leaves video (drop-off analysis)
-        window.addEventListener('beforeunload', () => {
+        // Track when user leaves video (drop-off analysis) - using pagehide for compliance
+        window.addEventListener('pagehide', () => {
             if (!videoElement.ended && videoElement.currentTime > 0) {
                 this.trackVideoEvent('drop_off', videoId, {
                     videoName: videoName,
@@ -323,8 +323,8 @@ class WebinarAnalytics {
     }
 
     trackTimeOnPageAuto() {
-        // Track time spent on page before leaving
-        window.addEventListener('beforeunload', () => {
+        // Track time spent on page before leaving - using pagehide for compliance
+        window.addEventListener('pagehide', () => {
             if (this.pageLoadTime) {
                 const duration = Math.round((Date.now() - this.pageLoadTime) / 1000);
                 this.trackTimeOnPage(document.title, duration);
