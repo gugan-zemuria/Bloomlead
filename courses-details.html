@@ -18,19 +18,19 @@
             if (consent.categories && consent.categories.analytics) {
                 // Get Google Analytics ID from Config system
                 const analyticsId = window.Config ? window.Config.getGoogleAnalyticsId() : null;
-                
+
                 if (analyticsId) {
                     // Load Google Analytics
                     const script1 = document.createElement('script');
                     script1.async = true;
                     script1.src = `https://www.googletagmanager.com/gtag/js?id=${analyticsId}`;
                     document.head.appendChild(script1);
-                    
+
                     window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
+                    function gtag() { dataLayer.push(arguments); }
                     gtag('js', new Date());
                     gtag('config', analyticsId);
-                    
+
                     console.log('Google Analytics loaded with ID:', analyticsId);
                 } else {
                     console.warn('Google Analytics ID not configured');
@@ -317,6 +317,13 @@
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             background: #000;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .video-container:hover {
+            transform: scale(1.01);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
         }
 
         .video-element {
@@ -344,15 +351,15 @@
         }
 
         .play-button-custom {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             background: rgba(165, 113, 170, 0.95);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2rem;
+            font-size: 1.8rem;
             cursor: pointer;
             pointer-events: all;
             transition: all 0.3s ease;
@@ -450,13 +457,13 @@
             color: #a571aa;
             transform: scale(1.1);
         }
-        
+
         #speedBtn {
             min-width: 35px;
             font-size: 12px;
             font-weight: 600;
         }
-        
+
         #speedDisplay {
             color: inherit;
         }
@@ -598,9 +605,9 @@
         }
 
         .subscribe-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #a571aa, #769757);
+            width: 70px;
+            height: 70px;
+            background: #a571aa;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -631,7 +638,7 @@
         }
 
         .subscribe-icon i {
-            font-size: 35px;
+            font-size: 28px;
             color: white;
         }
 
@@ -647,7 +654,7 @@
             width: 100%;
             max-width: 300px;
             padding: 18px 40px;
-            background: linear-gradient(135deg, #a571aa, #769757);
+            background: #a571aa;
             color: white;
             border: none;
             border-radius: 50px;
@@ -693,7 +700,7 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(165, 113, 170, 0.95);
             color: white;
             padding: 12px 24px;
             border-radius: 25px;
@@ -706,10 +713,13 @@
         }
 
         @keyframes messageGlow {
-            0%, 100% {
+
+            0%,
+            100% {
                 border-color: rgba(165, 113, 170, 0.5);
                 box-shadow: 0 0 10px rgba(165, 113, 170, 0.3);
             }
+
             50% {
                 border-color: rgba(165, 113, 170, 0.8);
                 box-shadow: 0 0 20px rgba(165, 113, 170, 0.5);
@@ -731,7 +741,7 @@
             }
 
             .subscribe-icon i {
-                font-size: 30px;
+                font-size: 24px;
             }
 
             #subscriptionMessage {
@@ -879,6 +889,7 @@
                 opacity: 0;
                 transform: scale(0.8);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1);
@@ -1000,6 +1011,7 @@
                 opacity: 0;
                 transform: translateY(40px) scale(0.9);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -1261,20 +1273,6 @@
             border-top: 1px solid #f3f4f6;
         }
 
-        .security-note {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            color: #6b7280;
-            font-weight: 500;
-        }
-
-        .security-note i {
-            font-size: 14px;
-            color: #10b981;
-        }
-
         .popup-actions {
             display: flex;
             gap: 12px;
@@ -1395,10 +1393,6 @@
                 gap: 16px;
                 align-items: stretch;
             }
-
-            .security-note {
-                justify-content: center;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1411,14 +1405,15 @@
             }
 
             .contact-email-field input {
-                font-size: 16px; /* Prevent zoom on iOS */
+                font-size: 16px;
+                /* Prevent zoom on iOS */
             }
 
             .message-content {
                 padding: 16px;
                 font-size: 14px;
             }
-        
+
         }
 
         .message-label {
@@ -1486,22 +1481,10 @@
 
         .popup-footer {
             display: flex;
-            justify-content: space-between;
+            justify-content: right;
             align-items: center;
             padding-top: 20px;
             border-top: 1px solid #e5e7eb;
-        }
-
-        .security-note {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .security-note i {
-            font-size: 14px;
         }
 
         .popup-actions {
@@ -1803,7 +1786,6 @@
                 min-height: 400px;
             }
         }
-
     </style>
 </head>
 
@@ -1833,7 +1815,7 @@
                                         <li class="sub">
                                             <a href="coaches.html">Valmentajat</a>
                                         </li>
-                                        
+
                                         <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt & Hinnat</a>
                                         </li>
                                         <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
@@ -1975,7 +1957,7 @@
                                         <source src="img/video/webinar-section.mp4" type="video/mp4">
                                         Your browser does not support the video tag.
                                     </video>
-                                    
+
                                     <!-- Video Not Available Message -->
                                     <div class="video-not-available" id="videoNotAvailable" style="display: none;">
                                         <div class="no-video-content">
@@ -2046,7 +2028,7 @@
 
                             <p>Moduli 1 keskittyy kahteen
                                 peruspilariin: <strong>itsensä johtamiseen
-                                    </strong>ja<strong> projektijohtamisen taustoitus-
+                                </strong>ja<strong> projektijohtamisen taustoitus-
                                     ja määrittelyvaiheisiin</strong>.
                             </p>
 
@@ -2310,7 +2292,7 @@
                         <p>IN-APP COMPOSE</p>
                     </div>
                 </div>
-                
+
                 <div class="email-form">
                     <div class="contact-email-section">
                         <div class="contact-email-label">YOUR CONTACT EMAIL (REPLY-TO)</div>
@@ -2321,22 +2303,24 @@
                         </div>
                         <div class="contact-note">This is where the sales team will contact you back.</div>
                     </div>
-                    
+
                     <div class="email-field-row">
                         <div class="email-field">
                             <div class="email-field-label">To:</div>
                             <!-- <div class="email-field-value">contact@bloomlead.io, marke.tyrvainen@elisanet.fi, jkartilamalmivaara@gmail.com</div> -->
-                             <div class="email-field-value">contact@bloomlead.io, marke.tyrvainen@elisanet.fi, jkartilamalmivaara@gmail.com</div>
+                            <div class="email-field-value">contact@bloomlead.io, marke.tyrvainen@elisanet.fi,
+                                jkartilamalmivaara@gmail.com</div>
                         </div>
                     </div>
-                    
+
                     <div class="email-field-row">
                         <div class="email-field">
                             <div class="email-field-label">Sub:</div>
-                            <div class="email-field-value" id="emailSubjectDisplay">Purchase Inquiry: Webinar Module</div>
+                            <div class="email-field-value" id="emailSubjectDisplay">Purchase Inquiry: Webinar Module
+                            </div>
                         </div>
                     </div>
-                    
+
                     <div class="message-section">
                         <div class="message-header">
                             <div class="message-label">MESSAGE CONTENT</div>
@@ -2346,12 +2330,8 @@
                         </div>
                         <textarea class="message-content" id="emailMessage" readonly></textarea>
                     </div>
-                    
+
                     <div class="popup-footer">
-                        <div class="security-note">
-                            <!-- <i class="fas fa-shield-alt"></i>
-                            SECURE IN-APP DELIVERY -->
-                        </div>
                         <div class="popup-actions">
                             <button class="btn-cancel" onclick="emailManager.closeEmailPopup()">Cancel</button>
                             <button class="btn-send" id="sendEmailBtn">
@@ -2359,7 +2339,7 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <div class="email-status" id="emailStatus" style="display: none;"></div>
                 </div>
             </div>
@@ -2410,17 +2390,23 @@
 
                                         <li><i class="icon fal fa-envelope"></i>
                                             <span>
-                                                <span style="display: block;">contact@bloomlead.io</span>
+                                                <a href="mailto:contact@bloomlead.io" class="email-clickable"
+                                                    style="display: block; color: inherit; cursor: pointer; text-decoration: underline;"
+                                                    onmouseover="this.style.color='#a571aa'"
+                                                    onmouseout="this.style.color='inherit'"
+                                                    onclick="openEmailOptions('contact@bloomlead.io', 'footer-contact'); return false;">
+                                                    contact@bloomlead.io
+                                                </a>
                                                 <!-- <span style="display: block;">help@example.com</span> -->
                                             </span>
                                         </li>
                                         <li>
-                                        <i class="icon fal fa-phone"></i>
-                                        <span>+358 388 3188,
-                                            <br>ti ja to klo 17.00-18.00
-                                        <br>(12.1.2026 alkaen)</span>
+                                            <i class="icon fal fa-phone"></i>
+                                            <span>+358 388 3188,
+                                                <br>ti ja to klo 17.00-18.00
+                                                <br>(12.1.2026 alkaen)</span>
 
-                                    </li>
+                                        </li>
 
 
                                     </ul>
@@ -2435,7 +2421,8 @@
                             <div class="f-widget-title">
                                 <h2>Yrityksen tiedot</h2>
                             </div>
-                            <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210 Tampere<br>Y-tunnus 3166661-4</div>
+                            <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210
+                                Tampere<br>Y-tunnus 3166661-4</div>
                         </div>
                     </div>
 
@@ -2449,7 +2436,8 @@
                                         sopimusehdot</a></p>
                                 <p><a href="privacy-policy.html" style="color: inherit;">Rekisteriseloste ja
                                         Tietosuoja</a></p>
-                                <p><a href="#" onclick="cookieManager.showPreferences(); return false;" style="color: inherit;">Evästeasetukset</a></p>
+                                <p><a href="#" onclick="cookieManager.showPreferences(); return false;"
+                                        style="color: inherit;">Evästeasetukset</a></p>
                             </div>
 
                         </div>
@@ -2502,10 +2490,13 @@
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/element-in-view.js"></script>
     <script src="js/main.js"></script>
-    
+
+    <!-- Email Modal System -->
+    <script src="js/email-modal.js"></script>
+
     <!-- Necessary Cookies - Required for basic functionality -->
     <script src="js/necessary-cookies.js"></script>
-    
+
     <!-- Functional Cookies - Video player settings and progress -->
     <script>
         // Check if functional cookies are allowed before loading
@@ -2518,7 +2509,7 @@
             }
         }
     </script>
-    
+
     <!-- Analytics Cookies - Video engagement and page tracking -->
     <script>
         // Check if analytics cookies are allowed before loading
@@ -2592,7 +2583,7 @@
             hasActiveSubscription() {
                 const subscription = localStorage.getItem(this.storageKey);
                 if (!subscription) return false;
-                
+
                 try {
                     const subData = JSON.parse(subscription);
                     return subData.active === true && new Date(subData.expiresAt) > new Date();
@@ -2604,10 +2595,10 @@
             // Check if user has subscribed to specific module
             hasModuleAccess(moduleId) {
                 if (this.hasActiveSubscription()) return true;
-                
+
                 const modules = localStorage.getItem(this.moduleKey);
                 if (!modules) return false;
-                
+
                 try {
                     const moduleData = JSON.parse(modules);
                     return moduleData.includes(moduleId);
@@ -2627,12 +2618,12 @@
                         modules = [];
                     }
                 }
-                
+
                 if (!modules.includes(moduleId)) {
                     modules.push(moduleId);
                     localStorage.setItem(this.moduleKey, JSON.stringify(modules));
                 }
-                
+
                 // Trigger subscription event
                 window.dispatchEvent(new CustomEvent('subscriptionUpdated', {
                     detail: { moduleId, hasAccess: true }
@@ -2648,7 +2639,7 @@
                     type: 'full'
                 };
                 localStorage.setItem(this.storageKey, JSON.stringify(subscription));
-                
+
                 // Trigger subscription event
                 window.dispatchEvent(new CustomEvent('subscriptionUpdated', {
                     detail: { type: 'full', hasAccess: true }
@@ -2675,17 +2666,17 @@
         const speedBtn = document.getElementById('speedBtn');
         const speedDisplay = document.getElementById('speedDisplay');
         const fullscreenBtn = document.getElementById('fullscreenBtn');
-        
+
         // Video ID for this specific module
         const videoId = 'module-1-webinar';
-        
+
         // Progress saving interval
         let progressInterval;
 
         // Check subscription status and update UI
         function checkSubscriptionAndUpdateUI() {
             const hasAccess = subscriptionManager.hasModuleAccess(currentModuleId);
-            
+
             if (!hasAccess) {
                 // Show subscription placeholder
                 showSubscriptionPlaceholder();
@@ -2697,7 +2688,7 @@
                 // Enable video controls
                 enableVideoControls();
             }
-            
+
             return hasAccess;
         }
 
@@ -2707,23 +2698,23 @@
             const videoNotAvailable = document.getElementById('videoNotAvailable');
             const videoOverlay = document.getElementById('videoOverlay');
             const videoControls = document.getElementById('videoControls');
-            
+
             // Check if video source exists and can be loaded
             video.addEventListener('error', () => {
                 showVideoNotAvailable();
             });
-            
+
             video.addEventListener('loadstart', () => {
                 // Video started loading, hide not available message
                 hideVideoNotAvailable();
             });
-            
+
             // Check if video source is accessible
             const source = video.querySelector('source');
             if (source && source.src) {
                 // Try to load the video
                 video.load();
-                
+
                 // Set a timeout to show not available message if video doesn't load
                 setTimeout(() => {
                     if (video.readyState === 0) {
@@ -2740,11 +2731,11 @@
             const videoNotAvailable = document.getElementById('videoNotAvailable');
             const videoOverlay = document.getElementById('videoOverlay');
             const videoControls = document.getElementById('videoControls');
-            
+
             videoNotAvailable.style.display = 'flex';
             videoOverlay.style.display = 'none';
             videoControls.style.display = 'none';
-            
+
             // Hide video element
             document.getElementById('customVideo').style.display = 'none';
         }
@@ -2753,11 +2744,11 @@
             const videoNotAvailable = document.getElementById('videoNotAvailable');
             const videoOverlay = document.getElementById('videoOverlay');
             const videoControls = document.getElementById('videoControls');
-            
+
             videoNotAvailable.style.display = 'none';
             videoOverlay.style.display = 'flex';
             videoControls.style.display = 'block';
-            
+
             // Show video element
             document.getElementById('customVideo').style.display = 'block';
         }
@@ -2767,7 +2758,7 @@
             // Update play button to show subscription message
             playButton.innerHTML = '<i class="fas fa-lock"></i>';
             playButton.style.background = 'rgba(165, 113, 170, 0.95)';
-            
+
             // Add subscription message to overlay
             if (!document.getElementById('subscriptionMessage')) {
                 const subscriptionMessage = document.createElement('div');
@@ -2789,7 +2780,7 @@
                 subscriptionMessage.textContent = 'Tilaa nyt katsoaksesi koko webinaarin';
                 videoOverlay.appendChild(subscriptionMessage);
             }
-            
+
             // Make sure overlay is always visible
             videoOverlay.classList.remove('hidden');
             videoOverlay.style.pointerEvents = 'all';
@@ -2800,13 +2791,13 @@
             // Restore original play button
             playButton.innerHTML = '<i class="fas fa-play"></i>';
             playButton.style.background = 'rgba(165, 113, 170, 0.95)';
-            
+
             // Remove subscription message
             const subscriptionMessage = document.getElementById('subscriptionMessage');
             if (subscriptionMessage) {
                 subscriptionMessage.remove();
             }
-            
+
             // Restore normal overlay behavior
             videoOverlay.style.pointerEvents = 'none';
         }
@@ -2815,12 +2806,12 @@
         function disableVideoControls() {
             video.style.pointerEvents = 'none';
             videoControls.style.display = 'none';
-            
+
             // Disable all control buttons
             [playPauseBtn, muteBtn, speedBtn, fullscreenBtn].forEach(btn => {
                 if (btn) btn.disabled = true;
             });
-            
+
             if (progressBar) progressBar.style.pointerEvents = 'none';
             if (volumeSlider) volumeSlider.disabled = true;
         }
@@ -2829,12 +2820,12 @@
         function enableVideoControls() {
             video.style.pointerEvents = 'auto';
             videoControls.style.display = 'block';
-            
+
             // Enable all control buttons
             [playPauseBtn, muteBtn, speedBtn, fullscreenBtn].forEach(btn => {
                 if (btn) btn.disabled = false;
             });
-            
+
             if (progressBar) progressBar.style.pointerEvents = 'auto';
             if (volumeSlider) volumeSlider.disabled = false;
         }
@@ -2855,7 +2846,7 @@
                 document.body.style.overflow = 'hidden';
                 return;
             }
-            
+
             if (video.paused) {
                 video.play();
                 playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -2871,6 +2862,24 @@
         playPauseBtn.addEventListener('click', togglePlay);
         video.addEventListener('click', togglePlay);
 
+        // Make entire video container clickable
+        const videoContainer = document.querySelector('.video-container');
+        if (videoContainer) {
+            videoContainer.addEventListener('click', function (e) {
+                // Don't trigger if clicking on controls or buttons
+                if (!e.target.closest('.video-controls') &&
+                    !e.target.closest('.play-button-custom') &&
+                    !e.target.closest('.notify-buttons') &&
+                    !e.target.closest('button') &&
+                    !e.target.closest('input')) {
+                    togglePlay();
+                }
+            });
+
+            // Add cursor pointer to indicate clickability
+            videoContainer.style.cursor = 'pointer';
+        }
+
         // Update progress bar
         video.addEventListener('timeupdate', () => {
             const percent = (video.currentTime / video.duration) * 100;
@@ -2881,20 +2890,20 @@
         // Set duration when loaded and restore saved preferences
         video.addEventListener('loadedmetadata', () => {
             durationDisplay.textContent = formatTime(video.duration);
-            
+
             // Check subscription status and update UI
             checkSubscriptionAndUpdateUI();
-            
+
             // Initialize video player with functional cookies
             if (typeof initializeVideoPlayer === 'function') {
                 initializeVideoPlayer(video, videoId);
             }
-            
+
             // Only restore preferences if functional cookies are allowed AND user has access
-            if (subscriptionManager.hasModuleAccess(currentModuleId) && 
-                typeof FunctionalCookies !== 'undefined' && 
+            if (subscriptionManager.hasModuleAccess(currentModuleId) &&
+                typeof FunctionalCookies !== 'undefined' &&
                 FunctionalCookies.hasConsentFor('functional')) {
-                
+
                 // Restore saved playback speed
                 const savedSpeed = FunctionalCookies.getPlaybackSpeed();
                 if (savedSpeed && savedSpeed !== 1.0) {
@@ -2904,13 +2913,13 @@
                     currentSpeedIndex = playbackSpeeds.indexOf(savedSpeed);
                     if (currentSpeedIndex === -1) currentSpeedIndex = 2; // Default to 1x
                 }
-                
+
                 // Restore saved volume
                 const savedVolume = FunctionalCookies.getVolume();
                 if (savedVolume !== 1.0) {
                     video.volume = savedVolume;
                     volumeSlider.value = savedVolume * 100;
-                    
+
                     // Update mute button icon based on volume
                     if (savedVolume === 0) {
                         muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
@@ -2930,7 +2939,7 @@
                 document.body.style.overflow = 'hidden';
                 return;
             }
-            
+
             const rect = progressBar.getBoundingClientRect();
             const percent = (e.clientX - rect.left) / rect.width;
             video.currentTime = percent * video.duration;
@@ -2951,14 +2960,14 @@
         // Volume control with functional cookies (only for subscribers)
         volumeSlider.addEventListener('input', (e) => {
             if (!subscriptionManager.hasModuleAccess(currentModuleId)) return;
-            
+
             video.volume = e.target.value / 100;
-            
+
             // Save volume preference (only if functional cookies are allowed)
             if (typeof FunctionalCookies !== 'undefined' && FunctionalCookies.hasConsentFor('functional')) {
                 FunctionalCookies.saveVolume(video.volume);
             }
-            
+
             if (video.volume === 0) {
                 video.muted = true;
                 muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
@@ -2975,15 +2984,15 @@
         // Playback speed control with functional cookies (only for subscribers)
         const playbackSpeeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
         let currentSpeedIndex = 2; // Default to 1x
-        
+
         speedBtn.addEventListener('click', () => {
             if (!subscriptionManager.hasModuleAccess(currentModuleId)) return;
-            
+
             currentSpeedIndex = (currentSpeedIndex + 1) % playbackSpeeds.length;
             const newSpeed = playbackSpeeds[currentSpeedIndex];
             video.playbackRate = newSpeed;
             speedDisplay.textContent = `${newSpeed}x`;
-            
+
             // Save playback speed preference (only if functional cookies are allowed)
             if (typeof FunctionalCookies !== 'undefined' && FunctionalCookies.hasConsentFor('functional')) {
                 FunctionalCookies.savePlaybackSpeed(newSpeed);
@@ -3019,13 +3028,13 @@
             playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
             videoOverlay.classList.remove('hidden');
             videoControls.classList.add('show');
-            
+
             // Stop progress tracking
             if (progressInterval) {
                 clearInterval(progressInterval);
                 progressInterval = null;
             }
-            
+
             // Save final progress (only if functional cookies are allowed)
             if (FunctionalCookies.hasConsentFor('functional')) {
                 FunctionalCookies.saveVideoProgress(videoId, video.currentTime);
@@ -3050,7 +3059,7 @@
             if (!subscriptionManager.hasModuleAccess(currentModuleId)) {
                 // Pause the video immediately
                 video.pause();
-                
+
                 // Show subscription popup
                 if (!hasShownPopup) {
                     hasShownPopup = true;
@@ -3065,7 +3074,7 @@
             // Mark as last watched webinar (only if functional cookies are allowed)
             if (typeof FunctionalCookies !== 'undefined' && FunctionalCookies.hasConsentFor('functional')) {
                 FunctionalCookies.saveLastWatched(videoId);
-                
+
                 // Start progress tracking
                 if (progressInterval) clearInterval(progressInterval);
                 progressInterval = setInterval(() => {
@@ -3114,7 +3123,7 @@
                 <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
                 Tilaus onnistui! Voit nyt katsoa webinaarin.
             `;
-            
+
             // Add animation keyframes
             if (!document.getElementById('subscriptionSuccessStyles')) {
                 const style = document.createElement('style');
@@ -3133,9 +3142,9 @@
                 `;
                 document.head.appendChild(style);
             }
-            
+
             document.body.appendChild(successMessage);
-            
+
             // Remove message after 4 seconds
             setTimeout(() => {
                 successMessage.style.animation = 'slideInRight 0.3s ease-out reverse';
@@ -3153,7 +3162,7 @@
                 closeSubscribePopup();
             }
         });
-        
+
         // Stop progress tracking when video is paused
         video.addEventListener('pause', () => {
             if (progressInterval) {
@@ -3161,7 +3170,7 @@
                 progressInterval = null;
             }
         });
-        
+
         // Clean up on page unload
         window.addEventListener('beforeunload', () => {
             if (progressInterval) {
@@ -3191,27 +3200,27 @@
                 notifyMeBtn.addEventListener('click', () => {
                     // Check if user has already requested notification
                     const notificationRequested = localStorage.getItem('bloomlead_notification_module_1');
-                    
+
                     if (notificationRequested) {
                         showNotificationMessage('Olet jo pyytänyt ilmoituksen tälle webinaarille!', 'info');
                         return;
                     }
-                    
+
                     // Save notification request
                     localStorage.setItem('bloomlead_notification_module_1', JSON.stringify({
                         requested: true,
                         timestamp: new Date().toISOString(),
                         moduleId: currentModuleId
                     }));
-                    
+
                     // Update button state
                     notifyMeBtn.innerHTML = '<i class="fas fa-check"></i> Ilmoitus pyydetty';
                     notifyMeBtn.style.background = '#28a745';
                     notifyMeBtn.disabled = true;
-                    
+
                     // Show success message
                     showNotificationMessage('Kiitos! Lähetämme sinulle ilmoituksen kun webinaari on saatavilla.', 'success');
-                    
+
                     // In real implementation, send notification request to server
                     // sendNotificationRequest(currentModuleId);
                 });
@@ -3221,7 +3230,7 @@
         function showNotificationMessage(message, type = 'success') {
             const messageDiv = document.createElement('div');
             const bgColor = type === 'success' ? '#28a745' : type === 'info' ? '#17a2b8' : '#ffc107';
-            
+
             messageDiv.style.cssText = `
                 position: fixed;
                 top: 20px;
@@ -3236,14 +3245,14 @@
                 max-width: 350px;
                 animation: slideInRight 0.3s ease-out;
             `;
-            
+
             messageDiv.innerHTML = `
                 <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'info' ? 'info-circle' : 'exclamation-circle'}" style="margin-right: 10px;"></i>
                 ${message}
             `;
-            
+
             document.body.appendChild(messageDiv);
-            
+
             // Remove message after 5 seconds
             setTimeout(() => {
                 messageDiv.style.animation = 'slideInRight 0.3s ease-out reverse';
@@ -3259,7 +3268,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const notificationRequested = localStorage.getItem('bloomlead_notification_module_1');
             const notifyMeBtn = document.getElementById('notifyMeBtn');
-            
+
             if (notificationRequested && notifyMeBtn) {
                 notifyMeBtn.innerHTML = '<i class="fas fa-check"></i> Ilmoitus pyydetty';
                 notifyMeBtn.style.background = '#28a745';
@@ -3280,10 +3289,10 @@
                 this.emailMessage = document.getElementById('emailMessage');
                 this.emailStatus = document.getElementById('emailStatus');
                 this.emailTitle = document.getElementById('emailPopupTitle');
-                
+
                 this.isEditing = false;
                 this.currentType = null;
-                
+
                 this.initializeEventListeners();
             }
 
@@ -3296,14 +3305,14 @@
                 });
                 this.editEmailBtn.addEventListener('click', () => this.toggleEditMode());
                 this.sendEmailBtn.addEventListener('click', () => this.sendEmail());
-                
+
                 // Auto-resize textarea
                 this.emailMessage.addEventListener('input', () => this.autoResizeTextarea());
-                
+
                 // Email validation on input
                 this.contactEmail.addEventListener('input', () => this.validateEmail());
                 this.contactEmail.addEventListener('blur', () => this.validateEmail());
-                
+
                 // Close on Escape key
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && this.emailPopup.classList.contains('active')) {
@@ -3315,10 +3324,10 @@
             validateEmail() {
                 const email = this.contactEmail.value.trim();
                 const emailField = this.contactEmail.parentElement;
-                
+
                 // Remove existing validation classes
                 emailField.classList.remove('valid', 'invalid');
-                
+
                 if (email === '') {
                     // Empty field - hide icon and reset styling
                     this.emailStatusIcon.style.display = 'none';
@@ -3348,7 +3357,7 @@
                 this.emailPopup.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 this.resetEditMode();
-                
+
                 // Auto-resize on show
                 setTimeout(() => this.autoResizeTextarea(), 100);
             }
@@ -3364,7 +3373,7 @@
                 // Clear contact email field
                 this.contactEmail.value = '';
                 this.validateEmail(); // Reset validation state
-                
+
                 if (type === 'module') {
                     this.emailTitle.textContent = 'Review Your Inquiry';
                     this.emailSubjectDisplay.textContent = 'Purchase Inquiry: Webinaarimoduli 1 - Projektin määrittely & Johtaja luo suunnan';
@@ -3430,7 +3439,7 @@ Best regards,
 
             toggleEditMode() {
                 this.isEditing = !this.isEditing;
-                
+
                 if (this.isEditing) {
                     this.emailMessage.readOnly = false;
                     this.editEmailBtn.innerHTML = '<i class="fas fa-save"></i> SAVE';
@@ -3442,7 +3451,7 @@ Best regards,
                     this.editEmailBtn.classList.remove('editing');
                     this.showStatus('Changes saved!', 'success', 2000);
                 }
-                
+
                 // Auto-resize after toggle
                 setTimeout(() => this.autoResizeTextarea(), 100);
             }
@@ -3458,7 +3467,7 @@ Best regards,
                 const contactEmail = this.contactEmail.value.trim();
                 const subject = this.emailSubjectDisplay.textContent.trim();
                 const message = this.emailMessage.value.trim();
-                
+
                 if (!contactEmail || !subject || !message) {
                     this.showStatus('Please fill all fields before sending.', 'error');
                     return;
@@ -3475,16 +3484,16 @@ Best regards,
                 try {
                     // Simulate email sending (replace with actual email service)
                     await this.simulateEmailSending(contactEmail, subject, message);
-                    
+
                     this.showStatus('Email sent successfully! We will contact you soon.', 'success');
-                    
+
                     // Close popup after successful send
                     setTimeout(() => {
                         this.closeEmailPopup();
-                        
+
                         // Success - no additional message needed
                     }, 2000);
-                    
+
                 } catch (error) {
                     this.showStatus('Failed to send email. Please try again.', 'error');
                 } finally {
@@ -3521,7 +3530,16 @@ Best regards,
                 this.emailStatus.textContent = message;
                 this.emailStatus.className = `email-status ${type}`;
                 this.emailStatus.style.display = 'block';
-                
+
+                // Auto-scroll to show the status message a bit higher
+                setTimeout(() => {
+                    this.emailStatus.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                }, 100);
+
                 if (duration) {
                     setTimeout(() => this.hideStatus(), duration);
                 }

@@ -806,24 +806,10 @@
 
         .popup-footer {
             display: flex;
-            justify-content: space-between;
+            justify-content: right;
             align-items: center;
             padding-top: 24px;
             border-top: 1px solid #f3f4f6;
-        }
-
-        .security-note {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            color: #6b7280;
-            font-weight: 500;
-        }
-
-        .security-note i {
-            font-size: 14px;
-            color: #10b981;
         }
 
         .popup-actions {
@@ -929,6 +915,9 @@
                 flex-direction: column;
                 gap: 10px;
             }
+            .cta-button {
+                flex-direction: column;
+            }
 
             .btn-cancel,
             .btn-send {
@@ -945,10 +934,6 @@
                 flex-direction: column;
                 gap: 16px;
                 align-items: stretch;
-            }
-
-            .security-note {
-                justify-content: center;
             }
         }
 
@@ -1529,10 +1514,6 @@
                     </div>
                     
                     <div class="popup-footer">
-                        <div class="security-note">
-                            <i class="fas fa-shield-alt"></i>
-                            SECURE IN-APP DELIVERY
-                        </div>
                         <div class="popup-actions">
                             <button class="btn-cancel" onclick="emailManager.closeEmailPopup()">Cancel</button>
                             <button class="btn-send" id="sendEmailBtn">
@@ -1651,29 +1632,33 @@
         // Show Continue Watching section if user has progress and functional cookies are allowed
         document.addEventListener('DOMContentLoaded', function() {
             function checkContinueWatching() {
-                // Only show if functional cookies are allowed
-                if (FunctionalCookies.hasConsentFor('functional')) {
-                    // Check if user has any saved video progress
-                    const lastWatched = FunctionalCookies.getLastWatched();
-                    const videoProgress = FunctionalCookies.getVideoProgress('module-1-webinar');
-                    
-                    if (lastWatched && videoProgress > 0) {
-                        const continueSection = document.getElementById('continueWatchingSection');
-                        if (continueSection) {
-                            continueSection.style.display = 'block';
-                            
-                            // Calculate progress percentage
-                            const progressPercent = Math.round((videoProgress / 100) * 100); // Assuming 100 seconds total for demo
-                            
-                            // Update the continue watching text
-                            const progressText = continueSection.querySelector('p');
-                            if (progressText) {
-                                progressText.textContent = `Edistyminen: ${Math.min(progressPercent, 100)}% - Jatka siitä mihin jäit`;
+                // Only show if functional cookies are allowed and cookie manager is available
+                if (window.cookieManager && window.cookieManager.hasConsentFor('functional')) {
+                    // Check if user has any saved video progress (using localStorage as example)
+                    try {
+                        const lastWatched = localStorage.getItem('lastWatchedVideo');
+                        const videoProgress = localStorage.getItem('videoProgress_module-1-webinar');
+                        
+                        if (lastWatched && videoProgress && parseFloat(videoProgress) > 0) {
+                            const continueSection = document.getElementById('continueWatchingSection');
+                            if (continueSection) {
+                                continueSection.style.display = 'block';
+                                
+                                // Calculate progress percentage
+                                const progressPercent = Math.round(parseFloat(videoProgress)); 
+                                
+                                // Update the continue watching text
+                                const progressText = continueSection.querySelector('p');
+                                if (progressText) {
+                                    progressText.textContent = `Edistyminen: ${Math.min(progressPercent, 100)}% - Jatka siitä mihin jäit`;
+                                }
                             }
                         }
+                    } catch (error) {
+                        console.log('Could not access video progress data');
                     }
                 } else {
-                    // Hide continue watching section if no consent
+                    // Hide continue watching section if no consent or cookie manager not available
                     const continueSection = document.getElementById('continueWatchingSection');
                     if (continueSection) {
                         continueSection.style.display = 'none';
@@ -1681,8 +1666,8 @@
                 }
             }
             
-            // Check on page load
-            checkContinueWatching();
+            // Check on page load with a small delay to ensure cookie manager is loaded
+            setTimeout(checkContinueWatching, 100);
             
             // Listen for consent changes
             window.addEventListener('cookieConsentUpdated', function(event) {
@@ -1949,6 +1934,15 @@ Best regards,
                 this.emailStatus.textContent = message;
                 this.emailStatus.className = `email-status ${type}`;
                 this.emailStatus.style.display = 'block';
+                
+                // Auto-scroll to show the status message a bit higher
+                setTimeout(() => {
+                    this.emailStatus.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                }, 100);
                 
                 if (duration) {
                     setTimeout(() => this.hideStatus(), duration);

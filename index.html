@@ -690,6 +690,13 @@
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             background: #000;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .video-container:hover {
+            transform: scale(1.01);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
         }
 
         .video-element {
@@ -971,7 +978,7 @@
         }
 
         .subscribe-icon i {
-            font-size: 35px;
+            font-size: 28px;
             color: white;
         }
 
@@ -1026,7 +1033,7 @@
             }
 
             .subscribe-icon i {
-                font-size: 30px;
+                font-size: 24px;
             }
         }
 
@@ -1122,6 +1129,324 @@
                 margin: 0 !important;
             }
 
+        }
+
+        /* Selection Modal Styles */
+        .selection-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .selection-modal-overlay.show {
+            opacity: 1;
+        }
+
+        .selection-modal-content {
+            background: white;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .selection-modal-overlay.show .selection-modal-content {
+            transform: scale(1);
+        }
+
+        .selection-modal-header {
+            padding: 32px 32px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .selection-modal-header h2 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .selection-modal-close {
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 50%;
+            color: #9ca3af;
+            transition: all 0.2s ease;
+        }
+
+        .selection-modal-close:hover {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .selection-modal-body {
+            padding: 24px 32px;
+        }
+
+        .selection-modal-body p {
+            margin: 0 0 32px 0;
+            color: #6b7280;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .selection-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .selection-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            border: 2px solid transparent;
+            border-radius: 16px;
+            background: #f9fafb;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .selection-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .selection-option.single-option {
+            border-color: rgba(127, 176, 105, 0.2);
+            background: rgba(127, 176, 105, 0.05);
+        }
+
+        .selection-option.single-option:hover {
+            border-color: #7fb069;
+            background: rgba(127, 176, 105, 0.1);
+        }
+
+        .selection-option.package-option {
+            border-color: rgba(167, 121, 173, 0.2);
+            background: rgba(167, 121, 173, 0.05);
+        }
+
+        .selection-option.package-option:hover {
+            border-color: #a779ad;
+            background: rgba(167, 121, 173, 0.1);
+        }
+
+        .option-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .selection-option:hover .option-icon {
+            transform: scale(1.1);
+        }
+
+        .single-icon {
+            background: rgba(127, 176, 105, 0.2);
+            color: #7fb069;
+        }
+
+        .package-icon {
+            background: rgba(167, 121, 173, 0.2);
+            color: #a779ad;
+        }
+
+        .option-title {
+            font-weight: 700;
+            color: #374151;
+            font-size: 16px;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .option-subtitle {
+            font-size: 12px;
+            color: #9ca3af;
+            display: block;
+        }
+
+        .selection-modal-footer {
+            padding: 0 32px 32px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn-cancel {
+            background: none;
+            border: none;
+            padding: 12px 24px;
+            color: #6b7280;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .btn-cancel:hover {
+            color: #374151;
+        }
+
+        .email-status {
+            display: none;
+            text-align: center;
+            padding: 16px 20px;
+            margin: 16px 32px 16px;
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 14px;
+            animation: slideInStatus 0.3s ease-out;
+        }
+
+        @keyframes slideInStatus {
+            from { 
+                opacity: 0; 
+                transform: translateY(-10px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .email-status.success {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .email-status.error {
+            background: linear-gradient(135deg, #fef2f2, #fecaca);
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .email-status.loading {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 640px) {
+            .selection-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .selection-modal-header,
+            .selection-modal-body,
+            .selection-modal-footer {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            
+            .selection-modal-content {
+                margin: 10px;
+                max-width: calc(100vw - 20px);
+            }
+            
+            .selection-modal-header h2 {
+                font-size: 20px;
+            }
+            
+            .selection-option {
+                padding: 20px 16px;
+            }
+            
+            .option-icon {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 12px;
+            }
+            
+            .option-title {
+                font-size: 15px;
+            }
+            
+            .option-subtitle {
+                font-size: 11px;
+            }
+            
+            .email-status {
+                margin: 12px 24px 12px;
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .selection-modal-overlay {
+                padding: 10px;
+            }
+            
+            .selection-modal-content {
+                max-height: 85vh;
+            }
+            
+            .selection-modal-header,
+            .selection-modal-body,
+            .selection-modal-footer {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            .selection-modal-header {
+                padding-top: 24px;
+            }
+            
+            .selection-modal-body {
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+            
+            .selection-modal-footer {
+                padding-bottom: 24px;
+            }
+            
+            .selection-option {
+                padding: 16px 12px;
+            }
+            
+            .option-icon {
+                width: 36px;
+                height: 36px;
+                margin-bottom: 10px;
+            }
+            
+            .email-status {
+                margin: 10px 20px 10px;
+                padding: 10px 14px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -1309,13 +1634,13 @@
                                         kanssamme – askel kerrallaan.</strong></p>
                             </div> -->
                             <div class="subricbe" data-animation="fadeInDown" data-delay=".4s">
-                                <form action="" class="contact-form" data-form-type="newsletter"
-                                    data-source="hero-section">
+                                <form action="" class="contact-form" data-form-type="webinar-selection"
+                                    data-source="webinar-selection" id="webinarSelectionForm">
                                     <label class="env"><i class="icon fal fa-envelope"></i><span
                                             class="ml">Sähköpostiosoite</span></label>
                                     <input type="email" id="email2" name="email2" class="header-input"
                                         placeholder="Anna sähköpostiosoitteesi tähän..." required>
-                                    <button type="submit" class="btn header-btn"> Vastaanota webinaaritietoa </button>
+                                    <button type="submit" class="btn header-btn" id="webinarSubmitBtn"> Vastaanota webinaaritietoa </button>
                                 </form>
                             </div>
                             <!-- <div>
@@ -1370,6 +1695,47 @@
 
 
         </section>
+
+        <!-- Selection Modal -->
+        <div id="selectionModal" class="selection-modal-overlay" style="display: none;">
+            <div class="selection-modal-content">
+                <div class="selection-modal-header">
+                    <h2>Valitse vaihtoehto</h2>
+                    <button class="selection-modal-close" onclick="closeSelectionModal()">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="selection-modal-body">
+                    <p>Ole hyvä ja valitse, mistä kokonaisuudesta haluat lisätietoa sähköpostiisi.</p>
+                    <div class="selection-options">
+                        <button class="selection-option" onclick="selectOption('single')">
+                            <div class="option-icon single-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                            <span class="option-title">Yksittäinen moduuli</span>
+                            <span class="option-subtitle">Tietoa yhdestä aiheesta</span>
+                        </button>
+                        <button class="selection-option" onclick="selectOption('package')">
+                            <div class="option-icon package-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                </svg>
+                            </div>
+                            <span class="option-title">Koko paketti</span>
+                            <span class="option-subtitle">Kaikki moduulit kerralla</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="email-status" id="selectionStatus" style="display: none;"></div>
+                <div class="selection-modal-footer">
+                    <button class="btn-cancel" onclick="closeSelectionModal()">Peruuta</button>
+                </div>
+            </div>
+        </div>
 
         <section>
             <div>
@@ -2592,6 +2958,24 @@ div>i>div></div>""
             playButton.addEventListener('click', togglePlay);
             playPauseBtn.addEventListener('click', togglePlay);
             video.addEventListener('click', togglePlay);
+            
+            // Make entire video container clickable
+            const videoContainer = document.querySelector('.video-container');
+            if (videoContainer) {
+                videoContainer.addEventListener('click', function(e) {
+                    // Don't trigger if clicking on controls or buttons
+                    if (!e.target.closest('.video-controls') && 
+                        !e.target.closest('.play-button-custom') && 
+                        !e.target.closest('.notify-buttons') &&
+                        !e.target.closest('button') &&
+                        !e.target.closest('input')) {
+                        togglePlay();
+                    }
+                });
+                
+                // Add cursor pointer to indicate clickability
+                videoContainer.style.cursor = 'pointer';
+            }
 
             // Update progress bar
             video.addEventListener('timeupdate', () => {
@@ -2752,6 +3136,128 @@ div>i>div></div>""
 
     <!-- Email Modal System -->
     <script src="js/email-modal.js"></script>
+
+    <!-- Selection Modal JavaScript -->
+    <script>
+        let userEmail = '';
+
+        // Handle form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const webinarForm = document.getElementById('webinarSelectionForm');
+            const emailInput = document.getElementById('email2');
+            
+            if (webinarForm) {
+                webinarForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const email = emailInput.value.trim();
+                    if (!email) {
+                        alert('Ole hyvä ja anna sähköpostiosoite.');
+                        return;
+                    }
+                    
+                    if (!isValidEmail(email)) {
+                        alert('Ole hyvä ja anna kelvollinen sähköpostiosoite.');
+                        return;
+                    }
+                    
+                    userEmail = email;
+                    showSelectionModal();
+                });
+            }
+        });
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function showSelectionModal() {
+            const modal = document.getElementById('selectionModal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+            
+            // Add option classes for styling
+            const singleOption = document.querySelector('.selection-option:first-child');
+            const packageOption = document.querySelector('.selection-option:last-child');
+            if (singleOption) singleOption.classList.add('single-option');
+            if (packageOption) packageOption.classList.add('package-option');
+        }
+
+        function closeSelectionModal() {
+            const modal = document.getElementById('selectionModal');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        function selectOption(option) {
+            const optionText = option === 'single' ? 'Yksittäinen moduuli' : 'Koko paketti';
+            
+            // Show loading state
+            showStatus('Lähetetään sähköpostia...', 'loading');
+            
+            // Simulate email sending delay
+            setTimeout(() => {
+                // Simulate sending email (frontend only)
+                console.log('Sending email to:', ['contact@bloomlead.io', 'marke.tyrvainen@elisanet.fi', 'jkartilamalmivaara@gmail.com']);
+                console.log('User email:', userEmail);
+                console.log('Selected option:', optionText);
+                
+                // Show success message
+                showStatus(`Kiitos kiinnostuksestasi! Valitsit: ${optionText}`, 'success', 4000);
+                
+                // Close modal after delay
+                setTimeout(() => {
+                    closeSelectionModal();
+                    // Clear form
+                    document.getElementById('email2').value = '';
+                }, 2000);
+            }, 1000);
+        }
+
+        function showStatus(message, type = 'success', duration = null) {
+            const statusElement = document.getElementById('selectionStatus');
+            statusElement.textContent = message;
+            statusElement.className = `email-status ${type}`;
+            statusElement.style.display = 'block';
+
+            // Auto-scroll to show the status message a bit higher
+            setTimeout(() => {
+                statusElement.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center',
+                    inline: 'nearest'
+                });
+            }, 100);
+
+            if (duration) {
+                setTimeout(() => hideStatus(), duration);
+            }
+        }
+
+        function hideStatus() {
+            const statusElement = document.getElementById('selectionStatus');
+            statusElement.style.display = 'none';
+        }
+
+        // Close modal when clicking overlay
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('selection-modal-overlay')) {
+                closeSelectionModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeSelectionModal();
+            }
+        });
+    </script>
 
     <!-- Page-specific webinar tracking -->
     <div data-webinar-page data-webinar-id="home-page"
