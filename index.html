@@ -7,8 +7,29 @@
     <title>BloomLead - Live Webinars & Professional Learning</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Permissions-Policy" content="unload=*">
     <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.webp">
     <!-- Place favicon.ico in the root directory -->
+
+    <!-- Google Analytics - Loads only with analytics consent -->
+    <script>
+        // Check if analytics cookies are allowed before loading Google Analytics
+        if (localStorage.getItem('bloomlead_cookie_consent')) {
+            const consent = JSON.parse(localStorage.getItem('bloomlead_cookie_consent'));
+            if (consent.categories && consent.categories.analytics) {
+                // Load Google Analytics
+                const script1 = document.createElement('script');
+                script1.async = true;
+                script1.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_GOOGLE_ANALYTICS_ID';
+                document.head.appendChild(script1);
+                
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'YOUR_GOOGLE_ANALYTICS_ID');
+            }
+        }
+    </script>
 
     <!-- CSS here -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -2455,9 +2476,11 @@ div>i>div></div>""
 
 
     <!-- Cookie Consent Scripts - Load Early -->
-    <!-- <script src="js/cookie-config.js"></script> -->
-    <!-- <script src="js/necessary-cookies.js"></script> -->
-    <!-- <script src="js/functional-cookies.js"></script> -->
+    <script src="js/config.js"></script>
+    <script src="js/cookie-config.js"></script>
+    <script src="js/cookie-credentials.js"></script>
+    <script src="js/necessary-cookies.js"></script>
+    <script src="js/functional-cookies.js"></script>
     <!-- <script src="js/guest-detection.js"></script> -->
     <!-- <script src="js/script-blocker.js"></script> -->
 
@@ -2484,8 +2507,8 @@ div>i>div></div>""
     <script src="js/main.js"></script>
 
     <!-- Cookie Consent System -->
-    <!-- <script src="js/cookie-consent-manager.js"></script> -->
-    <!-- <script src="js/webinar-analytics.js"></script> -->
+    <script src="js/cookie-consent-manager.js"></script>
+    <script src="js/webinar-analytics.js"></script>
 
     <!-- Custom Mobile Menu Script -->
     <script>
@@ -2712,8 +2735,20 @@ div>i>div></div>""
     </script>
 
     <!-- Marketing Cookies System -->
-    <!-- <script src="js/marketing-cookies.js"></script> -->
-    <!-- <script src="js/webinar-marketing-integration.js"></script> -->
+    <script src="js/marketing-cookies.js"></script>
+    <script src="js/facebook-pixel-safe.js"></script>
+    <script src="js/marketing-platforms.js"></script>
+    <script src="js/webinar-marketing-integration.js"></script>
+    
+    <!-- Marketing Platform Tracking -->
+    <script>
+        // Track page view for home page
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof marketingPlatforms !== 'undefined') {
+                marketingPlatforms.trackViewContent('homepage', 'BloomLead Home');
+            }
+        });
+    </script>
 
     <!-- Email Modal System -->
     <script src="js/email-modal.js"></script>
