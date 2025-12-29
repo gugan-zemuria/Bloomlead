@@ -379,28 +379,7 @@ class CookieConsentManager {
                     <div class="cookie-categories">
                         ${categoriesHTML}
                     </div>
-                    <div class="cookie-data-info">
-                        <h4>Tietojen säilytysajat</h4>
-                        <ul>
-                            <li><strong>Välttämättömät evästeet:</strong> Istunnon ajan tai 30 päivää</li>
-                            <li><strong>Toiminnalliset evästeet:</strong> 365 päivää</li>
-                            <li><strong>Analytiikkaevästeet:</strong> 26 kuukautta (Google Analytics)</li>
-                            <li><strong>Markkinointievästeet:</strong> 90 päivää</li>
-                        </ul>
-                        <h4>Sinun oikeutesi (GDPR)</h4>
-                        <ul>
-                            <li><strong>Peruuttaa suostumus:</strong> Voit peruuttaa suostumuksesi milloin tahansa</li>
-                            <li><strong>Tietojen poisto:</strong> Voit pyytää tietojesi poistamista</li>
-                            <li><strong>Tietojen siirto:</strong> Voit pyytää tietojesi siirtämistä</li>
-                            <li><strong>Valitus:</strong> Voit tehdä valituksen tietosuojavaltuutetulle</li>
-                        </ul>
-                        <p class="data-contact">
-                            <strong>Tietosuoja-asiat:</strong> 
-                            <a href="mailto:contact@bloomlead.io">contact@bloomlead.io</a> | 
-                            <a href="privacy-policy.html" target="_blank">Tietosuojaseloste</a> |
-                            <a href="#" onclick="cookieManager.withdrawConsent(); return false;">Peruuta suostumus</a>
-                        </p>
-                    </div>
+                    
                 </div>
                 <div class="cookie-modal-footer">
                     <button class="btn-cookie-save" onclick="cookieManager.savePreferences()">

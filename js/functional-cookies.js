@@ -279,8 +279,8 @@ function initializeVideoPlayer(videoElement, videoId) {
         }
     });
     
-    // Clean up interval when video is removed
-    videoElement.addEventListener('beforeunload', () => {
+    // Clean up interval when video is removed (using pagehide for compliance)
+    window.addEventListener('pagehide', () => {
         if (progressInterval) {
             clearInterval(progressInterval);
         }

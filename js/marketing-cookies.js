@@ -5,41 +5,44 @@
  */
 
 // ==========================================
-// COOKIE UTILITY FUNCTIONS
-// ==========================================
-const CookieManager = {
-    set(name, value, days = 365) {
-        const expires = new Date();
-        expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-        document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
-    },
-
-    get(name) {
-        const matches = document.cookie.match(new RegExp(`(?:^|; )${encodeURIComponent(name)}=([^;]*)`));
-        return matches ? decodeURIComponent(matches[1]) : null;
-    },
-
-    delete(name) {
-        this.set(name, '', -1);
-    }
-};
-
-// ==========================================
 // MARKETING COOKIES - For Webinar Website
 // ==========================================
 const MarketingCookies = {
+    // Ensure CookieManager is available
+    ensureCookieManager() {
+        if (!window.CookieManager) {
+            console.warn('CookieManager not available, initializing basic version');
+            window.CookieManager = {
+                set(name, value, days = 365) {
+                    const expires = new Date();
+                    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+                    document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+                },
+                get(name) {
+                    const matches = document.cookie.match(new RegExp(`(?:^|; )${encodeURIComponent(name)}=([^;]*)`));
+                    return matches ? decodeURIComponent(matches[1]) : null;
+                },
+                delete(name) {
+                    this.set(name, '', -1);
+                }
+            };
+        }
+    },
+
     // Generate or retrieve marketing user ID
     getMarketingUserId() {
-        let marketingId = CookieManager.get('marketing_user_id');
+        this.ensureCookieManager();
+        let marketingId = window.CookieManager.get('marketing_user_id');
         if (!marketingId) {
             marketingId = 'mkt_' + Date.now() + '_' + Math.random().toString(36).substring(2, 11);
-            CookieManager.set('marketing_user_id', marketingId, 390); // 13 months (standard)
+            window.CookieManager.set('marketing_user_id', marketingId, 390); // 13 months (standard)
         }
         return marketingId;
     },
 
     // Store campaign data from UTM parameters
     saveCampaignData() {
+        this.ensureCookieManager();
         const urlParams = new URLSearchParams(window.location.search);
         const campaignData = {
             source: urlParams.get('utm_source') || null,
@@ -53,22 +56,24 @@ const MarketingCookies = {
         };
 
         // Save first-touch attribution (doesn't overwrite)
-        if (!CookieManager.get('first_touch_campaign')) {
-            CookieManager.set('first_touch_campaign', JSON.stringify(campaignData), 90);
+        if (!window.CookieManager.get('first_touch_campaign')) {
+            window.CookieManager.set('first_touch_campaign', JSON.stringify(campaignData), 90);
         }
 
         // Always update last-touch attribution
-        CookieManager.set('last_touch_campaign', JSON.stringify(campaignData), 30);
+        window.CookieManager.set('last_touch_campaign', JSON.stringify(campaignData), 30);
         return campaignData;
     },
 
     getFirstTouchCampaign() {
-        const data = CookieManager.get('first_touch_campaign');
+        this.ensureCookieManager();
+        const data = window.CookieManager.get('first_touch_campaign');
         return data ? JSON.parse(data) : null;
     },
 
     getLastTouchCampaign() {
-        const data = CookieManager.get('last_touch_campaign');
+        this.ensureCookieManager();
+        const data = window.CookieManager.get('last_touch_campaign');
         return data ? JSON.parse(data) : null;
     },
 
@@ -95,6 +100,7 @@ const MarketingCookies = {
 
     // Store conversion history
     addConversion(conversionType) {
+        this.ensureCookieManager();
         let conversions = this.getConversions();
         conversions.push({
             type: conversionType,
@@ -105,11 +111,12 @@ const MarketingCookies = {
         if (conversions.length > 10) {
             conversions = conversions.slice(-10);
         }
-        CookieManager.set('user_conversions', JSON.stringify(conversions), 90);
+        window.CookieManager.set('user_conversions', JSON.stringify(conversions), 90);
     },
 
     getConversions() {
-        const data = CookieManager.get('user_conversions');
+        this.ensureCookieManager();
+        const data = window.CookieManager.get('user_conversions');
         return data ? JSON.parse(data) : [];
     },
 
@@ -122,12 +129,13 @@ const MarketingCookies = {
             if (interests.length > 20) {
                 interests = interests.slice(-20);
             }
-            CookieManager.set('user_interests', JSON.stringify(interests), 90);
+            window.CookieManager.set('user_interests', JSON.stringify(interests), 90);
         }
     },
 
     getInterests() {
-        const data = CookieManager.get('user_interests');
+        this.ensureCookieManager();
+        const data = window.CookieManager.get('user_interests');
         return data ? JSON.parse(data) : [];
     },
 
@@ -139,27 +147,31 @@ const MarketingCookies = {
             if (topics.length > 15) {
                 topics = topics.slice(-15);
             }
-            CookieManager.set('webinar_topics', JSON.stringify(topics), 60);
+            window.CookieManager.set('webinar_topics', JSON.stringify(topics), 60);
         }
     },
 
     getWebinarTopics() {
-        const data = CookieManager.get('webinar_topics');
+        this.ensureCookieManager();
+        const data = window.CookieManager.get('webinar_topics');
         return data ? JSON.parse(data) : [];
     },
 
     // Store user segment for targeted marketing
     setUserSegment(segment) {
-        CookieManager.set('user_segment', segment, 90);
+        this.ensureCookieManager();
+        window.CookieManager.set('user_segment', segment, 90);
         console.log(`User segment set to: ${segment}`);
     },
 
     getUserSegment() {
-        return CookieManager.get('user_segment') || 'unknown';
+        this.ensureCookieManager();
+        return window.CookieManager.get('user_segment') || 'unknown';
     },
 
     // Track ad clicks
     trackAdClick(adId, adName, adPlatform) {
+        this.ensureCookieManager();
         const adData = {
             marketingUserId: this.getMarketingUserId(),
             adId: adId,
@@ -169,12 +181,13 @@ const MarketingCookies = {
             referrer: document.referrer
         };
 
-        CookieManager.set('last_ad_click', JSON.stringify(adData), 30);
+        window.CookieManager.set('last_ad_click', JSON.stringify(adData), 30);
         this.sendMarketingEvent('ad_click', adData);
     },
 
     getLastAdClick() {
-        const data = CookieManager.get('last_ad_click');
+        this.ensureCookieManager();
+        const data = window.CookieManager.get('last_ad_click');
         return data ? JSON.parse(data) : null;
     },
 
@@ -194,6 +207,7 @@ const MarketingCookies = {
 
     // Track email campaign clicks
     trackEmailClick(campaignId, linkId) {
+        this.ensureCookieManager();
         const emailData = {
             marketingUserId: this.getMarketingUserId(),
             campaignId: campaignId,
@@ -201,32 +215,36 @@ const MarketingCookies = {
             timestamp: new Date().toISOString()
         };
 
-        CookieManager.set('email_campaign_click', JSON.stringify(emailData), 30);
+        window.CookieManager.set('email_campaign_click', JSON.stringify(emailData), 30);
         this.sendMarketingEvent('email_click', emailData);
     },
 
     // Store A/B test variant
     setABTestVariant(testName, variant) {
+        this.ensureCookieManager();
         let tests = this.getABTests();
         tests[testName] = {
             variant: variant,
             timestamp: new Date().toISOString()
         };
-        CookieManager.set('ab_tests', JSON.stringify(tests), 30);
+        window.CookieManager.set('ab_tests', JSON.stringify(tests), 30);
     },
 
     getABTestVariant(testName) {
+        this.ensureCookieManager();
         const tests = this.getABTests();
         return tests[testName] ? tests[testName].variant : null;
     },
 
     getABTests() {
-        const data = CookieManager.get('ab_tests');
+        this.ensureCookieManager();
+        const data = window.CookieManager.get('ab_tests');
         return data ? JSON.parse(data) : {};
     },
 
     // Track social media source
     saveSocialMediaSource() {
+        this.ensureCookieManager();
         const urlParams = new URLSearchParams(window.location.search);
         const referrer = document.referrer.toLowerCase();
         let socialSource = null;
@@ -256,14 +274,15 @@ const MarketingCookies = {
             }
         }
 
-        if (socialSource && !CookieManager.get('social_media_source')) {
-            CookieManager.set('social_media_source', socialSource, 30);
+        if (socialSource && !window.CookieManager.get('social_media_source')) {
+            window.CookieManager.set('social_media_source', socialSource, 30);
         }
         return socialSource;
     },
 
     getSocialMediaSource() {
-        return CookieManager.get('social_media_source');
+        this.ensureCookieManager();
+        return window.CookieManager.get('social_media_source');
     },
 
     // Calculate customer journey touchpoints
@@ -284,34 +303,42 @@ const MarketingCookies = {
 
     // Send marketing event to server/third-party platforms
     sendMarketingEvent(eventType, data) {
-        // Send to your marketing analytics endpoint
-        fetch('/api/marketing-analytics', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                eventType: eventType,
-                data: data
-            })
-        }).catch(err => console.error('Marketing analytics error:', err));
+        // Only send to analytics endpoint if not on localhost
+        const isLocalDev = window.location.hostname === 'localhost' || 
+                          window.location.hostname === '127.0.0.1' || 
+                          window.location.protocol === 'file:';
+        
+        if (!isLocalDev) {
+            // Send to your marketing analytics endpoint
+            fetch('/api/marketing-analytics', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    eventType: eventType,
+                    data: data
+                })
+            }).catch(err => console.error('Marketing analytics error:', err));
+        }
 
         console.log('Marketing Event:', eventType, data);
     },
 
     // Clear all marketing cookies (GDPR compliance)
     clearAllMarketing() {
-        CookieManager.delete('marketing_user_id');
-        CookieManager.delete('first_touch_campaign');
-        CookieManager.delete('last_touch_campaign');
-        CookieManager.delete('user_conversions');
-        CookieManager.delete('user_interests');
-        CookieManager.delete('webinar_topics');
-        CookieManager.delete('user_segment');
-        CookieManager.delete('last_ad_click');
-        CookieManager.delete('email_campaign_click');
-        CookieManager.delete('ab_tests');
-        CookieManager.delete('social_media_source');
+        this.ensureCookieManager();
+        window.CookieManager.delete('marketing_user_id');
+        window.CookieManager.delete('first_touch_campaign');
+        window.CookieManager.delete('last_touch_campaign');
+        window.CookieManager.delete('user_conversions');
+        window.CookieManager.delete('user_interests');
+        window.CookieManager.delete('webinar_topics');
+        window.CookieManager.delete('user_segment');
+        window.CookieManager.delete('last_ad_click');
+        window.CookieManager.delete('email_campaign_click');
+        window.CookieManager.delete('ab_tests');
+        window.CookieManager.delete('social_media_source');
         console.log('All marketing cookies cleared');
     }
 };
@@ -515,17 +542,23 @@ const MarketingIntegration = {
     initialize() {
         // Check if marketing cookies are allowed
         if (this.hasMarketingConsent()) {
-            // Initialize marketing tracking
-            MarketingCookies.saveCampaignData();
-            MarketingCookies.saveSocialMediaSource();
+            // Ensure MarketingCookies is available
+            if (typeof MarketingCookies !== 'undefined') {
+                // Initialize marketing tracking
+                MarketingCookies.saveCampaignData();
+                MarketingCookies.saveSocialMediaSource();
 
-            // Initialize third-party pixels (uncomment and add your IDs)
-            // ThirdPartyMarketing.initGoogleAds('AW-XXXXXXXXX');
-            // ThirdPartyMarketing.initFacebookPixel('XXXXXXXXXXXXXXX');
-            // ThirdPartyMarketing.initLinkedInTag('XXXXXX');
-            // ThirdPartyMarketing.initTwitterPixel('XXXXX');
+                // Initialize third-party pixels (uncomment and add your IDs)
+                // ThirdPartyMarketing.initGoogleAds('AW-XXXXXXXXX');
+                // ThirdPartyMarketing.initFacebookPixel('XXXXXXXXXXXXXXX');
+                // ThirdPartyMarketing.initLinkedInTag('XXXXXX');
+                // ThirdPartyMarketing.initTwitterPixel('XXXXX');
 
-            console.log('Marketing cookies initialized');
+                console.log('Marketing cookies initialized');
+            } else {
+                console.warn('MarketingCookies not available yet, retrying...');
+                setTimeout(() => this.initialize(), 100);
+            }
         }
     },
 
@@ -552,13 +585,15 @@ const MarketingIntegration = {
 
     // Clear marketing cookies when consent is withdrawn
     clearMarketingData() {
-        MarketingCookies.clearAllMarketing();
-        console.log('Marketing data cleared due to consent withdrawal');
+        if (typeof MarketingCookies !== 'undefined') {
+            MarketingCookies.clearAllMarketing();
+            console.log('Marketing data cleared due to consent withdrawal');
+        }
     },
 
     // Get complete customer journey data
     getMarketingData() {
-        if (this.hasMarketingConsent()) {
+        if (this.hasMarketingConsent() && typeof MarketingCookies !== 'undefined') {
             const journey = MarketingCookies.getCustomerJourney();
             console.log('Customer Journey:', journey);
             return journey;
