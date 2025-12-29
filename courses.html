@@ -1910,8 +1910,7 @@ Best regards,
                     setTimeout(() => {
                         this.closeEmailPopup();
                         
-                        // Show main success message
-                        this.showMainSuccessMessage();
+                        // Success - no additional message needed
                     }, 2000);
                     
                 } catch (error) {
@@ -1958,44 +1957,6 @@ Best regards,
 
             hideStatus() {
                 this.emailStatus.style.display = 'none';
-            }
-
-            showMainSuccessMessage() {
-                const successMessage = document.createElement('div');
-                successMessage.style.cssText = `
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    background: linear-gradient(135deg, #28a745, #20c997);
-                    color: white;
-                    padding: 20px 30px;
-                    border-radius: 12px;
-                    font-weight: 600;
-                    z-index: 10002;
-                    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
-                    animation: slideInRight 0.4s ease-out;
-                    max-width: 400px;
-                `;
-                successMessage.innerHTML = `
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <i class="fas fa-check-circle" style="font-size: 24px;"></i>
-                        <div>
-                            <div style="font-size: 16px; margin-bottom: 4px;">Inquiry Sent!</div>
-                            <div style="font-size: 14px; opacity: 0.9;">We will contact you soon.</div>
-                        </div>
-                    </div>
-                `;
-                
-                document.body.appendChild(successMessage);
-                
-                setTimeout(() => {
-                    successMessage.style.animation = 'slideInRight 0.4s ease-out reverse';
-                    setTimeout(() => {
-                        if (successMessage.parentNode) {
-                            successMessage.parentNode.removeChild(successMessage);
-                        }
-                    }, 400);
-                }, 5000);
             }
         }
 
