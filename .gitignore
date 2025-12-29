@@ -3,6 +3,7 @@
 .env.local
 .env.production
 .env.development
+.env.example
 
 # Documentation files
 *.md
