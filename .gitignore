@@ -5,6 +5,27 @@
 .env.development
 .env.example
 
+# Configuration files
+config/
+package.json
+.prettierrc.json
+.prettierignore
+
+# Scripts and utilities
+scripts/
+src/core/
+
+# Test files (except main test files)
+test-cookie-popup.html
+test-responsive-cookie.html
+
+# JavaScript config and credential files
+js/config.js
+js/cookie-credentials.js
+js/env-loader.js
+js/facebook-pixel-safe.js
+js/marketing-platforms.js
+
 # Documentation files
 *.md
 
