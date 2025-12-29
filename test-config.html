@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Config System Test</title>
+    <link rel="stylesheet" href="css/cookie-consent.css">
+</head>
+<body>
+    <h1>BloomLead Config System Test</h1>
+    <div id="test-results">Loading...</div>
+
+    <script src="js/config.js"></script>
+    <script src="js/cookie-consent-manager.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('Testing Config System...');
+            
+            // Wait a moment for initialization
+            setTimeout(() => {
+                const results = document.getElementById('test-results');
+                
+                if (window.Config) {
+                    results.innerHTML = `
+                        <h2>✅ Config System Loaded Successfully</h2>
+                        <p><strong>Google Analytics ID:</strong> ${Config.getGoogleAnalyticsId()}</p>
+                        <p><strong>Facebook Pixel ID:</strong> ${Config.getFacebookPixelId()}</p>
+                        <p><strong>Environment:</strong> ${Config.environment.nodeEnv}</p>
+                        <p><strong>Is Development:</strong> ${Config.environment.isDevelopment()}</p>
+                        <p><strong>Is Production:</strong> ${Config.environment.isProduction()}</p>
+                        <h3>Configuration Status:</h3>
+                        <pre>${JSON.stringify(Config.getStatus(), null, 2)}</pre>
+                        <h3>Console Check:</h3>
+                        <p>Check browser console for initialization messages and verify no 404 errors for /api/config</p>
+                    `;
+                } else {
+                    results.innerHTML = '<h2>❌ Config System Failed to Load</h2>';
+                }
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

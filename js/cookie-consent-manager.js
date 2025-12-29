@@ -10,26 +10,26 @@ class CookieConsentManager {
         this.versionKey = 'bloomlead_consent_version';
         this.categories = {
             necessary: {
-                name: 'Necessary Cookies',
-                description: 'These cookies are essential for the website to function and cannot be disabled.',
+                name: 'Välttämättömät evästeet',
+                description: 'Nämä evästeet ovat välttämättömiä verkkosivuston toiminnalle, eikä niitä voi poistaa käytöstä.',
                 required: true,
                 scripts: []
             },
             functional: {
-                name: 'Functional Cookies',
-                description: 'These cookies enable the website to remember your preferences and improve your experience.',
+                name: 'Toiminnalliset evästeet',
+                description: 'Nämä evästeet mahdollistavat verkkosivuston muistaa valintasi ja parantaa käyttökokemustasi.',
                 required: false,
                 scripts: ['video-preferences', 'language-selection', 'ui-customization']
             },
             analytics: {
-                name: 'Analytics Cookies',
-                description: 'These cookies help us understand how visitors use our website.',
+                name: 'Analytiikkaevästeet',
+                description: 'Nämä evästeet auttavat meitä ymmärtämään, miten kävijät käyttävät verkkosivustoamme.',
                 required: false,
                 scripts: ['google-analytics', 'video-analytics', 'user-journey']
             },
             marketing: {
-                name: 'Marketing Cookies',
-                description: 'These cookies enable targeted advertising and social media integration.',
+                name: 'Markkinointievästeet',
+                description: 'Nämä evästeet mahdollistavat kohdistetun mainonnan ja sosiaalisen median integraation.',
                 required: false,
                 scripts: ['facebook-pixel', 'google-ads', 'linkedin-insight', 'retargeting']
             }
@@ -43,12 +43,41 @@ class CookieConsentManager {
     }
 
     init() {
+        // Check if we're on privacy or terms pages - don't show banner on these pages
+        const currentPage = window.location.pathname.toLowerCase();
+        const isLegalPage = currentPage.includes('privacy-policy.html') || 
+                           currentPage.includes('terms-and-conditions.html');
+        
+        if (isLegalPage) {
+            // On legal pages, don't show banner at all - users need to read these first
+            console.log('Legal page detected - cookie banner disabled');
+            return;
+        }
+        
         // Check for existing consent
         this.loadConsent();
         
         // Check if consent is needed
         if (!this.hasValidConsent()) {
-            this.showBanner();
+            // Check if this is the home page (index.html or root)
+            const isHomePage = currentPage.includes('index.html') || 
+                              currentPage === '/' || 
+                              currentPage === '' ||
+                              window.location.pathname === '/' ||
+                              window.location.pathname.endsWith('/index.html') ||
+                              (window.location.pathname === '' && window.location.hash === '');
+            
+            if (isHomePage) {
+                // Show banner after 3 seconds on home page for better UX
+                // Don't block website immediately - let users browse for 3 seconds
+                console.log('Home page detected - showing cookie banner after 3 seconds');
+                setTimeout(() => {
+                    this.showBanner(false); // Don't block immediately, blocking will be enabled when banner appears
+                }, 3000);
+            } else {
+                // Show banner immediately on other pages with blocking
+                this.showBanner(true);
+            }
         } else {
             this.applyConsent();
         }
@@ -93,7 +122,11 @@ class CookieConsentManager {
             categories: categories,
             timestamp: new Date().toISOString(),
             version: this.version,
-            userAgent: navigator.userAgent
+            userAgent: navigator.userAgent,
+            language: navigator.language,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            url: window.location.href,
+            consentMethod: 'explicit' // GDPR requirement
         };
         
         localStorage.setItem(this.consentKey, JSON.stringify(consentData));
@@ -105,7 +138,7 @@ class CookieConsentManager {
         this.currentConsent = consentData;
         this.consentGiven = true;
         
-        // Log consent for audit
+        // Log consent for audit (GDPR compliance)
         this.logConsent(consentData);
     }
 
@@ -127,9 +160,14 @@ class CookieConsentManager {
         }
     }
 
-    showBanner() {
+    showBanner(enableBlocking = true) {
         if (document.getElementById('cookie-consent-banner')) {
             return; // Banner already exists
+        }
+
+        // Add blocking overlay and blur effect only if requested
+        if (enableBlocking) {
+            this.enableWebsiteBlocking();
         }
 
         const banner = this.createBanner();
@@ -138,32 +176,140 @@ class CookieConsentManager {
         // Animate in
         setTimeout(() => {
             banner.classList.add('show');
+            // If blocking wasn't enabled initially, enable it now that banner is visible
+            if (!enableBlocking) {
+                this.enableWebsiteBlocking();
+            }
         }, 100);
+    }
+
+    enableWebsiteBlocking() {
+        // Check if we're on privacy or terms pages - don't block these
+        const currentPage = window.location.pathname.toLowerCase();
+        const isLegalPage = currentPage.includes('privacy-policy.html') || 
+                           currentPage.includes('terms-and-conditions.html');
+        
+        if (isLegalPage) {
+            // On legal pages, show banner but don't block content
+            document.body.classList.add('cookie-consent-legal-page');
+            return;
+        }
+        
+        // Add body class to trigger CSS blocking
+        document.body.classList.add('cookie-consent-required');
+        
+        // Create blocking overlay
+        if (!document.getElementById('cookie-blocking-overlay')) {
+            const overlay = document.createElement('div');
+            overlay.id = 'cookie-blocking-overlay';
+            overlay.className = 'cookie-blocking-overlay active';
+            document.body.appendChild(overlay);
+        }
+        
+        // Disable scrolling and interactions
+        document.body.style.overflow = 'hidden';
+        
+        // Block all clicks, keyboard events, and form submissions
+        this.blockAllInteractions();
+    }
+
+    disableWebsiteBlocking() {
+        // Remove body class
+        document.body.classList.remove('cookie-consent-required');
+        
+        // Remove blocking overlay
+        const overlay = document.getElementById('cookie-blocking-overlay');
+        if (overlay) {
+            overlay.remove();
+        }
+        
+        // Re-enable scrolling
+        document.body.style.overflow = '';
+        
+        // Unblock interactions
+        this.unblockAllInteractions();
+    }
+
+    blockAllInteractions() {
+        // Prevent all clicks outside cookie banner and modal
+        this.clickBlocker = (e) => {
+            const banner = document.getElementById('cookie-consent-banner');
+            const modal = document.getElementById('cookie-preferences-modal');
+            
+            // Allow clicks within cookie banner or modal
+            if ((banner && banner.contains(e.target)) || (modal && modal.contains(e.target))) {
+                return true; // Allow the click
+            }
+            
+            // Block all other clicks
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        };
+        
+        // Prevent keyboard navigation outside cookie elements
+        this.keyBlocker = (e) => {
+            const banner = document.getElementById('cookie-consent-banner');
+            const modal = document.getElementById('cookie-preferences-modal');
+            
+            // Allow keyboard navigation within cookie banner or modal
+            if ((banner && banner.contains(document.activeElement)) || 
+                (modal && modal.contains(document.activeElement))) {
+                return true; // Allow keyboard navigation
+            }
+            
+            // Allow only Tab, Enter, Space for cookie banner/modal navigation
+            if (['Tab', 'Enter', ' '].includes(e.key)) {
+                return true;
+            }
+            
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        };
+        
+        // Add event listeners with capture to block early
+        document.addEventListener('click', this.clickBlocker, true);
+        document.addEventListener('keydown', this.keyBlocker, true);
+        // Note: Scroll blocking is handled by CSS overflow:hidden on body
+    }
+
+    unblockAllInteractions() {
+        if (this.clickBlocker) {
+            document.removeEventListener('click', this.clickBlocker, true);
+            this.clickBlocker = null;
+        }
+        if (this.keyBlocker) {
+            document.removeEventListener('keydown', this.keyBlocker, true);
+            this.keyBlocker = null;
+        }
     }
 
     createBanner() {
         const banner = document.createElement('div');
         banner.id = 'cookie-consent-banner';
         banner.className = 'cookie-consent-banner';
+
         banner.innerHTML = `
-            <div class="cookie-banner-content">
+            <div class="cookie-popup-content">
                 <div class="cookie-banner-text">
-                    <h3>Cookie Usage</h3>
-                    <p>We use cookies to enable our interactive webinars, live chat support, and video streaming features. Choose which you allow.</p>
+                    <h3>🍪 Evästeet</h3>
+                    <p>BloomLead käyttää evästeitä ja vastaavia teknologioita sivuston toimivuuden varmistamiseen sekä analytiikkaan, webinaarien seurantaan ja markkinointiin. Välttämättömät evästeet ovat aina käytössä, ja muita evästeitä käytetään vain suostumuksellasi. Voit hyväksyä kaikki evästeet tai hylätä ei-välttämättömät evästeet.</p>
+                    <p class="cookie-privacy-link">
+                        <a href="privacy-policy.html" target="_blank">Lue lisää tietosuojaselosteesta</a> | 
+                        <a href="terms-and-conditions.html" target="_blank">Käyttöehdot</a>
+                    </p>
                 </div>
                 <div class="cookie-banner-actions">
-                    <button class="btn-cookie-settings" onclick="cookieManager.showPreferences()">
-                        Cookie Settings
+                    <button class="btn-cookie-accept-all" onclick="cookieManager.acceptAll()">
+                        Hyväksy kaikki
                     </button>
                     <button class="btn-cookie-reject-all" onclick="cookieManager.rejectAll()">
-                        Reject All
+                        Hylkää ei-välttämättömät
                     </button>
-                    <button class="btn-cookie-accept-all" onclick="cookieManager.acceptAll()">
-                        Accept All
+                    <button class="btn-cookie-settings" onclick="cookieManager.showPreferences()">
+                        Asetukset
                     </button>
-                </div>
-                <div class="cookie-banner-links">
-                    <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
                 </div>
             </div>
         `;
@@ -178,7 +324,7 @@ class CookieConsentManager {
 
         const modal = this.createPreferencesModal();
         document.body.appendChild(modal);
-        document.body.style.overflow = 'hidden';
+        // Don't add overflow hidden here as it's already set by blocking
         
         // Animate in
         setTimeout(() => {
@@ -211,7 +357,7 @@ class CookieConsentManager {
                         </label>
                         <div class="cookie-category-info">
                             <h4>${category.name}</h4>
-                            ${category.required ? '<span class="required-badge">Always Active</span>' : ''}
+                            ${category.required ? '<span class="required-badge">Aina aktiivinen</span>' : ''}
                         </div>
                     </div>
                     <p class="cookie-category-description">${category.description}</p>
@@ -220,26 +366,48 @@ class CookieConsentManager {
         });
 
         modal.innerHTML = `
-            <div class="cookie-modal-overlay" onclick="cookieManager.closePreferences()"></div>
+            <div class="cookie-modal-overlay" onclick="cookieManager.closePreferencesToBanner()"></div>
             <div class="cookie-modal-content">
                 <div class="cookie-modal-header">
-                    <h2>Cookie Settings</h2>
-                    <button class="cookie-modal-close" onclick="cookieManager.closePreferences()">
+                    <h2>Evästeasetukset</h2>
+                    <button class="cookie-modal-close" onclick="cookieManager.closePreferencesToBanner()">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
                 <div class="cookie-modal-body">
-                    <p>You can manage cookie usage with the settings below. Necessary cookies are always active to ensure website functionality.</p>
+                    <p>Voit hallita evästeiden käyttöä alla olevilla asetuksilla. Välttämättömät evästeet ovat aina aktiivisia verkkosivuston toimivuuden varmistamiseksi.</p>
                     <div class="cookie-categories">
                         ${categoriesHTML}
+                    </div>
+                    <div class="cookie-data-info">
+                        <h4>Tietojen säilytysajat</h4>
+                        <ul>
+                            <li><strong>Välttämättömät evästeet:</strong> Istunnon ajan tai 30 päivää</li>
+                            <li><strong>Toiminnalliset evästeet:</strong> 365 päivää</li>
+                            <li><strong>Analytiikkaevästeet:</strong> 26 kuukautta (Google Analytics)</li>
+                            <li><strong>Markkinointievästeet:</strong> 90 päivää</li>
+                        </ul>
+                        <h4>Sinun oikeutesi (GDPR)</h4>
+                        <ul>
+                            <li><strong>Peruuttaa suostumus:</strong> Voit peruuttaa suostumuksesi milloin tahansa</li>
+                            <li><strong>Tietojen poisto:</strong> Voit pyytää tietojesi poistamista</li>
+                            <li><strong>Tietojen siirto:</strong> Voit pyytää tietojesi siirtämistä</li>
+                            <li><strong>Valitus:</strong> Voit tehdä valituksen tietosuojavaltuutetulle</li>
+                        </ul>
+                        <p class="data-contact">
+                            <strong>Tietosuoja-asiat:</strong> 
+                            <a href="mailto:contact@bloomlead.io">contact@bloomlead.io</a> | 
+                            <a href="privacy-policy.html" target="_blank">Tietosuojaseloste</a> |
+                            <a href="#" onclick="cookieManager.withdrawConsent(); return false;">Peruuta suostumus</a>
+                        </p>
                     </div>
                 </div>
                 <div class="cookie-modal-footer">
                     <button class="btn-cookie-save" onclick="cookieManager.savePreferences()">
-                        Save Settings
+                        Tallenna asetukset
                     </button>
                     <button class="btn-cookie-accept-all" onclick="cookieManager.acceptAll()">
-                        Accept All
+                        Hyväksy kaikki
                     </button>
                 </div>
             </div>
@@ -249,12 +417,32 @@ class CookieConsentManager {
     }
 
     closePreferences() {
+        // Only allow closing if consent has been given
+        if (!this.hasValidConsent()) {
+            return; // Prevent closing without consent
+        }
+        
         const modal = document.getElementById('cookie-preferences-modal');
         if (modal) {
             modal.classList.remove('show');
             setTimeout(() => {
                 modal.remove();
-                document.body.style.overflow = '';
+                // Only reset overflow if blocking is not active
+                if (!document.body.classList.contains('cookie-consent-required')) {
+                    document.body.style.overflow = '';
+                }
+            }, 300);
+        }
+    }
+
+    closePreferencesToBanner() {
+        // This method closes the modal and returns to the banner (doesn't require consent)
+        const modal = document.getElementById('cookie-preferences-modal');
+        if (modal) {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.remove();
+                // Don't reset overflow as we're returning to the banner with blocking still active
             }, 300);
         }
     }
@@ -268,6 +456,7 @@ class CookieConsentManager {
         this.saveConsent(categories);
         this.hideBanner();
         this.closePreferences();
+        this.disableWebsiteBlocking(); // Remove blocking
         this.applyConsent();
     }
 
@@ -279,6 +468,7 @@ class CookieConsentManager {
         
         this.saveConsent(categories);
         this.hideBanner();
+        this.disableWebsiteBlocking(); // Remove blocking
         this.applyConsent();
     }
 
@@ -290,6 +480,7 @@ class CookieConsentManager {
         
         this.saveConsent(categories);
         this.hideBanner();
+        this.disableWebsiteBlocking(); // Remove blocking
         this.applyConsent();
     }
 
@@ -302,7 +493,21 @@ class CookieConsentManager {
         
         this.saveConsent(categories);
         this.closePreferences();
+        this.disableWebsiteBlocking(); // Remove blocking
         this.hideBanner();
+        this.applyConsent();
+    }
+
+    saveCustomPreferences() {
+        const categories = {};
+        Object.keys(this.categories).forEach(key => {
+            const checkbox = document.getElementById(`popup-cookie-${key}`);
+            categories[key] = checkbox ? checkbox.checked : this.categories[key].required;
+        });
+        
+        this.saveConsent(categories);
+        this.hideBanner();
+        this.disableWebsiteBlocking(); // Remove blocking
         this.applyConsent();
     }
 
@@ -318,6 +523,9 @@ class CookieConsentManager {
 
     applyConsent() {
         if (!this.currentConsent) return;
+        
+        // Ensure website blocking is disabled when applying consent
+        this.disableWebsiteBlocking();
         
         // Enable allowed scripts
         Object.keys(this.categories).forEach(categoryKey => {
@@ -433,13 +641,28 @@ class CookieConsentManager {
         // Handle escape key for modal
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                this.closePreferences();
+                const modal = document.getElementById('cookie-preferences-modal');
+                if (modal && modal.classList.contains('show')) {
+                    // If modal is open, close it and return to banner
+                    this.closePreferencesToBanner();
+                }
             }
         });
     }
 
     // Public API methods
     withdrawConsent() {
+        // Log withdrawal for audit trail (GDPR requirement)
+        const withdrawalData = {
+            action: 'consent_withdrawn',
+            timestamp: new Date().toISOString(),
+            previousConsent: this.currentConsent,
+            userAgent: navigator.userAgent,
+            url: window.location.href
+        };
+        
+        console.log('Cookie consent withdrawn:', withdrawalData);
+        
         localStorage.removeItem(this.consentKey);
         localStorage.removeItem(this.versionKey);
         this.currentConsent = null;
@@ -453,6 +676,11 @@ class CookieConsentManager {
         
         // Block all scripts
         this.blockScripts();
+        
+        // Reload page to ensure all tracking stops
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
     }
 
     getConsent() {
