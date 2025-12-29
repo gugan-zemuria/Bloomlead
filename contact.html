@@ -7,8 +7,29 @@
     <title>BloomLead - Live Webinars & Professional Learning</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Permissions-Policy" content="unload=*">
     <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.webp">
     <!-- Place favicon.ico in the root directory -->
+
+    <!-- Google Analytics - Loads only with analytics consent -->
+    <script>
+        // Check if analytics cookies are allowed before loading Google Analytics
+        if (localStorage.getItem('bloomlead_cookie_consent')) {
+            const consent = JSON.parse(localStorage.getItem('bloomlead_cookie_consent'));
+            if (consent.categories && consent.categories.analytics) {
+                // Load Google Analytics
+                const script1 = document.createElement('script');
+                script1.async = true;
+                script1.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_GOOGLE_ANALYTICS_ID';
+                document.head.appendChild(script1);
+                
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'YOUR_GOOGLE_ANALYTICS_ID');
+            }
+        }
+    </script>
 
     <!-- CSS here -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -22,6 +43,7 @@
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/cookie-consent.css">
     <style>
         /* Search icon styling */
         .search-top2 {
@@ -872,6 +894,9 @@
     <script src="js/element-in-view.js"></script>
     <script src="js/main.js"></script>
 
+    <!-- Cookie Consent System -->
+    <script src="js/cookie-consent-manager.js"></script>
+
     <!-- Custom Mobile Menu Script -->
     <script>
         $(document).ready(function () {
@@ -922,17 +947,66 @@
         });
     </script>
 
-    <!-- Cookie Consent System -->
-    <!-- <script src="js/cookie-config.js"></script> -->
-    <!-- <script src="js/necessary-cookies.js"></script> -->
-    <!-- <script src="js/cookie-consent-manager.js"></script> -->
+    <!-- Necessary Cookies - Required for basic functionality -->
+    <script src="js/necessary-cookies.js"></script>
+    
+    <!-- Functional Cookies - Form preferences and contact info -->
+    <script>
+        // Check if functional cookies are allowed before loading
+        if (localStorage.getItem('bloomlead_cookie_consent')) {
+            const consent = JSON.parse(localStorage.getItem('bloomlead_cookie_consent'));
+            if (consent.categories && consent.categories.functional) {
+                const script = document.createElement('script');
+                script.src = 'js/functional-cookies.js';
+                document.head.appendChild(script);
+            }
+        }
+    </script>
+    
+    <!-- Analytics Cookies - Lead generation and page tracking -->
+    <script>
+        // Check if analytics cookies are allowed before loading
+        if (localStorage.getItem('bloomlead_cookie_consent')) {
+            const consent = JSON.parse(localStorage.getItem('bloomlead_cookie_consent'));
+            if (consent.categories && consent.categories.analytics) {
+                const script = document.createElement('script');
+                script.src = 'js/webinar-analytics.js';
+                document.head.appendChild(script);
+            }
+        }
+    </script>
+    
+    <!-- Marketing Cookies - Lead capture and conversion optimization -->
+    <script>
+        // Check if marketing cookies are allowed before loading
+        if (localStorage.getItem('bloomlead_cookie_consent')) {
+            const consent = JSON.parse(localStorage.getItem('bloomlead_cookie_consent'));
+            if (consent.categories && consent.categories.marketing) {
+                // Load Marketing Cookies
+                const script = document.createElement('script');
+                script.src = 'js/marketing-cookies.js';
+                document.head.appendChild(script);
+                
+                // Load Safe Facebook Pixel
+                const script2 = document.createElement('script');
+                script2.src = 'js/facebook-pixel-safe.js';
+                document.head.appendChild(script2);
+                
+                // Load Marketing Platforms (Facebook only)
+                const script3 = document.createElement('script');
+                script3.src = 'js/marketing-platforms.js';
+                document.head.appendChild(script3);
+            }
+        }
+    </script>
+    
+    <!-- Facebook Pixel NoScript -->
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=YOUR_FACEBOOK_PIXEL_ID&ev=PageView&noscript=1"/>
+    </noscript>
 
-    <!-- Functional Cookies -->
-    <!-- <script src="js/functional-cookies.js"></script> -->
-
-    <!-- Marketing Cookies System -->
-    <!-- <script src="js/marketing-cookies.js"></script> -->
-    <!-- <script src="js/webinar-marketing-integration.js"></script> -->
+    <!-- Marketing cookies removed - Only available on home page -->
 
     <!-- Email Modal System -->
     <script src="js/email-modal.js"></script>

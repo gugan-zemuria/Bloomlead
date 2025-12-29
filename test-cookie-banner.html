@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Banner Test - BloomLead</title>
+    <link rel="stylesheet" href="css/cookie-consent.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #a571aa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .test-button:hover {
+            background: #946299;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #e8f5e8;
+            border-left: 4px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Cookie Banner Test</h1>
+        <p>This page tests the cookie banner functionality. The banner should appear automatically when you load the page (unless you've already given consent).</p>
+        
+        <div class="status" id="status">
+            Loading cookie manager...
+        </div>
+        
+        <h3>Test Controls:</h3>
+        <button class="test-button" onclick="testShowBanner()">Show Banner (Immediate)</button>
+        <button class="test-button" onclick="testShowBannerDelayed()">Test Home Page Delay (3s)</button>
+        <button class="test-button" onclick="testShowPreferences()">Show Preferences</button>
+        <button class="test-button" onclick="testWithdrawConsent()">Withdraw Consent</button>
+        <button class="test-button" onclick="testCheckConsent()">Check Consent Status</button>
+        
+        <h3>Page Navigation Test:</h3>
+        <p>Test that the banner appears on all pages except privacy policy and terms:</p>
+        <a href="index.html" class="test-button" style="text-decoration: none; display: inline-block;">Home (should show banner)</a>
+        <a href="privacy-policy.html" class="test-button" style="text-decoration: none; display: inline-block;">Privacy Policy (no banner)</a>
+        <a href="terms-and-conditions.html" class="test-button" style="text-decoration: none; display: inline-block;">Terms (no banner)</a>
+        
+        <h3>Current Page Info:</h3>
+        <div id="page-info"></div>
+    </div>
+
+    <script src="js/cookie-consent-manager.js"></script>
+    <script>
+        function updateStatus() {
+            const status = document.getElementById('status');
+            const pageInfo = document.getElementById('page-info');
+            
+            if (window.cookieManager) {
+                const consent = cookieManager.getConsent();
+                const hasConsent = cookieManager.hasConsent();
+                
+                status.innerHTML = `
+                    <strong>Cookie Manager Status:</strong> Loaded ✓<br>
+                    <strong>Has Consent:</strong> ${hasConsent ? 'Yes' : 'No'}<br>
+                    <strong>Current Page:</strong> ${window.location.pathname}<br>
+                    <strong>Is Legal Page:</strong> ${window.location.pathname.toLowerCase().includes('privacy-policy.html') || window.location.pathname.toLowerCase().includes('terms-and-conditions.html') ? 'Yes (banner disabled)' : 'No (banner enabled)'}
+                `;
+                
+                if (consent) {
+                    pageInfo.innerHTML = `
+                        <strong>Consent Details:</strong><br>
+                        <pre>${JSON.stringify(consent, null, 2)}</pre>
+                    `;
+                } else {
+                    pageInfo.innerHTML = '<strong>No consent data found</strong>';
+                }
+            } else {
+                status.innerHTML = '<strong>Cookie Manager:</strong> Not loaded ❌';
+            }
+        }
+        
+        function testShowBanner() {
+            if (window.cookieManager) {
+                // Clear consent to force banner to show
+                localStorage.removeItem('bloomlead_cookie_consent');
+                localStorage.removeItem('bloomlead_consent_version');
+                cookieManager.currentConsent = null;
+                cookieManager.consentGiven = false;
+                cookieManager.showBanner(true); // Show immediately with blocking
+                updateStatus();
+            }
+        }
+        
+        function testShowBannerDelayed() {
+            if (window.cookieManager) {
+                // Clear consent to force banner to show
+                localStorage.removeItem('bloomlead_cookie_consent');
+                localStorage.removeItem('bloomlead_consent_version');
+                cookieManager.currentConsent = null;
+                cookieManager.consentGiven = false;
+                
+                // Show status countdown
+                const status = document.getElementById('status');
+                let countdown = 3;
+                status.innerHTML = `<strong>Testing Home Page Delay:</strong> Banner will appear in ${countdown} seconds...`;
+                
+                const countdownInterval = setInterval(() => {
+                    countdown--;
+                    if (countdown > 0) {
+                        status.innerHTML = `<strong>Testing Home Page Delay:</strong> Banner will appear in ${countdown} seconds...`;
+                    } else {
+                        clearInterval(countdownInterval);
+                        status.innerHTML = `<strong>Testing Home Page Delay:</strong> Banner should appear now!`;
+                    }
+                }, 1000);
+                
+                // Show banner after 3 seconds like on home page
+                setTimeout(() => {
+                    cookieManager.showBanner(false); // Show with delayed blocking like home page
+                    updateStatus();
+                }, 3000);
+            }
+        }
+        
+        function testShowPreferences() {
+            if (window.cookieManager) {
+                cookieManager.showPreferences();
+            }
+        }
+        
+        function testWithdrawConsent() {
+            if (window.cookieManager) {
+                cookieManager.withdrawConsent();
+                updateStatus();
+            }
+        }
+        
+        function testCheckConsent() {
+            updateStatus();
+        }
+        
+        // Update status when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(updateStatus, 1000); // Wait for cookie manager to initialize
+        });
+        
+        // Update status when consent changes
+        window.addEventListener('cookieConsentUpdated', function(event) {
+            console.log('Consent updated:', event.detail);
+            updateStatus();
+        });
+    </script>
+</body>
+</html>
