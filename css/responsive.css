@@ -2411,10 +2411,10 @@
 
 @media (max-width: 575px) {
     .s-about-img #about-round {
-        width: 320px !important;
-        height: 320px !important;
+        width: 300px !important;
+        height: 300px !important;
         max-width: none !important;
-        min-width: 320px !important;
+        min-width: 300px !important;
     }
 
      .section-title h2 {
