@@ -69,11 +69,11 @@ class CookieConsentManager {
             
             if (isHomePage) {
                 // Show banner after 3 seconds on home page for better UX
-                // Don't block website immediately - let users browse for 3 seconds
-                console.log('Home page detected - showing cookie banner after 3 seconds');
+                // Don't block website immediately - let users browse for 1 second
+                console.log('Home page detected - showing cookie banner after 0.5 second');
                 setTimeout(() => {
                     this.showBanner(false); // Don't block immediately, blocking will be enabled when banner appears
-                }, 3000);
+                }, 500);
             } else {
                 // Show banner immediately on other pages with blocking
                 this.showBanner(true);
