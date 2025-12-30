@@ -22,9 +22,9 @@
                 script1.async = true;
                 script1.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_GOOGLE_ANALYTICS_ID';
                 document.head.appendChild(script1);
-                
+
                 window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
+                function gtag() { dataLayer.push(arguments); }
                 gtag('js', new Date());
                 gtag('config', 'YOUR_GOOGLE_ANALYTICS_ID');
             }
@@ -431,6 +431,8 @@
             margin-top: 3px;
         }
 
+       
+
         /* Email Link Styles */
         a[href^="mailto:"] {
             transition: all 0.3s ease;
@@ -505,9 +507,10 @@
                                             <li class="sub">
                                                 <a href="coaches.html">Valmentajat</a>
                                             </li>
-                                            
 
-                                            <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt & Hinnat</a>
+
+                                            <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt &
+                                                    Hinnat</a>
                                             </li>
                                             <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
                                             <li class="sub">
@@ -620,8 +623,8 @@
             <div class="container pt-30">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="section-title center-align text-center">
-                            <h5>Ota meihin yhteyttä</h5>
+                        <div class="section-title center-align text-center" style="margin: 20px 0;">
+                            <h2>Ota meihin yhteyttä</h2>
                             <!-- <h2>
                                 Alla olevilla tavoilla
                             </h2> -->
@@ -664,7 +667,7 @@
                                             <div class="logo" style="display: flex; align-items: center; gap: 10px; ">
 
                                                 <a href="https://www.bloomlead.io"
-                                                    style=" color: #777777; ; font-family: 'Jost', sans-serif; text-decoration: underline; "
+                                                    style="font-size: 16px; color: #777777; ; font-family: 'Jost', sans-serif; text-decoration: underline; "
                                                     target="_blank">www.bloomlead.io</a>
                                             </div>
                                         </div>
@@ -677,7 +680,7 @@
                                             <li><i class="icon fal fa-envelope"></i>
                                                 <span>
                                                     <a href="mailto:contact@bloomlead.io" class="email-clickable"
-                                                        style="display: block; color: #777777; cursor: pointer;"
+                                                        style="font-size: 16px; display: block; color: #777777; cursor: pointer;"
                                                         onclick="openEmailOptions('contact@bloomlead.io', 'main-contact-section'); return false;">
                                                         contact@bloomlead.io
                                                     </a>
@@ -696,7 +699,7 @@
 
                                             <li>
                                                 <i class="icon fal fa-phone"></i>
-                                                <span style="color: #777777;">+358 44 388 3188,
+                                                <span style="color: #777777; font-size: 16px;">+358 44 388 3188,
                                                     <br>ti ja to klo 17.00-18.00</span>
                                             </li>
 
@@ -796,7 +799,8 @@
 
                                         <li><i class="icon fal fa-envelope"></i>
                                             <span>
-                                                <a href="mailto:contact@bloomlead.io, gugantennyson@gmail.com, gugantenyson@gmail.com" class="email-clickable"
+                                                <a href="mailto:contact@bloomlead.io, gugantennyson@gmail.com, gugantenyson@gmail.com"
+                                                    class="email-clickable"
                                                     style="display: block; color: inherit; cursor: pointer;"
                                                     onclick="openEmailOptions('contact@bloomlead.io, gugantennyson@gmail.com, gugantenyson@gmail.com', 'footer-contact'); return false;">
                                                     contact@bloomlead.io
@@ -805,12 +809,12 @@
                                             </span>
                                         </li>
                                         <li>
-                                        <i class="icon fal fa-phone"></i>
-                                        <span>+358 388 3188,
-                                            <br>ti ja to klo 17.00-18.00
-                                        <br>(12.1.2026 alkaen)</span>
+                                            <i class="icon fal fa-phone"></i>
+                                            <span>+358 388 3188,
+                                                <br>ti ja to klo 17.00-18.00
+                                                <br>(12.1.2026 alkaen)</span>
 
-                                    </li>
+                                        </li>
 
 
                                     </ul>
@@ -949,7 +953,7 @@
 
     <!-- Necessary Cookies - Required for basic functionality -->
     <script src="js/necessary-cookies.js"></script>
-    
+
     <!-- Functional Cookies - Form preferences and contact info -->
     <script>
         // Check if functional cookies are allowed before loading
@@ -962,7 +966,7 @@
             }
         }
     </script>
-    
+
     <!-- Analytics Cookies - Lead generation and page tracking -->
     <script>
         // Check if analytics cookies are allowed before loading
@@ -975,7 +979,7 @@
             }
         }
     </script>
-    
+
     <!-- Marketing Cookies - Lead capture and conversion optimization -->
     <script>
         // Check if marketing cookies are allowed before loading
@@ -986,12 +990,12 @@
                 const script = document.createElement('script');
                 script.src = 'js/marketing-cookies.js';
                 document.head.appendChild(script);
-                
+
                 // Load Safe Facebook Pixel
                 const script2 = document.createElement('script');
                 script2.src = 'js/facebook-pixel-safe.js';
                 document.head.appendChild(script2);
-                
+
                 // Load Marketing Platforms (Facebook only)
                 const script3 = document.createElement('script');
                 script3.src = 'js/marketing-platforms.js';
@@ -999,11 +1003,11 @@
             }
         }
     </script>
-    
+
     <!-- Facebook Pixel NoScript -->
     <noscript>
         <img height="1" width="1" style="display:none"
-             src="https://www.facebook.com/tr?id=YOUR_FACEBOOK_PIXEL_ID&ev=PageView&noscript=1"/>
+            src="https://www.facebook.com/tr?id=YOUR_FACEBOOK_PIXEL_ID&ev=PageView&noscript=1" />
     </noscript>
 
     <!-- Marketing cookies removed - Only available on home page -->

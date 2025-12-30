@@ -1647,7 +1647,7 @@
     }
 
     .section-title h2 {
-        font-size: 24px;
+        font-size: 32px;
         letter-spacing: -1px;
     }
 
@@ -2227,7 +2227,6 @@
     }
 
     .section-title h2 {
-        font-size: 42px;
         letter-spacing: -1px;
     }
 
@@ -2377,4 +2376,48 @@
         background: #fe8366 !important;
         color: #fff !important;
     }
+}
+
+/* Override for about-round image to maintain fixed 400x400 dimensions */
+@media (max-width: 1199px) {
+    .s-about-img #about-round {
+        width: 400px !important;
+        height: 400px !important;
+        max-width: none !important;
+        min-width: 400px !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .s-about-img #about-round {
+        width: 400px !important;
+        height: 400px !important;
+        max-width: none !important;
+    }
+
+    .s-about-img {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 767px) {
+    .s-about-img #about-round {
+        width: 340px !important;
+        height: 340px !important;
+        max-width: none !important;
+        min-width: 340px !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .s-about-img #about-round {
+        width: 320px !important;
+        height: 320px !important;
+        max-width: none !important;
+        min-width: 320px !important;
+    }
+
+     .section-title h2 {
+        font-size: 28px;
+     }
 }
