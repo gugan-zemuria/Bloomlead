@@ -22,9 +22,9 @@
                 script1.async = true;
                 script1.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_GOOGLE_ANALYTICS_ID';
                 document.head.appendChild(script1);
-                
+
                 window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
+                function gtag() { dataLayer.push(arguments); }
                 gtag('js', new Date());
                 gtag('config', 'YOUR_GOOGLE_ANALYTICS_ID');
             }
@@ -693,7 +693,7 @@
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        
+
         .video-container:hover {
             transform: scale(1.01);
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
@@ -1114,9 +1114,39 @@
         }
 
         #about-round {
-            width: 300px !important;
-            width: 300px !important;
+            width: 400px !important;
+            height: 400px !important;
             margin: 12px auto;
+            border-radius: 50%;
+            max-width: none !important;
+            min-width: 400px !important;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        #about-round img {
+            width: 400px !important;
+            height: 400px !important;
+            max-width: none !important;
+            min-width: 400px !important;
+            object-fit: cover;
+        }
+
+        /* Override responsive CSS specifically for about-round */
+        .s-about-img #about-round {
+            width: 400px !important;
+            max-width: none !important;
+            min-width: 400px !important;
+        }
+
+        .s-about-img {
+            max-width: none !important;
+            width: 90%;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
         }
 
         @media(max-width:768px) {
@@ -1127,6 +1157,61 @@
 
             .s-about-img {
                 margin: 0 !important;
+                width: 100%;
+                flex-direction: column;
+            }
+
+            #about-round {
+                width: 320px !important;
+                height: 320px !important;
+
+            }
+
+            #about-round img {
+                width: 320px !important;
+                height: 320px !important;
+
+            }
+
+            /* Override responsive CSS specifically for about-round */
+            .s-about-img #about-round {
+                width: 320px !important;
+                max-width: none !important;
+                min-width: 320px !important;
+            }
+
+        }
+
+
+        @media(max-width:568px) {
+            #about .container .align-items-center .col-lg-6 {
+                flex-direction: column;
+                margin: 12px auto;
+            }
+
+            .s-about-img {
+                margin: 0 !important;
+                width: 100%;
+                flex-direction: column;
+            }
+
+            #about-round {
+                width: 320px !important;
+                height: 320px !important;
+
+            }
+
+            #about-round img {
+                width: 320px !important;
+                height: 320px !important;
+
+            }
+
+            /* Override responsive CSS specifically for about-round */
+            .s-about-img #about-round {
+                width: 320px !important;
+                max-width: none !important;
+                min-width: 320px !important;
             }
 
         }
@@ -1328,13 +1413,14 @@
         }
 
         @keyframes slideInStatus {
-            from { 
-                opacity: 0; 
-                transform: translateY(-10px); 
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
             }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -1361,41 +1447,41 @@
             .selection-options {
                 grid-template-columns: 1fr;
             }
-            
+
             .selection-modal-header,
             .selection-modal-body,
             .selection-modal-footer {
                 padding-left: 24px;
                 padding-right: 24px;
             }
-            
+
             .selection-modal-content {
                 margin: 10px;
                 max-width: calc(100vw - 20px);
             }
-            
+
             .selection-modal-header h2 {
                 font-size: 20px;
             }
-            
+
             .selection-option {
                 padding: 20px 16px;
             }
-            
+
             .option-icon {
                 width: 40px;
                 height: 40px;
                 margin-bottom: 12px;
             }
-            
+
             .option-title {
                 font-size: 15px;
             }
-            
+
             .option-subtitle {
                 font-size: 11px;
             }
-            
+
             .email-status {
                 margin: 12px 24px 12px;
                 padding: 12px 16px;
@@ -1407,41 +1493,41 @@
             .selection-modal-overlay {
                 padding: 10px;
             }
-            
+
             .selection-modal-content {
                 max-height: 85vh;
             }
-            
+
             .selection-modal-header,
             .selection-modal-body,
             .selection-modal-footer {
                 padding-left: 20px;
                 padding-right: 20px;
             }
-            
+
             .selection-modal-header {
                 padding-top: 24px;
             }
-            
+
             .selection-modal-body {
                 padding-top: 20px;
                 padding-bottom: 20px;
             }
-            
+
             .selection-modal-footer {
                 padding-bottom: 24px;
             }
-            
+
             .selection-option {
                 padding: 16px 12px;
             }
-            
+
             .option-icon {
                 width: 36px;
                 height: 36px;
                 margin-bottom: 10px;
             }
-            
+
             .email-status {
                 margin: 10px 20px 10px;
                 padding: 10px 14px;
@@ -1640,7 +1726,8 @@
                                             class="ml">Sähköpostiosoite</span></label>
                                     <input type="email" id="email2" name="email2" class="header-input"
                                         placeholder="Anna sähköpostiosoitteesi tähän..." required>
-                                    <button type="submit" class="btn header-btn" id="webinarSubmitBtn"> Vastaanota webinaaritietoa </button>
+                                    <button type="submit" class="btn header-btn" id="webinarSubmitBtn"> Vastaanota
+                                        webinaaritietoa </button>
                                 </form>
                             </div>
                             <!-- <div>
@@ -1703,7 +1790,8 @@
                     <h2>Valitse vaihtoehto</h2>
                     <button class="selection-modal-close" onclick="closeSelectionModal()">
                         <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
@@ -1713,7 +1801,9 @@
                         <button class="selection-option" onclick="selectOption('single')">
                             <div class="option-icon single-icon">
                                 <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                    </path>
                                 </svg>
                             </div>
                             <span class="option-title">Yksittäinen moduuli</span>
@@ -1722,7 +1812,8 @@
                         <button class="selection-option" onclick="selectOption('package')">
                             <div class="option-icon package-icon">
                                 <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
                                 </svg>
                             </div>
                             <span class="option-title">Koko paketti</span>
@@ -2760,7 +2851,7 @@ div>i>div></div>""
                                 <h2>Ota yhteyttä</h2>
                             </div>
                             <div class="f-contact">
-                                <ul >
+                                <ul>
                                     <!-- <li>
                                             <i class="icon fal fa-map-marker-check"></i>
                                             <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
@@ -2771,11 +2862,11 @@ div>i>div></div>""
                                             <!-- <span style="display: block;">help@example.com</span> -->
                                         </span>
                                     </li>
-                                    <li >
+                                    <li>
                                         <i class="icon fal fa-phone"></i>
-                                        <span >+358 388 3188,
+                                        <span>+358 388 3188,
                                             <br>ti ja to klo 17.00-18.00
-                                        <br>(12.1.2026 alkaen)</span>
+                                            <br>(12.1.2026 alkaen)</span>
 
                                     </li>
 
@@ -2958,21 +3049,21 @@ div>i>div></div>""
             playButton.addEventListener('click', togglePlay);
             playPauseBtn.addEventListener('click', togglePlay);
             video.addEventListener('click', togglePlay);
-            
+
             // Make entire video container clickable
             const videoContainer = document.querySelector('.video-container');
             if (videoContainer) {
-                videoContainer.addEventListener('click', function(e) {
+                videoContainer.addEventListener('click', function (e) {
                     // Don't trigger if clicking on controls or buttons
-                    if (!e.target.closest('.video-controls') && 
-                        !e.target.closest('.play-button-custom') && 
+                    if (!e.target.closest('.video-controls') &&
+                        !e.target.closest('.play-button-custom') &&
                         !e.target.closest('.notify-buttons') &&
                         !e.target.closest('button') &&
                         !e.target.closest('input')) {
                         togglePlay();
                     }
                 });
-                
+
                 // Add cursor pointer to indicate clickability
                 videoContainer.style.cursor = 'pointer';
             }
@@ -3123,11 +3214,11 @@ div>i>div></div>""
     <script src="js/facebook-pixel-safe.js"></script>
     <script src="js/marketing-platforms.js"></script>
     <script src="js/webinar-marketing-integration.js"></script>
-    
+
     <!-- Marketing Platform Tracking -->
     <script>
         // Track page view for home page
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             if (typeof marketingPlatforms !== 'undefined') {
                 marketingPlatforms.trackViewContent('homepage', 'BloomLead Home');
             }
@@ -3142,25 +3233,25 @@ div>i>div></div>""
         let userEmail = '';
 
         // Handle form submission
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const webinarForm = document.getElementById('webinarSelectionForm');
             const emailInput = document.getElementById('email2');
-            
+
             if (webinarForm) {
-                webinarForm.addEventListener('submit', function(e) {
+                webinarForm.addEventListener('submit', function (e) {
                     e.preventDefault();
-                    
+
                     const email = emailInput.value.trim();
                     if (!email) {
                         alert('Ole hyvä ja anna sähköpostiosoite.');
                         return;
                     }
-                    
+
                     if (!isValidEmail(email)) {
                         alert('Ole hyvä ja anna kelvollinen sähköpostiosoite.');
                         return;
                     }
-                    
+
                     userEmail = email;
                     showSelectionModal();
                 });
@@ -3178,7 +3269,7 @@ div>i>div></div>""
             setTimeout(() => {
                 modal.classList.add('show');
             }, 10);
-            
+
             // Add option classes for styling
             const singleOption = document.querySelector('.selection-option:first-child');
             const packageOption = document.querySelector('.selection-option:last-child');
@@ -3196,20 +3287,20 @@ div>i>div></div>""
 
         function selectOption(option) {
             const optionText = option === 'single' ? 'Yksittäinen moduuli' : 'Koko paketti';
-            
+
             // Show loading state
             showStatus('Lähetetään sähköpostia...', 'loading');
-            
+
             // Simulate email sending delay
             setTimeout(() => {
                 // Simulate sending email (frontend only)
                 console.log('Sending email to:', ['contact@bloomlead.io', 'marke.tyrvainen@elisanet.fi', 'jkartilamalmivaara@gmail.com']);
                 console.log('User email:', userEmail);
                 console.log('Selected option:', optionText);
-                
+
                 // Show success message
                 showStatus(`Kiitos kiinnostuksestasi! Valitsit: ${optionText}`, 'success', 4000);
-                
+
                 // Close modal after delay
                 setTimeout(() => {
                     closeSelectionModal();
@@ -3227,8 +3318,8 @@ div>i>div></div>""
 
             // Auto-scroll to show the status message a bit higher
             setTimeout(() => {
-                statusElement.scrollIntoView({ 
-                    behavior: 'smooth', 
+                statusElement.scrollIntoView({
+                    behavior: 'smooth',
                     block: 'center',
                     inline: 'nearest'
                 });
@@ -3245,14 +3336,14 @@ div>i>div></div>""
         }
 
         // Close modal when clicking overlay
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.classList.contains('selection-modal-overlay')) {
                 closeSelectionModal();
             }
         });
 
         // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 closeSelectionModal();
             }
