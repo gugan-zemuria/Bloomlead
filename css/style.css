@@ -1325,7 +1325,7 @@ body {
 
 .slider-content p {
     color: #fff;
-    font-size: 18px;
+    /* font-size: 18px; */
     margin-bottom: 0;
 }
 
@@ -1416,7 +1416,7 @@ body {
 }
 
 .s-slider-content p {
-    font-size: 18px;
+    /* font-size: 18px; */
     padding-right: 50px;
     color: #777;
 }
@@ -6195,7 +6195,7 @@ iframe {
     align-items: end;
     justify-content: left;
     margin: auto;
-    padding-top: 34px;
+    /* padding-top: 34px; */
 }
 
 
@@ -10993,4 +10993,13 @@ ards - Equal Height */
 
 .video-card .module-actions {
     margin-top: auto;
+}
+/* Email clickable styling for footer */
+.email-clickable {
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.email-clickable:hover {
+    color: #7fb069 !important;
+    text-decoration: underline !important;
 }

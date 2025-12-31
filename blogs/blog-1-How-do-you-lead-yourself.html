@@ -2378,7 +2378,7 @@
                                 <ul>
                                     <li><i class="icon fal fa-envelope"></i>
                                         <span>
-                                            <span style="display: block;">contact@bloomlead.io</span>
+                                            <span class="email-clickable" onclick="openEmailOptions('contact@bloomlead.io', 'footer')" style="display: block; cursor: pointer; text-decoration: underline;">contact@bloomlead.io</span>
                                         </span>
                                     </li>
                                     <li>
@@ -2398,8 +2398,18 @@
                             <div class="f-widget-title">
                                 <h2>Yrityksen tiedot</h2>
                             </div>
-                            <div class="footer-link">BloomLead I MT Business Coaching Oy<br>Hämeenpuisto 14 A 2<br>33210
-                                Tampere<br>Y-tunnus 3166661-4</div>
+                            <div class="footer-link">BloomLead I MT Business Coaching Oy
+                                <br>
+                                Hämeenpuisto 14 A 2
+                                <br>
+                                33210 Tampere
+                                <br>
+                                Y-tunnus 3166661-4
+                                <br>
+                                Pankkitili FI15 7997 7993 0370 30
+                                <br>
+                                BIC HOLVFIHH
+                            </div>
                         </div>
                     </div>
 
@@ -2504,6 +2514,9 @@
             });
         });
     </script>
+
+    <!-- Email Modal System -->
+    <script src="../js/email-modal.js"></script>
 </body>
 
 </html>
