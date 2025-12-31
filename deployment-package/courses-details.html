@@ -1,0 +1,3574 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>BloomLead - Live Webinars & Professional Learning</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.webp">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- Google Analytics - Loads only with analytics consent -->
+    <script>
+        // Check if analytics cookies are allowed before loading Google Analytics
+        if (localStorage.getItem('bloomlead_cookie_consent')) {
+            const consent = JSON.parse(localStorage.getItem('bloomlead_cookie_consent'));
+            if (consent.categories && consent.categories.analytics) {
+                // Get Google Analytics ID from Config system
+                const analyticsId = window.Config ? window.Config.getGoogleAnalyticsId() : null;
+
+                if (analyticsId) {
+                    // Load Google Analytics
+                    const script1 = document.createElement('script');
+                    script1.async = true;
+                    script1.src = `https://www.googletagmanager.com/gtag/js?id=${analyticsId}`;
+                    document.head.appendChild(script1);
+
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', analyticsId);
+
+                    console.log('Google Analytics loaded with ID:', analyticsId);
+                } else {
+                    console.warn('Google Analytics ID not configured');
+                }
+            }
+        }
+    </script>
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="font-flaticon/flaticon.css">
+    <link rel="stylesheet" href="css/dripicons.css">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/cookie-consent.css">
+    <style>
+        /* Mobile Menu Button Styles */
+        .mobile-menu-btn {
+            background: rgba(0, 46, 91, 0.1);
+            border: 2px solid #769757;
+            padding: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background-color: #769757;
+            margin: 2px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+            transform: rotate(-45deg) translate(-4px, 4px);
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+            transform: rotate(45deg) translate(-6px, -6px);
+        }
+
+        .mobile-menu-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            display: none;
+            z-index: 9999;
+            box-shadow: 0 5px 15px rgba(165, 113, 170, 0.3);
+            max-height: calc(100vh - 70px);
+            overflow-y: auto;
+            border-radius: 10px;
+        }
+
+        .mobile-menu-container {
+            position: relative;
+        }
+
+        .mobile-menu-dropdown.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-menu-dropdown ul {
+            list-style: none;
+            padding: 8px 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-dropdown ul li {
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .mobile-menu-dropdown ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu-dropdown ul li a {
+            display: block;
+            padding: 20px 24px;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            position: relative;
+            transform: translateX(-16px);
+            opacity: 0;
+        }
+
+        .mobile-menu-dropdown.show ul li a {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(1) a {
+            transition-delay: 0ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(2) a {
+            transition-delay: 75ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(3) a {
+            transition-delay: 150ms;
+        }
+
+        .mobile-menu-dropdown.show ul li:nth-child(4) a {
+            transition-delay: 225ms;
+        }
+
+        .mobile-menu-dropdown ul li a:hover {
+            background-color: rgba(118, 151, 87, 0.05);
+            padding-left: 32px;
+            color: #769757;
+        }
+
+        .mobile-menu-dropdown ul li {
+            border-bottom: 1px solid rgba(165, 113, 170, 0.2);
+        }
+
+        .mobile-menu-dropdown ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu-dropdown ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: #769757;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-dropdown ul li a:hover {
+            background-color: rgba(165, 113, 170, 0.1);
+            color: #a571aa;
+            transform: translateX(5px);
+        }
+
+        .mobile-search {
+            padding: 15px 20px;
+            border-bottom: 2px solid #a571aa;
+            background-color: rgba(165, 113, 170, 0.05);
+        }
+
+        .mobile-search a {
+            color: #769757;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .mobile-search a:hover {
+            color: #a571aa;
+        }
+
+        .mobile-search i {
+            width: 20px;
+            height: 20px;
+            background: #a571aa;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .search-top2 {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .search-top2 ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-top2 li a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: #fff;
+            border: 2px solid #a571aa;
+            border-radius: 50%;
+            color: #a571aa;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 2.5px 4.33px 15px 0px rgba(165, 113, 170, 0.2);
+        }
+
+        .search-top2 li a:hover {
+            background-color: #a571aa;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 991px) {
+            .search-top2 {
+                display: none !important;
+            }
+        }
+
+        #header-sticky {
+            z-index: 10000;
+            background: white;
+        }
+
+        .header-right {
+            height: 70px;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .logo {
+            height: 70px;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .df {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Custom Video Player Styles */
+        .custom-video-player {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            background: #000;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .video-container:hover {
+            transform: scale(1.01);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-element {
+            width: 100%;
+            display: block;
+            cursor: pointer;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .video-overlay.hidden {
+            opacity: 0;
+        }
+
+        .play-button-custom {
+            width: 70px;
+            height: 70px;
+            background: rgba(165, 113, 170, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            pointer-events: all;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 0 rgba(165, 113, 170, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(165, 113, 170, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(165, 113, 170, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(165, 113, 170, 0);
+            }
+        }
+
+        .play-button-custom:hover {
+            background: #a571aa;
+            transform: scale(1.1);
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px 15px 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-container:hover .video-controls,
+        .video-controls.show {
+            opacity: 1;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .progress-filled {
+            height: 100%;
+            background: #a571aa;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.1s linear;
+            position: relative;
+        }
+
+        .progress-filled::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .controls-bottom {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            color: #a571aa;
+            transform: scale(1.1);
+        }
+
+        #speedBtn {
+            min-width: 35px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        #speedDisplay {
+            color: inherit;
+        }
+
+        .time-display {
+            color: white;
+            font-size: 14px;
+            margin: 0 10px;
+            white-space: nowrap;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 5px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #a571aa;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            background: #a571aa;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .volume-slider {
+                width: 50px;
+            }
+
+            .time-display {
+                font-size: 12px;
+                margin: 0 5px;
+            }
+
+            .control-btn {
+                font-size: 16px;
+                padding: 5px;
+            }
+        }
+
+        /* Video Subscribe Popup Styles */
+        .video-subscribe-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-subscribe-popup.active {
+            display: flex;
+        }
+
+        .subscribe-popup-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+        }
+
+        .subscribe-popup-content {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: popupSlideIn 0.4s ease-out;
+        }
+
+        @keyframes popupSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .subscribe-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.1);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .subscribe-close-btn:hover {
+            background: rgba(0, 0, 0, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .subscribe-close-btn i {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .subscribe-popup-inner {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .subscribe-icon {
+            width: 70px;
+            height: 70px;
+            background: #a571aa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: iconPulse 2s infinite;
+        }
+
+        .main-menu ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes iconPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(165, 113, 170, 0.7);
+            }
+
+            50% {
+                box-shadow: 0 0 0 15px rgba(165, 113, 170, 0);
+            }
+        }
+
+        .subscribe-icon i {
+            font-size: 28px;
+            color: white;
+        }
+
+        .subscribe-popup-inner h3 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .subscribe-submit-btn {
+            width: 100%;
+            max-width: 300px;
+            padding: 18px 40px;
+            background: #a571aa;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto;
+        }
+
+        .subscribe-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(165, 113, 170, 0.4);
+        }
+
+        .subscribe-submit-btn i {
+            font-size: 18px;
+        }
+
+        /* Subscription placeholder styles */
+        .video-overlay.subscription-required {
+            background: rgba(0, 0, 0, 0.8);
+            pointer-events: all;
+        }
+
+        .video-overlay.subscription-required .play-button-custom {
+            background: rgba(165, 113, 170, 0.95);
+            animation: none;
+            box-shadow: 0 0 0 0 rgba(165, 113, 170, 0.7);
+        }
+
+        .video-overlay.subscription-required .play-button-custom:hover {
+            background: rgba(165, 113, 170, 1);
+            transform: scale(1.05);
+        }
+
+        #subscriptionMessage {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(165, 113, 170, 0.95);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            white-space: nowrap;
+            z-index: 10;
+            border: 2px solid rgba(165, 113, 170, 0.5);
+            animation: messageGlow 2s infinite;
+        }
+
+        @keyframes messageGlow {
+
+            0%,
+            100% {
+                border-color: rgba(165, 113, 170, 0.5);
+                box-shadow: 0 0 10px rgba(165, 113, 170, 0.3);
+            }
+
+            50% {
+                border-color: rgba(165, 113, 170, 0.8);
+                box-shadow: 0 0 20px rgba(165, 113, 170, 0.5);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .subscribe-popup-inner {
+                padding: 30px 20px;
+            }
+
+            .subscribe-popup-inner h3 {
+                font-size: 22px;
+            }
+
+            .subscribe-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .subscribe-icon i {
+                font-size: 24px;
+            }
+
+            #subscriptionMessage {
+                font-size: 14px;
+                padding: 10px 20px;
+                bottom: 15px;
+            }
+        }
+
+        /* Video Not Available Styles */
+        .video-not-available {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            z-index: 5;
+        }
+
+        .no-video-content {
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 500px;
+        }
+
+        .no-video-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #6c757d, #495057);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        .no-video-icon i {
+            font-size: 45px;
+            color: white;
+        }
+
+        .no-video-content h3 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .no-video-content p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .coming-soon-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 120px;
+        }
+
+        .feature-item i {
+            font-size: 24px;
+            color: #a571aa;
+            margin-bottom: 5px;
+        }
+
+        .feature-item span {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .notify-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-notify-me {
+            background: linear-gradient(135deg, #a571aa, #769757);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-notify-me:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(165, 113, 170, 0.3);
+            color: white;
+        }
+
+        .btn-browse-modules {
+            background: transparent;
+            color: #a571aa;
+            border: 2px solid #a571aa;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-browse-modules:hover {
+            background: #a571aa;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(165, 113, 170, 0.3);
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Mobile responsiveness for video not available */
+        @media (max-width: 768px) {
+            .no-video-content {
+                padding: 30px 15px;
+            }
+
+            .no-video-content h3 {
+                font-size: 24px;
+            }
+
+            .no-video-content p {
+                font-size: 16px;
+            }
+
+            .coming-soon-features {
+                gap: 20px;
+            }
+
+            .feature-item {
+                min-width: 100px;
+            }
+
+            .feature-item i {
+                font-size: 20px;
+            }
+
+            .feature-item span {
+                font-size: 13px;
+            }
+
+            .notify-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-notify-me,
+            .btn-browse-modules {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .no-video-icon {
+                width: 80px;
+                height: 80px;
+            }
+
+            .no-video-icon i {
+                font-size: 35px;
+            }
+
+            .no-video-content h3 {
+                font-size: 20px;
+            }
+
+            .coming-soon-features {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .feature-item {
+                flex-direction: row;
+                justify-content: center;
+                min-width: auto;
+            }
+        }
+
+        /* Email Subscription Popup Styles - Modern Cookie Consent Design */
+        .email-subscription-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10001;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            backdrop-filter: blur(8px);
+        }
+
+        .email-subscription-popup.active {
+            display: flex;
+        }
+
+        .email-popup-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .email-popup-content {
+            position: relative;
+            background: #ffffff;
+            border-radius: 20px;
+            max-width: 650px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            animation: popupSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes popupSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .email-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(107, 114, 128, 0.1);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+            color: #6b7280;
+        }
+
+        .email-close-btn:hover {
+            background: rgba(107, 114, 128, 0.2);
+            transform: scale(1.1);
+        }
+
+        .email-close-btn i {
+            font-size: 16px;
+        }
+
+        .email-popup-inner {
+            padding: 32px;
+        }
+
+        .email-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .email-header-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin: 0 auto 16px;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .email-header-text h3 {
+            font-size: 24px;
+            color: #111827;
+            margin: 0 0 8px 0;
+            font-weight: 700;
+        }
+
+        .email-header-text p {
+            font-size: 14px;
+            color: #6b7280;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .contact-email-section {
+            margin-bottom: 28px;
+        }
+
+        .contact-email-label {
+            font-size: 14px;
+            color: #374151;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .contact-email-field {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 14px 16px;
+            gap: 12px;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-email-field:focus-within {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .contact-email-field input {
+            border: none;
+            background: transparent;
+            outline: none;
+            flex: 1;
+            font-size: 16px;
+            color: #111827;
+            font-weight: 500;
+        }
+
+        .contact-email-field input::placeholder {
+            color: #9ca3af;
+            font-weight: 400;
+        }
+
+        .contact-email-field.valid {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .contact-email-field.invalid {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .contact-email-field i {
+            color: #6b7280;
+            font-size: 18px;
+        }
+
+        .contact-email-field .status-icon {
+            font-size: 18px;
+        }
+
+        .contact-note {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .email-field-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .email-field {
+            flex: 1;
+        }
+
+        .email-field-label {
+            font-size: 14px;
+            color: #374151;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .email-field-value {
+            font-size: 14px;
+            color: #6b7280;
+            padding: 12px 16px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .message-section {
+            margin-bottom: 32px;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .message-label {
+            font-size: 14px;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .edit-btn {
+            background: #6366f1;
+            border: none;
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .edit-btn:hover {
+            background: #5856eb;
+            transform: translateY(-1px);
+        }
+
+        .edit-btn.editing {
+            background: #10b981;
+            color: white;
+        }
+
+        .edit-btn.editing:hover {
+            background: #059669;
+            color: white;
+        }
+
+        .message-content {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #374151;
+            white-space: pre-wrap;
+            resize: none;
+            font-family: inherit;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .message-content:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            background: #ffffff;
+        }
+
+        .message-content[readonly] {
+            background: #f9fafb;
+            cursor: default;
+        }
+
+        .message-content:not([readonly]) {
+            background: white;
+            border-color: #6366f1;
+        }
+
+        .popup-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .popup-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-cancel,
+        .btn-send {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-cancel {
+            background: transparent;
+            color: #6b7280;
+            border-color: #e5e7eb;
+        }
+
+        .btn-cancel:hover {
+            background: #f9fafb;
+            color: #374151;
+            border-color: #d1d5db;
+        }
+
+        .btn-send {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-send:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-send:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .email-status {
+            text-align: center;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 20px;
+            border: 2px solid transparent;
+        }
+
+        .email-status.success {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            color: #065f46;
+            border-color: #10b981;
+        }
+
+        .email-status.error {
+            background: linear-gradient(135deg, #fef2f2, #fecaca);
+            color: #991b1b;
+            border-color: #ef4444;
+        }
+
+        .email-status.loading {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            color: #1e40af;
+            border-color: #3b82f6;
+        }
+
+        @media (max-width: 768px) {
+            .email-popup-content {
+                max-width: 95%;
+                margin: 20px;
+                border-radius: 16px;
+            }
+
+            .email-popup-inner {
+                padding: 24px 20px;
+            }
+
+            .email-header-icon {
+                width: 56px;
+                height: 56px;
+                font-size: 20px;
+            }
+
+            .email-header-text h3 {
+                font-size: 20px;
+            }
+
+            .popup-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn-cancel,
+            .btn-send {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .email-field-row {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .popup-footer {
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .email-popup-inner {
+                padding: 20px 16px;
+            }
+
+            .contact-email-field {
+                padding: 12px 14px;
+            }
+
+            .contact-email-field input {
+                font-size: 16px;
+                /* Prevent zoom on iOS */
+            }
+
+            .message-content {
+                padding: 16px;
+                font-size: 14px;
+            }
+
+        }
+
+        .message-label {
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .edit-btn {
+            background: transparent;
+            border: none;
+            color: #6366f1;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .edit-btn:hover {
+            background: #f3f4f6;
+        }
+
+        /* .edit-btn.editing {
+            color: #10b981;
+        } */
+
+        .message-content {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #374151;
+            white-space: pre-wrap;
+            min-height: 200px;
+            resize: none;
+            font-family: inherit;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .message-content:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .message-content[readonly] {
+            background: #f9fafb;
+            cursor: default;
+        }
+
+        .message-content:not([readonly]) {
+            background: white;
+        }
+
+        .popup-footer {
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .popup-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-cancel,
+        .btn-send {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn-cancel {
+            background: transparent;
+            color: #6b7280;
+            border-color: #d1d5db;
+        }
+
+        .btn-cancel:hover {
+            background: #f9fafb;
+            color: #374151;
+        }
+
+        .btn-send {
+            background: #6366f1;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-send:hover {
+            background: #5856eb;
+        }
+
+        .btn-send:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .email-form {
+            text-align: left;
+        }
+
+        .email-form label {
+            display: block;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .email-recipients {
+            margin-bottom: 24px;
+        }
+
+        .recipients-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .recipient-tag {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 4px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .email-subject {
+            margin-bottom: 24px;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background: #f9fafb;
+            font-family: inherit;
+        }
+
+        .email-input:focus,
+        .email-input.editable {
+            outline: none;
+            border-color: #3b82f6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .email-content {
+            margin-bottom: 24px;
+        }
+
+        .email-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: none;
+            min-height: 400px;
+            height: auto;
+            overflow: hidden;
+            font-family: inherit;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background: #f9fafb;
+        }
+
+        .email-textarea:focus,
+        .email-textarea.editable {
+            outline: none;
+            border-color: #3b82f6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .email-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 16px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .btn-edit-email,
+        .btn-send-email {
+            padding: 10px 20px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .btn-edit-email {
+            background: #ffffff;
+            color: #374151;
+        }
+
+        .btn-edit-email:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+        .btn-edit-email.editing {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+
+        .btn-edit-email.editing:hover {
+            background: #059669;
+            border-color: #059669;
+        }
+
+        .btn-send-email {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .btn-send-email:hover {
+            background: #2563eb;
+            border-color: #2563eb;
+        }
+
+        .btn-send-email:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #9ca3af;
+            border-color: #9ca3af;
+        }
+
+        .email-status {
+            text-align: center;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 14px;
+            margin-top: 16px;
+        }
+
+        .email-status.success {
+            background: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .email-status.error {
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .email-status.loading {
+            background: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+        }
+
+        @media (max-width: 768px) {
+            .email-popup-content {
+                max-width: 95%;
+                margin: 20px;
+            }
+
+            .email-popup-inner {
+                padding: 24px 20px;
+            }
+
+            .email-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .btn-edit-email,
+            .btn-send-email {
+                width: 100%;
+            }
+
+            .recipients-list {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .recipient-tag {
+                text-align: center;
+            }
+        }
+
+        /* Full width layout for mobile */
+        @media (max-width: 991px) {
+            .lower-content .row {
+                flex-wrap: nowrap !important;
+                flex-direction: column !important;
+            }
+
+            .lower-content .text-column,
+            .lower-content .col-lg-4 {
+                max-width: 100% !important;
+                flex: 0 0 100% !important;
+                width: 100% !important;
+            }
+
+            .lower-content .sidebar-widget {
+                margin-top: 30px;
+            }
+        }
+
+
+        .df {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .df .logo {
+            height: 50px !important;
+
+        }
+
+        .f-widget-title h2 {
+            margin-top: 12px;
+            font-size: 24px;
+        }
+
+        .copyright-wrap p {
+            font-size: 14px;
+        }
+
+        .row-module {
+            flex-direction: column;
+            flex-wrap: nowrap;
+        }
+
+        @media(min-width:992px) {
+            .video-element {
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header -->
+    <header class="header-area header-three">
+        <div id="header-sticky" class="menu-area">
+            <div class="container mobile-menu-container">
+                <div class="second-menu">
+                    <div class="row align-items-center">
+                        <!-- Logo - Left -->
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-6 mb-0 df">
+                            <a href="index.html">
+                                <img src="img/logo/logo.webp" alt="BloomLead Logo">
+                            </a>
+                            <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+
+                                <a href="index.html"
+                                    style="font-size: 24px; color: #769757; font-weight: 700; font-family: 'Jost', sans-serif; text-decoration: none;">BloomLead</a>
+                            </div>
+                        </div>
+                        <!-- Navigation - Center (Desktop only) -->
+                        <div class="col-xl-6 col-lg-6 d-none d-lg-block">
+                            <div class="main-menu text-center">
+                                <nav id="mobile-menu" style="display: block;">
+                                    <ul>
+                                        <li class="sub">
+                                            <a href="coaches.html">Valmentajat</a>
+                                        </li>
+
+                                        <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt & Hinnat</a>
+                                        </li>
+                                        <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
+                                        </li>
+                                        <li class="sub">
+                                            <a href="blog.html">Blogi</a>
+                                        </li>
+                                        <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- Search & Hamburger - Right -->
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-6 header-right-container">
+                            <div class="header-right d-flex align-items-center justify-content-end">
+                                <!-- Search icon for desktop -->
+                                <!-- <div class="search-top2 d-none d-lg-block">
+                                    <ul>
+                                        <li><a href="#" class="search-trigger" data-toggle="modal"
+                                                data-target=".bs-example-modal-lg"><i class="fas fa-search"></i></a>
+                                        </li>
+                                    </ul>
+                                </div> -->
+                                <!-- Mobile menu toggle -->
+                                <div class="mobile-menu d-lg-none">
+                                    <button class="mobile-menu-btn" type="button">
+                                        <span class="hamburger-line"></span>
+                                        <span class="hamburger-line"></span>
+                                        <span class="hamburger-line"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Dropdown -->
+                <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
+                    <div class="mobile-search">
+                        <a href="#" class="search-trigger" data-toggle="modal" data-target=".bs-example-modal-lg">
+                            <i class="fas fa-search"></i>
+                            <span>Search</span>
+                        </a>
+                    </div>
+                    <ul>
+                        <li><a href="coaches.html">Valmentajat</a></li>
+                        <li><a href="pricing.html">Webinaarien sisällöt & Hinnat</a></li>
+                        <li><a href="courses.html">Tilaa webinaarit</a></li>
+                        <li><a href="blog.html">Blogi</a></li>
+                        <li><a href="contact.html">Yhteystiedot</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    <!-- main-area -->
+    <main>
+
+        <!-- search-popup -->
+        <div class="modal fade bs-example-modal-lg search-bg popup1" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content search-popup">
+                    <div class="text-center">
+                        <a href="#" class="close2" data-dismiss="modal" aria-label="Close">× close</a>
+                    </div>
+                    <div class="row search-outer">
+                        <div class="col-md-11"><input type="text"
+                                placeholder="Search webinars, topics, or coaches..." /></div>
+                        <div class="col-md-1 text-right"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /search-popup -->
+        <!-- breadcrumb-area -->
+        <!-- <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/testimonial/test-bg.png)">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="breadcrumb-wrap text-left">
+                                <div class="breadcrumb-title">
+                                    <h2>Courses Details</h2>    
+                                    <div class="breadcrumb-wrap">
+                              
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Pricing</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section> -->
+        <!-- breadcrumb-area-end -->
+        <!-- Project Detail -->
+        <section class="project-detail">
+            <div class="container">
+                <!-- Lower Content -->
+                <div class="lower-content">
+                    <div class="row row-module">
+                        <div class="text-column col-lg-8 col-md-8 col-sm-12">
+                            <h2>Webinaarimoduli 1</h2>
+                            <!-- <h3 style="color: #a571aa; margin-bottom: 20px;">Projektin aloitus</h3> -->
+                            <!-- <ul class="course-meta review style2 clearfix mb-30">
+                                <li class="author">
+                                    <div class="thumb">
+                                        <img src="img/testimonial/testi_avatar.webp" alt="image">
+                                    </div>
+
+                                    <div class="text">
+                                        <a href="#">BloomLead</a>
+                                        <p>Instructor</p>
+                                    </div>
+                                </li> -->
+                            <!-- <li class="categories">
+                                    <a href="#" class="course-name">Projektijohtaminen</a>
+                                    <p>Category</p>
+                                </li> -->
+                            <!-- <li class="categories">
+                                    <a href="#" class="course-name">Hinta 125€ (+ alv)</a>
+                                    <p>Tai pakettihinta</p>
+                                </li> -->
+
+                            </ul>
+                        </div>
+                        <div class="upper-box">
+                            <div class="custom-video-player wow fadeInRight animated"
+                                data-animation="fadeInDown animated" data-delay=".2s">
+                                <div class="video-container">
+                                    <video id="customVideo" class="video-element">
+                                        <source src="img/video/webinar-section.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+
+                                    <!-- Video Not Available Message -->
+                                    <div class="video-not-available" id="videoNotAvailable" style="display: none;">
+                                        <div class="no-video-content">
+                                            <div class="no-video-icon">
+                                                <i class="fas fa-video-slash"></i>
+                                            </div>
+                                            <h3>Video ei ole vielä saatavilla</h3>
+                                            <p>Tämä webinaari julkaistaan <strong>5.1.2026</strong></p>
+                                            <div class="coming-soon-features">
+                                                <div class="feature-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>Kesto: 3 tuntia</span>
+                                                </div>
+                                                <div class="feature-item">
+                                                    <i class="fas fa-users"></i>
+                                                    <span>Live-webinaari</span>
+                                                </div>
+                                                <div class="feature-item">
+                                                    <i class="fas fa-certificate"></i>
+                                                    <span>Todistus suorituksesta</span>
+                                                </div>
+                                            </div>
+                                            <div class="notify-buttons">
+                                                <button class="btn-notify-me" id="notifyMeBtn">
+                                                    <i class="fas fa-bell"></i>
+                                                    Ilmoita kun saatavilla
+                                                </button>
+                                                <a href="courses.html" class="btn-browse-modules">
+                                                    <i class="fas fa-list"></i>
+                                                    Selaa muita moduuleja
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="video-overlay" id="videoOverlay">
+                                        <div class="play-button-custom" id="playButton">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-controls" id="videoControls">
+                                        <div class="progress-bar" id="progressBar">
+                                            <div class="progress-filled" id="progressFilled"></div>
+                                        </div>
+                                        <div class="controls-bottom">
+                                            <button class="control-btn" id="playPauseBtn">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <div class="time-display">
+                                                <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                                            </div>
+                                            <button class="control-btn" id="muteBtn">
+                                                <i class="fas fa-volume-up"></i>
+                                            </button>
+                                            <input type="range" id="volumeSlider" min="0" max="100" value="100"
+                                                class="volume-slider">
+                                            <button class="control-btn" id="speedBtn" title="Playback Speed">
+                                                <span id="speedDisplay">1x</span>
+                                            </button>
+                                            <button class="control-btn" id="fullscreenBtn">
+                                                <i class="fas fa-expand"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inner-column">
+
+                            <p>Moduli 1 keskittyy kahteen
+                                peruspilariin: <strong>itsensä johtamiseen
+                                </strong>ja<strong> projektijohtamisen taustoitus-
+                                    ja määrittelyvaiheisiin</strong>.
+                            </p>
+
+                            <p>Ensimmäiseksi tutustut itsensä
+                                johtamisen keskeisiin viitekehyksiin
+                                ja opit soveltamaan niitä omassa
+                                arjessasi erilaisten harjoitusten
+                                avulla. Itsensä johtaminen on
+                                projektipäällikön tärkeä taito: kun
+                                johdat itseäsi hyvin, pystyt
+                                johtamaan myös muita. Siksi
+                                ohjelma alkaa tämän perustan
+                                vahvistamisesta ja jatkuvan
+                                harjoittelun merkityksestä.</p>
+
+                            <p>Toiseksi saat kokonaiskuvan
+                                projektijohtamisen vaiheista ja
+                                niihin liittyvistä muutosjohtamisen
+                                sekä viestinnän mekanismeista.
+                                Modulissa perehdytään tarkemmin
+                                projektin <strong>taustoitus- ja
+                                    määrittelyvaiheeseen</strong> (initiation,
+                                concepting): mitä vaihe sisältää,
+                                millaisia tehtäviä siihen kuuluu ja
+                                millaista dokumentaatiota
+                                onnistunut aloitus edellyttää.</p>
+
+                            <p>Järjestämme myös
+                                reflektiotapaamisen, jota ennen
+                                voit lähettää kysymyksiä
+                                valmentajille. Vastaamme
+                                jokaiseen kysymykseen joko
+                                tilaisuudessa tai sen jälkeen. Kutsu
+                                tulee sinulle sähköpostitse tähän
+                                tapaamiseen.</p>
+
+                            <p>Tule mukaan tälle yhteisölliselle
+                                oppimiskokemukselle!</p>
+
+                            <!-- <h4>Moduulin sisältö:</h4>
+                            <table class="table table-bordered mb-30">
+													<thead>
+														<tr>
+															<th>Aihe</th>
+															<th>Kesto</th>
+															<th>Taso</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Itsensä johtaminen</td>
+															<td>45 min</td>
+															<td>Perustaso</td>
+														</tr>
+														<tr>
+															<td>Projektin taustoitus ja määrittely</td>
+															<td>60 min</td>
+															<td>Perustaso</td>
+														</tr>
+														<tr>
+															<td>Muutos- ja viestintäsuunnitelma</td>
+															<td>45 min</td>
+															<td>Keskitaso</td>
+														</tr>
+														<tr>
+															<td>Tekoälyn hyödyntäminen</td>
+															<td>30 min</td>
+															<td>Perustaso</td>
+														</tr>
+													</tbody>
+												</table> -->
+
+                            <h4>Projektin määrittely &
+                                Johtaja luo suunnan</h4>
+                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eleifend donec sapien sed phase lusa pellentesque lacus. Vivamus lorem arcu semper duiac. Cras ornare arcu avamus nda leo Etiam ind arcu. Morbi justo mauris tempus pharetra interdum at congue semper purus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                            
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                             -->
+                            <ul class="pr-ul">
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Johtajan roolin
+                                        kirkastaminen
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Oman motivaation ja
+                                        arvojen tunnistaminen </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Tavoite – sisäistäminen ja
+                                        sitoutuminen </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Priorisointi ja ajanhallinta
+                                        johtajana </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Johtamisen harjoituksia
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Hyvinvointivinkki
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Projektin taustoitus
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Projektin määrittely
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Muutosjohtamis- ja
+                                        viestintäsuunnitelma
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fal fa-check"></i></div>
+                                    <div class="text">
+                                        Modulin 1 yhteenveto
+                                    </div>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-4">
+                    <aside class="sidebar-widget">
+                        <section class="widget widget_search">
+                            <div class="course-widget-price">
+                                <h2 class="widget-title">Moduulin tiedot</h2>
+                                <div class="mobile-menu-content">
+                                    <ul> -->
+                <!-- <li>
+                                       <i class="fal fa-clock"></i>
+                                        <span>Alkaa</span>
+                                        <span class="time">Heti saatavilla</span>
+                                    </li> -->
+                <!-- <li>
+                                            <i class="fal fa-exclamation-circle"></i>
+                                            <span>Kesto</span>
+                                            <span class="time">3 tuntia</span>
+                                        </li>
+                                        <li>
+                                            <i class="fab fa-leanpub"></i>
+                                            <span>Formaatti</span>
+                                            <span class="time">Live webinaari</span>
+                                        </li>
+                                        <li>
+                                            <i class="fal fa-user-graduate"></i>
+                                            <span>Järjestäjä</span>
+                                            <span class="time">BloomLead</span>
+                                        </li> -->
+                <!-- <li>
+                                       <i class="fal fa-plus-hexagon"></i>
+                                        <span>Osallistujia</span>
+                                        <span class="time">Rajoittamaton</span>
+                                    </li> -->
+                <!-- <li>
+                                        <i class="fal fa-user"></i>
+                                        <span>Taso</span>
+                                        <span class="time">Perustaso</span>
+                                    </li> -->
+                <!-- </ul>
+                                </div>
+                                <h5 class="pt-20 pb-20">Hinta: <span>125€ (+ alv)</span></h5>
+                                <a class="btn ss-btn" href="#">TILAA MODUULI</a>
+                            </div>
+
+
+                        </section> -->
+
+                <!-- <section id="categories-1" class="widget widget_categories">
+                             <h2 class="widget-title">Aiheet</h2>
+                             <div class="mobile-menu-content">
+                        <ul>
+                                <li class="cat-item cat-item-16"><a href="#">Itsensä johtaminen</a></li>
+                                <li class="cat-item cat-item-23"><a href="#">Projektijohtaminen</a></li>
+                                <li class="cat-item cat-item-18"><a href="#">Viestintä</a></li>
+                                <li class="cat-item cat-item-22"><a href="#">Tekoäly</a></li>
+                             </ul>
+                        </div>
+                          </section> -->
+
+                <!-- </aside>
+
+
+
+                </div> -->
+
+
+            </div>
+
+
+            </div>
+
+
+            </div>
+        </section>
+        <!--End Project Detail -->
+
+    </main>
+    <!-- main-area-end -->
+
+    <!-- Video Subscribe Popup -->
+    <div class="video-subscribe-popup" id="videoSubscribePopup">
+        <div class="subscribe-popup-overlay" id="subscribeOverlay"></div>
+        <div class="subscribe-popup-content">
+            <button class="subscribe-close-btn" id="subscribeCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="subscribe-popup-inner">
+                <div class="subscribe-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>Tilaa voidaksesi katsoa koko
+                    webinaarin</h3>
+                <button class="subscribe-submit-btn" id="subscribeBtn">
+                    <i class="fas fa-bell"></i> Tilaa nyt
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Video Subscribe Popup End -->
+
+    <!-- Email Subscription Popup -->
+    <div class="email-subscription-popup" id="emailSubscriptionPopup">
+        <div class="email-popup-overlay" id="emailPopupOverlay"></div>
+        <div class="email-popup-content">
+            <button class="email-close-btn" id="emailCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="email-popup-inner">
+                <div class="email-header">
+                    <div class="email-header-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="email-header-text">
+                        <h3 id="emailPopupTitle">Review Your Inquiry</h3>
+                        <p>IN-APP COMPOSE</p>
+                    </div>
+                </div>
+
+                <div class="email-form">
+                    <div class="contact-email-section">
+                        <div class="contact-email-label">YOUR CONTACT EMAIL (REPLY-TO)</div>
+                        <div class="contact-email-field">
+                            <i class="fas fa-user"></i>
+                            <input type="email" id="contactEmail">
+                            <i class="fas fa-check-circle status-icon" id="emailStatusIcon" style="display: none;"></i>
+                        </div>
+                        <div class="contact-note">This is where the sales team will contact you back.</div>
+                    </div>
+
+                    <div class="email-field-row">
+                        <div class="email-field">
+                            <div class="email-field-label">To:</div>
+                            <!-- <div class="email-field-value">contact@bloomlead.io, marke.tyrvainen@elisanet.fi, jkartilamalmivaara@gmail.com</div> -->
+                            <div class="email-field-value">contact@bloomlead.io, marke.tyrvainen@elisanet.fi,
+                                jkartilamalmivaara@gmail.com</div>
+                        </div>
+                    </div>
+
+                    <div class="email-field-row">
+                        <div class="email-field">
+                            <div class="email-field-label">Sub:</div>
+                            <div class="email-field-value" id="emailSubjectDisplay">Purchase Inquiry: Webinar Module
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="message-section">
+                        <div class="message-header">
+                            <div class="message-label">MESSAGE CONTENT</div>
+                            <button class="edit-btn" id="editEmailBtn">
+                                <i class="fas fa-edit"></i> EDIT
+                            </button>
+                        </div>
+                        <textarea class="message-content" id="emailMessage" readonly></textarea>
+                    </div>
+
+                    <div class="popup-footer">
+                        <div class="popup-actions">
+                            <button class="btn-cancel" onclick="emailManager.closeEmailPopup()">Cancel</button>
+                            <button class="btn-send" id="sendEmailBtn">
+                                <i class="fas fa-paper-plane"></i> Send Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="email-status" id="emailStatus" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Email Subscription Popup End -->
+
+    <!-- footer -->
+    <footer class="footer-bg footer-p fix">
+        <div class="footer-center  pt-70 pb-40">
+            <div class="container">
+                <div class="row justify-content-between">
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="df">
+                                <a href="index.html">
+                                    <img src="img/logo/logo.webp" alt="BloomLead Logo">
+                                </a>
+                                <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+
+                                    <a href="index.html"
+                                        style="font-size: 24px; color: #769757; font-weight: 700; font-family: 'Jost', sans-serif; text-decoration: none;">BloomLead</a>
+                                </div>
+                            </div>
+                            <div class="footer-link px-2">
+                                BloomLead – auttaa projektin
+                                tavoitteiden ja ROI:n toteutuksessa
+                                yhdistämällä ihmisten ja projektin
+                                johtamisen, muutoksen ja AI:n.
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Ota yhteyttä</h2>
+                            </div>
+                            <div class="f-contact">
+                                <div class="mobile-menu-content">
+                                    <ul>
+                                        <!-- <li>
+                                                <i class="icon fal fa-map-marker-check"></i>
+                                                <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
+                                            </li> -->
+
+                                        <li><i class="icon fal fa-envelope"></i>
+                                            <span>
+                                                <a href="mailto:contact@bloomlead.io" class="email-clickable"
+                                                    style="display: block; color: inherit; cursor: pointer; text-decoration: underline;"
+                                                    onmouseover="this.style.color='#a571aa'"
+                                                    onmouseout="this.style.color='inherit'"
+                                                    onclick="openEmailOptions('contact@bloomlead.io', 'footer-contact'); return false;">
+                                                    contact@bloomlead.io
+                                                </a>
+                                                <!-- <span style="display: block;">help@example.com</span> -->
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <i class="icon fal fa-phone"></i>
+                                            <span>+358 388 3188,
+                                                <br>ti ja to klo 17.00-18.00
+                                                <br>(12.1.2026 alkaen)</span>
+
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Yrityksen tiedot</h2>
+                            </div>
+                            <div class="footer-link">BloomLead I MT Business Coaching Oy
+                                <br>
+                                Hämeenpuisto 14 A 2
+                                <br>
+                                33210 Tampere
+                                <br>
+                                Y-tunnus 3166661-4
+                                <br>
+                                Pankkitili FI15 7997 7993 0370 30
+                                <br>
+                                BIC HOLVFIHH
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6 terms-and-condition-link-container">
+                        <div class="footer-widget terms-and-condition-link mb-30">
+                            <div class="f-widget-title">
+                                <!-- <h2>Sopimukset</h2> -->
+                            </div>
+                            <div class="footer-link">
+                                <p><a href="terms-and-conditions.html" style="color: inherit;">Käyttö- ja
+                                        sopimusehdot</a></p>
+                                <p><a href="privacy-policy.html" style="color: inherit;">Rekisteriseloste ja
+                                        Tietosuoja</a></p>
+                                <p><a href="#" onclick="cookieManager.showPreferences(); return false;"
+                                        style="color: inherit;">Evästeasetukset</a></p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="copyright-wrap">
+            <div class="container">
+                <div class="row align-items-center" style="justify-content: center;">
+                    <div class="col-lg-6">
+                        Copyright &copy; 2025 BloomLead. All rights reserved.
+                    </div>
+                    <!-- <div class="col-lg-6 text-right text-xl-right">
+                        <div class="mobile-menu-content">
+                        <ul>
+                            <li><a href="#">Yksityisyydensuoja</a></li>
+                            <li><a href="#">Sopimusehdot</a></li>
+                            <li><a href="#">Q&A</a></li>
+                        </ul>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer-end -->
+
+
+    <!-- JS here -->
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/one-page-nav-min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/ajax-form.js"></script>
+    <script src="js/paroller.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/js_isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.min.js"></script>
+    <script src="js/parallax.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/parallax-scroll.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/element-in-view.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Email Modal System -->
+    <script src="js/email-modal.js"></script>
+
+    <!-- Necessary Cookies - Required for basic functionality -->
+    <script src="js/necessary-cookies.js"></script>
+
+    <!-- Functional Cookies - Video player settings and progress -->
+    <script>
+        // Check if functional cookies are allowed before loading
+        if (localStorage.getItem('bloomlead_cookie_consent')) {
+            const consent = JSON.parse(localStorage.getItem('bloomlead_cookie_consent'));
+            if (consent.categories && consent.categories.functional) {
+                const script = document.createElement('script');
+                script.src = 'js/functional-cookies.js';
+                document.head.appendChild(script);
+            }
+        }
+    </script>
+
+    <!-- Analytics Cookies - Video engagement and page tracking -->
+    <script>
+        // Check if analytics cookies are allowed before loading
+        if (localStorage.getItem('bloomlead_cookie_consent')) {
+            const consent = JSON.parse(localStorage.getItem('bloomlead_cookie_consent'));
+            if (consent.categories && consent.categories.analytics) {
+                const script = document.createElement('script');
+                script.src = 'js/webinar-analytics.js';
+                document.head.appendChild(script);
+            }
+        }
+    </script>
+
+    <!-- Custom Mobile Menu Script -->
+    <script>
+        $(document).ready(function () {
+            // Mobile menu toggle functionality
+            $('.mobile-menu-btn').on('click', function (e) {
+                e.preventDefault();
+                $(this).toggleClass('active');
+                $('#mobileMenuDropdown').toggleClass('show');
+
+                // Lock/unlock body scroll
+                if ($('#mobileMenuDropdown').hasClass('show')) {
+                    $('body').css('overflow', 'hidden');
+                } else {
+                    $('body').css('overflow', '');
+                }
+            });
+
+            // Close mobile menu when clicking backdrop
+            $('#mobileMenuDropdown').on('click', function (e) {
+                if (e.target === this) {
+                    $('.mobile-menu-btn').removeClass('active');
+                    $('#mobileMenuDropdown').removeClass('show');
+                    $('body').css('overflow', '');
+                }
+            });
+
+            // Close mobile menu when clicking on a link
+            $('.mobile-menu-dropdown a').on('click', function () {
+                $('.mobile-menu-btn').removeClass('active');
+                $('#mobileMenuDropdown').removeClass('show');
+                $('body').css('overflow', '');
+            });
+
+            // Close mobile menu on window resize if desktop
+            $(window).on('resize', function () {
+                if ($(window).width() >= 992) {
+                    $('.mobile-menu-btn').removeClass('active');
+                    $('#mobileMenuDropdown').removeClass('show');
+                    $('body').css('overflow', '');
+                }
+            });
+            $(window).on('resize', function () {
+                if ($(window).width() >= 992) {
+                    $('.mobile-menu-btn').removeClass('active');
+                    $('#mobileMenuDropdown').removeClass('show');
+                }
+            });
+        });
+
+        // Subscription Management System
+        class SubscriptionManager {
+            constructor() {
+                this.storageKey = 'bloomlead_subscription_status';
+                this.moduleKey = 'bloomlead_subscribed_modules';
+            }
+
+            // Check if user has active subscription
+            hasActiveSubscription() {
+                const subscription = localStorage.getItem(this.storageKey);
+                if (!subscription) return false;
+
+                try {
+                    const subData = JSON.parse(subscription);
+                    return subData.active === true && new Date(subData.expiresAt) > new Date();
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            // Check if user has subscribed to specific module
+            hasModuleAccess(moduleId) {
+                if (this.hasActiveSubscription()) return true;
+
+                const modules = localStorage.getItem(this.moduleKey);
+                if (!modules) return false;
+
+                try {
+                    const moduleData = JSON.parse(modules);
+                    return moduleData.includes(moduleId);
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            // Subscribe to a specific module (for demo purposes)
+            subscribeToModule(moduleId) {
+                let modules = [];
+                const existing = localStorage.getItem(this.moduleKey);
+                if (existing) {
+                    try {
+                        modules = JSON.parse(existing);
+                    } catch (e) {
+                        modules = [];
+                    }
+                }
+
+                if (!modules.includes(moduleId)) {
+                    modules.push(moduleId);
+                    localStorage.setItem(this.moduleKey, JSON.stringify(modules));
+                }
+
+                // Trigger subscription event
+                window.dispatchEvent(new CustomEvent('subscriptionUpdated', {
+                    detail: { moduleId, hasAccess: true }
+                }));
+            }
+
+            // Set full subscription (for demo purposes)
+            setFullSubscription(durationDays = 365) {
+                const subscription = {
+                    active: true,
+                    subscribedAt: new Date().toISOString(),
+                    expiresAt: new Date(Date.now() + durationDays * 24 * 60 * 60 * 1000).toISOString(),
+                    type: 'full'
+                };
+                localStorage.setItem(this.storageKey, JSON.stringify(subscription));
+
+                // Trigger subscription event
+                window.dispatchEvent(new CustomEvent('subscriptionUpdated', {
+                    detail: { type: 'full', hasAccess: true }
+                }));
+            }
+        }
+
+        // Initialize subscription manager
+        const subscriptionManager = new SubscriptionManager();
+        const currentModuleId = 'module-1-webinar';
+
+        // Custom Video Player Functionality with Subscription Check
+        const video = document.getElementById('customVideo');
+        const playButton = document.getElementById('playButton');
+        const videoOverlay = document.getElementById('videoOverlay');
+        const videoControls = document.getElementById('videoControls');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressFilled = document.getElementById('progressFilled');
+        const currentTimeDisplay = document.getElementById('currentTime');
+        const durationDisplay = document.getElementById('duration');
+        const muteBtn = document.getElementById('muteBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const speedBtn = document.getElementById('speedBtn');
+        const speedDisplay = document.getElementById('speedDisplay');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+        // Video ID for this specific module
+        const videoId = 'module-1-webinar';
+
+        // Progress saving interval
+        let progressInterval;
+
+        // Check subscription status and update UI
+        function checkSubscriptionAndUpdateUI() {
+            const hasAccess = subscriptionManager.hasModuleAccess(currentModuleId);
+
+            if (!hasAccess) {
+                // Show subscription placeholder
+                showSubscriptionPlaceholder();
+                // Disable video controls
+                disableVideoControls();
+            } else {
+                // Hide subscription placeholder
+                hideSubscriptionPlaceholder();
+                // Enable video controls
+                enableVideoControls();
+            }
+
+            return hasAccess;
+        }
+
+        // Check if video is available and show appropriate message
+        function checkVideoAvailability() {
+            const video = document.getElementById('customVideo');
+            const videoNotAvailable = document.getElementById('videoNotAvailable');
+            const videoOverlay = document.getElementById('videoOverlay');
+            const videoControls = document.getElementById('videoControls');
+
+            // Check if video source exists and can be loaded
+            video.addEventListener('error', () => {
+                showVideoNotAvailable();
+            });
+
+            video.addEventListener('loadstart', () => {
+                // Video started loading, hide not available message
+                hideVideoNotAvailable();
+            });
+
+            // Check if video source is accessible
+            const source = video.querySelector('source');
+            if (source && source.src) {
+                // Try to load the video
+                video.load();
+
+                // Set a timeout to show not available message if video doesn't load
+                setTimeout(() => {
+                    if (video.readyState === 0) {
+                        showVideoNotAvailable();
+                    }
+                }, 3000);
+            } else {
+                // No video source, show not available message
+                showVideoNotAvailable();
+            }
+        }
+
+        function showVideoNotAvailable() {
+            const videoNotAvailable = document.getElementById('videoNotAvailable');
+            const videoOverlay = document.getElementById('videoOverlay');
+            const videoControls = document.getElementById('videoControls');
+
+            videoNotAvailable.style.display = 'flex';
+            videoOverlay.style.display = 'none';
+            videoControls.style.display = 'none';
+
+            // Hide video element
+            document.getElementById('customVideo').style.display = 'none';
+        }
+
+        function hideVideoNotAvailable() {
+            const videoNotAvailable = document.getElementById('videoNotAvailable');
+            const videoOverlay = document.getElementById('videoOverlay');
+            const videoControls = document.getElementById('videoControls');
+
+            videoNotAvailable.style.display = 'none';
+            videoOverlay.style.display = 'flex';
+            videoControls.style.display = 'block';
+
+            // Show video element
+            document.getElementById('customVideo').style.display = 'block';
+        }
+
+        // Show subscription placeholder overlay
+        function showSubscriptionPlaceholder() {
+            // Update play button to show subscription message
+            playButton.innerHTML = '<i class="fas fa-lock"></i>';
+            playButton.style.background = 'rgba(165, 113, 170, 0.95)';
+
+            // Add subscription message to overlay
+            if (!document.getElementById('subscriptionMessage')) {
+                const subscriptionMessage = document.createElement('div');
+                subscriptionMessage.id = 'subscriptionMessage';
+                subscriptionMessage.style.cssText = `
+                    position: absolute;
+                    bottom: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(0, 0, 0, 0.8);
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    z-index: 10;
+                `;
+                subscriptionMessage.textContent = 'Tilaa nyt katsoaksesi koko webinaarin';
+                videoOverlay.appendChild(subscriptionMessage);
+            }
+
+            // Make sure overlay is always visible
+            videoOverlay.classList.remove('hidden');
+            videoOverlay.style.pointerEvents = 'all';
+        }
+
+        // Hide subscription placeholder
+        function hideSubscriptionPlaceholder() {
+            // Restore original play button
+            playButton.innerHTML = '<i class="fas fa-play"></i>';
+            playButton.style.background = 'rgba(165, 113, 170, 0.95)';
+
+            // Remove subscription message
+            const subscriptionMessage = document.getElementById('subscriptionMessage');
+            if (subscriptionMessage) {
+                subscriptionMessage.remove();
+            }
+
+            // Restore normal overlay behavior
+            videoOverlay.style.pointerEvents = 'none';
+        }
+
+        // Disable video controls for non-subscribers
+        function disableVideoControls() {
+            video.style.pointerEvents = 'none';
+            videoControls.style.display = 'none';
+
+            // Disable all control buttons
+            [playPauseBtn, muteBtn, speedBtn, fullscreenBtn].forEach(btn => {
+                if (btn) btn.disabled = true;
+            });
+
+            if (progressBar) progressBar.style.pointerEvents = 'none';
+            if (volumeSlider) volumeSlider.disabled = true;
+        }
+
+        // Enable video controls for subscribers
+        function enableVideoControls() {
+            video.style.pointerEvents = 'auto';
+            videoControls.style.display = 'block';
+
+            // Enable all control buttons
+            [playPauseBtn, muteBtn, speedBtn, fullscreenBtn].forEach(btn => {
+                if (btn) btn.disabled = false;
+            });
+
+            if (progressBar) progressBar.style.pointerEvents = 'auto';
+            if (volumeSlider) volumeSlider.disabled = false;
+        }
+
+        // Format time helper
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        // Play/Pause functionality with subscription check
+        function togglePlay() {
+            // Check subscription before allowing play
+            if (!subscriptionManager.hasModuleAccess(currentModuleId)) {
+                // Show subscription popup instead of playing
+                subscribePopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                return;
+            }
+
+            if (video.paused) {
+                video.play();
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                videoOverlay.classList.add('hidden');
+            } else {
+                video.pause();
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                videoOverlay.classList.remove('hidden');
+            }
+        }
+
+        playButton.addEventListener('click', togglePlay);
+        playPauseBtn.addEventListener('click', togglePlay);
+        video.addEventListener('click', togglePlay);
+
+        // Make entire video container clickable
+        const videoContainer = document.querySelector('.video-container');
+        if (videoContainer) {
+            videoContainer.addEventListener('click', function (e) {
+                // Don't trigger if clicking on controls or buttons
+                if (!e.target.closest('.video-controls') &&
+                    !e.target.closest('.play-button-custom') &&
+                    !e.target.closest('.notify-buttons') &&
+                    !e.target.closest('button') &&
+                    !e.target.closest('input')) {
+                    togglePlay();
+                }
+            });
+
+            // Add cursor pointer to indicate clickability
+            videoContainer.style.cursor = 'pointer';
+        }
+
+        // Update progress bar
+        video.addEventListener('timeupdate', () => {
+            const percent = (video.currentTime / video.duration) * 100;
+            progressFilled.style.width = `${percent}%`;
+            currentTimeDisplay.textContent = formatTime(video.currentTime);
+        });
+
+        // Set duration when loaded and restore saved preferences
+        video.addEventListener('loadedmetadata', () => {
+            durationDisplay.textContent = formatTime(video.duration);
+
+            // Check subscription status and update UI
+            checkSubscriptionAndUpdateUI();
+
+            // Initialize video player with functional cookies
+            if (typeof initializeVideoPlayer === 'function') {
+                initializeVideoPlayer(video, videoId);
+            }
+
+            // Only restore preferences if functional cookies are allowed AND user has access
+            if (subscriptionManager.hasModuleAccess(currentModuleId) &&
+                typeof FunctionalCookies !== 'undefined' &&
+                FunctionalCookies.hasConsentFor('functional')) {
+
+                // Restore saved playback speed
+                const savedSpeed = FunctionalCookies.getPlaybackSpeed();
+                if (savedSpeed && savedSpeed !== 1.0) {
+                    video.playbackRate = savedSpeed;
+                    speedDisplay.textContent = `${savedSpeed}x`;
+                    // Find the correct speed index
+                    currentSpeedIndex = playbackSpeeds.indexOf(savedSpeed);
+                    if (currentSpeedIndex === -1) currentSpeedIndex = 2; // Default to 1x
+                }
+
+                // Restore saved volume
+                const savedVolume = FunctionalCookies.getVolume();
+                if (savedVolume !== 1.0) {
+                    video.volume = savedVolume;
+                    volumeSlider.value = savedVolume * 100;
+
+                    // Update mute button icon based on volume
+                    if (savedVolume === 0) {
+                        muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    } else if (savedVolume < 0.5) {
+                        muteBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+                    } else {
+                        muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    }
+                }
+            }
+        });
+
+        // Seek functionality (only for subscribers)
+        progressBar.addEventListener('click', (e) => {
+            if (!subscriptionManager.hasModuleAccess(currentModuleId)) {
+                subscribePopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                return;
+            }
+
+            const rect = progressBar.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            video.currentTime = percent * video.duration;
+        });
+
+        // Mute/Unmute
+        muteBtn.addEventListener('click', () => {
+            video.muted = !video.muted;
+            if (video.muted) {
+                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                volumeSlider.value = 0;
+            } else {
+                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                volumeSlider.value = video.volume * 100;
+            }
+        });
+
+        // Volume control with functional cookies (only for subscribers)
+        volumeSlider.addEventListener('input', (e) => {
+            if (!subscriptionManager.hasModuleAccess(currentModuleId)) return;
+
+            video.volume = e.target.value / 100;
+
+            // Save volume preference (only if functional cookies are allowed)
+            if (typeof FunctionalCookies !== 'undefined' && FunctionalCookies.hasConsentFor('functional')) {
+                FunctionalCookies.saveVolume(video.volume);
+            }
+
+            if (video.volume === 0) {
+                video.muted = true;
+                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            } else {
+                video.muted = false;
+                if (video.volume < 0.5) {
+                    muteBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+                } else {
+                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                }
+            }
+        });
+
+        // Playback speed control with functional cookies (only for subscribers)
+        const playbackSpeeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
+        let currentSpeedIndex = 2; // Default to 1x
+
+        speedBtn.addEventListener('click', () => {
+            if (!subscriptionManager.hasModuleAccess(currentModuleId)) return;
+
+            currentSpeedIndex = (currentSpeedIndex + 1) % playbackSpeeds.length;
+            const newSpeed = playbackSpeeds[currentSpeedIndex];
+            video.playbackRate = newSpeed;
+            speedDisplay.textContent = `${newSpeed}x`;
+
+            // Save playback speed preference (only if functional cookies are allowed)
+            if (typeof FunctionalCookies !== 'undefined' && FunctionalCookies.hasConsentFor('functional')) {
+                FunctionalCookies.savePlaybackSpeed(newSpeed);
+            }
+        });
+
+        // Fullscreen
+        fullscreenBtn.addEventListener('click', () => {
+            const videoContainer = document.querySelector('.video-container');
+            if (!document.fullscreenElement) {
+                if (videoContainer.requestFullscreen) {
+                    videoContainer.requestFullscreen();
+                } else if (videoContainer.webkitRequestFullscreen) {
+                    videoContainer.webkitRequestFullscreen();
+                } else if (videoContainer.msRequestFullscreen) {
+                    videoContainer.msRequestFullscreen();
+                }
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+            }
+        });
+
+        // Show controls on video end and stop progress tracking
+        video.addEventListener('ended', () => {
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            videoOverlay.classList.remove('hidden');
+            videoControls.classList.add('show');
+
+            // Stop progress tracking
+            if (progressInterval) {
+                clearInterval(progressInterval);
+                progressInterval = null;
+            }
+
+            // Save final progress (only if functional cookies are allowed)
+            if (FunctionalCookies.hasConsentFor('functional')) {
+                FunctionalCookies.saveVideoProgress(videoId, video.currentTime);
+            }
+        });
+
+        // Hide overlay when video starts playing
+        video.addEventListener('play', () => {
+            videoOverlay.classList.add('hidden');
+        });
+
+        // Video Subscribe Popup Functionality
+        const subscribePopup = document.getElementById('videoSubscribePopup');
+        const subscribeOverlay = document.getElementById('subscribeOverlay');
+        const subscribeCloseBtn = document.getElementById('subscribeCloseBtn');
+        const subscribeBtn = document.getElementById('subscribeBtn');
+        let hasShownPopup = false;
+
+        // Show popup when video plays and start progress tracking
+        video.addEventListener('play', () => {
+            // Check subscription before allowing play
+            if (!subscriptionManager.hasModuleAccess(currentModuleId)) {
+                // Pause the video immediately
+                video.pause();
+
+                // Show subscription popup
+                if (!hasShownPopup) {
+                    hasShownPopup = true;
+                    setTimeout(() => {
+                        subscribePopup.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }, 100);
+                }
+                return;
+            }
+
+            // Mark as last watched webinar (only if functional cookies are allowed)
+            if (typeof FunctionalCookies !== 'undefined' && FunctionalCookies.hasConsentFor('functional')) {
+                FunctionalCookies.saveLastWatched(videoId);
+
+                // Start progress tracking
+                if (progressInterval) clearInterval(progressInterval);
+                progressInterval = setInterval(() => {
+                    if (!video.paused && FunctionalCookies.hasConsentFor('functional')) {
+                        FunctionalCookies.saveVideoProgress(videoId, video.currentTime);
+                    }
+                }, 5000); // Save every 5 seconds
+            }
+        });
+
+        // Close popup function
+        function closeSubscribePopup() {
+            subscribePopup.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close popup on close button click
+        subscribeCloseBtn.addEventListener('click', closeSubscribePopup);
+
+        // Close popup on overlay click
+        subscribeOverlay.addEventListener('click', closeSubscribePopup);
+
+        // Handle subscribe button click
+        subscribeBtn.addEventListener('click', () => {
+            // Show email popup instead of direct subscription
+            showEmailPopup('module');
+        });
+
+        // Show subscription success message
+        function showSubscriptionSuccess() {
+            const successMessage = document.createElement('div');
+            successMessage.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #28a745, #20c997);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                font-weight: 600;
+                z-index: 10001;
+                box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+                animation: slideInRight 0.3s ease-out;
+            `;
+            successMessage.innerHTML = `
+                <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
+                Tilaus onnistui! Voit nyt katsoa webinaarin.
+            `;
+
+            // Add animation keyframes
+            if (!document.getElementById('subscriptionSuccessStyles')) {
+                const style = document.createElement('style');
+                style.id = 'subscriptionSuccessStyles';
+                style.textContent = `
+                    @keyframes slideInRight {
+                        from {
+                            opacity: 0;
+                            transform: translateX(100%);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateX(0);
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            document.body.appendChild(successMessage);
+
+            // Remove message after 4 seconds
+            setTimeout(() => {
+                successMessage.style.animation = 'slideInRight 0.3s ease-out reverse';
+                setTimeout(() => {
+                    if (successMessage.parentNode) {
+                        successMessage.parentNode.removeChild(successMessage);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Close popup on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && subscribePopup.classList.contains('active')) {
+                closeSubscribePopup();
+            }
+        });
+
+        // Stop progress tracking when video is paused
+        video.addEventListener('pause', () => {
+            if (progressInterval) {
+                clearInterval(progressInterval);
+                progressInterval = null;
+            }
+        });
+
+        // Clean up on page unload
+        window.addEventListener('beforeunload', () => {
+            if (progressInterval) {
+                clearInterval(progressInterval);
+            }
+            // Save final progress (only if functional cookies are allowed)
+            if (video && !video.paused && typeof FunctionalCookies !== 'undefined' && FunctionalCookies.hasConsentFor('functional')) {
+                FunctionalCookies.saveVideoProgress(videoId, video.currentTime);
+            }
+        });
+
+        // Listen for subscription updates
+        window.addEventListener('subscriptionUpdated', (event) => {
+            checkSubscriptionAndUpdateUI();
+        });
+
+        // Initialize subscription check on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            checkVideoAvailability();
+            checkSubscriptionAndUpdateUI();
+        });
+
+        // Notification functionality for video not available
+        document.addEventListener('DOMContentLoaded', () => {
+            const notifyMeBtn = document.getElementById('notifyMeBtn');
+            if (notifyMeBtn) {
+                notifyMeBtn.addEventListener('click', () => {
+                    // Check if user has already requested notification
+                    const notificationRequested = localStorage.getItem('bloomlead_notification_module_1');
+
+                    if (notificationRequested) {
+                        showNotificationMessage('Olet jo pyytänyt ilmoituksen tälle webinaarille!', 'info');
+                        return;
+                    }
+
+                    // Save notification request
+                    localStorage.setItem('bloomlead_notification_module_1', JSON.stringify({
+                        requested: true,
+                        timestamp: new Date().toISOString(),
+                        moduleId: currentModuleId
+                    }));
+
+                    // Update button state
+                    notifyMeBtn.innerHTML = '<i class="fas fa-check"></i> Ilmoitus pyydetty';
+                    notifyMeBtn.style.background = '#28a745';
+                    notifyMeBtn.disabled = true;
+
+                    // Show success message
+                    showNotificationMessage('Kiitos! Lähetämme sinulle ilmoituksen kun webinaari on saatavilla.', 'success');
+
+                    // In real implementation, send notification request to server
+                    // sendNotificationRequest(currentModuleId);
+                });
+            }
+        });
+
+        function showNotificationMessage(message, type = 'success') {
+            const messageDiv = document.createElement('div');
+            const bgColor = type === 'success' ? '#28a745' : type === 'info' ? '#17a2b8' : '#ffc107';
+
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${bgColor};
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                font-weight: 600;
+                z-index: 10001;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                max-width: 350px;
+                animation: slideInRight 0.3s ease-out;
+            `;
+
+            messageDiv.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'info' ? 'info-circle' : 'exclamation-circle'}" style="margin-right: 10px;"></i>
+                ${message}
+            `;
+
+            document.body.appendChild(messageDiv);
+
+            // Remove message after 5 seconds
+            setTimeout(() => {
+                messageDiv.style.animation = 'slideInRight 0.3s ease-out reverse';
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        messageDiv.parentNode.removeChild(messageDiv);
+                    }
+                }, 300);
+            }, 5000);
+        }
+
+        // Check if notification was already requested on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const notificationRequested = localStorage.getItem('bloomlead_notification_module_1');
+            const notifyMeBtn = document.getElementById('notifyMeBtn');
+
+            if (notificationRequested && notifyMeBtn) {
+                notifyMeBtn.innerHTML = '<i class="fas fa-check"></i> Ilmoitus pyydetty';
+                notifyMeBtn.style.background = '#28a745';
+                notifyMeBtn.disabled = true;
+            }
+        });
+
+        // Email Subscription System
+        class EmailSubscriptionManager {
+            constructor() {
+                this.emailPopup = document.getElementById('emailSubscriptionPopup');
+                this.emailCloseBtn = document.getElementById('emailCloseBtn');
+                this.editEmailBtn = document.getElementById('editEmailBtn');
+                this.sendEmailBtn = document.getElementById('sendEmailBtn');
+                this.contactEmail = document.getElementById('contactEmail');
+                this.emailStatusIcon = document.getElementById('emailStatusIcon');
+                this.emailSubjectDisplay = document.getElementById('emailSubjectDisplay');
+                this.emailMessage = document.getElementById('emailMessage');
+                this.emailStatus = document.getElementById('emailStatus');
+                this.emailTitle = document.getElementById('emailPopupTitle');
+
+                this.isEditing = false;
+                this.currentType = null;
+
+                this.initializeEventListeners();
+            }
+
+            initializeEventListeners() {
+                this.emailCloseBtn.addEventListener('click', () => this.closeEmailPopup());
+                this.emailPopup.addEventListener('click', (e) => {
+                    if (e.target === this.emailPopup) {
+                        this.closeEmailPopup();
+                    }
+                });
+                this.editEmailBtn.addEventListener('click', () => this.toggleEditMode());
+                this.sendEmailBtn.addEventListener('click', () => this.sendEmail());
+
+                // Auto-resize textarea
+                this.emailMessage.addEventListener('input', () => this.autoResizeTextarea());
+
+                // Email validation on input
+                this.contactEmail.addEventListener('input', () => this.validateEmail());
+                this.contactEmail.addEventListener('blur', () => this.validateEmail());
+
+                // Close on Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.emailPopup.classList.contains('active')) {
+                        this.closeEmailPopup();
+                    }
+                });
+            }
+
+            validateEmail() {
+                const email = this.contactEmail.value.trim();
+                const emailField = this.contactEmail.parentElement;
+
+                // Remove existing validation classes
+                emailField.classList.remove('valid', 'invalid');
+
+                if (email === '') {
+                    // Empty field - hide icon and reset styling
+                    this.emailStatusIcon.style.display = 'none';
+                } else if (this.isValidEmail(email)) {
+                    // Valid email - show green checkmark
+                    this.emailStatusIcon.style.display = 'block';
+                    this.emailStatusIcon.className = 'fas fa-check-circle status-icon';
+                    this.emailStatusIcon.style.color = '#10b981';
+                    emailField.classList.add('valid');
+                } else {
+                    // Invalid email - show red X
+                    this.emailStatusIcon.style.display = 'block';
+                    this.emailStatusIcon.className = 'fas fa-times-circle status-icon';
+                    this.emailStatusIcon.style.color = '#ef4444';
+                    emailField.classList.add('invalid');
+                }
+            }
+
+            autoResizeTextarea() {
+                this.emailMessage.style.height = 'auto';
+                this.emailMessage.style.height = Math.max(200, this.emailMessage.scrollHeight) + 'px';
+            }
+
+            showEmailPopup(type) {
+                this.currentType = type;
+                this.setupEmailContent(type);
+                this.emailPopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                this.resetEditMode();
+
+                // Auto-resize on show
+                setTimeout(() => this.autoResizeTextarea(), 100);
+            }
+
+            closeEmailPopup() {
+                this.emailPopup.classList.remove('active');
+                document.body.style.overflow = '';
+                this.resetEditMode();
+                this.hideStatus();
+            }
+
+            setupEmailContent(type) {
+                // Clear contact email field
+                this.contactEmail.value = '';
+                this.validateEmail(); // Reset validation state
+
+                if (type === 'module') {
+                    this.emailTitle.textContent = 'Review Your Inquiry';
+                    this.emailSubjectDisplay.textContent = 'Purchase Inquiry: Webinaarimoduli 1 - Projektin määrittely & Johtaja luo suunnan';
+                    this.emailMessage.value = `Dear Sales Team,
+
+I am writing to express my strong interest in the webinar module. I would like to purchase the following:
+
+📚 Module: Webinaarimoduli 1
+🎯 Topic: Projektin määrittely & Johtaja luo suunnan
+📅 Release: 5.1.2026
+⏱️ Duration: 2 hours
+💰 Price: 125€ sis. alv
+
+Module includes:
+• Johtajan roolin kirkastaminen
+• Oman motivaation ja arvojen tunnistaminen
+• Tavoite – sisäistäminen ja sitoutuminen
+• Priorisointi ja ajanhallinta johtajana
+• Johtamisen harjoituksia
+• Hyvinvointivinkki
+• Projektin taustoitus ja määrittely
+• Muutosjohtamis- ja viestintäsuunnitelma
+
+I look forward to receiving information about payment methods and access to the webinar.
+
+Best regards,
+[Your Name]
+[Your Email]
+[Your Phone Number]`;
+                } else if (type === 'package') {
+                    this.emailTitle.textContent = 'Review Your Inquiry';
+                    this.emailSubjectDisplay.textContent = 'Purchase Inquiry: Full Webinar Package (6 modules)';
+                    this.emailMessage.value = `Dear Sales Team,
+
+I am writing to express my strong interest in the Full Webinar Package. I would like to purchase:
+
+📦 Package: All 6 webinar modules
+💰 Package Price: 650€ sis. alv
+💾 Savings: 100€ compared to individual modules
+
+Package includes:
+1️⃣ Module 1: Projektin määrittely & Johtaja luo suunnan (5.1.2026)
+2️⃣ Module 2: Projektin suunnittelu & Johtaja rakentaa perustan (15.1.2026)
+3️⃣ Module 3: Projektin toteutus & Johtaja ohjaa arkea (15.2.2026)
+4️⃣ Module 4: Projektin GO LIVE, seuranta & Johtaja kannattelee muutoksessa (15.3.2026)
+5️⃣ Module 5: Coming later
+6️⃣ Module 6: Coming later
+
+Each module includes:
+• 2-hour live webinar
+• Interactive exercises
+• Certificate of completion
+• Access to recordings
+
+I look forward to receiving information about payment methods and access to the webinars.
+
+Best regards,
+[Your Name]
+[Your Email]
+[Your Phone Number]`;
+                }
+            }
+
+            toggleEditMode() {
+                this.isEditing = !this.isEditing;
+
+                if (this.isEditing) {
+                    this.emailMessage.readOnly = false;
+                    this.editEmailBtn.innerHTML = '<i class="fas fa-save"></i> SAVE';
+                    this.editEmailBtn.classList.add('editing');
+                    this.emailMessage.focus();
+                } else {
+                    this.emailMessage.readOnly = true;
+                    this.editEmailBtn.innerHTML = '<i class="fas fa-edit"></i> EDIT';
+                    this.editEmailBtn.classList.remove('editing');
+                    this.showStatus('Changes saved!', 'success', 2000);
+                }
+
+                // Auto-resize after toggle
+                setTimeout(() => this.autoResizeTextarea(), 100);
+            }
+
+            resetEditMode() {
+                this.isEditing = false;
+                this.emailMessage.readOnly = true;
+                this.editEmailBtn.innerHTML = '<i class="fas fa-edit"></i> EDIT';
+                this.editEmailBtn.classList.remove('editing');
+            }
+
+            async sendEmail() {
+                const contactEmail = this.contactEmail.value.trim();
+                const subject = this.emailSubjectDisplay.textContent.trim();
+                const message = this.emailMessage.value.trim();
+
+                if (!contactEmail || !subject || !message) {
+                    this.showStatus('Please fill all fields before sending.', 'error');
+                    return;
+                }
+
+                if (!this.isValidEmail(contactEmail)) {
+                    this.showStatus('Please enter a valid email address.', 'error');
+                    return;
+                }
+
+                this.showStatus('Sending email...', 'loading');
+                this.sendEmailBtn.disabled = true;
+
+                try {
+                    // Simulate email sending (replace with actual email service)
+                    await this.simulateEmailSending(contactEmail, subject, message);
+
+                    this.showStatus('Email sent successfully! We will contact you soon.', 'success');
+
+                    // Close popup after successful send
+                    setTimeout(() => {
+                        this.closeEmailPopup();
+
+                        // Success - no additional message needed
+                    }, 2000);
+
+                } catch (error) {
+                    this.showStatus('Failed to send email. Please try again.', 'error');
+                } finally {
+                    this.sendEmailBtn.disabled = false;
+                }
+            }
+
+            isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            async simulateEmailSending(contactEmail, subject, message) {
+                // Simulate API call delay
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        // Simulate 95% success rate
+                        if (Math.random() > 0.05) {
+                            console.log('Email would be sent:', {
+                                from: contactEmail,
+                                to: ['contact@bloomlead.io', 'marke.tyrvainen@elisanet.fi', 'jkartilamalmivaara@gmail.com'],
+                                subject: subject,
+                                message: message
+                            });
+                            resolve();
+                        } else {
+                            reject(new Error('Simulated email failure'));
+                        }
+                    }, 1500);
+                });
+            }
+
+            showStatus(message, type, duration = null) {
+                this.emailStatus.textContent = message;
+                this.emailStatus.className = `email-status ${type}`;
+                this.emailStatus.style.display = 'block';
+
+                // Auto-scroll to show the status message a bit higher
+                setTimeout(() => {
+                    this.emailStatus.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                }, 100);
+
+                if (duration) {
+                    setTimeout(() => this.hideStatus(), duration);
+                }
+            }
+
+            hideStatus() {
+                this.emailStatus.style.display = 'none';
+            }
+
+        }
+
+        // Initialize email system
+        const emailManager = new EmailSubscriptionManager();
+
+        // Global function to show email popup
+        function showEmailPopup(type) {
+            emailManager.showEmailPopup(type);
+        }
+    </script>
+</body>
+
+</html>

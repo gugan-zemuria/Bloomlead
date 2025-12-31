@@ -1,0 +1,945 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>BloomLead - Rekisteriseloste ja Tietosuoja</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.webp">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="font-flaticon/flaticon.css">
+    <link rel="stylesheet" href="css/dripicons.css">
+    <link rel="stylesheet" href="css/slick.css">
+
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /* Logo text styling */
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #769757;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Jost', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: #a571aa;
+        }
+
+        /* Center navigation */
+        .main-menu ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-menu ul li {
+            margin: 0;
+        }
+
+        @media (max-width: 991px) {
+            .main-menu {
+                display: none !important;
+            }
+
+            .logo-text {
+                font-size: 22px;
+            }
+        }
+
+        /* Ensure header is above mobile menu */
+        #header-sticky {
+            z-index: 10000;
+            background: white;
+        }
+
+        /* Logo and hamburger alignment */
+        .header-right {
+            height: 70px;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .logo {
+            height: 70px;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        /* Mobile Menu Button Styles */
+        .mobile-menu-btn {
+            background: rgba(0, 46, 91, 0.1);
+            border: 2px solid #769757;
+            padding: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background-color: #769757;
+            margin: 2px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Hamburger animation when active */
+        .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+            transform: rotate(45deg) translate(-4px, -4px);
+        }
+
+        /* Mobile menu dropdown */
+        .mobile-menu-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            display: none;
+            z-index: 9999;
+            box-shadow: 0 5px 15px rgba(165, 113, 170, 0.3);
+            max-height: calc(100vh - 70px);
+            overflow-y: auto;
+            border-radius: 10px;
+            border-top: none;
+        }
+
+        .mobile-menu-container {
+            position: relative;
+        }
+
+        .mobile-menu-dropdown.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-menu-dropdown ul {
+            list-style: none;
+            padding: 8px 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-dropdown ul li {
+            border-bottom: 1px solid rgba(165, 113, 170, 0.2);
+        }
+
+        .mobile-menu-dropdown ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu-dropdown ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: #769757;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-dropdown ul li a:hover {
+            background-color: rgba(165, 113, 170, 0.1);
+            color: #a571aa;
+            transform: translateX(5px);
+        }
+
+        .head {
+            display: flex;
+            align-items: center;
+        }
+
+        .df {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .df .logo {
+            height: 50px !important;
+        }
+
+        .f-widget-title h2 {
+            margin-top: 12px;
+            font-size: 24px;
+        }
+
+        .copyright-wrap p {
+            font-size: 14px;
+        }
+
+        /* Privacy Policy Content Styles */
+        .terms-content {
+            background: #fff;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            margin-bottom: 50px;
+        }
+
+        .terms-content h1 {
+            color: #769757;
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .terms-content .subtitle {
+            color: #a571aa;
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .terms-content .effective-date {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+
+
+        .terms-content h2 {
+            color: #555;
+            font-size: 24px;
+            /* margin-top: 40px; */
+            margin-bottom: 0 !important;
+            /* padding-bottom: 10px; */
+            /* border-bottom: 2px solid #a571aa; */
+        }
+
+        .terms-content h3 {
+            color: #a571aa;
+            font-size: 18px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .terms-content p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .terms-content ol {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .terms-content ol>li {
+            /* margin-bottom: 30px; */
+            padding-left: 0;
+        }
+
+        .terms-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 15px;
+            margin-left: 0;
+        }
+
+        .terms-content ul li {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            display: list-item;
+            list-style: disc;
+        }
+
+        .terms-content .company-info ul {
+            margin-left: 0;
+        }
+
+        .terms-content .company-info {
+            padding: 20px;
+            padding-left: 40px;
+            border-radius: 10px;
+            /* margin-bottom: 30px; */
+        }
+
+        .terms-content .company-info p {
+            margin-bottom: 5px;
+        }
+
+        /* Responsive Design - Desktop */
+        @media (min-width: 992px) {
+            .terms-content {
+                padding: 50px;
+            }
+
+            .terms-content h1 {
+                font-size: 36px;
+            }
+
+            .terms-content h2 {
+                font-size: 24px;
+            }
+
+            .terms-content h3 {
+                font-size: 18px;
+            }
+
+            .terms-content p,
+            .terms-content ul li {
+                font-size: 15px;
+            }
+        }
+
+        /* Responsive Design - Tablet */
+        @media (max-width: 991px) and (min-width: 768px) {
+            .terms-content {
+                padding: 40px 25px;
+            }
+
+            .terms-content h1 {
+                font-size: 30px;
+            }
+
+            .terms-content h2 {
+                font-size: 22px;
+                margin-top: 35px;
+            }
+
+            .terms-content h3 {
+                font-size: 17px;
+            }
+
+            .terms-content p,
+            .terms-content ul li {
+                font-size: 14px;
+                line-height: 1.7;
+            }
+
+            .terms-content .company-info {
+                padding: 18px 35px;
+            }
+
+            .terms-content ul {
+                padding-left: 18px;
+            }
+        }
+
+        /* Responsive Design - Mobile */
+        @media (max-width: 767px) and (min-width: 577px) {
+            .terms-content {
+                padding: 30px 20px;
+            }
+
+            .terms-content h1 {
+                font-size: 26px;
+            }
+
+            .terms-content .subtitle {
+                font-size: 18px;
+            }
+
+            .terms-content h2 {
+                font-size: 20px;
+                margin-top: 30px;
+            }
+
+            .terms-content h3 {
+                font-size: 16px;
+                margin-top: 20px;
+            }
+
+            .terms-content p,
+            .terms-content ul li {
+                font-size: 14px;
+                line-height: 1.7;
+                margin-bottom: 12px;
+            }
+
+            .terms-content .company-info {
+                padding: 15px 30px;
+            }
+
+            .terms-content ul {
+                padding-left: 15px;
+            }
+
+            .terms-content ol>li {
+                margin-bottom: 25px;
+            }
+        }
+
+        /* Responsive Design - Small Mobile */
+        @media (max-width: 576px) {
+            .terms-content {
+                padding: 20px 15px;
+            }
+
+            .terms-content h1 {
+                font-size: 22px;
+                margin-bottom: 8px;
+            }
+
+            .terms-content .subtitle {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            .terms-content .effective-date {
+                font-size: 13px;
+                margin-bottom: 30px;
+                padding-bottom: 15px;
+            }
+
+            .terms-content h2 {
+                font-size: 18px;
+                margin-top: 8px;
+                margin-bottom: 12px;
+            }
+
+            .terms-content h3 {
+                font-size: 15px;
+                margin-top: 18px;
+                margin-bottom: 10px;
+            }
+
+            .terms-content p,
+            .terms-content ul li {
+                font-size: 13px;
+                line-height: 1.6;
+                margin-bottom: 10px;
+            }
+
+            .terms-content .company-info {
+                padding: 12px 20px;
+                padding-left: 25px;
+            }
+
+            .terms-content ul {
+                padding-left: 12px;
+                margin-left: 0;
+            }
+
+            /* .terms-content ol>li {
+                margin-bottom: 20px;
+            } */
+
+            ol {
+                margin-top: 30px !important;
+            }
+        }
+
+        ol {
+            margin-top: 40px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header -->
+    <header class="header-area header-three">
+        <div id="header-sticky" class="menu-area">
+            <div class="container mobile-menu-container">
+                <div class="second-menu">
+                    <div class="row align-items-center">
+                        <!-- Logo - Left -->
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-6 mb-0 head df">
+                            <a href="index.html">
+                                <img src="img/logo/logo.webp" alt="BloomLead Logo">
+                            </a>
+                            <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+                                <a href="index.html"
+                                    style="font-size: 24px; color: #769757; font-weight: 700; font-family: 'Jost', sans-serif; text-decoration: none;">BloomLead</a>
+                            </div>
+                        </div>
+                        <!-- Navigation - Center (Desktop only) -->
+                        <div class="col-xl-6 col-lg-6 d-none d-lg-block">
+                            <div class="main-menu text-center">
+                                <nav id="mobile-menu" style="display: block;">
+                                    <ul>
+                                        <li class="sub">
+                                            <a href="coaches.html">Valmentajat</a>
+                                        </li>
+
+                                        <li class="sub wrap"><a href="pricing.html">Webinaarien sisällöt & Hinnat</a>
+                                        </li>
+                                        <li class="sub wrap"><a href="courses.html">Tilaa webinaarit</a>
+                                        </li>
+                                        <li class="sub"><a href="blog.html">Blogi</a></li>
+                                        <li class="sub"><a href="contact.html">Yhteystiedot</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- Search & Hamburger - Right -->
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-6 header-right-container">
+                            <div class="header-right d-flex align-items-center justify-content-end">
+                                <!-- Mobile menu toggle -->
+                                <div class="mobile-menu d-lg-none">
+                                    <button class="mobile-menu-btn" type="button">
+                                        <span class="hamburger-line"></span>
+                                        <span class="hamburger-line"></span>
+                                        <span class="hamburger-line"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu Dropdown -->
+                    <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
+                        <ul>
+                            <li><a href="coaches.html">Valmentajat</a></li>
+                            <li><a href="pricing.html">Webinaarien sisällöt & Hinnat</a></li>
+                            <li><a href="courses.html">Tilaa webinaarit</a></li>
+
+                            <li><a href="blog.html">Blogi</a></li>
+                            <li><a href="contact.html">Yhteystiedot</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    <!-- main-area -->
+    <main>
+        <!-- Privacy Policy Content -->
+        <section class="pt-30 pb-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="terms-content">
+                            <h1>Rekisteriseloste ja tietosuoja</h1>
+                            <p class="effective-date"></p>
+
+                            <ol>
+                                <li>
+                                    <h2>Asiakas- ja markkinointirekisteri</h2>
+                                    <h2>Rekisterin ylläpitäjä</h2>
+                                    <div class="company-info">
+                                        <p><strong>MT Business Coaching Oy</strong></p>
+                                        <p>Y-tunnus: <a href="https://tietopalvelu.ytj.fi">3166661-4</a></p>
+
+                                        <p>Postiosoite: Hämeenpuisto 14 A 2, 33210 Tampere</p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>Rekisterin yhteyshenkilö</h2>
+                                    <div class="company-info">
+                                        <p>Johanna Kartila-Malmivaara <a href="mailto:contact@bloomlead.io" class="email-clickable"
+                                                    style=" color: #a571aa; cursor: pointer;"
+                                                    onclick="openEmailOptions('contact@bloomlead.io', 'footer-contact'); return false;">
+                                                    contact@bloomlead.io
+                                                </a></p>
+
+                                                
+
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>Rekisterin pitämisen peruste</h2>
+                                    <div class="company-info">
+                                        <p>Rekisteriin tallennettavia tietoja käsitellään seuraavin perustein:</p>
+                                        <ul style="margin-left: 12px;">
+                                            <li><strong>Asiakassuhteen muodostuminen ja sopimuksen
+                                                    täytäntöönpano</strong>
+                                                (webinaarien ostaminen, laskutus, asiakaspalvelu).</li>
+                                            <li><strong>Rekisterinpitäjän oikeutettu etu </strong>(asiakasviestintä ja
+                                                asiakasprofiilien
+                                                ylläpito).</li>
+                                            <li><Strong>Rekisteröidyn suostumus</Strong> (uutiskirjeet,
+                                                markkinointiviestintä ja
+                                                maksuttomien materiaalien lähettäminen).</li>
+                                        </ul>
+                                        <p>Rekisteröity voi <strong>peruuttaa markkinointia koskevan
+                                                suostumuksensa</strong> milloin
+                                            tahansa.</p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>Tietojen käsittelyn tarkoitus</h2>
+                                    <div class="company-info">
+                                        <p>Rekisterin henkilötietoja käytetään:</p>
+                                        <ul style="margin-left: 12px;">
+                                            <li>asiakasrekisterin ylläpitämiseen</li>
+                                            <li>sopimuksen ja tilausten käsittelyyn (esim. webinaarien ostot, laskutus)
+                                            </li>
+                                            <li>asiakassuhteen hoitoon ja palveluiden toimittamiseen</li>
+                                            <li>markkinointiviestintään ja markkinointiluvan mukaiseen materiaaliin</li>
+                                            <li>BloomLead-yhteisön ylläpitoon ja viestintään</li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>Rekisterin sisältö</h2>
+                                    <div class="company-info">
+                                        <p>Rekisteriin voidaan tallentaa seuraavia tietoja:</p>
+                                        <ul style="margin-left: 12px;">
+                                            <li>nimi</li>
+                                            <li>sähköpostiosoite</li>
+                                            <li>puhelinnumero (jos annettu)</li>
+                                            <li>suostumustiedot (markkinointi, viestintä)</li>
+                                            <li>verkkokurssin osallistujan käyttäjätunnus ja salasanan tiiviste</li>
+                                            <li>ostotiedot ja tilausrivit (webinaarit ja muut tuotteet)</li>
+                                            <li>laskutustiedot</li>
+                                            <li>asiakassuhteen ylläpitoon liittyvät viestit ja toimenpiteet</li>
+                                            <li>uutiskirjeen avaus- ja klikkaustieto (jos suostumus)</li>
+                                        </ul>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <h2>Tietojen säilytysaika:</h2>
+                                    <div class="company-info">
+                                        <ul>
+                                            <li><strong>Markkinointirekisterin tiedot</strong>: säilytetään, kunnes
+                                                rekisteröity peruuttaa
+                                                suostumuksensa tai tiedon käsittelylle ei enää ole tarvetta.</li>
+                                            <li><strong>Asiakassuhteeseen liittyvät tiedot</strong>: säilytetään
+                                                sopimuksen voimassaolon
+                                                ajan ja kirjanpitolain mukaisesti enintään 6 vuotta.</li>
+                                            <li><strong>Tunnistautumistiedot</strong>: säilytetään palvelun käytön ajan.
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <h2>Tietojen luovuttaminen ja EU/ETA-alueen ulkopuoliset siirrot</h2>
+                                    <div class="company-info">
+                                        <p>Tietoja voidaan luovuttaa seuraaville palveluntarjoajille, jotka toimivat</p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>henkilötietojen käsittelijöinä:</h2>
+                                    <div class="company-info">
+                                        <ul>
+                                            <li>hosting-palvelu ja tekninen alusta (esim. sähköpostijärjestelmä,
+                                                kurssialusta)</li>
+                                            <li>webinaarialustan AI-agentti, jota käytetään rekisterin ylläpitoon</li>
+                                            <li>laskutus- ja maksupalveluntarjoajat</li>
+                                        </ul>
+                                        <p>Jos palveluntarjoaja sijaitsee <strong>EU- tai ETA-alueen
+                                                ulkopuolella</strong>, siirrot tehdään
+                                            GDPR:n edellyttämin suojatoimin, kuten <strong>EU:n mallisopimuslausekkein
+                                                (SCC)</strong>.</p>
+                                        <p>Tietoja ei luovuteta muille kolmansille osapuolille ilman lain mukaista
+                                            perustetta.</p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>Rekisterin tietolähteet</h2>
+                                    <div class="company-info">
+                                        <p>Henkilötietoja saadaan:</p>
+                                        <ul style="margin-left: 12px;">
+                                            <li>rekisteröidyltä itseltään uutiskirjeen tilauksen yhteydessä</li>
+                                            <li>maksuttomien materiaalien lataamisen yhteydessä</li>
+                                            <li>webinaarien ostamisen yhteydessä</li>
+                                            <li>asiakasviestinnän ja asioinnin yhteydessä</li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>Suojauksen periaatteet</h2>
+                                    <div class="company-info">
+                                        <p>Henkilötietoja käsitellään <strong>huolellisesti,
+                                                luottamuksellisesti</strong> ja teknisesti suojatuissa
+                                            järjestelmissä.</p>
+                                        <p>Pääsy tietoihin on rajattu vain niille henkilöille ja kumppaneille, jotka
+                                            tarvitsevat
+                                            tietoja työtehtäviensä hoitamiseksi.</p>
+                                        <p>Mikäli tietoturvaloukkaus havaitaan, siitä ilmoitetaan asianomaisille
+                                            rekisteröidyille
+                                            <strong>viipymättä</strong>, ja tarvittavat suojatoimenpiteet toteutetaan.
+                                        </p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>Käyttäjän velvollisuudet</h2>
+                                    <div class="company-info">
+                                        <p>Käyttäjä vastaa oman laitteistonsa ja kirjautumistietojensa asianmukaisesta
+                                            suojaamisesta (esim. salasanan turvallinen käyttö).</p>
+
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>Rekisteröidyn oikeudet</h2>
+                                    <div class="company-info">
+                                        <p>Rekisteröidyllä on seuraavat oikeudet:</p>
+                                        <ul style="margin-left: 12px;">
+                                            <li>oikeus saada pääsy omiin tietoihinsa</li>
+                                            <li>oikeus tietojen oikaisemiseen</li>
+                                            <li>oikeus tietojen poistamiseen (“oikeus tulla unohdetuksi”)</li>
+                                            <li>oikeus käsittelyn rajoittamiseen</li>
+                                            <li>oikeus vastustaa tietojen käsittelyä</li>
+                                            <li>oikeus siirtää tiedot järjestelmästä toiseen</li>
+                                            <li>oikeus peruuttaa suostumus milloin tahansa</li>
+                                            <li>oikeus tehdä valitus <strong>tietosuojavaltuutetulle</strong></li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>Oikeuksien käyttäminen</h2>
+                                    <div class="company-info">
+                                        <p>Oikeuksien käyttämiseksi rekisteröity voi ottaa yhteyttä sähköpostitse:
+                                            <strong><a href="mailto:contact@bloomlead.io" class="email-clickable"
+                                                    style=" color: inherit; cursor: pointer;"
+                                                    onclick="openEmailOptions('contact@bloomlead.io', 'footer-contact'); return false;">
+                                                    contact@bloomlead.io
+                                                </a></strong>
+                                        </p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>Linkit kolmansien osapuolten sivustoihin</h2>
+                                    <div class="company-info">
+                                        <p>Uutiskirjeet ja maksuttomat materiaalit voivat sisältää linkkejä kolmansien
+                                            osapuolten
+                                            sivustoille.</p>
+                                        <p>Yritys ei vastaa näiden sivustojen sisällöstä.</p>
+                                        <p>Osa linkeistä voi olla <strong>affiliate-linkkejä</strong>, joista yritys voi
+                                            saada palkkion.</p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>Evästeet</h2>
+                                    <div class="company-info">
+                                        <p>Sivusto käyttää evästeitä, jotta palvelu toimii teknisesti ja markkinointi
+                                            voidaan
+                                            toteuttaa tehokkaasti.
+                                        </p>
+                                        <p>Käyttäjä voi poistaa evästeet selaimestaan tai estää niiden käytön.</p>
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <h2>Muutosoikeus</h2>
+                                    <div class="company-info">
+                                        <p>Yrityksellä on oikeus <strong>muuttaa tämän selosteen sisältöä
+                                                yksipuolisesti</strong>
+                                            toimintansa, lainsäädännön tai palveluiden muuttuessa. Päivitetty versio
+                                            julkaistaan
+                                            verkkosivuilla.</p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <h2>Lisätietoja</h2>
+                                    <div class="company-info">
+                                        <p>Rekisteriin liittyvissä kysymyksissä voi olla yhteydessä:
+                                            <strong><a href="mailto:contact@bloomlead.io" class="email-clickable"
+                                                    style=" color: inherit; cursor: pointer;"
+                                                    onclick="openEmailOptions('contact@bloomlead.io', 'footer-contact'); return false;">
+                                                    contact@bloomlead.io
+                                                </a></strong>
+                                        </p>
+                                        <p>Tietosuojaseloste päivitetty GDPR:n mukaisesti <strong>21.12.2025</strong>.
+                                        </p>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- main-area-end -->
+
+    <!-- footer -->
+    <footer class="footer-bg footer-p fix">
+        <div class="footer-center pt-70 pb-40">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="df">
+                                <a href="index.html">
+                                    <img src="img/logo/logo.webp" alt="BloomLead Logo">
+                                </a>
+                                <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+                                    <a href="index.html"
+                                        style="font-size: 24px; color: #769757; font-weight: 700; font-family: 'Jost', sans-serif; text-decoration: none;">BloomLead</a>
+                                </div>
+                            </div>
+                            <div class="footer-link px-2">
+                                BloomLead – auttaa projektin tavoitteiden ja ROI:n toteutuksessa yhdistämällä ihmisten
+                                ja projektin johtamisen, muutoksen ja AI:n.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Ota yhteyttä</h2>
+                            </div>
+                            <div class="f-contact">
+                                <ul>
+                                    <li><i class="icon fal fa-envelope"></i>
+                                        <span>
+                                            <span style="display: block;">contact@bloomlead.io</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <i class="icon fal fa-phone"></i>
+                                        <span>+358 388 3188,
+                                            <br>ti ja to klo 17.00-18.00
+                                        <br>(12.1.2026 alkaen)</span>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Yrityksen tiedot</h2>
+                            </div>
+                            <div class="footer-link">BloomLead I MT Business Coaching Oy
+                                <br>
+                                Hämeenpuisto 14 A 2
+                                <br>
+                                33210 Tampere
+                                <br>
+                                Y-tunnus 3166661-4
+                                <br>
+                                Pankkitili FI15 7997 7993 0370 30
+                                <br>
+                                BIC HOLVFIHH
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-sm-6 terms-and-condition-link-container">
+                        <div class="footer-widget terms-and-condition-link mb-30">
+                            <div class="f-widget-title">
+                                <!-- <h2>Sopimukset</h2> -->
+                            </div>
+                            <div class="footer-link">
+                                <p><a href="terms-and-conditions.html" style="color: inherit;">Käyttö- ja
+                                        sopimusehdot</a></p>
+                                <p><a href="privacy-policy.html" style="color: inherit;">Rekisteriseloste ja
+                                        Tietosuoja</a></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-wrap">
+            <div class="container">
+                <div class="row align-items-center" style="justify-content: center;">
+                    <div class="col-lg-6">
+                        Copyright &copy; 2025 BloomLead. All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer-end -->
+
+    <!-- JS here -->
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/one-page-nav-min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/ajax-form.js"></script>
+    <script src="js/paroller.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/js_isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.min.js"></script>
+    <script src="js/parallax.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/jquery.meanmenu.min.js"></script>
+    <script src="js/parallax-scroll.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/element-in-view.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const menuDropdown = document.querySelector('.mobile-menu-dropdown');
+
+            if (menuBtn && menuDropdown) {
+                menuBtn.addEventListener('click', function () {
+                    this.classList.toggle('active');
+                    menuDropdown.classList.toggle('show');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

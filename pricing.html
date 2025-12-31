@@ -17,16 +17,22 @@
         if (localStorage.getItem('bloomlead_cookie_consent')) {
             const consent = JSON.parse(localStorage.getItem('bloomlead_cookie_consent'));
             if (consent.categories && consent.categories.analytics) {
-                // Load Google Analytics
-                const script1 = document.createElement('script');
-                script1.async = true;
-                script1.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_GOOGLE_ANALYTICS_ID';
-                document.head.appendChild(script1);
+                // Get Google Analytics ID from Config system
+                const analyticsId = window.Config ? window.Config.getGoogleAnalyticsId() : null;
                 
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'YOUR_GOOGLE_ANALYTICS_ID');
+                if (analyticsId && analyticsId !== 'YOUR_GOOGLE_ANALYTICS_ID') {
+                    const script1 = document.createElement('script');
+                    script1.async = true;
+                    script1.src = `https://www.googletagmanager.com/gtag/js?id=${analyticsId}`;
+                    document.head.appendChild(script1);
+                    
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', analyticsId);
+                } else {
+                    console.warn('Google Analytics ID not configured properly');
+                }
             }
         }
     </script>
