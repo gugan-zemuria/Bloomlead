@@ -1,0 +1,182 @@
+/* Section Padding Override - 60px top and bottom for all main sections */
+
+/* Ensure all main sections have consistent 60px padding */
+section {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+}
+
+/* Exception for sections that should have different padding */
+.slider-area,
+.header-area,
+.footer-area,
+.breadcrumb-area {
+    padding-top: initial !important;
+    padding-bottom: initial !important;
+}
+
+/* Specific overrides for elements that need different padding */
+.about-title,
+.section-title,
+.widget-title {
+    padding-top: initial !important;
+    padding-bottom: initial !important;
+}
+
+/* Footer specific padding */
+.footer-center,
+.footer-top {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+}
+
+/* Header row margin-bottom for all pages except index */
+.second-menu .row.align-items-center {
+    margin-bottom: 60px;
+}
+
+/* Remove margin-bottom for index page specifically */
+body.index-page .second-menu .row.align-items-center {
+    margin-bottom: 0;
+}
+
+/* Footer links responsive styling */
+.col-lg-6.text-right.text-xl-right {
+    text-align: right;
+}
+
+.col-lg-6.text-right.text-xl-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.col-lg-6.text-right.text-xl-right ul li {
+    display: inline-block;
+    position: relative;
+}
+
+.col-lg-6.text-right.text-xl-right ul li:not(:last-child)::after {
+    content: "|";
+    color: #ccc;
+    margin-left: 20px;
+    position: absolute;
+    right: -12px;
+}
+
+.col-lg-6.text-right.text-xl-right ul li a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    padding: 5px 0;
+    display: inline-block;
+}
+
+.col-lg-6.text-right.text-xl-right ul li a:hover {
+    color: #4CC3C1;
+    transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    section {
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+    }
+    
+    .footer-center,
+    .footer-top {
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+    }
+    
+    /* Reduce header margin on tablets */
+    .second-menu .row.align-items-center {
+        margin-bottom: 40px;
+    }
+    
+    /* Footer links responsive - tablet */
+    .col-lg-6.text-right.text-xl-right {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .col-lg-6.text-right.text-xl-right ul {
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .col-lg-6.text-right.text-xl-right ul li:not(:last-child)::after {
+        right: -8px;
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+    }
+    
+    .footer-center,
+    .footer-top {
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+    }
+    
+    /* Reduce header margin on mobile */
+    .second-menu .row.align-items-center {
+        margin-bottom: 30px;
+    }
+    
+    /* Footer links responsive - mobile */
+    .col-lg-6.text-right.text-xl-right {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .col-lg-6.text-right.text-xl-right ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .col-lg-6.text-right.text-xl-right ul li {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .col-lg-6.text-right.text-xl-right ul li:not(:last-child)::after {
+        display: none;
+    }
+
+    .col-lg-6.text-right.text-xl-right ul li a {
+        display: block;
+        padding: 10px 20px;
+        font-size: 13px;
+        background: #f8f9fa;
+        border-radius: 5px;
+        margin: 2px 0;
+    }
+
+    .col-lg-6.text-right.text-xl-right ul li a:hover {
+        background: #4CC3C1;
+        color: white;
+        transform: none;
+    }
+
+    /* Footer ul alignment for mobile */
+    .footer-link ul {
+        text-align: center !important;
+    }
+
+    .footer-link ul li {
+        text-align: center !important;
+    }
+}
