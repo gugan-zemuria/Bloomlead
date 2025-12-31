@@ -180,7 +180,7 @@ class CookieConsentManager {
             if (!enableBlocking) {
                 this.enableWebsiteBlocking();
             }
-        }, 100);
+        }, 150); // Increased timeout for Safari compatibility
     }
 
     enableWebsiteBlocking() {
@@ -685,9 +685,34 @@ class CookieConsentManager {
 
 // Initialize the cookie consent manager
 let cookieManager;
-document.addEventListener('DOMContentLoaded', function() {
-    cookieManager = new CookieConsentManager();
-    
-    // Make it globally available
-    window.cookieManager = cookieManager;
-});
+
+// Enhanced initialization for Safari compatibility
+function initializeCookieManager() {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            cookieManager = new CookieConsentManager();
+            // Make it globally available
+            window.cookieManager = cookieManager;
+        });
+    } else {
+        // DOM is already loaded
+        cookieManager = new CookieConsentManager();
+        // Make it globally available
+        window.cookieManager = cookieManager;
+    }
+}
+
+// Check if we're in Safari and add additional compatibility
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+if (isSafari) {
+    // Safari-specific initialization with additional delay
+    if (document.readyState === 'complete') {
+        setTimeout(initializeCookieManager, 100);
+    } else {
+        window.addEventListener('load', function() {
+            setTimeout(initializeCookieManager, 100);
+        });
+    }
+} else {
+    initializeCookieManager();
+}
