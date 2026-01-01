@@ -19,15 +19,15 @@
             if (consent.categories && consent.categories.analytics) {
                 // Get Google Analytics ID from Config system
                 const analyticsId = window.Config ? window.Config.getGoogleAnalyticsId() : null;
-                
+
                 if (analyticsId && analyticsId !== 'YOUR_GOOGLE_ANALYTICS_ID') {
                     const script1 = document.createElement('script');
                     script1.async = true;
                     script1.src = `https://www.googletagmanager.com/gtag/js?id=${analyticsId}`;
                     document.head.appendChild(script1);
-                    
+
                     window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
+                    function gtag() { dataLayer.push(arguments); }
                     gtag('js', new Date());
                     gtag('config', analyticsId);
                 } else {
@@ -1027,36 +1027,32 @@ coaching-tunti</li>
                             <div class="pricing-body mb-30">
                                 <div>
                                     <ul class="pricing-body-list">
-                                        <li> Kuuden webinaarimodulin paketti
-                                            edullisemmin kuin yksi kerrallaan</li>
-                                        <li> Uusi webinaarimoduli joka
+                                        <li>Kuuden webinaarimodulin
+                                            paketti edullisemmin kuin
+                                            yksi kerrallaan</li>
+                                        <li>Uusi webinaarimoduli joka
                                             kuukausi kuuden kuukauden
                                             ajan</li>
-                                        <li> Yksi yhteinen coaching tunti
+                                        <li>Yksi yhteinen coaching tunti
                                             opintopolun aikana</li>
-                                        <li> Lisäartikkeleita ja materiaalia
+                                        <li>Lisäartikkeleita ja materiaalia
                                             sähköpostitse opintopolun
                                             aikana</li>
-                                        <li> Jokaiseen webinaarimoduliin
+                                        <li>Jokaiseen webinaarimoduliin
                                             kuuluu yksi webinaari ja
                                             omaan tahtiin tehtäviä
                                             harjoituksia</li>
-                                        <li> Saat käyttöösi kaikkien
+                                        <li>Saat käyttöösi kaikkien
                                             kuuden webinaarin
                                             materiaalit ja tehtävät</li>
-                                        <li> Käytössäsi on sähköpostituki</li>
-                                        <li> Puhelintuki on käytettävissäsi
+                                        <li>Käytössäsi on sähköpostituki</li>
+                                        <li>Puhelintuki on käytettävissäsi
                                             ti ja to klo 17–18</li>
-                                        <li> Saat todistuksen ohjelman
+                                        <li>Saat todistuksen ohjelman
                                             suorittamisesta opintopolun
                                             päätteeksi</li>
-                                        <!-- <li> Puhelintuki käytettävissäsi
-                                            ti ja to klo 17-18</li>
-                                        <li> Todistus ohjelmapaketin onnistuneesta
-                                            loppuunsuorittamisesta</li> -->
-                                        <li> 650 € sis. alv / paketti<br>
-                                            650 € + alv / paketti yrityshinta</li>
-
+                                        <li>650 € sis. alv / paketti <br> 650 € + alv / paketti yrityshinta</li>
+                                        
                                     </ul>
 
                                 </div>
@@ -1954,7 +1950,7 @@ coaching-tunti</li>
 
     <!-- Necessary Cookies - Required for basic functionality -->
     <script src="js/necessary-cookies.js"></script>
-    
+
     <!-- Analytics Cookies - Purchase intent and page tracking -->
     <script>
         // Check if analytics cookies are allowed before loading
@@ -1967,7 +1963,7 @@ coaching-tunti</li>
             }
         }
     </script>
-    
+
     <!-- Marketing Cookies - Purchase intent and conversion tracking -->
     <script>
         // Check if marketing cookies are allowed before loading
@@ -1978,17 +1974,17 @@ coaching-tunti</li>
                 const script = document.createElement('script');
                 script.src = 'js/marketing-cookies.js';
                 document.head.appendChild(script);
-                
+
                 // Load Safe Facebook Pixel
                 const script2 = document.createElement('script');
                 script2.src = 'js/facebook-pixel-safe.js';
                 document.head.appendChild(script2);
-                
+
                 // Load Marketing Platforms (Facebook only)
                 const script3 = document.createElement('script');
                 script3.src = 'js/marketing-platforms.js';
                 document.head.appendChild(script3);
-                
+
                 // Track pricing page view
                 setTimeout(() => {
                     if (typeof marketingPlatforms !== 'undefined') {
