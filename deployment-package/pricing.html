@@ -19,15 +19,15 @@
             if (consent.categories && consent.categories.analytics) {
                 // Get Google Analytics ID from Config system
                 const analyticsId = window.Config ? window.Config.getGoogleAnalyticsId() : null;
-                
+
                 if (analyticsId && analyticsId !== 'YOUR_GOOGLE_ANALYTICS_ID') {
                     const script1 = document.createElement('script');
                     script1.async = true;
                     script1.src = `https://www.googletagmanager.com/gtag/js?id=${analyticsId}`;
                     document.head.appendChild(script1);
-                    
+
                     window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
+                    function gtag() { dataLayer.push(arguments); }
                     gtag('js', new Date());
                     gtag('config', analyticsId);
                 } else {
@@ -982,10 +982,11 @@
                             <div class="pricing-body  mb-30">
                                 <div>
                                     <ul class="pricing-body-list">
-                                        <li> Saat koko modulin käyttöösi
-                                            5.1.2025 alkaen, kun maksu
-                                            näkyy tilillämme (1-2 päivää
-                                            maksusta)</li>
+                                        <li> Saat ensimmäisen modulin käyttöösi 7.1.2025
+                                            alkaen, kun maksu on saapunut tilillemme (1-2
+                                            päivää maksusta). Tämän jälkeen saat modulin
+                                            käyttöösi julkaisupäivän jälkeen, kun maksu on
+                                            saapunut tilillemme (1-2 päivää maksusta).</li>
                                         <li> Jokaiseen webinaarimoduliin kuuluu
                                             yksi webinaari ja<br>
                                             omaan tahtiin tehtäviä harjoituksia</li>
@@ -1142,9 +1143,9 @@
                                             <i class="far fa-clock"></i>
                                         </span>
                                     </div>
-                                    <span>Webinaarin kesto: 2h<br>
+                                    <span>Webinaarin kesto: 1,5 h<br>
                                         Harjoitustehtävät omaan tahtiin<br>
-                                        Saatavilla 5.1.2026 lähtien </span>
+                                        Julkaistaaan 7.1.2026</span>
                                 </div>
                             </div>
                         </div>
@@ -1185,9 +1186,9 @@
                                             <i class="far fa-clock"></i>
                                         </span>
                                     </div>
-                                    <span>Webinaarin kesto: 2h<br>
+                                    <span>Webinaarin kesto: 1,5 h<br>
                                         Harjoitustehtävät omaan tahtiin<br>
-                                        Julkaistaan 15.1.2026
+                                        Julkaistaan 2.2.2026
                                     </span>
                                 </div>
                             </div>
@@ -1231,9 +1232,9 @@
                                             <i class="far fa-clock"></i>
                                         </span>
                                     </div>
-                                    <span>Webinaarin kesto: 2h<br>
+                                    <span>Webinaarin kesto: 1,5 h<br>
                                         Harjoitustehtävät omaan tahtiin<br>
-                                        Julkaistaan 15.2.2026
+                                        Julkaistaan 2.3.2026
                                     </span>
                                 </div>
                             </div>
@@ -1273,9 +1274,9 @@
                                             <i class="far fa-clock"></i>
                                         </span>
                                     </div>
-                                    <span>Webinaarin kesto: 2h<br>
+                                    <span>Webinaarin kesto: 1,5 h<br>
                                         Harjoitustehtävät omaan tahtiin<br>
-                                        Julkaistaan 15.3.2026
+                                        Julkaistaan 30.3.2026
                                     </span>
                                 </div>
                             </div>
@@ -1318,9 +1319,9 @@
                                             <i class="far fa-clock"></i>
                                         </span>
                                     </div>
-                                    <span>Webinaarin kesto: 2h<br>
+                                    <span>Webinaarin kesto: 1,5 h<br>
                                         Harjoitustehtävät omaan tahtiin<br>
-                                        Julkaistaan 15.4.2026 </span>
+                                        Julkaistaan 27.4.2026 </span>
                                 </div>
                             </div>
                         </div>
@@ -1337,26 +1338,26 @@
                                 <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, blanditiis!</p> -->
                                 <ul class="module-features">
                                     <li><i class="fas fa-check"></i> Johtajan kehittymisen
-jatkumo</li>
+                                        jatkumo</li>
                                     <li><i class="fas fa-check"></i> Itsearviointi ja urakehityksen
-suuntaaminen</li>
+                                        suuntaaminen</li>
                                     <li><i class="fas fa-check"></i> Kasvulähtöinen tiimikulttuuri,
-jatkuva parantaminen</li>
+                                        jatkuva parantaminen</li>
                                     <li><i class="fas fa-check"></i> Johtamisen harjoituksia</li>
                                     <li><i class="fas fa-check"></i> Hyvinvointivinkki</li>
                                     <li><i class="fas fa-check"></i> Projektin tulosten ja hyötyjen
-validointi (ROI)</li>
+                                        validointi (ROI)</li>
                                     <li><i class="fas fa-check"></i> Projektimittareiden raportointi
 
-ja analyysi</li>
+                                        ja analyysi</li>
                                     <li><i class="fas fa-check"></i> Ohjausryhmän hyväksyntä</li>
                                     <li><i class="fas fa-check"></i> Siirtyminen jatkuvan
-kehittämisen malliin (CI)</li>
+                                        kehittämisen malliin (CI)</li>
                                     <li><i class="fas fa-check"></i> Projektiin liittyvät
-muutostiimin roolit ja vastuut
-ylläpitovaiheessa</li>
+                                        muutostiimin roolit ja vastuut
+                                        ylläpitovaiheessa</li>
                                     <li><i class="fas fa-check"></i> Projektin hyötyjen ja ROI:n
-validointiin liittyvä viestintä</li>
+                                        validointiin liittyvä viestintä</li>
                                     <li><i class="fas fa-check"></i> Modulin 6 yhteenveto</li>
                                 </ul>
                                 <div class="module-duration">
@@ -1365,9 +1366,9 @@ validointiin liittyvä viestintä</li>
                                             <i class="far fa-clock"></i>
                                         </span>
                                     </div>
-                                    <span>Webinaarin kesto: 2h<br>
+                                    <span>Webinaarin kesto: 1,5 h<br>
                                         Harjoitustehtävät omaan tahtiin<br>
-                                        Julkaistaan 15.5.2026 </span>
+                                        Julkaistaan 25.5.2026 </span>
                                 </div>
                             </div>
                         </div>
@@ -1790,6 +1791,10 @@ validointiin liittyvä viestintä</li>
                                 tavoitteiden ja ROI:n toteutuksessa
                                 yhdistämällä ihmisten ja projektin
                                 johtamisen, muutoksen ja AI:n.
+                                <br>
+                                Kuvat: Aarne Pärssinen
+                                <br>
+                                Teknologia: Senatio
                             </div>
 
                         </div>
@@ -1815,9 +1820,9 @@ validointiin liittyvä viestintä</li>
                                     </li>
                                     <li>
                                         <i class="icon fal fa-phone"></i>
-                                        <span>+358 388 3188,
+                                        <span>+358 44 3883188,
                                             <br>ti ja to klo 17.00-18.00
-                                        <br>(12.1.2026 alkaen)</span>
+                                            <br>(12.1.2026 alkaen)</span>
 
                                     </li>
 
@@ -1949,7 +1954,7 @@ validointiin liittyvä viestintä</li>
 
     <!-- Necessary Cookies - Required for basic functionality -->
     <script src="js/necessary-cookies.js"></script>
-    
+
     <!-- Analytics Cookies - Purchase intent and page tracking -->
     <script>
         // Check if analytics cookies are allowed before loading
@@ -1962,7 +1967,7 @@ validointiin liittyvä viestintä</li>
             }
         }
     </script>
-    
+
     <!-- Marketing Cookies - Purchase intent and conversion tracking -->
     <script>
         // Check if marketing cookies are allowed before loading
@@ -1973,17 +1978,17 @@ validointiin liittyvä viestintä</li>
                 const script = document.createElement('script');
                 script.src = 'js/marketing-cookies.js';
                 document.head.appendChild(script);
-                
+
                 // Load Safe Facebook Pixel
                 const script2 = document.createElement('script');
                 script2.src = 'js/facebook-pixel-safe.js';
                 document.head.appendChild(script2);
-                
+
                 // Load Marketing Platforms (Facebook only)
                 const script3 = document.createElement('script');
                 script3.src = 'js/marketing-platforms.js';
                 document.head.appendChild(script3);
-                
+
                 // Track pricing page view
                 setTimeout(() => {
                     if (typeof marketingPlatforms !== 'undefined') {
