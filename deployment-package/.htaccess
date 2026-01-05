@@ -1,5 +1,51 @@
-# BloomLead Website Configuration
-# Enable compression for better performance
+# BloomLead Security Configuration
+# Prevent direct access to sensitive files
+
+# Deny access to config.php from browsers
+<Files "config.php">
+    # Allow only AJAX requests and same-origin requests
+    <RequireAll>
+        Require expr "%{HTTP:X-Requested-With} == 'XMLHttpRequest'"
+    </RequireAll>
+    
+    # Alternative: Allow only specific user agents (uncomment if needed)
+    # <RequireAll>
+    #     Require expr "%{HTTP_USER_AGENT} =~ /Mozilla|Chrome|Safari|Firefox/"
+    # </RequireAll>
+</Files>
+
+# Deny access to .env files
+<Files ".env*">
+    Require all denied
+</Files>
+
+# Deny access to sensitive file types
+<FilesMatch "\.(log|sql|bak|backup|old|tmp)$">
+    Require all denied
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Prevent clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Enable XSS protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Strict transport security (HTTPS only)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    
+    # Referrer policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Content Security Policy (adjust as needed)
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.google-analytics.com *.googletagmanager.com *.facebook.net; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: *.google-analytics.com *.facebook.com; connect-src 'self' *.google-analytics.com *.facebook.com"
+</IfModule>
+
+# Enable compression
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/html
@@ -10,31 +56,30 @@
     AddOutputFilterByType DEFLATE application/rss+xml
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
 </IfModule>
 
-# Browser caching for better performance
+# Cache control
 <IfModule mod_expires.c>
-    ExpiresActive on
-    ExpiresByType text/css "access plus 1 year"
-    ExpiresByType application/javascript "access plus 1 year"
-    ExpiresByType image/png "access plus 1 year"
-    ExpiresByType image/jpg "access plus 1 year"
-    ExpiresByType image/jpeg "access plus 1 year"
-    ExpiresByType image/gif "access plus 1 year"
-    ExpiresByType image/webp "access plus 1 year"
-    ExpiresByType font/woff "access plus 1 year"
-    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType text/html "access plus 1 hour"
 </IfModule>
 
-# Security headers
-Header always set X-Content-Type-Options nosniff
-Header always set X-Frame-Options DENY
-Header always set X-XSS-Protection "1; mode=block"
+# URL Rewriting (if needed)
+RewriteEngine On
 
-# Custom error pages (optional)
-ErrorDocument 404 /index.html
-
-# Force HTTPS (uncomment after SSL is configured)
-# RewriteEngine On
+# Force HTTPS (uncomment if you have SSL)
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remove www (or add www - choose one)
+# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+# RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
