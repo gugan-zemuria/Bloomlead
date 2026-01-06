@@ -1796,7 +1796,7 @@
         <div id="selectionModal" class="selection-modal-overlay" style="display: none;">
             <div class="selection-modal-content">
                 <div class="selection-modal-header">
-                    <h2>Valitse vaihtoehto</h2>
+                    <h2>Valitse vaihtoehto alta</h2>
                     <button class="selection-modal-close" onclick="closeSelectionModal()">
                         <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1815,8 +1815,8 @@
                                     </path>
                                 </svg>
                             </div>
-                            <span class="option-title">Yksittäinen moduuli</span>
-                            <span class="option-subtitle">Tietoa yhdestä aiheesta</span>
+                            <span class="option-title">Yksittäinen moduli</span>
+                            <span class="option-subtitle">Tietoa webinaarimoduli 1:stä</span>
                         </button>
                         <button class="selection-option" onclick="selectOption('package')">
                             <div class="option-icon package-icon">
@@ -1826,7 +1826,7 @@
                                 </svg>
                             </div>
                             <span class="option-title">Koko paketti</span>
-                            <span class="option-subtitle">Kaikki moduulit kerralla</span>
+                            <span class="option-subtitle">Tietoa koko webinaaripaketista</span>
                         </button>
                     </div>
                 </div>
@@ -3305,7 +3305,7 @@ div>i>div></div>""
         }
 
         function selectOption(option) {
-            const optionText = option === 'single' ? 'Yksittäinen moduuli' : 'Koko paketti';
+            const optionText = option === 'single' ? 'yksittäinen moduuli' : 'koko paketti';
 
             // Show loading state
             showStatus('Lähetetään sähköpostia...', 'loading');
@@ -3318,7 +3318,7 @@ div>i>div></div>""
                 console.log('Selected option:', optionText);
 
                 // Show success message
-                showStatus(`Kiitos kiinnostuksestasi! Valitsit: ${optionText}`, 'success', 4000);
+                showStatus(`Kiitos kiinnostuksestasi! Valitsit ${optionText}`, 'success', 4000);
 
                 // Close modal after delay
                 setTimeout(() => {
