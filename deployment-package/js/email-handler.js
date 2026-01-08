@@ -127,7 +127,7 @@ Haluan tilata seuraavan webinaarimodulin:
 
 📚 Moduuli: Webinaarimoduli 1
 🎯 Aihe: Projektin määrittely & Johtaja luo suunnan
-📅 Julkaisu: 10.1.2026
+📅 Julkaisu: 12.1.2026
 ⏱️ Kesto: 2 tuntia
 💰 Hinta: 125€ sis. alv
 
@@ -154,7 +154,7 @@ Haluan tilata täydellisen webinaaripaketin:
 💾 Säästö: 100€ verrattuna yksittäisiin moduuleihin
 
 Paketti sisältää:
-1️⃣ Moduuli 1: Projektin määrittely & Johtaja luo suunnan (10.1.2026)
+1️⃣ Moduuli 1: Projektin määrittely & Johtaja luo suunnan (12.1.2026)
 2️⃣ Moduuli 2: Projektin suunnittelu & Johtaja rakentaa perustan (2.2.2026)
 3️⃣ Moduuli 3: Projektin toteutus & Johtaja ohjaa arkea (2.3.2026)
 4️⃣ Moduuli 4: Projektin GO LIVE, seuranta & Johtaja kannattelee muutoksessa (30.3.2026)
