@@ -7,7 +7,7 @@
 // Email Recipients - ALL will receive every email
 define('EMAIL_RECIPIENTS', [
     'contact@bloomlead.io',
-    'marke.tyrvainen@elisanet.fi',
+    'marke.tyrvainen@elisanet.fi', 
     'jkartilamalmivaara@gmail.com'
 ]);
 

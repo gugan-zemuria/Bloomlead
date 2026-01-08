@@ -104,7 +104,7 @@ function sanitizeEmail($email) {
  * Sanitize string input
  */
 function sanitizeString($string) {
-    return htmlspecialchars(trim($string), ENT_QUOTES, 'UTF-8');
+    return trim($string);
 }
 
 /**
@@ -152,33 +152,22 @@ function sendToAllRecipients($subject, $body, $replyTo) {
 /**
  * Send auto-reply to user
  */
-function sendAutoReply($userEmail, $requestType) {
+function sendAutoReply($userEmail) {
     $subject = AUTO_REPLY_SUBJECT;
     
     $body = "Hei,\n\n";
-    $body .= "Kiitos yhteydenotostasi BloomLeadiin!\n\n";
-    
-    switch ($requestType) {
-        case 'info':
-            $body .= "Olemme vastaanottaneet tiedustelusi lisätiedoista. ";
-            break;
-        case 'module':
-            $body .= "Olemme vastaanottaneet tilauksesi webinaarimodulista. ";
-            break;
-        case 'package':
-            $body .= "Olemme vastaanottaneet tilauksesi koko webinaaripakettista. ";
-            break;
-        default:
-            $body .= "Olemme vastaanottaneet viestisi. ";
-    }
-    
-    $body .= "Myyntitiimimme ottaa sinuun yhteyttä 1-2 arkipäivän kuluessa.\n\n";
-    $body .= "Jos sinulla on kiireellinen asia, voit ottaa yhteyttä suoraan:\n";
-    $body .= "📧 contact@bloomlead.io\n";
+    $body .= "Hienoa, että johtaminen ja projektinhallinta kiinnostavat ja haluat kehittyä meidän kanssamme osana BloomLead yhteisöä!\n\n";
+    $body .= "Olemme mielellämme mukana tukemassa kehitystäsi meidän osaamisellamme, sillä
+jatkuva oppiminen on antoisaa kaikille.\n\n";
+    $body .= "Laitamme sinulle 1–2 päivän kuluessa lisää tietoa ja ohjeita sähköpostiisi
+webinaaritilaukseesi liittyen. Pysy siis kuulolla.\n\n";
+    $body .= "Jos sinulla on jotakin kiireellistä, voit olla meihin yhteydessä sähköpostitse:contact@bloomlead.io. tai puhelinaikana ti ja to klo 17-18 numeroon +358 44
+3883188.\n\n";
     $body .= "Ystävällisin terveisin,\n";
-    $body .= "BloomLead-tiimi\n\n";
-    $body .= "---\n";
-    $body .= "Tämä on automaattinen vahvistusviesti. Älä vastaa tähän viestiin.\n";
+    $body .= "Marke ja Johanna\n\n";
+    $body .= "Tähän sähköpostiin ei voi vastata\n";
+    
+    
     
     $headers = [
         'From: ' . EMAIL_FROM_NAME . ' <' . EMAIL_FROM . '>',
