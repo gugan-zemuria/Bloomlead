@@ -341,9 +341,7 @@ Olen kiinnostunut erityisesti:
 - Hinnoittelusta ja paketeista
 - Räätälöidyistä ratkaisuista yritykselleni
 
-Odotan innolla kuulevani teiltä!
-
-Ystävällisin terveisin`);
+Odotan innolla kuulevani teiltä!`);
         
         if (isMobileDevice()) {
             // On mobile, prioritize mailto for better compatibility

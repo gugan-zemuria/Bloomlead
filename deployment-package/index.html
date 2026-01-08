@@ -1729,8 +1729,7 @@
                                         kanssamme – askel kerrallaan.</strong></p>
                             </div> -->
                             <div class="subricbe" data-animation="fadeInDown" data-delay=".4s">
-                                <form action="" class="contact-form" data-form-type="webinar-selection"
-                                    data-source="webinar-selection" id="webinarSelectionForm">
+                                <form action="" class="contact-form" data-source="landing-page" id="webinarSelectionForm">
                                     <label class="env"><i class="icon fal fa-envelope"></i><span
                                             class="ml">Sähköpostiosoite</span></label>
                                     <input type="email" id="email2" name="email2" class="header-input"
@@ -2850,7 +2849,7 @@ div>i>div></div>""
                                 yhdistämällä ihmisten ja projektin
                                 johtamisen, muutoksen ja AI:n.
                                 <br>
-                                Kuvat: Aarne Pärssinen
+                                <p class="footer-Kuvat">Kuvat: Aarne Pärssinen</p>
                                
                             </div>
 
@@ -2984,6 +2983,7 @@ div>i>div></div>""
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/element-in-view.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/email-handler.js"></script>
 
     <!-- Cookie Consent System -->
     <script src="js/cookie-consent-manager.js"></script>
@@ -3313,23 +3313,51 @@ div>i>div></div>""
             // Show loading state
             showStatus('Lähetetään sähköpostia...', 'loading');
 
-            // Simulate email sending delay
-            setTimeout(() => {
-                // Simulate sending email (frontend only)
-                console.log('Sending email to:', ['contact@bloomlead.io', 'marke.tyrvainen@elisanet.fi', 'jkartilamalmivaara@gmail.com']);
-                console.log('User email:', userEmail);
-                console.log('Selected option:', optionText);
+            // Prepare email data based on selection
+            const emailType = option === 'single' ? 'module' : 'package';
+            
+            // Use the real email handler
+            if (window.BloomLeadEmailHandler) {
+                const emailData = window.BloomLeadEmailHandler.prepareEmailData(
+                    emailType, 
+                    userEmail, 
+                    null // Use default message template
+                );
 
-                // Show success message
-                showStatus(`Kiitos kiinnostuksestasi! Valitsit ${optionText}`, 'success', 4000);
+                // Send via PHP backend
+                window.BloomLeadEmailHandler.sendEmail(emailData)
+                    .then(result => {
+                        // Show success message
+                        showStatus(`Kiitos kiinnostuksestasi! Valitsit ${optionText}. Saat pian lisätietoja sähköpostiisi.`, 'success', 4000);
 
-                // Close modal after delay
+                        // Close modal after delay
+                        setTimeout(() => {
+                            closeSelectionModal();
+                            // Clear form
+                            document.getElementById('email2').value = '';
+                            userEmail = '';
+                        }, 2000);
+                    })
+                    .catch(error => {
+                        console.error('Email sending error:', error);
+                        showStatus('Sähköpostin lähetys epäonnistui. Yritä uudelleen.', 'error', 4000);
+                    });
+            } else {
+                // Fallback to simulation if email handler not loaded
                 setTimeout(() => {
-                    closeSelectionModal();
-                    // Clear form
-                    document.getElementById('email2').value = '';
-                }, 2000);
-            }, 1000);
+                    console.log('Sending email to:', ['contact@bloomlead.io', 'marke.tyrvainen@elisanet.fi', 'jkartilamalmivaara@gmail.com']);
+                    console.log('User email:', userEmail);
+                    console.log('Selected option:', optionText);
+
+                    showStatus(`Kiitos kiinnostuksestasi! Valitsit ${optionText}`, 'success', 4000);
+
+                    setTimeout(() => {
+                        closeSelectionModal();
+                        document.getElementById('email2').value = '';
+                        userEmail = '';
+                    }, 2000);
+                }, 1000);
+            }
         }
 
         function showStatus(message, type = 'success', duration = null) {
