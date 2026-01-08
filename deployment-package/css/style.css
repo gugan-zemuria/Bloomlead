@@ -4889,6 +4889,10 @@ section:hover .section-title h2::before {
     margin-bottom: 50px;
 }
 
+.footer-Kuvat {
+    margin-top: 12px !important;
+}
+
 .f-contact {
     display: flex;
     padding: 0 !important;
