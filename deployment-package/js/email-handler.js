@@ -56,21 +56,9 @@ class BloomLeadEmailHandler {
     }
 
     /**
-     * Get current page information for tracking
-     */
-    getPageInfo() {
-        return {
-            url: window.location.href,
-            title: document.title,
-            referrer: document.referrer || 'Direct'
-        };
-    }
-
-    /**
      * Prepare email data based on request type
      */
-    prepareEmailData(type, userEmail, customMessage = null) {
-        const pageInfo = this.getPageInfo();
+    prepareEmailData(type, userEmail, customMessage = null, customerType = null) {
         let subject, message;
 
         switch (type) {
@@ -80,13 +68,18 @@ class BloomLeadEmailHandler {
                 break;
 
             case 'module':
-                subject = 'Ostokysely: Webinaarimoduli 1 - Projektin määrittely & Johtaja luo suunnan';
+                subject = 'BLOOMLEAD WEBINAARIMODULI 1 LISÄTIETOKYSELY';
                 message = customMessage || this.getModuleRequestMessage();
                 break;
 
             case 'package':
-                subject = 'Ostokysely: Täydellinen webinaaripaketti (6 moduulia)';
+                subject = 'BLOOMLEAD WEBINAARIPAKETTI LISÄTIETOKYSELY';
                 message = customMessage || this.getPackageRequestMessage();
+                break;
+
+            case 'package-order':
+                subject = 'BLOOMLEAD WEBINAARIPAKETIN TILAUS';
+                message = customMessage || this.getPackageOrderMessage(customerType);
                 break;
 
             default:
@@ -99,7 +92,7 @@ class BloomLeadEmailHandler {
             type: type,
             subject: subject,
             message: message,
-            source: pageInfo.url,
+            customerType: customerType,
             timestamp: new Date().toISOString()
         };
     }
@@ -123,15 +116,15 @@ Odotan yhteydenottoanne.`;
     getModuleRequestMessage() {
         return `Hei,
 
-Haluan tilata seuraavan webinaarimodulin:
+Haluan lisätietoa seuraavista webinaarikokonaisuuksista:
 
-📚 Moduuli: Webinaarimoduli 1
-🎯 Aihe: Projektin määrittely & Johtaja luo suunnan
-📅 Julkaisu: 15.1.2026
-⏱️ Kesto: 2 tuntia
-💰 Hinta: 125€ sis. alv
+Moduli: Webinaarimoduli 1
+Aihe: Projektin määrittely & Johtaja luo suunnan
+Julkaisu: 15.1.2026
+Kesto: 1,5 tuntia + harjoitukset
+Hinta: 125 € sis. alv tai 125 € + alv yrityshinta
 
-Moduuli sisältää:
+Moduli sisältää:
 • Johtajan roolin kirkastaminen
 • Oman motivaation ja arvojen tunnistaminen
 • Tavoite – sisäistäminen ja sitoutuminen
@@ -141,33 +134,57 @@ Moduuli sisältää:
 • Projektin taustoitus ja määrittely
 • Muutosjohtamis- ja viestintäsuunnitelma
 
-Odotan tietoja maksutavoista ja pääsystä webinaariin.`;
+Odotan yhteydenottoanne!`;
     }
 
     getPackageRequestMessage() {
         return `Hei,
 
-Haluan tilata täydellisen webinaaripaketin:
+Haluan lisätietoa webinaaripaketista:
 
-📦 Paketti: Kaikki 6 webinaarimoduulia
-💰 Pakettihinta: 650€ sis. alv
-💾 Säästö: 100€ verrattuna yksittäisiin moduuleihin
+Moduli: Webinaaripaketti
+Aihe: Itsensä ja muiden johtaminen sekä projektinhallinta ja muutos- ja viestintäjohtaminen
+Julkaisu: 15.1.2026 – 25.5.2026
+Kesto: 1,5 tuntia + harjoitukset
+Hinta: 650 € sis. alv tai 650 € + alv yrityshinta
+
+Moduli sisältää:
+• Kuuden webinaarimodulin paketin
+• Uusi webinaarimoduli joka kuukausi kuuden kuukauden ajan
+• Yksi yhteinen coaching tunti opintopolun aikana
+• Lisäartikkeleita ja materiaalia sähköpostitse opintopolun aikana
+• Jokaiseen webinaarimoduliin kuuluvan webinaarin ja omaan tahtiin tehtäviä harjoituksia
+• Kuuden webinaarin materiaalit ja tehtävät
+• Sähköpostituen
+• Puhelintuki ti ja to klo 17–18
+• Todistuksen ohjelman suorittamisesta opintopolun päätteeksi
+
+Odotan yhteydenottoanne!`;
+    }
+
+    getPackageOrderMessage(customerType = 'yksityishenkilönä') {
+        return `Hei,
+
+Haluan tilata BloomLead webinaaripaketin
+
+Moduli: Webinaaripaketti
+Aihe: Itsensä ja muiden johtaminen sekä projektinhallinta ja muutos- ja viestintäjohtaminen
+Julkaisu: 15.1.2026 – 25.5.2026
+Kesto: 1,5 tuntia + harjoitukset
+Hinta: 650 € sis. alv tai 650 € + alv yrityshinta
 
 Paketti sisältää:
-1️⃣ Moduuli 1: Projektin määrittely & Johtaja luo suunnan (15.1.2026)
-2️⃣ Moduuli 2: Projektin suunnittelu & Johtaja rakentaa perustan (2.2.2026)
-3️⃣ Moduuli 3: Projektin toteutus & Johtaja ohjaa arkea (2.3.2026)
-4️⃣ Moduuli 4: Projektin GO LIVE, seuranta & Johtaja kannattelee muutoksessa (30.3.2026)
-5️⃣ Moduuli 5: Projektin kehitysvaiheen päättäminen & Johtaja päättää viisaasti (27.4.2026)
-6️⃣ Moduuli 6: Projektin hyötyjen validointi & Johtaja kasvaa jatkuvasti (25.5.2026)
+• Kuuden webinaarimodulin paketin
+• Uusi webinaarimoduli joka kuukausi kuuden kuukauden ajan
+• Yksi yhteinen coaching tunti opintopolun aikana
+• Lisäartikkeleita ja materiaalia sähköpostitse opintopolun aikana
+• Jokaiseen webinaarimoduliin kuuluvan webinaarin ja omaan tahtiin tehtäviä harjoituksia
+• Kuuden webinaarin materiaalit ja tehtävät
+• Sähköpostituen
+• Puhelintuki ti ja to klo 17–18
+• Todistuksen ohjelman suorittamisesta opintopolun päätteeksi
 
-Jokainen moduuli sisältää:
-• 2 tunnin live-webinaari
-• Interaktiiviset harjoitukset
-• Suoritusmerkki
-• Pääsy tallenteisiin
-
-Odotan tietoja maksutavoista ja pääsystä webinaareihin.`;
+Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
     }
 }
 

@@ -3389,19 +3389,19 @@
                 this.validateEmail(); // Reset validation state
 
                 if (type === 'module') {
-                    this.emailTitle.textContent = 'Review Your Inquiry';
-                    this.emailSubjectDisplay.textContent = 'Purchase Inquiry: Webinaarimoduli 1 - Projektin määrittely & Johtaja luo suunnan';
-                    this.emailMessage.value = `Dear Sales Team,
+                    this.emailTitle.textContent = 'Tarkista kyselysi';
+                    this.emailSubjectDisplay.textContent = 'BLOOMLEAD WEBINAARIMODULI 1 LISÄTIETOKYSELY';
+                    this.emailMessage.value = `Hei,
 
-I am writing to express my strong interest in the webinar module. I would like to purchase the following:
+Haluan lisätietoa seuraavista webinaarikokonaisuuksista:
 
-📚 Module: Webinaarimoduli 1
-🎯 Topic: Projektin määrittely & Johtaja luo suunnan
-📅 Release: 15.1.2026
-⏱️ Duration: 2 hours
-💰 Price: 125€ sis. alv
+Moduli: Webinaarimoduli 1
+Aihe: Projektin määrittely & Johtaja luo suunnan
+Julkaisu: 15.1.2026
+Kesto: 1,5 tuntia + harjoitukset
+Hinta: 125 € sis. alv tai 125 € + alv yrityshinta
 
-Module includes:
+Moduli sisältää:
 • Johtajan roolin kirkastaminen
 • Oman motivaation ja arvojen tunnistaminen
 • Tavoite – sisäistäminen ja sitoutuminen
@@ -3411,35 +3411,7 @@ Module includes:
 • Projektin taustoitus ja määrittely
 • Muutosjohtamis- ja viestintäsuunnitelma
 
-I look forward to receiving information about payment methods and access to the webinar.
-
-`;
-                } else if (type === 'package') {
-                    this.emailTitle.textContent = 'Review Your Inquiry';
-                    this.emailSubjectDisplay.textContent = 'Purchase Inquiry: Full Webinar Package (6 modules)';
-                    this.emailMessage.value = `Dear Sales Team,
-
-I am writing to express my strong interest in the Full Webinar Package. I would like to purchase:
-
-📦 Package: All 6 webinar modules
-💰 Package Price: 650€ sis. alv
-💾 Savings: 100€ compared to individual modules
-
-Package includes:
-1️⃣ Module 1: Projektin määrittely & Johtaja luo suunnan (15.1.2026)
-2️⃣ Module 2: Projektin suunnittelu & Johtaja rakentaa perustan (2.2.2026)
-3️⃣ Module 3: Projektin toteutus & Johtaja ohjaa arkea (2.3.2026)
-4️⃣ Module 4: Projektin GO LIVE, seuranta & Johtaja kannattelee muutoksessa (30.3.2026)
-5️⃣ Module 5: Projektin kehitysvaiheen päättäminen & Johtaja päättää viisaasti (27.4.2026)
-6️⃣ Module 6: Projektin hyötyjen validointi & Johtaja kasvaa jatkuvasti (25.5.2026)
-
-Jokainen moduli sisältää:
-• 2 tunnin live-webinaari
-• Interaktiiviset harjoitukset
-• Suoritusmerkki
-• Pääsy tallenteisiin
-
-Odotan saavani tietoa maksutavoista ja pääsystä webinaareihin.`;
+Odotan yhteydenottoanne!`;
                 }
             }
 
@@ -3520,7 +3492,6 @@ Odotan saavani tietoa maksutavoista ja pääsystä webinaareihin.`;
                         type: this.currentType,
                         subject: subject,
                         message: message,
-                        source: window.location.href,
                         timestamp: new Date().toISOString()
                     };
 

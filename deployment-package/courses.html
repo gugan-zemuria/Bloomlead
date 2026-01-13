@@ -698,6 +698,119 @@
             font-style: italic;
         }
 
+        .customer-type-section {
+            margin-bottom: 28px;
+        }
+
+        .customer-type-label {
+            font-size: 14px;
+            color: #374151;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .customer-type-options {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 8px;
+        }
+
+        .customer-type-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            flex: 1;
+            background: #ffffff;
+        }
+
+        .customer-type-option:hover {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .customer-type-option input[type="radio"] {
+            display: none;
+        }
+
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .customer-type-option input[type="radio"]:checked + .radio-custom {
+            border-color: #6366f1;
+            background: #6366f1;
+        }
+
+        .customer-type-option input[type="radio"]:checked + .radio-custom::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .customer-type-option input[type="radio"]:checked ~ .option-text {
+            color: #6366f1;
+            font-weight: 600;
+        }
+
+        .option-text {
+            font-size: 14px;
+            color: #374151;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .customer-type-note {
+            font-size: 13px;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .email-header-section {
+            margin-bottom: 28px;
+        }
+
+        .email-header-label {
+            font-size: 14px;
+            color: #374151;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .email-header-content {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #374151;
+            font-family: 'Courier New', monospace;
+            white-space: pre-line;
+        }
+
+        .email-header-content span {
+            color: #6366f1;
+            font-weight: 600;
+        }
+
         .email-field-row {
             display: flex;
             gap: 20px;
@@ -929,6 +1042,11 @@
             .email-field-row {
                 flex-direction: column;
                 gap: 16px;
+            }
+
+            .customer-type-options {
+                flex-direction: column;
+                gap: 12px;
             }
 
             .popup-footer {
@@ -1320,7 +1438,7 @@
                                     Tilaa koko webinaaripaketti tästä
                                 </a> -->
                                 <button class="btn btn-primary package-cta-btn"
-                                    onclick="showEmailPopup('package')"
+                                    onclick="showEmailPopup('package-order')"
                                     style="display: block; color: inherit; cursor: pointer; border: none; width: 100%;">
                                     Tilaa koko webinaaripaketti tästä
                                 </button>
@@ -1503,6 +1621,23 @@
                         <div class="contact-note">Tähän osoitteeseen myyntitiimi ottaa sinuun yhteyttä.</div>
                     </div>
                     
+                    <div class="customer-type-section">
+                        <div class="customer-type-label">TILAAN</div>
+                        <div class="customer-type-options">
+                            <label class="customer-type-option">
+                                <input type="radio" name="customerType" value="yksityishenkilönä" checked>
+                                <span class="radio-custom"></span>
+                                <span class="option-text">Yksityishenkilönä</span>
+                            </label>
+                            <label class="customer-type-option">
+                                <input type="radio" name="customerType" value="yrityksenä">
+                                <span class="radio-custom"></span>
+                                <span class="option-text">Yrityksenä</span>
+                            </label>
+                        </div>
+                        <div class="customer-type-note">Hinnoittelu vaihtelee asiakastyypin mukaan.</div>
+                    </div>
+                    
                     <div class="email-field-row">
                         <div class="email-field">
                             <div class="email-field-label">Vastaanottaja:</div>
@@ -1510,10 +1645,14 @@
                         </div>
                     </div>
                     
-                    <div class="email-field-row">
-                        <div class="email-field">
-                            <div class="email-field-label">Aihe:</div>
-                            <div class="email-field-value" id="emailSubjectDisplay">Ostokysely: Täydellinen webinaaripaketti</div>
+                    <div class="email-header-section">
+                        <div class="email-header-label">SÄHKÖPOSTIN OTSIKKOTIEDOT</div>
+                        <div class="email-header-content" id="emailHeaderDisplay">
+                            BLOOMLEAD WEBINAARIPAKETIN TILAUS<br>
+                            Aika: <span id="timestampDisplay">[Lähetetään lähetyshetkellä]</span><br>
+                            Lähettäjän sähköposti: <span id="senderEmailDisplay">[Syötä sähköpostisi yllä]</span><br>
+                            Tyyppi: BloomLead webinaaripaketti<br>
+                            Tilaan: <span id="customerTypeHeaderDisplay">yksityishenkilönä</span>
                         </div>
                     </div>
                     
@@ -1708,10 +1847,11 @@
                 this.sendEmailBtn = document.getElementById('sendEmailBtn');
                 this.contactEmail = document.getElementById('contactEmail');
                 this.emailStatusIcon = document.getElementById('emailStatusIcon');
-                this.emailSubjectDisplay = document.getElementById('emailSubjectDisplay');
                 this.emailMessage = document.getElementById('emailMessage');
                 this.emailStatus = document.getElementById('emailStatus');
                 this.emailTitle = document.getElementById('emailPopupTitle');
+                this.customerTypeHeaderDisplay = document.getElementById('customerTypeHeaderDisplay');
+                this.senderEmailDisplay = document.getElementById('senderEmailDisplay');
                 
                 this.isEditing = false;
                 this.currentType = null;
@@ -1729,7 +1869,10 @@
                 this.emailMessage.addEventListener('input', () => this.autoResizeTextarea());
                 
                 // Email validation on input
-                this.contactEmail.addEventListener('input', () => this.validateEmail());
+                this.contactEmail.addEventListener('input', () => {
+                    this.validateEmail();
+                    this.updateSenderEmailDisplay();
+                });
                 this.contactEmail.addEventListener('blur', () => this.validateEmail());
                 
                 // Close on Escape key
@@ -1765,6 +1908,21 @@
                 }
             }
 
+            updateCustomerTypeDisplay() {
+                const customerTypeRadio = document.querySelector('input[name="customerType"]:checked');
+                const customerType = customerTypeRadio ? customerTypeRadio.value : 'yksityishenkilönä';
+                if (this.customerTypeHeaderDisplay) {
+                    this.customerTypeHeaderDisplay.textContent = customerType;
+                }
+            }
+
+            updateSenderEmailDisplay() {
+                const email = this.contactEmail.value.trim();
+                if (this.senderEmailDisplay) {
+                    this.senderEmailDisplay.textContent = email || '[Syötä sähköpostisi yllä]';
+                }
+            }
+
             autoResizeTextarea() {
                 this.emailMessage.style.height = 'auto';
                 this.emailMessage.style.height = Math.max(200, this.emailMessage.scrollHeight) + 'px';
@@ -1776,6 +1934,10 @@
                 this.emailPopup.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 this.resetEditMode();
+                
+                // Update displays
+                this.updateCustomerTypeDisplay();
+                this.updateSenderEmailDisplay();
                 
                 // Auto-resize on show
                 setTimeout(() => this.autoResizeTextarea(), 100);
@@ -1793,58 +1955,31 @@
                 this.contactEmail.value = '';
                 this.validateEmail(); // Reset validation state
                 
-                if (type === 'module') {
-                    this.emailTitle.textContent = 'Review Your Inquiry';
-                    this.emailSubjectDisplay.textContent = 'Purchase Inquiry: Webinaarimoduli 1 - Projektin määrittely & Johtaja luo suunnan';
-                    this.emailMessage.value = `Dear Sales Team,
+                if (type === 'package-order') {
+                    this.emailTitle.textContent = 'Tarkista tilauksesi';
+                    // Subject is now part of the header display, no separate element needed
+                    this.emailMessage.value = `Hei,
 
-I am writing to express my strong interest in the webinar module. I would like to purchase the following:
+Haluan tilata BloomLead webinaaripaketin
 
-📚 Module: Webinaarimoduli 1
-🎯 Topic: Projektin määrittely & Johtaja luo suunnan
-📅 Release: 15.1.2026
-⏱️ Duration: 2 hours
-💰 Price: 125€ sis. alv
+Moduli: Webinaaripaketti
+Aihe: Itsensä ja muiden johtaminen sekä projektinhallinta ja muutos- ja viestintäjohtaminen
+Julkaisu: 15.1.2026 – 25.5.2026
+Kesto: 1,5 tuntia + harjoitukset
+Hinta: 650 € sis. alv tai 650 € + alv yrityshinta
 
-Module includes:
-• Johtajan roolin kirkastaminen
-• Oman motivaation ja arvojen tunnistaminen
-• Tavoite – sisäistäminen ja sitoutuminen
-• Priorisointi ja ajanhallinta johtajana
-• Johtamisen harjoituksia
-• Hyvinvointivinkki
-• Projektin taustoitus ja määrittely
-• Muutosjohtamis- ja viestintäsuunnitelma
+Paketti sisältää:
+• Kuuden webinaarimodulin paketin
+• Uusi webinaarimoduli joka kuukausi kuuden kuukauden ajan
+• Yksi yhteinen coaching tunti opintopolun aikana
+• Lisäartikkeleita ja materiaalia sähköpostitse opintopolun aikana
+• Jokaiseen webinaarimoduliin kuuluvan webinaarin ja omaan tahtiin tehtäviä harjoituksia
+• Kuuden webinaarin materiaalit ja tehtävät
+• Sähköpostituen
+• Puhelintuki ti ja to klo 17–18
+• Todistuksen ohjelman suorittamisesta opintopolun päätteeksi
 
-I look forward to receiving information about payment methods and access to the webinar.
-
-`;
-                } else if (type === 'package') {
-                    this.emailTitle.textContent = 'Review Your Inquiry';
-                    this.emailSubjectDisplay.textContent = 'Purchase Inquiry: Full Webinar Package (6 modules)';
-                    this.emailMessage.value = `Dear Sales Team,
-
-I am writing to express my strong interest in the Full Webinar Package. I would like to purchase:
-
-📦 Package: All 6 webinar modules
-💰 Package Price: 650€ sis. alv
-💾 Savings: 100€ compared to individual modules
-
-Package includes:
-1️⃣ Module 1: Projektin määrittely & Johtaja luo suunnan (15.1.2026)
-2️⃣ Module 2: Projektin suunnittelu & Johtaja rakentaa perustan (2.2.2026)
-3️⃣ Module 3: Projektin toteutus & Johtaja ohjaa arkea (2.3.2026)
-4️⃣ Module 4: Projektin GO LIVE, seuranta & Johtaja kannattelee muutoksessa (30.3.2026)
-5️⃣ Module 5: Projektin kehitysvaiheen päättäminen & Johtaja päättää viisaasti (27.4.2026)
-6️⃣ Module 6: Projektin hyötyjen validointi & Johtaja kasvaa jatkuvasti (25.5.2026)
-
-Jokainen moduli sisältää:
-• 2 tunnin live-webinaari
-• Interaktiiviset harjoitukset
-• Suoritusmerkki
-• Pääsy tallenteisiin
-
-Odotan saavani tietoa maksutavoista ja pääsystä webinaareihin.`;
+Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
                 }
             }
 
@@ -1876,8 +2011,12 @@ Odotan saavani tietoa maksutavoista ja pääsystä webinaareihin.`;
 
             async sendEmail() {
                 const contactEmail = this.contactEmail.value.trim();
-                const subject = this.emailSubjectDisplay.textContent.trim();
+                const subject = 'BLOOMLEAD WEBINAARIPAKETIN TILAUS'; // Fixed subject for package orders
                 const message = this.emailMessage.value.trim();
+                
+                // Get customer type selection
+                const customerTypeRadio = document.querySelector('input[name="customerType"]:checked');
+                const customerType = customerTypeRadio ? customerTypeRadio.value : 'yksityishenkilönä';
                 
                 if (!contactEmail || !subject || !message) {
                     this.showStatus('Please fill all fields before sending.', 'error');
@@ -1893,8 +2032,8 @@ Odotan saavani tietoa maksutavoista ja pääsystä webinaareihin.`;
                 this.sendEmailBtn.disabled = true;
 
                 try {
-                    // Simulate email sending (replace with actual email service)
-                    await this.simulateEmailSending(contactEmail, subject, message);
+                    // Send email with customer type
+                    await this.simulateEmailSending(contactEmail, subject, message, customerType);
                     
                     this.showStatus('Email sent successfully! We will contact you soon.', 'success');
                     
@@ -1917,7 +2056,7 @@ Odotan saavani tietoa maksutavoista ja pääsystä webinaareihin.`;
                 return emailRegex.test(email);
             }
 
-            async simulateEmailSending(contactEmail, subject, message) {
+            async simulateEmailSending(contactEmail, subject, message, customerType = 'yksityishenkilönä') {
                 // Use real email sending via PHP backend
                 try {
                     const emailData = {
@@ -1925,7 +2064,7 @@ Odotan saavani tietoa maksutavoista ja pääsystä webinaareihin.`;
                         type: this.currentType,
                         subject: subject,
                         message: message,
-                        source: window.location.href,
+                        customerType: customerType,
                         timestamp: new Date().toISOString()
                     };
 
@@ -1980,12 +2119,23 @@ Odotan saavani tietoa maksutavoista ja pääsystä webinaareihin.`;
 
         // Initialize email system when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            const emailManager = new EmailSubscriptionManager();
-            
-            // Make showEmailPopup function globally available
-            window.showEmailPopup = function(type) {
-                emailManager.showEmailPopup(type);
-            };
+            console.log('Initializing EmailSubscriptionManager...');
+            try {
+                const emailManager = new EmailSubscriptionManager();
+                console.log('EmailSubscriptionManager initialized successfully');
+                
+                // Make showEmailPopup function globally available
+                window.showEmailPopup = function(type) {
+                    console.log('showEmailPopup called with type:', type);
+                    try {
+                        emailManager.showEmailPopup(type);
+                    } catch (error) {
+                        console.error('Error in showEmailPopup:', error);
+                    }
+                };
+            } catch (error) {
+                console.error('Error initializing EmailSubscriptionManager:', error);
+            }
         });
     </script>
 
