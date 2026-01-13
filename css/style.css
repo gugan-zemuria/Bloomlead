@@ -1052,7 +1052,7 @@ body {
     position: relative;
     padding: 10px 15px;
     margin-top: 40px;
-    width: 870px;
+    width: 940px;
 }
 
 .subricbe .contact-form {
@@ -4891,6 +4891,11 @@ section:hover .section-title h2::before {
 
 .footer-Kuvat {
     margin-top: 12px;
+}
+
+.footer-link p {
+    margin-bottom: -12px;
+    margin-top: 30px;
 }
 
 .f-contact {
