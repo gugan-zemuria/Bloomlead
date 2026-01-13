@@ -44,7 +44,6 @@ try {
     $requestType = sanitizeString($input['type'] ?? '');
     $subject = sanitizeString($input['subject'] ?? '');
     $message = sanitizeString($input['message'] ?? '');
-    $sourcePage = sanitizeString($input['source'] ?? '');
     
     // Validate required fields
     if (empty($userEmail) || empty($requestType) || empty($subject) || empty($message)) {
@@ -62,7 +61,7 @@ try {
     
     // Prepare email content
     $emailSubject = $subject;
-    $emailBody = buildEmailBody($userEmail, $requestType, $message, $sourcePage);
+    $emailBody = buildEmailBody($userEmail, $requestType, $message);
     
     // Send email to all recipients
     $success = sendToAllRecipients($emailSubject, $emailBody, $userEmail);
@@ -77,7 +76,7 @@ try {
     }
     
     // Log successful submission (optional)
-    logSubmission($userEmail, $requestType, $sourcePage);
+    logSubmission($userEmail, $requestType);
     
     // Return success response
     echo json_encode([
@@ -110,15 +109,39 @@ function sanitizeString($string) {
 /**
  * Build email body with all information
  */
-function buildEmailBody($userEmail, $requestType, $message, $sourcePage) {
+function buildEmailBody($userEmail, $requestType, $message) {
     $timestamp = date('Y-m-d H:i:s');
     
-    $body = " BLOOMLEAD WEBSITE INQUIRY \n\n";
-    $body .= "Time: $timestamp\n";
-    $body .= "User Email: $userEmail\n";
-    $body .= "Request Type: $requestType\n\n";
-    $body .= $message . "\n\n";
-    $body .= "Please respond to: $userEmail\n";
+    // Get customer type from input if available
+    $input = json_decode(file_get_contents('php://input'), true);
+    $customerType = $input['customerType'] ?? 'yksityishenkilönä';
+    
+    // Set email header based on request type
+    if ($requestType === 'module') {
+        $header = "BLOOMLEAD WEBINAARIMODULI 1 LISÄTIETOKYSELY";
+        $type = "webinaarimoduli 1";
+    } elseif ($requestType === 'package') {
+        $header = "BLOOMLEAD WEBINAARIPAKETTI LISÄTIETOKYSELY";
+        $type = "webinaaripaketti";
+    } elseif ($requestType === 'package-order') {
+        $header = "BLOOMLEAD WEBINAARIPAKETIN TILAUS";
+        $type = "BloomLead webinaaripaketti";
+    } else {
+        $header = "BLOOMLEAD WEBSITE INQUIRY";
+        $type = $requestType;
+    }
+    
+    $body = "$header\n";
+    $body .= "Aika: $timestamp\n";
+    $body .= "Lähettäjän sähköposti: $userEmail\n";
+    $body .= "Tyyppi: $type\n";
+    
+    // Add customer type for package orders
+    if ($requestType === 'package-order') {
+        $body .= "Tilaan: $customerType\n";
+    }
+    
+    $body .= "\n$message\n\n";
     
     return $body;
 }
@@ -220,12 +243,12 @@ function checkRateLimit() {
 /**
  * Log submission for tracking (optional)
  */
-function logSubmission($userEmail, $requestType, $sourcePage) {
+function logSubmission($userEmail, $requestType) {
     $logFile = __DIR__ . '/submissions.log';
     $timestamp = date('Y-m-d H:i:s');
     $ip = $_SERVER['REMOTE_ADDR'] ?? 'Unknown';
     
-    $logEntry = "[$timestamp] $userEmail | $requestType | $sourcePage | $ip\n";
+    $logEntry = "[$timestamp] $userEmail | $requestType | $ip\n";
     
     // Append to log file
     file_put_contents($logFile, $logEntry, FILE_APPEND | LOCK_EX);
