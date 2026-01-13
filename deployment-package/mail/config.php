@@ -6,7 +6,9 @@
 
 // Email Recipients - ALL will receive every email
 define('EMAIL_RECIPIENTS', [
-    'gugantenyson@gmail.com'
+    'contact@bloomlead.io',
+    'marke.tyrvainen@elisanet.fi', 
+    'jkartilamalmivaara@gmail.com'
 ]);
 
 // Email Settings

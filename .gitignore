@@ -15,10 +15,6 @@ package.json
 scripts/
 src/core/
 
-# Test files (except main test files)
-test-cookie-popup.html
-test-responsive-cookie.html
-
 # JavaScript config and credential files
 js/config.js
 js/cookie-credentials.js
