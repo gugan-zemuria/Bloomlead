@@ -19,7 +19,7 @@
             if (consent.categories && consent.categories.analytics) {
                 // Get Google Analytics ID from Config system
                 const analyticsId = window.Config ? window.Config.getGoogleAnalyticsId() : null;
-                
+
                 if (analyticsId && analyticsId !== 'YOUR_GOOGLE_ANALYTICS_ID') {
                     const script1 = document.createElement('script');
                     script1.async = true;
@@ -338,6 +338,10 @@
             transition: all 0.3s ease;
         }
 
+        .header-btn {
+            padding: 18px !important;
+        }
+
         @media (max-width: 991px) {
             .search-top2 {
                 display: none !important;
@@ -353,6 +357,23 @@
 
             .logo-text {
                 font-size: 22px;
+            }
+
+            .slider-four .subricbe .contact-form {
+                display: initial;
+            }
+
+            
+        }
+
+
+        @media (min-width: 767px) and (max-width: 991px) {
+            
+
+            .header-btn {
+                height: 60px;
+                margin-top: auto;
+                right: 8px;
             }
         }
 
@@ -1506,6 +1527,10 @@
             .selection-modal-content {
                 max-height: 85vh;
             }
+             .header-btn {
+                width: 100%;
+                text-wrap: wrap;
+             }
 
             .selection-modal-header,
             .selection-modal-body,
@@ -1729,12 +1754,14 @@
                                         kanssamme – askel kerrallaan.</strong></p>
                             </div> -->
                             <div class="subricbe" data-animation="fadeInDown" data-delay=".4s">
-                                <form action="" class="contact-form" data-source="landing-page" id="webinarSelectionForm">
+                                <form action="" class="contact-form" data-source="landing-page"
+                                    id="webinarSelectionForm">
                                     <label class="env"><i class="icon fal fa-envelope"></i><span
                                             class="ml">Sähköpostiosoite</span></label>
                                     <input type="email" id="email2" name="email2" class="header-input"
                                         placeholder="Anna sähköpostiosoitteesi tähän..." required>
-                                    <button type="submit" class="btn header-btn" id="webinarSubmitBtn"> Vastaanota webinaaritietoa & Projektin knoppilista</button>
+                                    <button type="submit" class="btn header-btn" id="webinarSubmitBtn"> Vastaanota
+                                        webinaaritietoa & Projektin knoppilista</button>
                                 </form>
                             </div>
                             <!-- <div>
@@ -2849,7 +2876,7 @@ div>i>div></div>""
                                 johtamisen, muutoksen ja AI:n.
                                 <br>
                                 <p class="footer-Kuvat">Kuvat: Aarne Pärssinen</p>
-                                
+
                             </div>
 
                         </div>
@@ -2868,7 +2895,9 @@ div>i>div></div>""
                                         </li> -->
                                     <li><i class="icon fal fa-envelope"></i>
                                         <span>
-                                            <span class="email-clickable" onclick="openEmailOptions('contact@bloomlead.io', 'footer')" style="display: block; cursor: pointer; text-decoration: underline;">contact@bloomlead.io</span>
+                                            <span class="email-clickable"
+                                                onclick="openEmailOptions('contact@bloomlead.io', 'footer')"
+                                                style="display: block; cursor: pointer; text-decoration: underline;">contact@bloomlead.io</span>
                                             <!-- <span style="display: block;">help@example.com</span> -->
                                         </span>
                                     </li>
@@ -2923,7 +2952,7 @@ div>i>div></div>""
                                 <p><a href="privacy-policy.html" style="color: inherit;">Rekisteriseloste ja
                                         Tietosuoja</a></p>
                                 <p><a href="faq.html" style="color: inherit;">Usein Kysytyt Kysymykset</a></p>
-                                
+
                             </div>
 
                         </div>
@@ -3316,12 +3345,12 @@ div>i>div></div>""
 
             // Prepare email data based on selection
             const emailType = option === 'single' ? 'module' : 'package';
-            
+
             // Use the real email handler
             if (window.BloomLeadEmailHandler) {
                 const emailData = window.BloomLeadEmailHandler.prepareEmailData(
-                    emailType, 
-                    userEmail, 
+                    emailType,
+                    userEmail,
                     null // Use default message template
                 );
 
