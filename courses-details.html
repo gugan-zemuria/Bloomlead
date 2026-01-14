@@ -1950,78 +1950,39 @@
                             </ul>
                         </div>
                         <div class="upper-box">
-                            <div class="custom-video-player wow fadeInRight animated"
+                            <div class="youtube-video-player wow fadeInRight animated"
                                 data-animation="fadeInDown animated" data-delay=".2s">
-                                <div class="video-container">
-                                    <video id="customVideo" class="video-element">
-                                        <source src="img/video/webinar-section.mp4" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-
-                                    <!-- Video Not Available Message -->
-                                    <div class="video-not-available" id="videoNotAvailable" style="display: none;">
-                                        <div class="no-video-content">
-                                            <div class="no-video-icon">
-                                                <i class="fas fa-video-slash"></i>
-                                            </div>
-                                            <h3>Video ei ole vielä saatavilla</h3>
-                                            <p>Tämä webinaari julkaistaan <strong>5.1.2026</strong></p>
-                                            <div class="coming-soon-features">
-                                                <div class="feature-item">
-                                                    <i class="fas fa-clock"></i>
-                                                    <span>Kesto: 3 tuntia</span>
-                                                </div>
-                                                <div class="feature-item">
-                                                    <i class="fas fa-users"></i>
-                                                    <span>Live-webinaari</span>
-                                                </div>
-                                                <div class="feature-item">
-                                                    <i class="fas fa-certificate"></i>
-                                                    <span>Todistus suorituksesta</span>
-                                                </div>
-                                            </div>
-                                            <div class="notify-buttons">
-                                                <button class="btn-notify-me" id="notifyMeBtn">
-                                                    <i class="fas fa-bell"></i>
-                                                    Ilmoita kun saatavilla
-                                                </button>
-                                                <a href="courses.html" class="btn-browse-modules">
-                                                    <i class="fas fa-list"></i>
-                                                    Selaa muita moduuleja
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="video-overlay" id="videoOverlay">
-                                        <div class="play-button-custom" id="playButton">
-                                            <i class="fas fa-play"></i>
-                                        </div>
-                                    </div>
-                                    <div class="video-controls" id="videoControls">
-                                        <div class="progress-bar" id="progressBar">
-                                            <div class="progress-filled" id="progressFilled"></div>
-                                        </div>
-                                        <div class="controls-bottom">
-                                            <button class="control-btn" id="playPauseBtn">
-                                                <i class="fas fa-play"></i>
-                                            </button>
-                                            <div class="time-display">
-                                                <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                                            </div>
-                                            <button class="control-btn" id="muteBtn">
-                                                <i class="fas fa-volume-up"></i>
-                                            </button>
-                                            <input type="range" id="volumeSlider" min="0" max="100" value="100"
-                                                class="volume-slider">
-                                            <button class="control-btn" id="speedBtn" title="Playback Speed">
-                                                <span id="speedDisplay">1x</span>
-                                            </button>
-                                            <button class="control-btn" id="fullscreenBtn">
-                                                <i class="fas fa-expand"></i>
-                                            </button>
-                                        </div>
-                                    </div>
+                                <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+                                    <iframe 
+                                        id="youtubeVideo"
+                                        src="https://www.youtube.com/embed/2W_iG7HnT3M?rel=0&modestbranding=1&showinfo=0&fs=1&disablekb=0&iv_load_policy=3" 
+                                        title="Webinaarimoduli 1 - Traileri"
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen
+                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                    </iframe>
                                 </div>
+                            </div>
+                            <!-- Subscribe CTA Button -->
+                            <div class="subscribe-cta-container" style="text-align: center; margin-top: 25px;">
+                                <button class="subscribe-cta-btn" id="subscribeCTABtn" onclick="showSubscribePopup()" style="
+                                    background: #a571aa;
+                                    color: white;
+                                    border: none;
+                                    padding: 10px 18px ;
+                                    border-radius: 0.25rem;
+                                    font-size: 18px;
+                                    font-weight: 600;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    display: inline-flex;
+                                    align-items: center;
+                                    gap: 12px;
+                                    box-shadow: 0 8px 25px rgba(165, 113, 170, 0.3);
+                                ">
+                                    Tilaa nyt katsoaksesi koko webinaarin
+                                </button>
                             </div>
                         </div>
                         <div class="inner-column">
@@ -2665,399 +2626,28 @@
         const subscriptionManager = new SubscriptionManager();
         const currentModuleId = 'module-1-webinar';
 
-        // Custom Video Player Functionality with Subscription Check
-        const video = document.getElementById('customVideo');
-        const playButton = document.getElementById('playButton');
-        const videoOverlay = document.getElementById('videoOverlay');
-        const videoControls = document.getElementById('videoControls');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const progressBar = document.getElementById('progressBar');
-        const progressFilled = document.getElementById('progressFilled');
-        const currentTimeDisplay = document.getElementById('currentTime');
-        const durationDisplay = document.getElementById('duration');
-        const muteBtn = document.getElementById('muteBtn');
-        const volumeSlider = document.getElementById('volumeSlider');
-        const speedBtn = document.getElementById('speedBtn');
-        const speedDisplay = document.getElementById('speedDisplay');
-        const fullscreenBtn = document.getElementById('fullscreenBtn');
-
-        // Video ID for this specific module
-        const videoId = 'module-1-webinar';
-
-        // Progress saving interval
-        let progressInterval;
-
-        // Check subscription status and update UI
-        function checkSubscriptionAndUpdateUI() {
-            const hasAccess = subscriptionManager.hasModuleAccess(currentModuleId);
-
-            if (!hasAccess) {
-                // Show subscription placeholder
-                showSubscriptionPlaceholder();
-                // Disable video controls
-                disableVideoControls();
-            } else {
-                // Hide subscription placeholder
-                hideSubscriptionPlaceholder();
-                // Enable video controls
-                enableVideoControls();
-            }
-
-            return hasAccess;
-        }
-
-        // Check if video is available and show appropriate message
-        function checkVideoAvailability() {
-            const video = document.getElementById('customVideo');
-            const videoNotAvailable = document.getElementById('videoNotAvailable');
-            const videoOverlay = document.getElementById('videoOverlay');
-            const videoControls = document.getElementById('videoControls');
-
-            // Check if video source exists and can be loaded
-            video.addEventListener('error', () => {
-                showVideoNotAvailable();
-            });
-
-            video.addEventListener('loadstart', () => {
-                // Video started loading, hide not available message
-                hideVideoNotAvailable();
-            });
-
-            // Check if video source is accessible
-            const source = video.querySelector('source');
-            if (source && source.src) {
-                // Try to load the video
-                video.load();
-
-                // Set a timeout to show not available message if video doesn't load
-                setTimeout(() => {
-                    if (video.readyState === 0) {
-                        showVideoNotAvailable();
-                    }
-                }, 3000);
-            } else {
-                // No video source, show not available message
-                showVideoNotAvailable();
-            }
-        }
-
-        function showVideoNotAvailable() {
-            const videoNotAvailable = document.getElementById('videoNotAvailable');
-            const videoOverlay = document.getElementById('videoOverlay');
-            const videoControls = document.getElementById('videoControls');
-
-            videoNotAvailable.style.display = 'flex';
-            videoOverlay.style.display = 'none';
-            videoControls.style.display = 'none';
-
-            // Hide video element
-            document.getElementById('customVideo').style.display = 'none';
-        }
-
-        function hideVideoNotAvailable() {
-            const videoNotAvailable = document.getElementById('videoNotAvailable');
-            const videoOverlay = document.getElementById('videoOverlay');
-            const videoControls = document.getElementById('videoControls');
-
-            videoNotAvailable.style.display = 'none';
-            videoOverlay.style.display = 'flex';
-            videoControls.style.display = 'block';
-
-            // Show video element
-            document.getElementById('customVideo').style.display = 'block';
-        }
-
-        // Show subscription placeholder overlay
-        function showSubscriptionPlaceholder() {
-            // Update play button to show subscription message
-            playButton.innerHTML = '<i class="fas fa-lock"></i>';
-            playButton.style.background = 'rgba(165, 113, 170, 0.95)';
-
-            // Add subscription message to overlay
-            if (!document.getElementById('subscriptionMessage')) {
-                const subscriptionMessage = document.createElement('div');
-                subscriptionMessage.id = 'subscriptionMessage';
-                subscriptionMessage.style.cssText = `
-                    position: absolute;
-                    bottom: 20px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background: rgba(0, 0, 0, 0.8);
-                    color: white;
-                    padding: 10px 20px;
-                    border-radius: 25px;
-                    font-size: 14px;
-                    font-weight: 600;
-                    white-space: nowrap;
-                    z-index: 10;
-                `;
-                subscriptionMessage.textContent = 'Tilaa nyt katsoaksesi koko webinaarin';
-                videoOverlay.appendChild(subscriptionMessage);
-            }
-
-            // Make sure overlay is always visible
-            videoOverlay.classList.remove('hidden');
-            videoOverlay.style.pointerEvents = 'all';
-        }
-
-        // Hide subscription placeholder
-        function hideSubscriptionPlaceholder() {
-            // Restore original play button
-            playButton.innerHTML = '<i class="fas fa-play"></i>';
-            playButton.style.background = 'rgba(165, 113, 170, 0.95)';
-
-            // Remove subscription message
-            const subscriptionMessage = document.getElementById('subscriptionMessage');
-            if (subscriptionMessage) {
-                subscriptionMessage.remove();
-            }
-
-            // Restore normal overlay behavior
-            videoOverlay.style.pointerEvents = 'none';
-        }
-
-        // Disable video controls for non-subscribers
-        function disableVideoControls() {
-            video.style.pointerEvents = 'none';
-            videoControls.style.display = 'none';
-
-            // Disable all control buttons
-            [playPauseBtn, muteBtn, speedBtn, fullscreenBtn].forEach(btn => {
-                if (btn) btn.disabled = true;
-            });
-
-            if (progressBar) progressBar.style.pointerEvents = 'none';
-            if (volumeSlider) volumeSlider.disabled = true;
-        }
-
-        // Enable video controls for subscribers
-        function enableVideoControls() {
-            video.style.pointerEvents = 'auto';
-            videoControls.style.display = 'block';
-
-            // Enable all control buttons
-            [playPauseBtn, muteBtn, speedBtn, fullscreenBtn].forEach(btn => {
-                if (btn) btn.disabled = false;
-            });
-
-            if (progressBar) progressBar.style.pointerEvents = 'auto';
-            if (volumeSlider) volumeSlider.disabled = false;
-        }
-
-        // Format time helper
-        function formatTime(seconds) {
-            const mins = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-        }
-
-        // Play/Pause functionality with subscription check
-        function togglePlay() {
-            // Check subscription before allowing play
-            if (!subscriptionManager.hasModuleAccess(currentModuleId)) {
-                // Show subscription popup instead of playing
+        // Show Subscribe Popup function (called from CTA button)
+        function showSubscribePopup() {
+            const subscribePopup = document.getElementById('videoSubscribePopup');
+            if (subscribePopup) {
                 subscribePopup.classList.add('active');
                 document.body.style.overflow = 'hidden';
-                return;
-            }
-
-            if (video.paused) {
-                video.play();
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                videoOverlay.classList.add('hidden');
-            } else {
-                video.pause();
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                videoOverlay.classList.remove('hidden');
             }
         }
 
-        playButton.addEventListener('click', togglePlay);
-        playPauseBtn.addEventListener('click', togglePlay);
-        video.addEventListener('click', togglePlay);
-
-        // Make entire video container clickable
-        const videoContainer = document.querySelector('.video-container');
-        if (videoContainer) {
-            videoContainer.addEventListener('click', function (e) {
-                // Don't trigger if clicking on controls or buttons
-                if (!e.target.closest('.video-controls') &&
-                    !e.target.closest('.play-button-custom') &&
-                    !e.target.closest('.notify-buttons') &&
-                    !e.target.closest('button') &&
-                    !e.target.closest('input')) {
-                    togglePlay();
-                }
-            });
-
-            // Add cursor pointer to indicate clickability
-            videoContainer.style.cursor = 'pointer';
-        }
-
-        // Update progress bar
-        video.addEventListener('timeupdate', () => {
-            const percent = (video.currentTime / video.duration) * 100;
-            progressFilled.style.width = `${percent}%`;
-            currentTimeDisplay.textContent = formatTime(video.currentTime);
-        });
-
-        // Set duration when loaded and restore saved preferences
-        video.addEventListener('loadedmetadata', () => {
-            durationDisplay.textContent = formatTime(video.duration);
-
-            // Check subscription status and update UI
-            checkSubscriptionAndUpdateUI();
-
-            // Initialize video player with functional cookies
-            if (typeof initializeVideoPlayer === 'function') {
-                initializeVideoPlayer(video, videoId);
+        // Subscribe CTA button hover effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const subscribeCTABtn = document.getElementById('subscribeCTABtn');
+            if (subscribeCTABtn) {
+                subscribeCTABtn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 15px 35px rgba(165, 113, 170, 0.4)';
+                });
+                subscribeCTABtn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 8px 25px rgba(165, 113, 170, 0.3)';
+                });
             }
-
-            // Only restore preferences if functional cookies are allowed AND user has access
-            if (subscriptionManager.hasModuleAccess(currentModuleId) &&
-                typeof FunctionalCookies !== 'undefined' &&
-                FunctionalCookies.hasConsentFor('functional')) {
-
-                // Restore saved playback speed
-                const savedSpeed = FunctionalCookies.getPlaybackSpeed();
-                if (savedSpeed && savedSpeed !== 1.0) {
-                    video.playbackRate = savedSpeed;
-                    speedDisplay.textContent = `${savedSpeed}x`;
-                    // Find the correct speed index
-                    currentSpeedIndex = playbackSpeeds.indexOf(savedSpeed);
-                    if (currentSpeedIndex === -1) currentSpeedIndex = 2; // Default to 1x
-                }
-
-                // Restore saved volume
-                const savedVolume = FunctionalCookies.getVolume();
-                if (savedVolume !== 1.0) {
-                    video.volume = savedVolume;
-                    volumeSlider.value = savedVolume * 100;
-
-                    // Update mute button icon based on volume
-                    if (savedVolume === 0) {
-                        muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                    } else if (savedVolume < 0.5) {
-                        muteBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
-                    } else {
-                        muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-                    }
-                }
-            }
-        });
-
-        // Seek functionality (only for subscribers)
-        progressBar.addEventListener('click', (e) => {
-            if (!subscriptionManager.hasModuleAccess(currentModuleId)) {
-                subscribePopup.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                return;
-            }
-
-            const rect = progressBar.getBoundingClientRect();
-            const percent = (e.clientX - rect.left) / rect.width;
-            video.currentTime = percent * video.duration;
-        });
-
-        // Mute/Unmute
-        muteBtn.addEventListener('click', () => {
-            video.muted = !video.muted;
-            if (video.muted) {
-                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                volumeSlider.value = 0;
-            } else {
-                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-                volumeSlider.value = video.volume * 100;
-            }
-        });
-
-        // Volume control with functional cookies (only for subscribers)
-        volumeSlider.addEventListener('input', (e) => {
-            if (!subscriptionManager.hasModuleAccess(currentModuleId)) return;
-
-            video.volume = e.target.value / 100;
-
-            // Save volume preference (only if functional cookies are allowed)
-            if (typeof FunctionalCookies !== 'undefined' && FunctionalCookies.hasConsentFor('functional')) {
-                FunctionalCookies.saveVolume(video.volume);
-            }
-
-            if (video.volume === 0) {
-                video.muted = true;
-                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            } else {
-                video.muted = false;
-                if (video.volume < 0.5) {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
-                } else {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-                }
-            }
-        });
-
-        // Playback speed control with functional cookies (only for subscribers)
-        const playbackSpeeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
-        let currentSpeedIndex = 2; // Default to 1x
-
-        speedBtn.addEventListener('click', () => {
-            if (!subscriptionManager.hasModuleAccess(currentModuleId)) return;
-
-            currentSpeedIndex = (currentSpeedIndex + 1) % playbackSpeeds.length;
-            const newSpeed = playbackSpeeds[currentSpeedIndex];
-            video.playbackRate = newSpeed;
-            speedDisplay.textContent = `${newSpeed}x`;
-
-            // Save playback speed preference (only if functional cookies are allowed)
-            if (typeof FunctionalCookies !== 'undefined' && FunctionalCookies.hasConsentFor('functional')) {
-                FunctionalCookies.savePlaybackSpeed(newSpeed);
-            }
-        });
-
-        // Fullscreen
-        fullscreenBtn.addEventListener('click', () => {
-            const videoContainer = document.querySelector('.video-container');
-            if (!document.fullscreenElement) {
-                if (videoContainer.requestFullscreen) {
-                    videoContainer.requestFullscreen();
-                } else if (videoContainer.webkitRequestFullscreen) {
-                    videoContainer.webkitRequestFullscreen();
-                } else if (videoContainer.msRequestFullscreen) {
-                    videoContainer.msRequestFullscreen();
-                }
-                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-            }
-        });
-
-        // Show controls on video end and stop progress tracking
-        video.addEventListener('ended', () => {
-            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-            videoOverlay.classList.remove('hidden');
-            videoControls.classList.add('show');
-
-            // Stop progress tracking
-            if (progressInterval) {
-                clearInterval(progressInterval);
-                progressInterval = null;
-            }
-
-            // Save final progress (only if functional cookies are allowed)
-            if (FunctionalCookies.hasConsentFor('functional')) {
-                FunctionalCookies.saveVideoProgress(videoId, video.currentTime);
-            }
-        });
-
-        // Hide overlay when video starts playing
-        video.addEventListener('play', () => {
-            videoOverlay.classList.add('hidden');
         });
 
         // Video Subscribe Popup Functionality
@@ -3065,39 +2655,6 @@
         const subscribeOverlay = document.getElementById('subscribeOverlay');
         const subscribeCloseBtn = document.getElementById('subscribeCloseBtn');
         const subscribeBtn = document.getElementById('subscribeBtn');
-        let hasShownPopup = false;
-
-        // Show popup when video plays and start progress tracking
-        video.addEventListener('play', () => {
-            // Check subscription before allowing play
-            if (!subscriptionManager.hasModuleAccess(currentModuleId)) {
-                // Pause the video immediately
-                video.pause();
-
-                // Show subscription popup
-                if (!hasShownPopup) {
-                    hasShownPopup = true;
-                    setTimeout(() => {
-                        subscribePopup.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                    }, 100);
-                }
-                return;
-            }
-
-            // Mark as last watched webinar (only if functional cookies are allowed)
-            if (typeof FunctionalCookies !== 'undefined' && FunctionalCookies.hasConsentFor('functional')) {
-                FunctionalCookies.saveLastWatched(videoId);
-
-                // Start progress tracking
-                if (progressInterval) clearInterval(progressInterval);
-                progressInterval = setInterval(() => {
-                    if (!video.paused && FunctionalCookies.hasConsentFor('functional')) {
-                        FunctionalCookies.saveVideoProgress(videoId, video.currentTime);
-                    }
-                }, 5000); // Save every 5 seconds
-            }
-        });
 
         // Close popup function
         function closeSubscribePopup() {
@@ -3106,187 +2663,27 @@
         }
 
         // Close popup on close button click
-        subscribeCloseBtn.addEventListener('click', closeSubscribePopup);
+        if (subscribeCloseBtn) {
+            subscribeCloseBtn.addEventListener('click', closeSubscribePopup);
+        }
 
         // Close popup on overlay click
-        subscribeOverlay.addEventListener('click', closeSubscribePopup);
+        if (subscribeOverlay) {
+            subscribeOverlay.addEventListener('click', closeSubscribePopup);
+        }
 
-        // Handle subscribe button click
-        subscribeBtn.addEventListener('click', () => {
-            // Show email popup instead of direct subscription
-            showEmailPopup('module');
-        });
-
-        // Show subscription success message
-        function showSubscriptionSuccess() {
-            const successMessage = document.createElement('div');
-            successMessage.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: linear-gradient(135deg, #28a745, #20c997);
-                color: white;
-                padding: 15px 25px;
-                border-radius: 10px;
-                font-weight: 600;
-                z-index: 10001;
-                box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
-                animation: slideInRight 0.3s ease-out;
-            `;
-            successMessage.innerHTML = `
-                <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
-                Tilaus onnistui! Voit nyt katsoa webinaarin.
-            `;
-
-            // Add animation keyframes
-            if (!document.getElementById('subscriptionSuccessStyles')) {
-                const style = document.createElement('style');
-                style.id = 'subscriptionSuccessStyles';
-                style.textContent = `
-                    @keyframes slideInRight {
-                        from {
-                            opacity: 0;
-                            transform: translateX(100%);
-                        }
-                        to {
-                            opacity: 1;
-                            transform: translateX(0);
-                        }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-
-            document.body.appendChild(successMessage);
-
-            // Remove message after 4 seconds
-            setTimeout(() => {
-                successMessage.style.animation = 'slideInRight 0.3s ease-out reverse';
-                setTimeout(() => {
-                    if (successMessage.parentNode) {
-                        successMessage.parentNode.removeChild(successMessage);
-                    }
-                }, 300);
-            }, 4000);
+        // Handle subscribe button click - opens email popup
+        if (subscribeBtn) {
+            subscribeBtn.addEventListener('click', () => {
+                closeSubscribePopup();
+                showEmailPopup('module');
+            });
         }
 
         // Close popup on Escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && subscribePopup.classList.contains('active')) {
+            if (e.key === 'Escape' && subscribePopup && subscribePopup.classList.contains('active')) {
                 closeSubscribePopup();
-            }
-        });
-
-        // Stop progress tracking when video is paused
-        video.addEventListener('pause', () => {
-            if (progressInterval) {
-                clearInterval(progressInterval);
-                progressInterval = null;
-            }
-        });
-
-        // Clean up on page unload
-        window.addEventListener('beforeunload', () => {
-            if (progressInterval) {
-                clearInterval(progressInterval);
-            }
-            // Save final progress (only if functional cookies are allowed)
-            if (video && !video.paused && typeof FunctionalCookies !== 'undefined' && FunctionalCookies.hasConsentFor('functional')) {
-                FunctionalCookies.saveVideoProgress(videoId, video.currentTime);
-            }
-        });
-
-        // Listen for subscription updates
-        window.addEventListener('subscriptionUpdated', (event) => {
-            checkSubscriptionAndUpdateUI();
-        });
-
-        // Initialize subscription check on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            checkVideoAvailability();
-            checkSubscriptionAndUpdateUI();
-        });
-
-        // Notification functionality for video not available
-        document.addEventListener('DOMContentLoaded', () => {
-            const notifyMeBtn = document.getElementById('notifyMeBtn');
-            if (notifyMeBtn) {
-                notifyMeBtn.addEventListener('click', () => {
-                    // Check if user has already requested notification
-                    const notificationRequested = localStorage.getItem('bloomlead_notification_module_1');
-
-                    if (notificationRequested) {
-                        showNotificationMessage('Olet jo pyytänyt ilmoituksen tälle webinaarille!', 'info');
-                        return;
-                    }
-
-                    // Save notification request
-                    localStorage.setItem('bloomlead_notification_module_1', JSON.stringify({
-                        requested: true,
-                        timestamp: new Date().toISOString(),
-                        moduleId: currentModuleId
-                    }));
-
-                    // Update button state
-                    notifyMeBtn.innerHTML = '<i class="fas fa-check"></i> Ilmoitus pyydetty';
-                    notifyMeBtn.style.background = '#28a745';
-                    notifyMeBtn.disabled = true;
-
-                    // Show success message
-                    showNotificationMessage('Kiitos! Lähetämme sinulle ilmoituksen kun webinaari on saatavilla.', 'success');
-
-                    // In real implementation, send notification request to server
-                    // sendNotificationRequest(currentModuleId);
-                });
-            }
-        });
-
-        function showNotificationMessage(message, type = 'success') {
-            const messageDiv = document.createElement('div');
-            const bgColor = type === 'success' ? '#28a745' : type === 'info' ? '#17a2b8' : '#ffc107';
-
-            messageDiv.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${bgColor};
-                color: white;
-                padding: 15px 25px;
-                border-radius: 10px;
-                font-weight: 600;
-                z-index: 10001;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-                max-width: 350px;
-                animation: slideInRight 0.3s ease-out;
-            `;
-
-            messageDiv.innerHTML = `
-                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'info' ? 'info-circle' : 'exclamation-circle'}" style="margin-right: 10px;"></i>
-                ${message}
-            `;
-
-            document.body.appendChild(messageDiv);
-
-            // Remove message after 5 seconds
-            setTimeout(() => {
-                messageDiv.style.animation = 'slideInRight 0.3s ease-out reverse';
-                setTimeout(() => {
-                    if (messageDiv.parentNode) {
-                        messageDiv.parentNode.removeChild(messageDiv);
-                    }
-                }, 300);
-            }, 5000);
-        }
-
-        // Check if notification was already requested on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const notificationRequested = localStorage.getItem('bloomlead_notification_module_1');
-            const notifyMeBtn = document.getElementById('notifyMeBtn');
-
-            if (notificationRequested && notifyMeBtn) {
-                notifyMeBtn.innerHTML = '<i class="fas fa-check"></i> Ilmoitus pyydetty';
-                notifyMeBtn.style.background = '#28a745';
-                notifyMeBtn.disabled = true;
             }
         });
 
