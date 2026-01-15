@@ -697,6 +697,55 @@
             font-style: italic;
         }
 
+        .contact-name-section {
+            margin-bottom: 28px;
+        }
+
+        .contact-name-label {
+            font-size: 14px;
+            color: #374151;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .contact-name-field {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 14px 16px;
+            gap: 12px;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-name-field:focus-within {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .contact-name-field input {
+            border: none;
+            background: transparent;
+            outline: none;
+            flex: 1;
+            font-size: 16px;
+            color: #111827;
+            font-weight: 500;
+        }
+
+        .contact-name-field input::placeholder {
+            color: #9ca3af;
+            font-weight: 400;
+        }
+
+        .contact-name-field i {
+            color: #6b7280;
+            font-size: 18px;
+        }
+
         .customer-type-section {
             margin-bottom: 28px;
         }
@@ -737,18 +786,40 @@
             display: none;
         }
 
-        .radio-custom {
-            width: 20px;
-            height: 20px;
+        .customer-type-option .radio-custom {
+            width: 20px !important;
+            height: 20px !important;
+            min-width: 20px !important;
+            min-height: 20px !important;
+            max-width: 20px !important;
+            max-height: 20px !important;
             border: 2px solid #d1d5db;
             border-radius: 50%;
             position: relative;
             transition: all 0.2s ease;
+            flex-shrink: 0;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        .radio-custom {
+            width: 20px !important;
+            height: 20px !important;
+            min-width: 20px !important;
+            min-height: 20px !important;
+            max-width: 20px !important;
+            max-height: 20px !important;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            display: inline-block;
         }
 
         .customer-type-option input[type="radio"]:checked + .radio-custom {
-            border-color: #6366f1;
-            background: #6366f1;
+            border-color: #6366f1 !important;
+            background: #6366f1 !important;
         }
 
         .customer-type-option input[type="radio"]:checked + .radio-custom::after {
@@ -761,10 +832,11 @@
             height: 8px;
             background: white;
             border-radius: 50%;
+            display: block;
         }
 
         .customer-type-option input[type="radio"]:checked ~ .option-text {
-            color: #6366f1;
+            color: #6366f1 !important;
             font-weight: 600;
         }
 
@@ -1065,6 +1137,14 @@
             }
 
             .contact-email-field input {
+                font-size: 16px; /* Prevent zoom on iOS */
+            }
+
+            .contact-name-field {
+                padding: 12px 14px;
+            }
+
+            .contact-name-field input {
                 font-size: 16px; /* Prevent zoom on iOS */
             }
 
@@ -1614,11 +1694,19 @@
                     <div class="contact-email-section">
                         <div class="contact-email-label">YHTEYSTIETOSI (VASTAUSOSOITE)</div>
                         <div class="contact-email-field">
-                            <i class="fas fa-user"></i>
-                            <input type="email" id="contactEmail">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="contactEmail" placeholder="esim. nimi@yritys.fi">
                             <i class="fas fa-check-circle status-icon" id="emailStatusIcon" style="display: none;"></i>
                         </div>
                         <div class="contact-note">Tähän osoitteeseen myyntitiimi ottaa sinuun yhteyttä.</div>
+                    </div>
+                    
+                    <div class="contact-name-section">
+                        <div class="contact-name-label">NIMESI:</div>
+                        <div class="contact-name-field">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="contactName" placeholder="Etunimi Sukunimi">
+                        </div>
                     </div>
                     
                     <div class="customer-type-section">
@@ -1846,6 +1934,7 @@
                 this.editEmailBtn = document.getElementById('editEmailBtn');
                 this.sendEmailBtn = document.getElementById('sendEmailBtn');
                 this.contactEmail = document.getElementById('contactEmail');
+                this.contactName = document.getElementById('contactName');
                 this.emailStatusIcon = document.getElementById('emailStatusIcon');
                 this.emailMessage = document.getElementById('emailMessage');
                 this.emailStatus = document.getElementById('emailStatus');
@@ -1951,8 +2040,9 @@
             }
 
             setupEmailContent(type) {
-                // Clear contact email field
+                // Clear contact fields
                 this.contactEmail.value = '';
+                this.contactName.value = '';
                 this.validateEmail(); // Reset validation state
                 
                 if (type === 'package-order') {
@@ -2011,6 +2101,7 @@ Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
 
             async sendEmail() {
                 const contactEmail = this.contactEmail.value.trim();
+                const contactName = this.contactName.value.trim();
                 const subject = 'BLOOMLEAD WEBINAARIPAKETIN TILAUS'; // Fixed subject for package orders
                 const message = this.emailMessage.value.trim();
                 
@@ -2018,24 +2109,24 @@ Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
                 const customerTypeRadio = document.querySelector('input[name="customerType"]:checked');
                 const customerType = customerTypeRadio ? customerTypeRadio.value : 'yksityishenkilönä';
                 
-                if (!contactEmail || !subject || !message) {
-                    this.showStatus('Please fill all fields before sending.', 'error');
+                if (!contactEmail || !contactName || !subject || !message) {
+                    this.showStatus('Täytä kaikki kentät ennen lähettämistä.', 'error');
                     return;
                 }
 
                 if (!this.isValidEmail(contactEmail)) {
-                    this.showStatus('Please enter a valid email address.', 'error');
+                    this.showStatus('Anna kelvollinen sähköpostiosoite.', 'error');
                     return;
                 }
 
-                this.showStatus('Sending email...', 'loading');
+                this.showStatus('Lähetetään sähköpostia...', 'loading');
                 this.sendEmailBtn.disabled = true;
 
                 try {
-                    // Send email with customer type
-                    await this.simulateEmailSending(contactEmail, subject, message, customerType);
+                    // Send email with customer type and name
+                    await this.simulateEmailSending(contactEmail, contactName, subject, message, customerType);
                     
-                    this.showStatus('Email sent successfully! We will contact you soon.', 'success');
+                    this.showStatus('Sähköposti lähetetty onnistuneesti! Otamme sinuun yhteyttä pian.', 'success');
                     
                     // Close popup after successful send
                     setTimeout(() => {
@@ -2045,7 +2136,7 @@ Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
                     }, 2000);
                     
                 } catch (error) {
-                    this.showStatus('Failed to send email. Please try again.', 'error');
+                    this.showStatus('Sähköpostin lähetys epäonnistui. Yritä uudelleen.', 'error');
                 } finally {
                     this.sendEmailBtn.disabled = false;
                 }
@@ -2056,11 +2147,12 @@ Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
                 return emailRegex.test(email);
             }
 
-            async simulateEmailSending(contactEmail, subject, message, customerType = 'yksityishenkilönä') {
+            async simulateEmailSending(contactEmail, contactName, subject, message, customerType = 'yksityishenkilönä') {
                 // Use real email sending via PHP backend
                 try {
                     const emailData = {
                         email: contactEmail,
+                        name: contactName,
                         type: this.currentType,
                         subject: subject,
                         message: message,

@@ -134,7 +134,7 @@ Moduli sisältää:
 • Projektin taustoitus ja määrittely
 • Muutosjohtamis- ja viestintäsuunnitelma
 
-Odotan yhteydenottoanne!`;
+Odotan yhteydenottoanne ja projektin knoppilistaa!`;
     }
 
     getPackageRequestMessage() {
@@ -159,7 +159,7 @@ Moduli sisältää:
 • Puhelintuki ti ja to klo 17–18
 • Todistuksen ohjelman suorittamisesta opintopolun päätteeksi
 
-Odotan yhteydenottoanne!`;
+Odotan yhteydenottoanne ja projektin knoppilistaa!`;
     }
 
     getPackageOrderMessage(customerType = 'yksityishenkilönä') {

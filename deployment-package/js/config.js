@@ -118,7 +118,9 @@ const Config = {
             try {
                 const response = await fetch('/api/config', { 
                     method: 'GET',
-                    headers: { 'Accept': 'application/json' }
+                    headers: { 'Accept': 'application/json' },
+                    // Add timeout to fail fast
+                    signal: AbortSignal.timeout(2000)
                 });
                 if (response.ok) {
                     const envConfig = await response.json();
@@ -127,7 +129,8 @@ const Config = {
                     return true;
                 }
             } catch (error) {
-                // Silently fail - API endpoint not available
+                // Silently fail - API endpoint not available (expected for static sites)
+                console.debug('API config endpoint not available, using default config');
             }
         }
 
