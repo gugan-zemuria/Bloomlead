@@ -1062,11 +1062,15 @@
         width: 100%;
     }
 
+    .project-detail .pr-ul {
+        /* Single column on mobile */
+        column-count: 1;
+    }
+    
     .project-detail .pr-ul li {
         display: flex;
         align-items: center;
         margin-bottom: 15px;
-        float: left;
         width: 100%;
     }
 
