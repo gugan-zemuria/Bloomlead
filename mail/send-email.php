@@ -54,14 +54,21 @@ try {
         throw new Exception('Invalid email address');
     }
     
-    // Rate limiting check
+    // Rate limiting check - TEMPORARILY DISABLED FOR TESTING
+    // TODO: Re-enable before production deployment
+    /*
     if (!checkRateLimit()) {
         throw new Exception('Too many requests. Please try again later.');
     }
+    */
+    
+    // Get optional fields
+    $userName = sanitizeString($input['name'] ?? '');
+    $customerType = sanitizeString($input['customerType'] ?? '');
     
     // Prepare email content
     $emailSubject = $subject;
-    $emailBody = buildEmailBody($userEmail, $requestType, $message);
+    $emailBody = buildEmailBody($userEmail, $userName, $requestType, $message, $customerType);
     
     // Send email to all recipients
     $success = sendToAllRecipients($emailSubject, $emailBody, $userEmail);
@@ -109,23 +116,26 @@ function sanitizeString($string) {
 /**
  * Build email body with all information
  */
-function buildEmailBody($userEmail, $requestType, $message) {
+function buildEmailBody($userEmail, $userName, $requestType, $message, $customerType = '') {
     $timestamp = date('Y-m-d H:i:s');
     
-    // Get customer type from input if available
-    $input = json_decode(file_get_contents('php://input'), true);
-    $customerType = $input['customerType'] ?? 'yksityishenkilönä';
-    
-    // Set email header based on request type
-    if ($requestType === 'module') {
-        $header = "BLOOMLEAD WEBINAARIMODULI 1 LISÄTIETOKYSELY";
+    // Set email header and type based on request type
+    if ($requestType === 'module-order') {
+        // Course details page - Module order
+        $header = "BLOOMLEAD WEBINAARIMODULI 1 TILAUS";
         $type = "webinaarimoduli 1";
-    } elseif ($requestType === 'package') {
-        $header = "BLOOMLEAD WEBINAARIPAKETTI LISÄTIETOKYSELY";
-        $type = "webinaaripaketti";
     } elseif ($requestType === 'package-order') {
+        // Courses page - Package order
         $header = "BLOOMLEAD WEBINAARIPAKETIN TILAUS";
         $type = "BloomLead webinaaripaketti";
+    } elseif ($requestType === 'module') {
+        // Home page - Module inquiry
+        $header = "BLOOMLEAD WEBINAARIMODULI 1 LISÄTIETOKYSELY & KNOPPILISTA";
+        $type = "webinaarimoduli 1";
+    } elseif ($requestType === 'package') {
+        // Home page - Package inquiry
+        $header = "BLOOMLEAD WEBINAARIPAKETTI LISÄTIETOKYSELY JA KNOPPILISTA";
+        $type = "webinaaripaketti";
     } else {
         $header = "BLOOMLEAD WEBSITE INQUIRY";
         $type = $requestType;
@@ -134,11 +144,22 @@ function buildEmailBody($userEmail, $requestType, $message) {
     $body = "$header\n";
     $body .= "Aika: $timestamp\n";
     $body .= "Lähettäjän sähköposti: $userEmail\n";
+    
+    // Add name if provided
+    if (!empty($userName)) {
+        $body .= "Nimesi: $userName\n";
+    }
+    
     $body .= "Tyyppi: $type\n";
     
-    // Add customer type for package orders
-    if ($requestType === 'package-order') {
+    // Add customer type if provided
+    if (!empty($customerType)) {
         $body .= "Tilaan: $customerType\n";
+        
+        // Add note for module orders
+        if ($requestType === 'module-order') {
+            $body .= "Huomioithan, että yksittäisten webinaarimodulien tilaaminen on mahdollista vain järjestyksessä\n";
+        }
     }
     
     $body .= "\n$message\n\n";

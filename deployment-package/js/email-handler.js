@@ -134,7 +134,7 @@ Moduli sisältää:
 • Projektin taustoitus ja määrittely
 • Muutosjohtamis- ja viestintäsuunnitelma
 
-Odotan yhteydenottoanne!`;
+Odotan yhteydenottoanne ja projektin knoppilistaa!`;
     }
 
     getPackageRequestMessage() {
@@ -142,7 +142,7 @@ Odotan yhteydenottoanne!`;
 
 Haluan lisätietoa webinaaripaketista:
 
-Moduli: Webinaaripaketti
+Moduli: BloomLead Webinaaripaketti
 Aihe: Itsensä ja muiden johtaminen sekä projektinhallinta ja muutos- ja viestintäjohtaminen
 Julkaisu: 15.1.2026 – 25.5.2026
 Kesto: 1,5 tuntia + harjoitukset
@@ -159,15 +159,15 @@ Moduli sisältää:
 • Puhelintuki ti ja to klo 17–18
 • Todistuksen ohjelman suorittamisesta opintopolun päätteeksi
 
-Odotan yhteydenottoanne!`;
+Odotan yhteydenottoanne ja projektin knoppilistaa!`;
     }
 
     getPackageOrderMessage(customerType = 'yksityishenkilönä') {
         return `Hei,
 
-Haluan tilata BloomLead webinaaripaketin
+Haluan tilata koko BloomLead webinaaripaketin
 
-Moduli: Webinaaripaketti
+Moduli: BloomLead Webinaaripaketti
 Aihe: Itsensä ja muiden johtaminen sekä projektinhallinta ja muutos- ja viestintäjohtaminen
 Julkaisu: 15.1.2026 – 25.5.2026
 Kesto: 1,5 tuntia + harjoitukset
