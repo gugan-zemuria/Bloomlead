@@ -139,6 +139,7 @@
                 width: 100%;
                 display: flex;
                 justify-content: center;
+                flex-direction: column;
             }
         }
 
@@ -430,6 +431,8 @@
             border: none !important;
             padding: 18px 45px;
             margin-top: 34px;
+            margin-left: auto;
+            margin-right: auto;
             font-size: 20px;
             font-weight: 700;
             border-radius: .25rem;
@@ -1518,7 +1521,7 @@
                                 </a> -->
                                 <button class="btn btn-primary package-cta-btn"
                                     onclick="showEmailPopup('package-order')"
-                                    style="display: block; color: inherit; cursor: pointer; border: none; width: 100%;">
+                                    style="display: block; color: inherit; cursor: pointer; border: none;">
                                     Tilaa koko webinaaripaketti tästä
                                 </button>
                                 <p style="margin: 20px 0; font-size: 16px;">650 € sis. alv / paketti
@@ -2050,9 +2053,9 @@
                     // Subject is now part of the header display, no separate element needed
                     this.emailMessage.value = `Hei,
 
-Haluan tilata BloomLead webinaaripaketin
+Haluan tilata koko BloomLead webinaaripaketin
 
-Moduli: Webinaaripaketti
+Moduli: BloomLead Webinaaripaketti
 Aihe: Itsensä ja muiden johtaminen sekä projektinhallinta ja muutos- ja viestintäjohtaminen
 Julkaisu: 15.1.2026 – 25.5.2026
 Kesto: 1,5 tuntia + harjoitukset

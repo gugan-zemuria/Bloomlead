@@ -54,10 +54,13 @@ try {
         throw new Exception('Invalid email address');
     }
     
-    // Rate limiting check
+    // Rate limiting check - TEMPORARILY DISABLED FOR TESTING
+    // TODO: Re-enable before production deployment
+    /*
     if (!checkRateLimit()) {
         throw new Exception('Too many requests. Please try again later.');
     }
+    */
     
     // Get optional fields
     $userName = sanitizeString($input['name'] ?? '');

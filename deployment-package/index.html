@@ -3345,8 +3345,11 @@ div>i>div></div>""
                 );
 
                 // Send via PHP backend
+                console.log('Attempting to send email with data:', emailData); // Debug log
+                
                 window.BloomLeadEmailHandler.sendEmail(emailData)
                     .then(result => {
+                        console.log('Email sent successfully:', result); // Debug log
                         // Show success message
                         showStatus(`Kiitos kiinnostuksestasi! Valitsit ${optionText}. Saat pian lisätietoja sähköpostiisi.`, 'success', 4000);
 
