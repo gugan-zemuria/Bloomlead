@@ -8615,16 +8615,19 @@ p.checkout-coupon input[type="text"] {
 
 .project-detail .pr-ul {
     margin-top: 10px;
-    float: left;
     margin-bottom: 0px;
+    /* Use CSS columns for vertical flow */
+    column-count: 2;
+    column-gap: 30px;
 }
 
 .project-detail .pr-ul li {
     display: flex;
     align-items: baseline;
     margin-bottom: 15px;
-    float: left;
-    width: 50%;
+    /* Remove float to allow column flow */
+    break-inside: avoid;
+    width: 100%;
 }
 
 .project-detail .pr-ul .icon i {
