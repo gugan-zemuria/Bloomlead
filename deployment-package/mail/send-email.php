@@ -205,7 +205,7 @@ function sendAutoReply($userEmail) {
 jatkuva oppiminen on antoisaa kaikille.\n\n";
     $body .= "Laitamme sinulle 1–2 päivän kuluessa lisää tietoa ja ohjeita sähköpostiisi
 webinaaritilaukseesi liittyen. Pysy siis kuulolla.\n\n";
-    $body .= "Jos sinulla on jotakin kiireellistä, voit olla meihin yhteydessä sähköpostitse:contact@bloomlead.io. tai puhelinaikana ti ja to klo 17-18 numeroon +358 44
+    $body .= "Jos sinulla on jotakin kiireellistä, voit olla meihin yhteydessä sähköpostitse: contact@bloomlead.io. tai puhelinaikana ti ja to klo 17-18 numeroon +358 44
 3883188.\n\n";
     $body .= "Ystävällisin terveisin,\n";
     $body .= "Marke ja Johanna\n\n";
