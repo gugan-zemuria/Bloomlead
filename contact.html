@@ -19,7 +19,7 @@
             if (consent.categories && consent.categories.analytics) {
                 // Get Google Analytics ID from Config system
                 const analyticsId = window.Config ? window.Config.getGoogleAnalyticsId() : null;
-                
+
                 if (analyticsId && analyticsId !== 'YOUR_GOOGLE_ANALYTICS_ID') {
                     const script1 = document.createElement('script');
                     script1.async = true;
@@ -437,7 +437,7 @@
             margin-top: 3px;
         }
 
-       
+
 
         /* Email Link Styles */
         a[href^="mailto:"] {
@@ -670,7 +670,7 @@
                                                 <img src="img/logo/logo.webp" alt="BloomLead Logo" width="46px"
                                                     height="40px">
                                             </a> -->
-                                            <div class="logo" style="display: flex; align-items: center; gap: 10px; ">
+                                            <div class="logo" style="display: flex; align-items: center; gap: 10px; margin-left: 12px;">
 
                                                 <a href="https://www.bloomlead.io"
                                                     style="font-size: 16px; color: #777777; ; font-family: 'Jost', sans-serif; text-decoration: underline; "
@@ -697,16 +697,41 @@
 
                                     <div style="margin-bottom: 20px;">
                                         <h5 style="color: #a571aa; margin-bottom: 10px;">Puhelin</h5>
-                                        <ul class="f-contact f-contact-conatiner">
+                                        <ul class="f-contact f-contact-conatiner" >
                                             <!-- <li>
                                                     <i class="icon fal fa-map-marker-check"></i>
                                                     <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
                                                 </li> -->
 
-                                            <li>
-                                                <i class="icon fal fa-phone"></i>
+                                            <li >
+                                                <i class="icon fal fa-phone" ></i>
                                                 <span style="color: #777777; font-size: 16px;">+358 44 3883188,
-                                                    <br>ti ja to klo 17.00-18.00</span>
+                                                    <br>ti ja to klo 17.00-18.00
+                                                   
+                                                </span>
+
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+
+                                    <div style="margin-bottom: 20px;">
+                                        <h5 style="color: #a571aa; margin-bottom: 10px;">Pankkitiedot</h5>
+                                        <ul class="f-contact f-contact-conatiner" >
+                                            <!-- <li>
+                                                    <i class="icon fal fa-map-marker-check"></i>
+                                                    <span>1247/Plot No. 39, 15th Phase, <br>ABC Colony, XYZ</span>
+                                                </li> -->
+
+                                            <li >
+                                                <span style="color: #777777; font-size: 16px; margin-left: 12px;">
+                                                    
+                                                    Pankkitili FI75 7997 7993 0370 30
+                                                    <br>
+                                                    BIC HOLVFIHH
+                                                </span>
+
                                             </li>
 
 
@@ -787,7 +812,7 @@
                                 johtamisen, muutoksen ja AI:n.
                                 <br>
                                 <p class="footer-Kuvat">Kuvat: Aarne Pärssinen</p>
-                                
+
                             </div>
 
                         </div>
@@ -821,7 +846,7 @@
                                             <i class="icon fal fa-phone"></i>
                                             <span>+358 44 3883188,
                                                 <br>ti ja to klo 17.00-18.00
-                                                <br>(12.1.2026 alkaen)</span>
+</span>
 
                                         </li>
 
@@ -845,10 +870,6 @@
                                 33210 Tampere
                                 <br>
                                 Y-tunnus 3166661-4
-                                <br>
-                                Pankkitili FI15 7997 7993 0370 30
-                                <br>
-                                BIC HOLVFIHH
                             </div>
                         </div>
                     </div>
@@ -877,7 +898,8 @@
             <div class="container">
                 <div class="row align-items-center" style="justify-content: center;">
                     <div class="col-lg-6">
-                        Copyright &copy; <span id="currentYear"></span> BloomLead. All rights reserved.
+                        Copyright &copy; <span id="currentYear"></span> BloomLead. All rights reserved. Powered by LLM
+                        Controls
                     </div>
                     <!-- <div class="col-lg-6 text-right text-xl-right">
                         <div class="mobile-menu-content">
@@ -1038,7 +1060,7 @@
     <!-- Page-specific webinar tracking -->
     <div data-webinar-page data-webinar-id="contact-page" data-webinar-title="Contact BloomLead"
         data-webinar-topic="Contact" style="display: none;"></div>
-    
+
     <!-- Dynamic Copyright Year Script -->
     <script src="js/copyright-year.js"></script>
 </body>
