@@ -19,7 +19,7 @@
             if (consent.categories && consent.categories.analytics) {
                 // Get Google Analytics ID from Config system
                 const analyticsId = window.Config ? window.Config.getGoogleAnalyticsId() : null;
-                
+
                 if (analyticsId && analyticsId !== 'YOUR_GOOGLE_ANALYTICS_ID') {
                     const script1 = document.createElement('script');
                     script1.async = true;
@@ -1499,7 +1499,7 @@
         }
 
         @media (min-width: 767px) and (max-width: 991px) {
-            
+
 
             .header-btn {
                 height: 60px;
@@ -1525,7 +1525,7 @@
             .header-btn {
                 width: 100%;
                 text-wrap: wrap;
-             }
+            }
 
             .selection-modal-header,
             .selection-modal-body,
@@ -1690,17 +1690,27 @@
                                         tuloksellisiksi ja vahvoiksi
                                         johtajiksi.</h2>
                                     <p data-animation="fadeInUp" data-delay=".6s">
-                                        Yhdistämme koko projektin
-                                        elinkaaren johtamisen,
-                                        coaching-ajattelun,
-                                        muutosjohtamisen, tekoälyn
-                                        ja
-                                        käytännön tuen. Tarjoamme
-                                        monipuolisen ja
-                                        käytännönläheisen projekti-
-                                        ja muutosjohtamisen lisäksi
+                                        Yhdistämme koko
+                                        projektin elinkaaren
+                                        johtamisen, coaching-
+                                        ajattelun,
+                                        muutosjohtamisen,
+                                        tekoälyn käytön ja
+                                        käytännön tuen
+                                        webinaarikoulutuksissam
+                                        me. Mahdollistamme
+                                        ROI:n toteutumisen.
+                                        Tarjoamme monipuolisen
+                                        ja käytännönläheisen
+                                        projektijohtamisen lisäksi
                                         myös itsensä ja muiden
-                                        johtamistamisen osaamista. </p>
+                                        johtamisen kehittämistä.
+                                        Käytössä on valikoidut
+                                        globaalit viitekehykset ja
+                                        rautainen kokemus sekä
+                                        jatkuva tuki koko
+                                        BloomLead ohjelman
+                                        ajan. </p>
 
 
                                 </div>
@@ -1749,12 +1759,14 @@
                                         kanssamme – askel kerrallaan.</strong></p>
                             </div> -->
                             <div class="subricbe" data-animation="fadeInDown" data-delay=".4s">
-                                <form action="" class="contact-form" data-source="landing-page" id="webinarSelectionForm">
+                                <form action="" class="contact-form" data-source="landing-page"
+                                    id="webinarSelectionForm">
                                     <label class="env"><i class="icon fal fa-envelope"></i><span
                                             class="ml">Sähköpostiosoite</span></label>
                                     <input type="email" id="email2" name="email2" class="header-input"
                                         placeholder="Anna sähköpostiosoitteesi tähän..." required>
-                                    <button type="submit" class="btn header-btn" id="webinarSubmitBtn"> Vastaanota webinaaritietoa & Projektin knoppilista</button>
+                                    <button type="submit" class="btn header-btn" id="webinarSubmitBtn"> Vastaanota
+                                        webinaaritietoa & Projektin knoppilista</button>
                                 </form>
                             </div>
                             <!-- <div>
@@ -1982,7 +1994,9 @@
                                                 säästää aikaa ja parantaa
 
                                                 projektityötä.</li>
-                                            <li><i class="fas fa-check"></i>Sparrausta ja oivalluksia koko webinaariohjelman ajan, et jää yksin – coaching-ote, keskustelu ja tuki tukevat oppimista ja kasvua projektijohtajana.</li>
+                                            <li><i class="fas fa-check"></i>Sparrausta ja oivalluksia koko
+                                                webinaariohjelman ajan, et jää yksin – coaching-ote, keskustelu ja tuki
+                                                tukevat oppimista ja kasvua projektijohtajana.</li>
 
                                         </ul>
                                         <!-- <p>Koko webinaarin ajan opastamme
@@ -2864,7 +2878,7 @@ div>i>div></div>""
                                 johtamisen, muutoksen ja AI:n.
                                 <br>
                                 <p class="footer-Kuvat">Kuvat: Aarne Pärssinen</p>
-                               
+
                             </div>
 
                         </div>
@@ -2883,7 +2897,9 @@ div>i>div></div>""
                                         </li> -->
                                     <li><i class="icon fal fa-envelope"></i>
                                         <span>
-                                            <span class="email-clickable" onclick="openEmailOptions('contact@bloomlead.io', 'footer')" style="display: block; cursor: pointer; text-decoration: underline;">contact@bloomlead.io</span>
+                                            <span class="email-clickable"
+                                                onclick="openEmailOptions('contact@bloomlead.io', 'footer')"
+                                                style="display: block; cursor: pointer; text-decoration: underline;">contact@bloomlead.io</span>
                                             <!-- <span style="display: block;">help@example.com</span> -->
                                         </span>
                                     </li>
@@ -2891,7 +2907,7 @@ div>i>div></div>""
                                         <i class="icon fal fa-phone"></i>
                                         <span>+358 44 3883188,
                                             <br>ti ja to klo 17.00-18.00
-</span>
+                                        </span>
 
                                     </li>
 
@@ -2947,7 +2963,8 @@ div>i>div></div>""
             <div class="container">
                 <div class="row align-items-center" style="justify-content: center;">
                     <div class="col-lg-6">
-                        Copyright &copy; <span id="currentYear"></span> BloomLead. All rights reserved. Powered by LLM Controls
+                        Copyright &copy; <span id="currentYear"></span> BloomLead. All rights reserved. Powered by LLM
+                        Controls
                     </div>
                     <!-- <div class="col-lg-6 text-right text-xl-right">
                         <ul>
@@ -3326,18 +3343,18 @@ div>i>div></div>""
 
             // Prepare email data based on selection
             const emailType = option === 'single' ? 'module' : 'package';
-            
+
             // Use the real email handler
             if (window.BloomLeadEmailHandler) {
                 const emailData = window.BloomLeadEmailHandler.prepareEmailData(
-                    emailType, 
-                    userEmail, 
+                    emailType,
+                    userEmail,
                     null // Use default message template
                 );
 
                 // Send via PHP backend
                 console.log('Attempting to send email with data:', emailData); // Debug log
-                
+
                 window.BloomLeadEmailHandler.sendEmail(emailData)
                     .then(result => {
                         console.log('Email sent successfully:', result); // Debug log
