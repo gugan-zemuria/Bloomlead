@@ -866,22 +866,23 @@
             font-weight: 600;
             margin-bottom: 12px;
             display: block;
+            text-transform: none;
         }
 
         .email-header-content {
-            background: #f9fafb;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
             padding: 16px;
             font-size: 14px;
             line-height: 1.6;
             color: #374151;
-            font-family: 'Courier New', monospace;
+            font-family: inherit;
             white-space: pre-line;
         }
 
         .email-header-content span {
-            color: #6366f1;
+            color: #374151;
             font-weight: 600;
         }
 
@@ -1683,23 +1684,23 @@ seuranta ja jatkuva kehittäminen & <br> Johtaja kasvaa jatkuvasti</h5>
                     </div>
                     <div class="email-header-text">
                         <h3 id="emailPopupTitle">Tarkista tilaus</h3>
-                        <p>SOVELLUKSEN SISÄINEN VIESTI</p>
+                        <p>Sovelluksen sisäinen viesti</p>
                     </div>
                 </div>
                 
                 <div class="email-form">
                     <div class="contact-email-section">
-                        <div class="contact-email-label">YHTEYSTIETOSI (SÄHKÖPOSTI)</div>
+                        <div class="contact-email-label">Sähköpostiosoite: </div>
                         <div class="contact-email-field">
                             <i class="fas fa-envelope"></i>
                             <input type="email" id="contactEmail" placeholder="esim. nimi@yritys.fi">
                             <i class="fas fa-check-circle status-icon" id="emailStatusIcon" style="display: none;"></i>
                         </div>
-                        <div class="contact-note">Tähän sähköpostiosoitteeseen BloomLead tiimi ottaa sinuun yhteyttä.</div>
+                        <div class="contact-note">Tähän sähköpostiosoitteeseen saat tilausvahvistuksen ja BloomLead-tiimi ottaa sinuun yhteyttä.</div>
                     </div>
                     
                     <div class="contact-name-section">
-                        <div class="contact-name-label">NIMESI:</div>
+                        <div class="contact-name-label">Nimi:</div>
                         <div class="contact-name-field">
                             <i class="fas fa-user"></i>
                             <input type="text" id="contactName" placeholder="Etunimi Sukunimi">
@@ -1707,7 +1708,7 @@ seuranta ja jatkuva kehittäminen & <br> Johtaja kasvaa jatkuvasti</h5>
                     </div>
                     
                     <div class="customer-type-section">
-                        <div class="customer-type-label">TILAAN</div>
+                        <div class="customer-type-label">Tilaan:</div>
                         <div class="customer-type-options">
                             <label class="customer-type-option">
                                 <input type="radio" name="customerType" value="yksityishenkilönä" checked>
@@ -1731,11 +1732,11 @@ seuranta ja jatkuva kehittäminen & <br> Johtaja kasvaa jatkuvasti</h5>
                     </div>
                     
                     <div class="email-header-section">
-                        <div class="email-header-label">SÄHKÖPOSTIN OTSIKKOTIEDOT</div>
+                        <div class="email-header-label">Sähköpostin otsikkotiedot</div>
                         <div class="email-header-content" id="emailHeaderDisplay">
-                            BLOOMLEAD WEBINAARIPAKETIN TILAUS<br>
-                            Aika: <span id="timestampDisplay">[Lähetetään lähetyshetkellä]</span><br>
-                            Lähettäjän sähköposti: <span id="senderEmailDisplay">[Syötä sähköpostisi yllä]</span><br>
+                            BloomLead webinaaripaketin tilaus<br>
+                            Aika: <span id="timestampDisplay">BloomLead webinaaripaketin tilaus</span>
+                            <!-- Lähettäjän sähköposti: <span id="senderEmailDisplay">[Syötä sähköpostisi yllä]</span><br> -->
                             Tyyppi: BloomLead webinaaripaketti<br>
                             Tilaan: <span id="customerTypeHeaderDisplay">yksityishenkilönä</span>
                         </div>
@@ -2047,24 +2048,25 @@ seuranta ja jatkuva kehittäminen & <br> Johtaja kasvaa jatkuvasti</h5>
                     // Subject is now part of the header display, no separate element needed
                     this.emailMessage.value = `Hei,
 
-Haluan tilata koko BloomLead webinaaripaketin
+Haluan tilata BloomLead webinaaripaketin seuraavasti
 
-Moduuli: BloomLead Webinaaripaketti
-Aihe: Itsensä ja muiden johtaminen sekä projektinhallinta ja muutos- ja viestintäjohtaminen
-Julkaisu: 15.1.2026 – 25.5.2026
-Kesto: 1,5 tuntia + harjoitukset
+Moduuli: BloomLead webinaaripaketti
+Aihe: Projektinhallinta ja muutosjohtaminen sekä itsensä ja muiden johtaminen
+Julkaistu: 6.2.2026-6/2026
+Kesto: 1,5 h + harjoitukset/webinaari
 Hinta: 650 € sis. alv tai 650 € + alv yrityshinta
 
-Paketti sisältää:
-• Kuuden webinaarimoduulin paketin
-• Uusi webinaarimoduuli joka kuukausi kuuden kuukauden ajan
-• Yksi yhteinen coaching tunti opintopolun aikana
-• Lisäartikkeleita ja materiaalia sähköpostitse opintopolun aikana
-• Jokaiseen webinaarimoduuliin kuuluvan webinaarin ja omaan tahtiin tehtäviä harjoituksia
-• Kuuden webinaarin materiaalit ja tehtävät
-• Sähköpostituen
-• Puhelintuki ti ja to klo 17–18
-• Todistuksen ohjelman suorittamisesta opintopolun päätteeksi
+BloomLead webinaaripaketti sisältää:
+- Kuuden webinaarimoduulin paketin
+- Webinaarimoduuli 1 tallenne, kun maksu on saapunut tilillemme (1-2 päivää maksusta)
+- Uusi webinaaripaketti joka kuukausi kuuden kuukauden ajan
+- Yksi yhteinen coaching-tunti ohjelman aikana
+- Lisäartikkeleita ja materiaalia sähköpostitse ohjelman aikana
+- Jokaiseen webinaarimoduliin kuuluvan tallenteen ja omaan tahtiin tehtäviä harjoituksia
+- Kuuden webinaarin materiaalit
+- Sähköpostituki
+- Puhelintuki ti ja to klo 17–18
+- Todistuksen ohjelman suorittamisesta
 
 Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
                 }
@@ -2099,7 +2101,7 @@ Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
             async sendEmail() {
                 const contactEmail = this.contactEmail.value.trim();
                 const contactName = this.contactName.value.trim();
-                const subject = 'BLOOMLEAD WEBINAARIPAKETIN TILAUS'; // Fixed subject for package orders
+                const subject = 'BloomLead webinaaripaketin tilaus'; // Fixed subject for package orders
                 const message = this.emailMessage.value.trim();
                 
                 // Get customer type selection
