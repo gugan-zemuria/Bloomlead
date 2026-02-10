@@ -414,9 +414,24 @@ body {
 }
 
 /* Adjust for mobile */
+@media (max-width: 767px) {
+    .product-showing p {
+        padding: 17px 15px;
+    }
+
+    .footer-Kuvat {
+    font-size: 12px ;
+    text-align: start ;
+    margin-right: 0;
+    padding: 0 15px;
+    margin-top: 24px ;
+}
+}
+
 @media (max-width: 991px) {
-    body {
-        padding-top: 80px;
+    .footer-Kuvat {
+        margin-top: 24px;
+    text-align: start ;
     }
 }
 
@@ -4890,7 +4905,12 @@ section:hover .section-title h2::before {
 }
 
 .footer-Kuvat {
-    margin-top: 12px !important;
+    font-size: 12px ;
+    text-align: end ;
+    margin-right: 6% ;
+    margin-top: 24px ;
+    display: block;
+    width: 100%;
 }
 
 .footer-link p {
