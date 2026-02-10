@@ -49,7 +49,7 @@
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/cookie-consent.css?v=2.0">
+    <link rel="stylesheet" href="css/cookie-consent.css">
     <style>
         /* Custom styles for video and images */
         .play-button-wrapper {
@@ -338,6 +338,10 @@
             transition: all 0.3s ease;
         }
 
+        .header-btn {
+            padding: 18px !important;
+        }
+
         @media (max-width: 991px) {
             .search-top2 {
                 display: none !important;
@@ -353,6 +357,23 @@
 
             .logo-text {
                 font-size: 22px;
+            }
+
+            .slider-four .subricbe .contact-form {
+                display: initial;
+            }
+
+
+        }
+
+
+        @media (min-width: 767px) and (max-width: 991px) {
+
+
+            .header-btn {
+                height: 60px;
+                margin-top: auto;
+                right: 8px;
             }
         }
 
@@ -1138,6 +1159,8 @@
             object-fit: cover;
         }
 
+        
+
         /* Override responsive CSS specifically for about-round */
         .s-about-img #about-round {
             width: 400px !important;
@@ -1498,21 +1521,6 @@
             }
         }
 
-        @media (min-width: 767px) and (max-width: 991px) {
-
-
-            .header-btn {
-                height: 60px;
-                margin-top: auto;
-                right: 8px;
-            }
-
-            .slider-four .subricbe .contact-form {
-                display: initial;
-            }
-        }
-
-
         @media (max-width: 480px) {
             .selection-modal-overlay {
                 padding: 10px;
@@ -1705,11 +1713,11 @@
                                         projektijohtamisen lisäksi
                                         myös itsensä ja muiden
                                         johtamisen kehittämistä.
-                                        Käytössä on valikoidut
+                                        Käytössä ovat valikoidut
                                         globaalit viitekehykset ja
                                         rautainen kokemus sekä
                                         jatkuva tuki koko
-                                        BloomLead ohjelman
+                                        BloomLead-ohjelman
                                         ajan. </p>
 
 
@@ -1845,8 +1853,8 @@
                                     </path>
                                 </svg>
                             </div>
-                            <span class="option-title">Yksittäinen moduli</span>
-                            <span class="option-subtitle">Tietoa webinaarimoduli 1:stä</span>
+                            <span class="option-title">yksittäisen moduulin</span>
+                            <span class="option-subtitle">Tietoa webinaarimoduuli 1:stä</span>
                         </button>
                         <button class="selection-option" onclick="selectOption('package')">
                             <div class="option-icon package-icon">
@@ -1855,7 +1863,7 @@
                                         d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
                                 </svg>
                             </div>
-                            <span class="option-title">Koko paketti</span>
+                            <span class="option-title">koko paketin</span>
                             <span class="option-subtitle">Tietoa koko webinaaripaketista</span>
                         </button>
                     </div>
@@ -1921,8 +1929,17 @@
                     <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
                         <div class="s-about-img p-relative  wow fadeInLeft  animated" data-animation="fadeInLeft"
                             data-delay=".4s">
-                            <img id="about-round" src="img/about/About-image.webp"
-                                alt="Team collaboration and learning">
+                            <div class="about-video-container">
+                                <iframe id="youtubeVideo"
+                                    src="https://www.youtube-nocookie.com/embed/E_JkAdgP3gg?si=Thi6HpxDUT6JuoRd&autoplay=1&loop=1&playlist=E_JkAdgP3gg&controls=0&modestbranding=1&rel=0"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin"
+                                    allowfullscreen
+                                    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                                </iframe>
+                            </div>
                             <!-- <div class="col-lg-5">
                                 <div class="about-img" data-animation="fadeInUp" data-delay=".4s">
                                     <img src="img/about/About-image.webp"
@@ -2458,7 +2475,7 @@ div>i>div></div>""
                         <div class="section-title center-align text-center mb-50">
                             <h5>Voit tilata webinaarit alta</h5>
                             <h2>Valitse sopiva webinaarikokonaisuus</h2>
-                            <p>Yksittäinen webinaarimoduli
+                            <p>Yksittäinen webinaarimoduuli
                                 tai kuuden webinaarin
                                 paketti</p>
                         </div>
@@ -2473,13 +2490,13 @@ div>i>div></div>""
                                 <div class="module-number">1</div>
                             </div>
                             <div class="video-info mt-20">
-                                <h5>Moduli 1</h5>
+                                <h5>Moduuli 1</h5>
                                 <h5 style="color: #a571aa;">Projektin määrittely &<br>
                                     Johtaja luo suunnan</h5>
                                 <div class="video-meta mb-20">
                                     <span style="font-size: 16px; font-weight: 400; color: #a571aa;">Hinnat<br>
-                                        125 € /moduli<br>
-                                        125 € + alv /moduli yrityshinta
+                                        125 € /moduuli<br>
+                                        125 € + alv /moduuli yrityshinta
                                         <br>
                                         <span style="color: #666; font-weight: 400;">Julkaistaan 5.1.2026
                                         </span>
@@ -2503,13 +2520,13 @@ div>i>div></div>""
                                 <div class="module-number">2</div>
                             </div>
                             <div class="video-info mt-20">
-                                <h5>Moduli 2</h5>
+                                <h5>Moduuli 2</h5>
                                 <h5 style="color: #a571aa;">Projektin suunnittelu &<br>
                                     Johtaja rakentaa perustan</h5>
                                 <div class="video-meta mb-20">
                                     <span style="font-size: 16px; font-weight: 400; color: #a571aa;">
-                                        125 € /moduli<br>
-                                        125 € + alv /moduli yrityshinta -->
+                                        125 € /moduuli<br>
+                                        125 € + alv /moduuli yrityshinta -->
         <!-- <span
                                             style="color: #666; font-weight: 400; margin-left: 12px;">yrityshinta
                                         </span> -->
@@ -2535,13 +2552,13 @@ div>i>div></div>""
                                 <div class="module-number">3</div>
                             </div>
                             <div class="video-info mt-20">
-                                <h5>Moduli 3</h5>
+                                <h5>Moduuli 3</h5>
                                 <h5 style="color: #a571aa;">Projektin toteutus &<br>
                                     Johtaja ohjaa arkea</h5>
                                 <div class="video-meta mb-20">
                                     <span style="font-size: 16px; font-weight: 400; color: #a571aa;">
-                                        125 € /moduli<br>
-                                        125 € + alv /moduli yrityshinta -->
+                                        125 € /moduuli<br>
+                                        125 € + alv /moduuli yrityshinta -->
         <!-- <span
                                             style="color: #666; font-weight: 400; margin-left: 12px;">yrityshinta
                                         </span> -->
@@ -2562,7 +2579,7 @@ div>i>div></div>""
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="slider-btn mt-30">
-                            <a href="courses.html" class="btn ss-btn">Katso kaikki modulit</a>
+                            <a href="courses.html" class="btn ss-btn">Katso kaikki moduulit</a>
                         </div>
                     </div>
                 </div>
@@ -2670,6 +2687,41 @@ div>i>div></div>""
                     </div>
                 </div>
                 <div class="row">
+                    <!-- New Blog Post -->
+                    <div class="col-lg-4 col-md-12 md:pl-0">
+                        <div class="single-post2 mb-30 wow fadeInDown animated">
+                            <div class="blog-thumb2">
+                                <a href="blogs/blog-4-Miksi-teemme-taman.html"><img src="img/blog/Blog-images/Blog-4.webp"
+                                        alt="Miksi teemme tämän BloomLead webinaarisarjan"></a>
+                            </div>
+                            <div class="blog-content2 text-center">
+                                <div class="b-meta">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="date-b">
+                                                <i class="fal fa-calendar-alt"></i> 4. helmikuuta 2026
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4><a href="blogs/blog-4-Miksi-teemme-taman.html">Miksi teemme tämän BloomLead webinaarisarjan – ja miksi juuri nyt</a></h4>
+                                        <a href="blogs/blog-4-Miksi-teemme-taman.html" class="read-more-link">
+                                            <span class="link-text">Lue lisää</span>
+                                            <div class="icon-wrapper">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                                </svg>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-4 col-md-12 md:pl-0">
                         <div class="single-post2 mb-30  wow fadeInDown  animated">
                             <div class="blog-thumb2">
@@ -2735,9 +2787,9 @@ div>i>div></div>""
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <h4><a href="blogs/blog-2-preparing-a-decision-on-the-project.html">Miten teen
-                                                projektin taustatyöt ja määrittelyn ja
-                                                valmistelen päätöksen projektista</a></h4>
+                                        <h4><a href="blogs/blog-2-preparing-a-decision-on-the-project.html">Miksi
+                                                projektin taustoitus ja määrittelyvaihe ovat tärkeitä projektin
+                                                kannalta?</a></h4>
                                         <a href="blogs/blog-2-preparing-a-decision-on-the-project.html"
                                             class="read-more-link">
                                             <span class="link-text">Lue lisää</span>
@@ -2783,9 +2835,9 @@ div>i>div></div>""
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <h4><a href="blogs/blog-3-Artificial-Intelligence.html">Onko tekoäly, Artificial
-                                                Intelligence (AI), hyvä apuri
-                                                projektipäällikölle projektin määrittelyvaiheessa?</a></h4>
+                                        <h4><a href="blogs/blog-3-Artificial-Intelligence.html">Miten Artificial
+                                                Intelligence (AI) on hyvä apuri projektipäällikölle projektin
+                                                määrittelyvaiheessa?</a></h4>
                                         <a href="blogs/blog-3-Artificial-Intelligence.html" class="read-more-link">
                                             <span class="link-text">Lue lisää</span>
 
@@ -2877,7 +2929,7 @@ div>i>div></div>""
                                 yhdistämällä ihmisten ja projektin
                                 johtamisen, muutoksen ja AI:n.
                                 <br>
-                                <p class="footer-Kuvat">Kuvat: Aarne Pärssinen</p>
+                                
 
                             </div>
 
@@ -2950,12 +3002,17 @@ div>i>div></div>""
                                 <p><a href="privacy-policy.html" style="color: inherit;">Rekisteriseloste ja
                                         Tietosuoja</a></p>
                                 <p><a href="faq.html" style="color: inherit;">Usein Kysytyt Kysymykset</a></p>
-                            </div>
+                                                </div>
+                            
 
                         </div>
+                        
                     </div>
+                    
 
                 </div>
+                
+            
 
             </div>
         </div>
@@ -3336,7 +3393,7 @@ div>i>div></div>""
         }
 
         function selectOption(option) {
-            const optionText = option === 'single' ? 'yksittäinen moduuli' : 'koko paketti';
+            const optionText = option === 'single' ? 'yksittäisen moduulin' : 'koko paketin';
 
             // Show loading state
             showStatus('Lähetetään sähköpostia...', 'loading');

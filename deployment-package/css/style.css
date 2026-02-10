@@ -4409,10 +4409,10 @@ section:hover .section-title h2::before {
     font-size: 18px;
 }
 
-.blog-details-wrap .meta-info ul {
+/* .blog-details-wrap .meta-info ul {
     padding-top: 25px;
     padding-bottom: 25px;
-}
+} */
 
 .blog-details-wrap .meta-info ul li {
     display: inline-block;
@@ -4889,9 +4889,7 @@ section:hover .section-title h2::before {
     margin-bottom: 50px;
 }
 
-.footer-Kuvat {
-    margin-top: 12px !important;
-}
+
 
 .footer-link p {
     margin-bottom: -16px;
@@ -4909,6 +4907,16 @@ section:hover .section-title h2::before {
 
 .f-contact a:hover {
     color: #a571aa !important;
+}
+
+.footer-Kuvat {
+    font-size: 12px ;
+    margin-left: auto ;
+    margin-right: 6%;
+    margin-top: 24px ;
+    display: block;
+    width: 100%;
+    text-align: end;
 }
 
 .footer-top-heiding .col-lg-4 {
@@ -6978,6 +6986,21 @@ pre cite {
 @media (max-width: 767px) {
     .product-showing p {
         padding: 17px 15px;
+    }
+
+    .footer-Kuvat {
+    font-size: 12px ;
+    text-align: start;
+    margin-right: 0;
+    padding: 0 15px;
+    margin-top: 24px ;
+}
+}
+
+@media (max-width: 991px) {
+    .footer-Kuvat {
+        margin-top: 24px;
+        text-align: start;
     }
 }
 
@@ -9610,7 +9633,7 @@ p.checkout-coupon input[type="text"] {
 .sidebar-widget .widget {
     padding: 25px;
     overflow: hidden;
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
     /* border: 2px solid #f5f5f5 !important; */
 }
 
@@ -11014,4 +11037,67 @@ ards - Equal Height */
 .email-clickable:hover {
     color: #7fb069 !important;
     text-decoration: underline !important;
+}
+
+/* About Section Video Container */
+.about-video-container {
+    position: relative;
+    /* Responsive modern aspect ratio */
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    max-width: 500px; /* Good size for desktop, responsive for mobile */
+    margin: 0 auto; /* Center alignment */
+    
+    /* UI Polish */
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+}
+
+.about-video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Flex layout for .s-about-img */
+.s-about-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+    .s-about-img {
+        flex-direction: column;
+    }
+}
+
+/* Desktop-specific minimum dimensions */
+@media (min-width: 992px) {
+    .about-video-container {
+        min-width: 450px;
+        min-height: 253px; /* Based on 16:9 aspect ratio */
+    }
+}
+
+/* Adjust parent container if needed */
+.s-about-img {
+    width: 100%;
+    display: block;
+}
+
+/* Make Sidebar Sticky on Desktop */
+@media (min-width: 992px) {
+    .sidebar-widget {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 100px; /* Adjusted based on header height (90px) + some padding */
+        z-index: 100;
+    }
 }

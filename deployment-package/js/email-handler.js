@@ -68,17 +68,17 @@ class BloomLeadEmailHandler {
                 break;
 
             case 'module':
-                subject = 'BLOOMLEAD WEBINAARIMODULI 1 LISÄTIETOKYSELY';
+                subject = 'BloomLead webinaarimoduuli 1 lisätietokysely';
                 message = customMessage || this.getModuleRequestMessage();
                 break;
 
             case 'package':
-                subject = 'BLOOMLEAD WEBINAARIPAKETTI LISÄTIETOKYSELY';
+                subject = 'BloomLead webinaaripaketti lisätietokysely';
                 message = customMessage || this.getPackageRequestMessage();
                 break;
 
             case 'package-order':
-                subject = 'BLOOMLEAD WEBINAARIPAKETIN TILAUS';
+                subject = 'BloomLead webinaaripaketin tilaus';
                 message = customMessage || this.getPackageOrderMessage(customerType);
                 break;
 
@@ -116,73 +116,73 @@ Odotan yhteydenottoanne.`;
     getModuleRequestMessage() {
         return `Hei,
 
-Haluan lisätietoa seuraavista webinaarikokonaisuuksista:
+Haluan tilata BloomLead webinaarimoduuli 1 seuraavasti
 
-Moduli: Webinaarimoduli 1
-Aihe: Projektin määrittely & Johtaja luo suunnan
-Julkaisu: 15.1.2026
-Kesto: 1,5 tuntia + harjoitukset
-Hinta: 125 € sis. alv tai 125 € + alv yrityshinta
+Moduuli: BloomLead webinaarimoduuli 1
+Aihe: Projektin taustoitus ja määrittely & Johtaja luo suunnan
+Julkaistu: 6.2.2026
+Kesto: 1,5 h + harjoitukset
+Hinta: 125 € sis.alv tai 125 € + alv yrityshinta
 
-Moduli sisältää:
-• Johtajan roolin kirkastaminen
-• Oman motivaation ja arvojen tunnistaminen
-• Tavoite – sisäistäminen ja sitoutuminen
-• Priorisointi ja ajanhallinta johtajana
-• Johtamisen harjoituksia
-• Hyvinvointivinkki
-• Projektin taustoitus ja määrittely
-• Muutosjohtamis- ja viestintäsuunnitelma
+BloomLead webinaarimoduuli 1 sisältää:
+• Webinaarimoduuli 1 tallenne, kun maksu on saapunut tilillemme (1-2 päivää maksusta)
+• Webinaarimoduulin tallenne ja omaan tahtiin tehtäviä harjoituksia
+• Webinaarimoduulin materiaalit
+• Sähköpostituki
+• Puhelintuki ti ja to klo 17–18
+• Mahdollisuus ostaa edullisesti oma coaching-tunti
 
-Odotan yhteydenottoanne ja projektin knoppilistaa!`;
+Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
     }
 
     getPackageRequestMessage() {
         return `Hei,
 
-Haluan lisätietoa webinaaripaketista:
+Haluan tilata BloomLead webinaaripaketin seuraavasti
 
-Moduli: BloomLead Webinaaripaketti
-Aihe: Itsensä ja muiden johtaminen sekä projektinhallinta ja muutos- ja viestintäjohtaminen
-Julkaisu: 15.1.2026 – 25.5.2026
-Kesto: 1,5 tuntia + harjoitukset
+Moduuli: BloomLead webinaaripaketti
+Aihe: Projektinhallinta ja muutosjohtaminen sekä itsensä ja muiden johtaminen
+Julkaistu: 6.2.2026-6/2026
+Kesto: 1,5 h + harjoitukset/webinaari
 Hinta: 650 € sis. alv tai 650 € + alv yrityshinta
 
-Moduli sisältää:
-• Kuuden webinaarimodulin paketin
-• Uusi webinaarimoduli joka kuukausi kuuden kuukauden ajan
-• Yksi yhteinen coaching tunti opintopolun aikana
-• Lisäartikkeleita ja materiaalia sähköpostitse opintopolun aikana
-• Jokaiseen webinaarimoduliin kuuluvan webinaarin ja omaan tahtiin tehtäviä harjoituksia
-• Kuuden webinaarin materiaalit ja tehtävät
-• Sähköpostituen
-• Puhelintuki ti ja to klo 17–18
-• Todistuksen ohjelman suorittamisesta opintopolun päätteeksi
+BloomLead webinaaripaketti sisältää:
+- Kuuden webinaarimoduulin paketin
+- Webinaarimoduuli 1 tallenne, kun maksu on saapunut tilillemme (1-2 päivää maksusta)
+- Uusi webinaaripaketti joka kuukausi kuuden kuukauden ajan
+- Yksi yhteinen coaching-tunti ohjelman aikana
+- Lisäartikkeleita ja materiaalia sähköpostitse ohjelman aikana
+- Jokaiseen webinaarimoduliin kuuluvan tallenteen ja omaan tahtiin tehtäviä harjoituksia
+- Kuuden webinaarin materiaalit
+- Sähköpostituki
+- Puhelintuki ti ja to klo 17–18
+- Todistuksen ohjelman suorittamisesta
 
-Odotan yhteydenottoanne ja projektin knoppilistaa!`;
+Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
     }
 
     getPackageOrderMessage(customerType = 'yksityishenkilönä') {
         return `Hei,
 
-Haluan tilata koko BloomLead webinaaripaketin
+Haluan tilata BloomLead webinaaripaketin seuraavasti
 
-Moduli: BloomLead Webinaaripaketti
-Aihe: Itsensä ja muiden johtaminen sekä projektinhallinta ja muutos- ja viestintäjohtaminen
-Julkaisu: 15.1.2026 – 25.5.2026
-Kesto: 1,5 tuntia + harjoitukset
+Moduuli: BloomLead webinaaripaketti
+Aihe: Projektinhallinta ja muutosjohtaminen sekä itsensä ja muiden johtaminen
+Julkaistu: 6.2.2026-6/2026
+Kesto: 1,5 h + harjoitukset/webinaari
 Hinta: 650 € sis. alv tai 650 € + alv yrityshinta
 
-Paketti sisältää:
-• Kuuden webinaarimodulin paketin
-• Uusi webinaarimoduli joka kuukausi kuuden kuukauden ajan
-• Yksi yhteinen coaching tunti opintopolun aikana
-• Lisäartikkeleita ja materiaalia sähköpostitse opintopolun aikana
-• Jokaiseen webinaarimoduliin kuuluvan webinaarin ja omaan tahtiin tehtäviä harjoituksia
-• Kuuden webinaarin materiaalit ja tehtävät
-• Sähköpostituen
-• Puhelintuki ti ja to klo 17–18
-• Todistuksen ohjelman suorittamisesta opintopolun päätteeksi
+BloomLead webinaaripaketti sisältää:
+- Kuuden webinaarimoduulin paketin
+- Webinaarimoduuli 1 tallenne, kun maksu on saapunut tilillemme (1-2 päivää maksusta)
+- Uusi webinaaripaketti joka kuukausi kuuden kuukauden ajan
+- Yksi yhteinen coaching-tunti ohjelman aikana
+- Lisäartikkeleita ja materiaalia sähköpostitse ohjelman aikana
+- Jokaiseen webinaarimoduliin kuuluvan tallenteen ja omaan tahtiin tehtäviä harjoituksia
+- Kuuden webinaarin materiaalit
+- Sähköpostituki
+- Puhelintuki ti ja to klo 17–18
+- Todistuksen ohjelman suorittamisesta
 
 Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
     }
