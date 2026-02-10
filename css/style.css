@@ -4409,10 +4409,10 @@ section:hover .section-title h2::before {
     font-size: 18px;
 }
 
-.blog-details-wrap .meta-info ul {
+/* .blog-details-wrap .meta-info ul {
     padding-top: 25px;
     padding-bottom: 25px;
-}
+} */
 
 .blog-details-wrap .meta-info ul li {
     display: inline-block;
@@ -9633,7 +9633,7 @@ p.checkout-coupon input[type="text"] {
 .sidebar-widget .widget {
     padding: 25px;
     overflow: hidden;
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
     /* border: 2px solid #f5f5f5 !important; */
 }
 
@@ -11090,4 +11090,14 @@ ards - Equal Height */
 .s-about-img {
     width: 100%;
     display: block;
+}
+
+/* Make Sidebar Sticky on Desktop */
+@media (min-width: 992px) {
+    .sidebar-widget {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 100px; /* Adjusted based on header height (90px) + some padding */
+        z-index: 100;
+    }
 }
