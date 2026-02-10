@@ -120,24 +120,24 @@ function buildEmailBody($userEmail, $userName, $requestType, $message, $customer
     $timestamp = date('Y-m-d H:i:s');
     
     // Set email header and type based on request type
-    if ($requestType === 'module-order') {
+     if ($requestType === 'module-order') {
         // Course details page - Module order
-        $header = "BLOOMLEAD WEBINAARIMODULI 1 TILAUS";
-        $type = "webinaarimoduli 1";
+        $header = "BloomLead webinaarimoduuli 1 tilaus";
+        $type = "webinaarimoduuli 1";
     } elseif ($requestType === 'package-order') {
         // Courses page - Package order
-        $header = "BLOOMLEAD WEBINAARIPAKETIN TILAUS";
+        $header = "BloomLead webinaaripaketin tilaus";
         $type = "BloomLead webinaaripaketti";
     } elseif ($requestType === 'module') {
         // Home page - Module inquiry
-        $header = "BLOOMLEAD WEBINAARIMODULI 1 LISÄTIETOKYSELY & KNOPPILISTA";
-        $type = "webinaarimoduli 1";
+        $header = "BloomLead webinaarimoduuli 1 lisätietokysely & knoppilista";
+        $type = "webinaarimoduuli 1";
     } elseif ($requestType === 'package') {
         // Home page - Package inquiry
-        $header = "BLOOMLEAD WEBINAARIPAKETTI LISÄTIETOKYSELY JA KNOPPILISTA";
+        $header = "BloomLead webinaaripaketti lisätietokysely ja knoppilista";
         $type = "webinaaripaketti";
     } else {
-        $header = "BLOOMLEAD WEBSITE INQUIRY";
+        $header = "BloomLead website inquiry";
         $type = $requestType;
     }
     
@@ -157,8 +157,8 @@ function buildEmailBody($userEmail, $userName, $requestType, $message, $customer
         $body .= "Tilaan: $customerType\n";
         
         // Add note for module orders
-        if ($requestType === 'module-order') {
-            $body .= "Huomioithan, että yksittäisten webinaarimodulien tilaaminen on mahdollista vain järjestyksessä\n";
+        if ($requestType === 'moduule-order') {
+            $body .= "Huomioithan, että yksittäisten webinaarimoduulien tilaaminen on mahdollista vain järjestyksessä\n";
         }
     }
     
