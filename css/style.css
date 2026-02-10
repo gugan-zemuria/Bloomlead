@@ -4916,6 +4916,7 @@ section:hover .section-title h2::before {
     margin-top: 24px ;
     display: block;
     width: 100%;
+    text-align: end;
 }
 
 .footer-top-heiding .col-lg-4 {
