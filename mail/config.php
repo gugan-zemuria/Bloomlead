@@ -18,7 +18,8 @@ define('EMAIL_REPLY_TO', ''); // Will be set to user's email
 
 // Security Settings
 define('ALLOWED_ORIGINS', [
-    'https://yourdomain.com',  // Replace with your actual domain
+    'https://bloomlead.io',
+    'https://www.bloomlead.io',
     'http://localhost',        // For local testing
     'https://localhost'        // For local testing with SSL
 ]);

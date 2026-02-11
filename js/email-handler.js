@@ -82,6 +82,11 @@ class BloomLeadEmailHandler {
                 message = customMessage || this.getPackageOrderMessage(customerType);
                 break;
 
+            case 'module-order':
+                subject = 'BloomLead webinaarimoduuli 1 tilaus';
+                message = customMessage || this.getModuleRequestMessage();
+                break;
+
             default:
                 subject = 'Yhteydenotto BloomLead-sivustolta';
                 message = customMessage || 'Yleinen yhteydenotto sivustolta.';
