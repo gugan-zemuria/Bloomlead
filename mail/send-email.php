@@ -232,7 +232,7 @@ function sendAutoReply($userEmail, $requestType) {
         $body .= "\n";
         $body .= "Olemme liittäneet tähän mukaan Projektipäällikön knoppilistan. Oman kokemuksemme mukaan nämä asiat ovat sellaisia, joita on hyvä kuljettaa projektin mukana koko elinkaaren ajan. Ne auttavat vahvasti projektin tavoitteiden saavuttamisessa.\n";
         $body .= "\n";
-        $body .= "Laitamme sinulle 1–2 päivän sisään lisää tietoa BloomLead webinaarimoduuli 1:stä.\n";
+        $body .= "Laitamme sinulle 1–2 päivän sisään lisää tietoa BloomLead webinaaripaketista.\n";
         $body .= "\n";
         $body .= "Linkki: https://drive.google.com/file/d/1dm8TPu4RuhtSC0ZNlrOA01oRcSqO7Rat/view?usp=drive_link\n";
         $body .= "\n";
