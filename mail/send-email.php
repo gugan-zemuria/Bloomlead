@@ -212,11 +212,13 @@ function sendAutoReply($userEmail, $requestType) {
         // Individual webinar module content
         $body = "Hei,\n";
         $body .= "\n";
-        $body .= "Hienoa, että projektinhallinta, muutosjohtaminen sekä itsensä ja muiden johtaminen kiinnostavat sinua. Olemme mielellämme mukana tukemassa kehitystäsi meidän osaamisellamme, sillä jatkuva oppiminen on antoisaa kaikille.\n";
+        $body .= "Hienoa, että kehittyminen projektinhallinnassa ja muutosjohtamisessa sekä itsensä ja muiden johtamisessa kiinnostaa sinua. Olemme mielellämme mukana tukemassa oppimismatkaasi omalla osaamisellamme, sillä jatkuva oppiminen on antoisaa kaikille.\n";
         $body .= "\n";
-        $body .= "Olemme liittäneet tähän mukaan Projektipäällikön knoppilistan. Oman kokemuksemme mukaan nämä asiat auttavat projektin pohjana auttavat projektipäällikköä viemään projektin kuin projektin vahvasti tavoitteeseen.\n";
+        $body .= "Olemme liittäneet tähän mukaan Projektipäällikön knoppilistan. Oman kokemuksemme mukaan nämä asiat ovat sellaisia, joita on hyvä kuljettaa projektin mukana koko elinkaaren ajan. Ne auttavat vahvasti projektin tavoitteiden saavuttamisessa.\n";
         $body .= "\n";
-        $body .= "Laitamme sinulle 1–2 päivän kuluessa lisää tietoa BloomLeadin webinaarimoduuli\n";
+        $body .= "Laitamme sinulle 1–2 päivän sisään lisää tietoa BloomLead webinaarimoduuli 1:stä.\n";
+        $body .= "\n";
+        $body .= "Linkki: https://drive.google.com/file/d/1dm8TPu4RuhtSC0ZNlrOA01oRcSqO7Rat/view?usp=drive_link\n";
         $body .= "\n";
         $body .= "Ystävällisin terveisin,\n";
         $body .= "Marke ja Johanna\n";
@@ -226,11 +228,13 @@ function sendAutoReply($userEmail, $requestType) {
         // Whole webinar package content (default for package and others)
         $body = "Hei,\n";
         $body .= "\n";
-        $body .= "Hienoa, että projektinhallinta, muutosjohtaminen sekä itsensä ja muiden johtaminen kiinnostavat sinua. Olemme mielellämme mukana tukemassa kehitystäsi meidän osaamisellamme, sillä jatkuva oppiminen on antoisaa kaikille.\n";
+        $body .= "Hienoa, että kehittyminen projektinhallinnassa ja muutosjohtamisessa sekä itsensä ja muiden johtamisessa kiinnostaa sinua. Olemme mielellämme mukana tukemassa oppimismatkaasi omalla osaamisellamme, sillä jatkuva oppiminen on antoisaa kaikille.\n";
         $body .= "\n";
-        $body .= "Olemme liittäneet tähän mukaan Projektipäällikön knoppilistan. Oman kokemuksemme mukaan nämä asiat auttavat projektin pohjana auttavat projektipäällikköä viemään projektin kuin projektin vahvasti tavoitteeseen.\n";
+        $body .= "Olemme liittäneet tähän mukaan Projektipäällikön knoppilistan. Oman kokemuksemme mukaan nämä asiat ovat sellaisia, joita on hyvä kuljettaa projektin mukana koko elinkaaren ajan. Ne auttavat vahvasti projektin tavoitteiden saavuttamisessa.\n";
         $body .= "\n";
-        $body .= "Laitamme sinulle 1–2 päivän kuluessa lisää tietoa BloomLeadin koko webinaaripaketista sähköpostiisi. Pysy siis kuulolla.\n";
+        $body .= "Laitamme sinulle 1–2 päivän sisään lisää tietoa BloomLead webinaarimoduuli 1:stä.\n";
+        $body .= "\n";
+        $body .= "Linkki: https://drive.google.com/file/d/1dm8TPu4RuhtSC0ZNlrOA01oRcSqO7Rat/view?usp=drive_link\n";
         $body .= "\n";
         $body .= "Ystävällisin terveisin,\n";
         $body .= "Marke ja Johanna\n";
