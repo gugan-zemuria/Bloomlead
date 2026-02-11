@@ -121,7 +121,7 @@ Odotan yhteydenottoanne.`;
     getModuleRequestMessage() {
         return `Hei,
 
-Haluan tilata BloomLead webinaarimoduuli 1 seuraavasti
+        Haluan lisää tietoa seuraavista:
 
 Moduuli: BloomLead webinaarimoduuli 1
 Aihe: Projektin taustoitus ja määrittely & Johtaja luo suunnan
