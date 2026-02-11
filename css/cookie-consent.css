@@ -145,6 +145,17 @@ body.cookie-consent-required > *:not(.cookie-consent-banner):not(.cookie-blockin
     margin-left: 0;
 }
 
+.cookie-banner-actions button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
 .btn-cookie-accept-all {
     background: #769757;
     color: white;

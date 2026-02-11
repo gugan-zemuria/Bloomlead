@@ -120,7 +120,7 @@ function buildEmailBody($userEmail, $userName, $requestType, $message, $customer
     $timestamp = date('Y-m-d H:i:s');
     
     // Set email header and type based on request type
-    if ($requestType === 'module-order') {
+     if ($requestType === 'module-order') {
         // Course details page - Module order
         $header = "BloomLead webinaarimoduuli 1 tilaus";
         $type = "webinaarimoduuli 1";
@@ -158,7 +158,7 @@ function buildEmailBody($userEmail, $userName, $requestType, $message, $customer
         
         // Add note for module orders
         if ($requestType === 'module-order') {
-            $body .= "Huomioithan, että yksittäisten webinaarimodulien tilaaminen on mahdollista vain järjestyksessä\n";
+            $body .= "Huomioithan, että yksittäisten webinaarimoduulien tilaaminen on mahdollista vain järjestyksessä\n";
         }
     }
     
@@ -213,29 +213,28 @@ function sendAutoReply($userEmail, $requestType) {
         $body = "Hei,\n";
         $body .= "\n";
         $body .= "Hienoa, että projektinhallinta, muutosjohtaminen sekä itsensä ja muiden johtaminen kiinnostavat sinua. Olemme mielellämme mukana tukemassa kehitystäsi meidän osaamisellamme, sillä jatkuva oppiminen on antoisaa kaikille.\n";
-
+        $body .= "\n";
         $body .= "Olemme liittäneet tähän mukaan Projektipäällikön knoppilistan. Oman kokemuksemme mukaan nämä asiat auttavat projektin pohjana auttavat projektipäällikköä viemään projektin kuin projektin vahvasti tavoitteeseen.\n";
-
-        $body .= "Laitamme sinulle 1–2 päivän kuluessa lisää tietoa BloomLeadin webinaarimoduuli
-1:stä. Pysy siis kuulolla.\n";
-
+        $body .= "\n";
+        $body .= "Laitamme sinulle 1–2 päivän kuluessa lisää tietoa BloomLeadin webinaarimoduuli\n";
+        $body .= "\n";
         $body .= "Ystävällisin terveisin,\n";
         $body .= "Marke ja Johanna\n";
+        $body .= "\n";
         $body .= "Tähän sähköpostiin ei voi vastata";
     } else {
         // Whole webinar package content (default for package and others)
         $body = "Hei,\n";
         $body .= "\n";
         $body .= "Hienoa, että projektinhallinta, muutosjohtaminen sekä itsensä ja muiden johtaminen kiinnostavat sinua. Olemme mielellämme mukana tukemassa kehitystäsi meidän osaamisellamme, sillä jatkuva oppiminen on antoisaa kaikille.\n";
-
+        $body .= "\n";
         $body .= "Olemme liittäneet tähän mukaan Projektipäällikön knoppilistan. Oman kokemuksemme mukaan nämä asiat auttavat projektin pohjana auttavat projektipäällikköä viemään projektin kuin projektin vahvasti tavoitteeseen.\n";
-
-        $body .= "Laitamme sinulle 1–2 päivän kuluessa lisää tietoa BloomLeadin koko
-webinaaripaketista sähköpostiisi. Pysy siis kuulolla.\n";
-
+        $body .= "\n";
+        $body .= "Laitamme sinulle 1–2 päivän kuluessa lisää tietoa BloomLeadin koko webinaaripaketista sähköpostiisi. Pysy siis kuulolla.\n";
+        $body .= "\n";
         $body .= "Ystävällisin terveisin,\n";
-
         $body .= "Marke ja Johanna\n";
+        $body .= "\n";
         $body .= "Tähän sähköpostiin ei voi vastata";
     }
     
