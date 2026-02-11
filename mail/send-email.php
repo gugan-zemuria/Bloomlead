@@ -120,7 +120,7 @@ function buildEmailBody($userEmail, $userName, $requestType, $message, $customer
     $timestamp = date('Y-m-d H:i:s');
     
     // Set email header and type based on request type
-    if ($requestType === 'module-order') {
+     if ($requestType === 'module-order') {
         // Course details page - Module order
         $header = "BloomLead webinaarimoduuli 1 tilaus";
         $type = "webinaarimoduuli 1";
@@ -158,7 +158,7 @@ function buildEmailBody($userEmail, $userName, $requestType, $message, $customer
         
         // Add note for module orders
         if ($requestType === 'module-order') {
-            $body .= "Huomioithan, että yksittäisten webinaarimodulien tilaaminen on mahdollista vain järjestyksessä\n";
+            $body .= "Huomioithan, että yksittäisten webinaarimoduulien tilaaminen on mahdollista vain järjestyksessä\n";
         }
     }
     
@@ -196,30 +196,47 @@ function sendToAllRecipients($subject, $body, $replyTo) {
 /**
  * Send auto-reply to user
  */
-function sendAutoReply($userEmail) {
+function sendAutoReply($userEmail, $requestType) {
     $subject = AUTO_REPLY_SUBJECT;
-    
-    $body = "Hei,\n\n";
-    $body .= "Hienoa, että johtaminen ja projektinhallinta kiinnostavat ja haluat kehittyä meidän kanssamme osana BloomLead yhteisöä!\n\n";
-    $body .= "Olemme mielellämme mukana tukemassa kehitystäsi meidän osaamisellamme, sillä
-jatkuva oppiminen on antoisaa kaikille.\n\n";
-    $body .= "Laitamme sinulle 1–2 päivän kuluessa lisää tietoa ja ohjeita sähköpostiisi
-webinaaritilaukseesi liittyen. Pysy siis kuulolla.\n\n";
-    $body .= "Jos sinulla on jotakin kiireellistä, voit olla meihin yhteydessä sähköpostitse:contact@bloomlead.io. tai puhelinaikana ti ja to klo 17-18 numeroon +358 44
-3883188.\n\n";
-    $body .= "Ystävällisin terveisin,\n";
-    $body .= "Marke ja Johanna\n\n";
-    $body .= "Tähän sähköpostiin ei voi vastata\n";
-    
-    
     
     $headers = [
         'From: ' . EMAIL_FROM_NAME . ' <' . EMAIL_FROM . '>',
+        'Reply-To: ' . EMAIL_FROM,
         'X-Mailer: PHP/' . phpversion(),
         'Content-Type: text/plain; charset=UTF-8'
     ];
-    
     $headerString = implode("\r\n", $headers);
+
+    // Determine content based on request type
+    if (strpos($requestType, 'module') !== false) {
+        // Individual webinar module content
+        $body = "Hei,\n";
+        $body .= "\n";
+        $body .= "Hienoa, että projektinhallinta, muutosjohtaminen sekä itsensä ja muiden johtaminen kiinnostavat sinua. Olemme mielellämme mukana tukemassa kehitystäsi meidän osaamisellamme, sillä jatkuva oppiminen on antoisaa kaikille.\n";
+        $body .= "\n";
+        $body .= "Olemme liittäneet tähän mukaan Projektipäällikön knoppilistan. Oman kokemuksemme mukaan nämä asiat auttavat projektin pohjana auttavat projektipäällikköä viemään projektin kuin projektin vahvasti tavoitteeseen.\n";
+        $body .= "\n";
+        $body .= "Laitamme sinulle 1–2 päivän kuluessa lisää tietoa BloomLeadin webinaarimoduuli\n";
+        $body .= "\n";
+        $body .= "Ystävällisin terveisin,\n";
+        $body .= "Marke ja Johanna\n";
+        $body .= "\n";
+        $body .= "Tähän sähköpostiin ei voi vastata";
+    } else {
+        // Whole webinar package content (default for package and others)
+        $body = "Hei,\n";
+        $body .= "\n";
+        $body .= "Hienoa, että projektinhallinta, muutosjohtaminen sekä itsensä ja muiden johtaminen kiinnostavat sinua. Olemme mielellämme mukana tukemassa kehitystäsi meidän osaamisellamme, sillä jatkuva oppiminen on antoisaa kaikille.\n";
+        $body .= "\n";
+        $body .= "Olemme liittäneet tähän mukaan Projektipäällikön knoppilistan. Oman kokemuksemme mukaan nämä asiat auttavat projektin pohjana auttavat projektipäällikköä viemään projektin kuin projektin vahvasti tavoitteeseen.\n";
+        $body .= "\n";
+        $body .= "Laitamme sinulle 1–2 päivän kuluessa lisää tietoa BloomLeadin koko webinaaripaketista sähköpostiisi. Pysy siis kuulolla.\n";
+        $body .= "\n";
+        $body .= "Ystävällisin terveisin,\n";
+        $body .= "Marke ja Johanna\n";
+        $body .= "\n";
+        $body .= "Tähän sähköpostiin ei voi vastata";
+    }
     
     return mail($userEmail, $subject, $body, $headerString);
 }

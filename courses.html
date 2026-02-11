@@ -137,7 +137,6 @@
         @media (max-width: 992px) {
             .my-6 {
                 width: 100%;
-                max-width: 400px;
                 display: flex;
                 justify-content: center;
                 flex-direction: column;
@@ -1592,6 +1591,7 @@ seuranta ja jatkuva kehittäminen & <br> Johtaja kasvaa jatkuvasti</h5>
                                         <li><i class="icon fal fa-envelope"></i>
                                             <span>
                                                 <span style="display: block;">contact@bloomlead.io</span>
+                                                <!-- <span style="display: block;">help@example.com</span> -->
                                             </span>
                                         </li>
                                         <li>
@@ -1644,7 +1644,6 @@ seuranta ja jatkuva kehittäminen & <br> Johtaja kasvaa jatkuvasti</h5>
 
                 </div>
                 
-
             </div>
         </div>
         <div class="copyright-wrap">
@@ -1682,14 +1681,14 @@ seuranta ja jatkuva kehittäminen & <br> Johtaja kasvaa jatkuvasti</h5>
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="email-header-text">
-                        <h3 id="emailPopupTitle">Tarkista kyselysi</h3>
-                        <p>SOVELLUKSEN SISÄINEN VIESTI</p>
+                        <h3 id="emailPopupTitle">Tarkista tilaus</h3>
+                        <p>Sovelluksen sisäinen viesti</p>
                     </div>
                 </div>
                 
                 <div class="email-form">
                     <div class="contact-email-section">
-                        <div class="contact-email-label">Vastaanottaja:</div>
+                        <div class="contact-email-label">Sähköpostiosoite: </div>
                         <div class="contact-email-field">
                             <i class="fas fa-envelope"></i>
                             <input type="email" id="contactEmail" placeholder="esim. nimi@yritys.fi">
@@ -1733,7 +1732,7 @@ seuranta ja jatkuva kehittäminen & <br> Johtaja kasvaa jatkuvasti</h5>
                     <div class="email-header-section">
                         <div class="email-header-label">Sähköpostin otsikkotiedot</div>
                         <div class="email-header-content" id="emailHeaderDisplay">
-                            BloomLead webinaaripaketin tilaus <br>
+                            BloomLead webinaaripaketin tilaus<br>
                             Aika: <span id="timestampDisplay">BloomLead webinaaripaketin tilaus</span>
                             <!-- Lähettäjän sähköposti: <span id="senderEmailDisplay">[Syötä sähköpostisi yllä]</span><br> -->
                             Tyyppi: BloomLead webinaaripaketti<br>
@@ -2043,7 +2042,7 @@ seuranta ja jatkuva kehittäminen & <br> Johtaja kasvaa jatkuvasti</h5>
                 this.validateEmail(); // Reset validation state
                 
                 if (type === 'package-order') {
-                    this.emailTitle.textContent = 'Tarkista tilauksesi';
+                    this.emailTitle.textContent = 'Tarkista tilaus';
                     // Subject is now part of the header display, no separate element needed
                     this.emailMessage.value = `Hei,
 
