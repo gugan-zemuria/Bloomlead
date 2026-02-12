@@ -73,7 +73,7 @@ class BloomLeadEmailHandler {
                 break;
 
             case 'package':
-                subject = 'BloomLead webinaaripaketti lisätietokysely';
+                subject = 'BloomLead webinaaripaketti lisätietokysely'.toLowerCase();
                 message = customMessage || this.getPackageRequestMessage();
                 break;
 
@@ -84,7 +84,7 @@ class BloomLeadEmailHandler {
 
             case 'module-order':
                 subject = 'BloomLead webinaarimoduuli 1 tilaus';
-                message = customMessage || this.getModuleRequestMessage();
+                message = customMessage || this.getModuleOrderMessage();
                 break;
 
             default:
@@ -140,11 +140,34 @@ BloomLead webinaarimoduuli 1 sisältää:
 
 Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
     }
+    
+    getModuleOrderMessage() {
+        return `Hei,
+
+Haluan tilata webinaari moduuli 1 seuraavasti:
+
+Moduuli: BloomLead webinaarimoduuli 1
+Aihe: Projektin taustoitus ja määrittely & Johtaja luo suunnan
+Julkaistu: 6.2.2026
+Kesto: 1,5 h + harjoitukset
+Hinta: 125 € sis.alv tai 125 € + alv yrityshinta
+
+BloomLead webinaarimoduuli 1 sisältää:
+
+• Webinaarimoduuli 1 tallenne, kun maksu on saapunut tilillemme (1-2 päivää maksusta)
+• Webinaarimoduulin tallenne ja omaan tahtiin tehtäviä harjoituksia
+• Webinaarimoduulin materiaalit
+• Sähköpostituki
+• Puhelintuki ti ja to klo 17–18
+• Mahdollisuus ostaa edullisesti oma coaching-tunti
+
+Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
+    }
 
     getPackageRequestMessage() {
         return `Hei,
 
-Haluan tilata BloomLead webinaaripaketin seuraavasti
+Haluan lisää tietoa seuraavista:
 
 Moduuli: BloomLead webinaaripaketti
 Aihe: Projektinhallinta ja muutosjohtaminen sekä itsensä ja muiden johtaminen
@@ -359,7 +382,7 @@ class EmailSubscriptionManager {
             if (this.emailTitle) this.emailTitle.textContent = 'Tarkista tilaus';
             if (this.emailSubjectDisplay) this.emailSubjectDisplay.textContent = 'BloomLead webinaarimoduuli 1 tilaus';
             if (this.emailMessage) {
-                this.emailMessage.value = window.BloomLeadEmailHandler.getModuleRequestMessage();
+                this.emailMessage.value = window.BloomLeadEmailHandler.getModuleOrderMessage();
             }
         }
     }

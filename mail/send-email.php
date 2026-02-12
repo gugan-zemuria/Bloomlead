@@ -78,7 +78,10 @@ try {
     }
     
     // Send auto-reply if enabled
-    if (SEND_AUTO_REPLY) {
+    // The user requested to remove reply mail for course (package-order) and course details (module-order)
+    $noAutoReplyTypes = ['module-order', 'package-order'];
+    
+    if (SEND_AUTO_REPLY && !in_array($requestType, $noAutoReplyTypes)) {
         sendAutoReply($userEmail, $requestType);
     }
     
@@ -134,7 +137,7 @@ function buildEmailBody($userEmail, $userName, $requestType, $message, $customer
         $type = "webinaarimoduuli 1";
     } elseif ($requestType === 'package') {
         // Home page - Package inquiry
-        $header = "BloomLead webinaaripaketti lisätietokysely ja knoppilista";
+        $header = "bloomlead webinaaripaketti lisätietokysely ja knoppilista";
         $type = "webinaaripaketti";
     } else {
         $header = "BloomLead website inquiry";
