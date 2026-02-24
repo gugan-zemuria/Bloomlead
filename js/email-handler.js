@@ -28,7 +28,24 @@ class BloomLeadEmailHandler {
                 body: JSON.stringify(emailData)
             });
 
-            const result = await response.json();
+            // Read raw text first
+            const text = await response.text();
+            
+            // Check if response is empty
+            if (!text || text.trim() === '') {
+                console.error('Empty response from server');
+                throw new Error('Palvelin palautti tyhjän vastauksen. Check PHP error logs.');
+            }
+
+            // Try to parse JSON
+            let result;
+            try {
+                result = JSON.parse(text);
+            } catch (parseError) {
+                console.error('Failed to parse JSON:', text);
+                console.error('Parse error:', parseError);
+                throw new Error('Server returned invalid JSON. Response: ' + text.substring(0, 200));
+            }
 
             if (!response.ok) {
                 throw new Error(result.message || 'Failed to send email');

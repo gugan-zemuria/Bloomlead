@@ -4,8 +4,27 @@
  * Handles email submissions from website forms
  */
 
+// Error handling - catch all errors and return JSON
+error_reporting(E_ALL);
+ini_set('display_errors', 0); // NEVER display errors in production - security risk
+ini_set('log_errors', 1);
+
+// Start output buffering to catch any unexpected output
+ob_start();
+
 // Include configuration
-require_once 'config.php';
+if (!file_exists(__DIR__ . '/config.php')) {
+    ob_end_clean();
+    header('Content-Type: application/json');
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'Configuration file not found']);
+    exit();
+}
+
+require_once __DIR__ . '/config.php';
+
+// Clear any output that might have been generated
+ob_end_clean();
 
 // Set content type to JSON
 header('Content-Type: application/json');
@@ -100,6 +119,15 @@ try {
         'success' => false,
         'message' => $e->getMessage()
     ]);
+    exit();
+} catch (Error $e) {
+    // Catch PHP 7+ errors
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Server error: ' . $e->getMessage()
+    ]);
+    exit();
 }
 
 /**
