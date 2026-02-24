@@ -11,6 +11,12 @@
  * - Input validation
  */
 
+// Prevent any whitespace/output from causing JSON parse errors
+while (ob_get_level()) {
+    ob_end_clean();
+}
+ob_start();
+
 // Security headers
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -18,13 +24,24 @@ header('X-Frame-Options: DENY');
 header('X-XSS-Protection: 1; mode=block');
 header('Referrer-Policy: strict-origin-when-cross-origin');
 
+// Helper function to output JSON and exit
+function jsonResponse($data, $httpCode = 200) {
+    while (ob_get_level()) {
+        ob_end_clean();
+    }
+    http_response_code($httpCode);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
 // CORS and Domain Lock Configuration
 $allowedDomains = [
-    'https://your-domain.com',           // Replace with your actual domain
-    'https://www.your-domain.com',       // Replace with your www domain
-    'http://localhost:3000',             // For local development
-    'http://127.0.0.1:3000',            // For local development
-    'http://localhost:8080',             // For local development
+    'https://bloomlead.io',
+    'https://www.bloomlead.io',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://localhost:8080',
 ];
 
 // Domain Lock Check
@@ -117,25 +134,19 @@ function generateCSRFToken(): string {
 function performSecurityChecks(): bool {
     // Check domain access
     if (!checkDomainAccess()) {
-        http_response_code(403);
-        echo json_encode(['error' => 'Access denied: Invalid domain']);
-        return false;
+        jsonResponse(['error' => 'Access denied: Invalid domain'], 403);
     }
-    
+
     // Check rate limit
     if (!checkRateLimit()) {
-        http_response_code(429);
-        echo json_encode(['error' => 'Rate limit exceeded']);
-        return false;
+        jsonResponse(['error' => 'Rate limit exceeded'], 429);
     }
-    
+
     // For POST requests, validate CSRF token
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !validateCSRFToken()) {
-        http_response_code(403);
-        echo json_encode(['error' => 'Invalid CSRF token']);
-        return false;
+        jsonResponse(['error' => 'Invalid CSRF token'], 403);
     }
-    
+
     return true;
 }
 
@@ -248,49 +259,43 @@ $action = $_GET['action'] ?? $_POST['action'] ?? 'get_config';
 switch ($action) {
     case 'get_config':
         // Return configuration
-        echo json_encode([
+        jsonResponse([
             'success' => true,
             'data' => $config,
             'csrf_token' => generateCSRFToken(),
             'timestamp' => time()
         ]);
-        break;
         
     case 'get_analytics':
         // Return only analytics configuration
-        echo json_encode([
+        jsonResponse([
             'success' => true,
             'data' => $config['analytics'],
             'csrf_token' => generateCSRFToken(),
             'timestamp' => time()
         ]);
-        break;
         
     case 'get_marketing':
         // Return only marketing configuration
-        echo json_encode([
+        jsonResponse([
             'success' => true,
             'data' => $config['marketing'],
             'csrf_token' => generateCSRFToken(),
             'timestamp' => time()
         ]);
-        break;
         
     case 'health_check':
         // Health check endpoint
-        echo json_encode([
+        jsonResponse([
             'success' => true,
             'status' => 'healthy',
             'php_version' => PHP_VERSION,
             'timestamp' => time()
         ]);
-        break;
         
     default:
-        http_response_code(400);
-        echo json_encode([
+        jsonResponse([
             'success' => false,
             'error' => 'Invalid action'
-        ]);
-        break;
+        ], 400);
 }

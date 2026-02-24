@@ -2,40 +2,49 @@
 /**
  * BloomLead Email Sending Script
  * Handles email submissions from website forms
+ * Robust JSON error handling wrapper
  */
+
+// Prevent any whitespace/output from causing JSON parse errors
+while (ob_get_level()) {
+    ob_end_clean();
+}
+ob_start();
 
 // Error handling - catch all errors and return JSON
 error_reporting(E_ALL);
-ini_set('display_errors', 0); // NEVER display errors in production - security risk
+ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
-// Start output buffering to catch any unexpected output
-ob_start();
+// Force JSON content type immediately
+header('Content-Type: application/json; charset=utf-8');
+header('X-Content-Type-Options: nosniff');
 
-// Include configuration
-if (!file_exists(__DIR__ . '/config.php')) {
-    ob_end_clean();
-    header('Content-Type: application/json');
-    http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Configuration file not found']);
-    exit();
-}
-
-require_once __DIR__ . '/config.php';
-
-// Clear any output that might have been generated
-ob_end_clean();
-
-// Set content type to JSON
-header('Content-Type: application/json');
-
-// CORS headers for your domain
+// CORS headers
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-if (in_array($origin, ALLOWED_ORIGINS)) {
+$allowedOrigins = [
+    'https://bloomlead.io',
+    'https://www.bloomlead.io',
+    'http://localhost:3000',
+    'http://localhost:8080',
+    'http://127.0.0.1:3000'
+];
+if (in_array($origin, $allowedOrigins)) {
     header("Access-Control-Allow-Origin: $origin");
 }
 header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: Content-Type, X-Requested-With');
+
+// Helper function to output JSON and exit
+function jsonResponse($data, $httpCode = 200) {
+    while (ob_get_level()) {
+        ob_end_clean();
+    }
+    http_response_code($httpCode);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
+    exit;
+}
 
 // Handle preflight OPTIONS request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -45,17 +54,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 // Only allow POST requests
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['success' => false, 'message' => 'Method not allowed']);
-    exit();
+    jsonResponse(['success' => false, 'error' => 'METHOD_NOT_ALLOWED', 'message' => 'Method not allowed'], 405);
 }
 
+// Clear any output buffer and include configuration
+ob_clean();
+
 try {
+    // Include configuration
+    if (!file_exists(__DIR__ . '/config.php')) {
+        jsonResponse(['success' => false, 'error' => 'CONFIG_NOT_FOUND', 'message' => 'Configuration file not found'], 500);
+    }
+
+    require_once __DIR__ . '/config.php';
+
     // Get and validate input
     $input = json_decode(file_get_contents('php://input'), true);
     
-    if (!$input) {
-        throw new Exception('Invalid JSON data');
+    if (!$input || json_last_error() !== JSON_ERROR_NONE) {
+        jsonResponse(['success' => false, 'error' => 'INVALID_JSON', 'message' => 'Invalid JSON data'], 400);
     }
     
     // Required fields
@@ -66,20 +83,12 @@ try {
     
     // Validate required fields
     if (empty($userEmail) || empty($requestType) || empty($subject) || empty($message)) {
-        throw new Exception('All fields are required');
+        jsonResponse(['success' => false, 'error' => 'MISSING_FIELDS', 'message' => 'All fields are required'], 400);
     }
     
     if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
-        throw new Exception('Invalid email address');
+        jsonResponse(['success' => false, 'error' => 'INVALID_EMAIL', 'message' => 'Invalid email address'], 400);
     }
-    
-    // Rate limiting check - TEMPORARILY DISABLED FOR TESTING
-    // TODO: Re-enable before production deployment
-    /*
-    if (!checkRateLimit()) {
-        throw new Exception('Too many requests. Please try again later.');
-    }
-    */
     
     // Get optional fields
     $userName = sanitizeString($input['name'] ?? '');
@@ -89,45 +98,51 @@ try {
     $emailSubject = $subject;
     $emailBody = buildEmailBody($userEmail, $userName, $requestType, $message, $customerType);
     
-    // Send email to all recipients
-    $success = sendToAllRecipients($emailSubject, $emailBody, $userEmail);
+    // Send email - wrapped in try-catch to ensure JSON response even on SMTP failure
+    try {
+        $success = sendToAllRecipients($emailSubject, $emailBody, $userEmail);
+    } catch (Exception $mailEx) {
+        error_log('SMTP Error: ' . $mailEx->getMessage());
+        jsonResponse(['success' => false, 'error' => 'SMTP_FAIL', 'message' => 'Failed to send email. Please try again later.'], 500);
+    }
     
     if (!$success) {
-        throw new Exception('Failed to send email');
+        jsonResponse(['success' => false, 'error' => 'SMTP_FAIL', 'message' => 'Failed to send email. Please try again later.'], 500);
     }
     
     // Send auto-reply if enabled
-    // The user requested to remove reply mail for course (package-order) and course details (module-order)
     $noAutoReplyTypes = ['module-order', 'package-order'];
     
     if (SEND_AUTO_REPLY && !in_array($requestType, $noAutoReplyTypes)) {
-        sendAutoReply($userEmail, $requestType);
+        try {
+            sendAutoReply($userEmail, $requestType);
+        } catch (Exception $autoReplyEx) {
+            // Don't fail the request if auto-reply fails - just log it
+            error_log('Auto-reply failed: ' . $autoReplyEx->getMessage());
+        }
     }
     
-    // Log successful submission (optional)
+    // Log successful submission
     logSubmission($userEmail, $requestType);
     
     // Return success response
-    echo json_encode([
+    jsonResponse([
         'success' => true,
         'message' => 'Tilauksesi on käsittelyssä. Otamme sinuun yhteyttä pian!'
     ]);
     
 } catch (Exception $e) {
-    http_response_code(400);
-    echo json_encode([
+    jsonResponse([
         'success' => false,
+        'error' => 'SERVER_ERROR',
         'message' => $e->getMessage()
-    ]);
-    exit();
+    ], 500);
 } catch (Error $e) {
-    // Catch PHP 7+ errors
-    http_response_code(500);
-    echo json_encode([
+    jsonResponse([
         'success' => false,
-        'message' => 'Server error: ' . $e->getMessage()
-    ]);
-    exit();
+        'error' => 'PHP_ERROR',
+        'message' => 'Server error occurred'
+    ], 500);
 }
 
 /**

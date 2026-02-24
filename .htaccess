@@ -1,6 +1,24 @@
 # BloomLead Security Configuration
 # Prevent direct access to sensitive files
 
+# ==========================================
+# API ROUTING - Route /api/ requests to PHP
+# ==========================================
+RewriteEngine On
+
+# Route /api/config to config.php
+RewriteRule ^api/config/?$ config.php [L,QSA]
+
+# Route /api/config/(action) to config.php with action parameter
+RewriteRule ^api/config/([a-zA-Z0-9_-]+)/?$ config.php?action=$1 [L,QSA]
+
+# Route /api/contact or /api/send-email to mail/send-email.php
+RewriteRule ^api/(contact|send-email)/?$ mail/send-email.php [L,QSA]
+
+# Fix for /font-flaticon/flaticon.css - map to correct location
+RewriteRule ^font-flaticon/flaticon\.css$ fonts/flaticon.css [L,R=301]
+
+# ==========================================
 # Deny access to config.php from browsers
 <Files "config.php">
     # Allow only AJAX requests and same-origin requests

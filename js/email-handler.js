@@ -28,27 +28,42 @@ class BloomLeadEmailHandler {
                 body: JSON.stringify(emailData)
             });
 
-            // Read raw text first
+            // Read raw text first to handle malformed responses
             const text = await response.text();
             
-            // Check if response is empty
+            // Check if response is empty - this is the "Unexpected end of JSON input" cause
             if (!text || text.trim() === '') {
-                console.error('Empty response from server');
-                throw new Error('Palvelin palautti tyhjän vastauksen. Check PHP error logs.');
+                console.error('Empty response from server', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    url: this.apiEndpoint
+                });
+                throw new Error('Palvelin palautti tyhjän vastauksen. Tarkista PHP-virhelokit.');
             }
 
-            // Try to parse JSON
+            // Try to parse JSON - wrap in try-catch to handle invalid JSON
             let result;
             try {
                 result = JSON.parse(text);
             } catch (parseError) {
-                console.error('Failed to parse JSON:', text);
-                console.error('Parse error:', parseError);
-                throw new Error('Server returned invalid JSON. Response: ' + text.substring(0, 200));
+                console.error('Failed to parse JSON response:', {
+                    rawText: text.substring(0, 500),
+                    parseError: parseError.message,
+                    status: response.status,
+                    statusText: response.statusText
+                });
+                throw new Error('Palvelin palautti virheellisen vastauksen: ' + text.substring(0, 100));
             }
 
-            if (!response.ok) {
-                throw new Error(result.message || 'Failed to send email');
+            // Check response.ok AND success flag from JSON
+            if (!response.ok || !result.success) {
+                const errorMsg = result.message || result.error || 'Tuntematon virhe';
+                console.error('Email send failed:', {
+                    httpStatus: response.status,
+                    jsonSuccess: result.success,
+                    error: errorMsg
+                });
+                throw new Error(errorMsg);
             }
 
             return result;
@@ -56,7 +71,7 @@ class BloomLeadEmailHandler {
         } catch (error) {
             // Handle network errors
             if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                throw new Error('Network error. Please check your connection and try again.');
+                throw new Error('Verkkovirhe. Tarkista yhteys ja yritä uudelleen.');
             }
             throw error;
         } finally {
