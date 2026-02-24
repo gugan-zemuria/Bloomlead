@@ -155,7 +155,7 @@ BloomLead webinaarimoduuli 1 sisältää:
 • Puhelintuki ti ja to klo 17–18
 • Mahdollisuus ostaa edullisesti oma coaching-tunti
 
-`;
+Odotan maksutietoja ja ohjeita BloomLead webinaarimoduuli 1 koskien!`;
     }
     
     getModuleOrderMessage() {
@@ -178,7 +178,7 @@ BloomLead webinaarimoduuli 1 sisältää:
 • Puhelintuki ti ja to klo 17–18
 • Mahdollisuus ostaa edullisesti oma coaching-tunti
 
-`;
+Odotan maksutietoja ja ohjeita BloomLead webinaarimoduuli 1 koskien!`;
     }
 
     getPackageRequestMessage() {
@@ -204,7 +204,8 @@ BloomLead webinaaripaketti sisältää:
 - Sähköpostituki
 - Puhelintuki ti ja to klo 17–18
 - Todistuksen ohjelman suorittamisesta
-`;
+
+Odotan maksutietoja ja ohjeita BloomLead webinaaripaketti  koskien!`;
     }
 
     getPackageOrderMessage(customerType = 'yksityishenkilönä') {
@@ -230,7 +231,8 @@ BloomLead webinaaripaketti sisältää:
 - Sähköpostituki
 - Puhelintuki ti ja to klo 17–18
 - Todistuksen ohjelman suorittamisesta
-`;
+
+Odotan maksutietoja ja ohjeita BloomLead webinaaripaketti  koskien!`;
     }
 }
 
