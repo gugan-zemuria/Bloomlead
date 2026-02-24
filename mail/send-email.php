@@ -110,7 +110,7 @@ try {
     // Return success response
     echo json_encode([
         'success' => true,
-        'message' => 'Email sent successfully! We will contact you soon.'
+        'message' => 'Tilauksesi on käsittelyssä. Otamme sinuun yhteyttä pian!'
     ]);
     
 } catch (Exception $e) {
@@ -230,48 +230,111 @@ function sendToAllRecipients($subject, $body, $replyTo) {
 function sendAutoReply($userEmail, $requestType) {
     $subject = AUTO_REPLY_SUBJECT;
     
+    // HTML email headers
     $headers = [
         'From: ' . EMAIL_FROM_NAME . ' <' . EMAIL_FROM . '>',
         'Reply-To: ' . EMAIL_FROM,
         'X-Mailer: PHP/' . phpversion(),
-        'Content-Type: text/plain; charset=UTF-8'
+        'MIME-Version: 1.0',
+        'Content-Type: text/html; charset=UTF-8'
     ];
     $headerString = implode("\r\n", $headers);
 
+    // PDF link
+    $pdfLink = 'https://drive.google.com/file/d/1dm8TPu4RuhtSC0ZNlrOA01oRcSqO7Rat/view?usp=drive_link';
+
     // Determine content based on request type
     if (strpos($requestType, 'module') !== false) {
-        // Individual webinar module content
-        $body = "Hei,\n";
-        $body .= "\n";
-        $body .= "Hienoa, että kehittyminen projektinhallinnassa ja muutosjohtamisessa sekä itsensä ja muiden johtamisessa kiinnostaa sinua. Olemme mielellämme mukana tukemassa oppimismatkaasi omalla osaamisellamme, sillä jatkuva oppiminen on antoisaa kaikille.\n";
-        $body .= "\n";
-        $body .= "Olemme liittäneet tähän mukaan Projektipäällikön knoppilistan. Oman kokemuksemme mukaan nämä asiat ovat sellaisia, joita on hyvä kuljettaa projektin mukana koko elinkaaren ajan. Ne auttavat vahvasti projektin tavoitteiden saavuttamisessa.\n";
-        $body .= "\n";
-        $body .= "Laitamme sinulle 1–2 päivän sisään lisää tietoa BloomLead webinaarimoduuli 1:stä.\n";
-        $body .= "\n";
-        $body .= "Linkki: https://drive.google.com/file/d/1dm8TPu4RuhtSC0ZNlrOA01oRcSqO7Rat/view?usp=drive_link\n";
-        $body .= "\n";
-        $body .= "Ystävällisin terveisin,\n";
-        $body .= "Marke ja Johanna\n";
-        $body .= "\n";
-        $body .= "Tähän sähköpostiin ei voi vastata";
+        $moduleText = "Laitamme sinulle 1–2 päivän sisään lisää tietoa BloomLead webinaarimoduuli 1:stä.";
     } else {
-        // Whole webinar package content (default for package and others)
-        $body = "Hei,\n";
-        $body .= "\n";
-        $body .= "Hienoa, että kehittyminen projektinhallinnassa ja muutosjohtamisessa sekä itsensä ja muiden johtamisessa kiinnostaa sinua. Olemme mielellämme mukana tukemassa oppimismatkaasi omalla osaamisellamme, sillä jatkuva oppiminen on antoisaa kaikille.\n";
-        $body .= "\n";
-        $body .= "Olemme liittäneet tähän mukaan Projektipäällikön knoppilistan. Oman kokemuksemme mukaan nämä asiat ovat sellaisia, joita on hyvä kuljettaa projektin mukana koko elinkaaren ajan. Ne auttavat vahvasti projektin tavoitteiden saavuttamisessa.\n";
-        $body .= "\n";
-        $body .= "Laitamme sinulle 1–2 päivän sisään lisää tietoa BloomLead webinaaripaketista.\n";
-        $body .= "\n";
-        $body .= "Linkki: https://drive.google.com/file/d/1dm8TPu4RuhtSC0ZNlrOA01oRcSqO7Rat/view?usp=drive_link\n";
-        $body .= "\n";
-        $body .= "Ystävällisin terveisin,\n";
-        $body .= "Marke ja Johanna\n";
-        $body .= "\n";
-        $body .= "Tähän sähköpostiin ei voi vastata";
+        $moduleText = "Laitamme sinulle 1–2 päivän sisään lisää tietoa BloomLead webinaaripaketista.";
     }
+    
+    // HTML email body with upgraded visual hierarchy and better spacing
+    $body = '
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloomLead</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #eef1f6;">
+    <div style="display: none; max-height: 0; overflow: hidden; opacity: 0; mso-hide: all;">
+        Kiitos kiinnostuksestasi BloomLeadiin - löydät viestistä Projektipäällikön knoppilistan.
+    </div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background: radial-gradient(circle at top right, #f8fbff 0%, #eef1f6 55%, #e6ebf2 100%); padding: 24px 12px;">
+        <tr>
+            <td align="center">
+                <table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width: 100%; max-width: 640px; background-color: #ffffff; border: 1px solid #dbe3ee; border-radius: 14px; overflow: hidden;">
+                    <tr>
+                        <td style="padding: 0; height: 6px; background: #a571aa; font-size: 0; line-height: 0;">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding: 34px 40px 24px 40px; font-family: Segoe UI, Tahoma, Arial, sans-serif; background: linear-gradient(180deg, #f9fcff 0%, #ffffff 100%); border-bottom: 1px solid #e9eef5;">
+                            <p style="margin: 0 0 8px 0; font-size: 12px; line-height: 16px; letter-spacing: 0.14em; text-transform: uppercase; color: #769757; font-weight: 700;">
+                                BloomLead
+                            </p>
+                            <h1 style="margin: 0; font-size: 34px; line-height: 1.1; color: #11324d; font-weight: 700;">
+                                Kiitos kiinnostuksestasi
+                            </h1>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding: 34px 40px 36px 40px; font-family: Segoe UI, Tahoma, Arial, sans-serif; color: #1f2b3a;">
+                            <p style="margin: 0 0 22px 0; font-size: 18px; line-height: 1.55; color: #0f1e2f;">
+                                Hei,
+                            </p>
+
+                            <p style="margin: 0 0 18px 0; font-size: 16px; line-height: 1.72; color: #2c3b4a;">
+                                Hienoa, että kehittyminen projektinhallinnassa ja muutosjohtamisessa sekä itsensä ja muiden johtamisessa kiinnostaa sinua. Olemme mielellämme mukana tukemassa oppimismatkaasi omalla osaamisellamme, sillä jatkuva oppiminen on antoisaa kaikille.
+                            </p>
+
+                            <p style="margin: 0 0 22px 0; font-size: 16px; line-height: 1.72; color: #2c3b4a;">
+                                Olemme liittäneet tähän mukaan Projektipäällikön knoppilistan. Oman kokemuksemme mukaan nämä asiat ovat sellaisia, joita on hyvä kuljettaa projektin mukana koko elinkaaren ajan. Ne auttavat vahvasti projektin tavoitteiden saavuttamisessa.
+                            </p>
+
+                          
+                                        <p style="margin-bottom: 22px; font-size: 15px; line-height: 1.6;">
+                                            ' . $moduleText . '
+                                        </p>
+                                  
+
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin: 0 auto 30px auto;">
+                                <tr>
+                                    <td align="center" style="border-radius: 9px; background: #a571aa;">
+                                        <a href="' . $pdfLink . '" target="_blank" style="display: inline-block; padding: 16px 30px; font-size: 16px; line-height: 1.2; font-weight: 700; color: #ffffff; text-decoration: none; font-family: Segoe UI, Tahoma, Arial, sans-serif;">
+                                            Lataa Projektipäällikön knoppilista (PDF)
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <p style="margin: 0; font-size: 16px; line-height: 1.72; color: #2c3b4a;">
+                                Ystävällisin terveisin,<br>
+                                <span style="font-weight: 700; color: #0f1e2f;">Marke ja Johanna</span>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding: 22px 40px 28px 40px; text-align: center; background-color: #f7f9fc; border-top: 1px solid #e6ecf3; font-family: Segoe UI, Tahoma, Arial, sans-serif;">
+                            <p style="margin: 0; font-size: 12px; line-height: 1.5; color: #5d6f84;">
+                                Tähän sähköpostiin ei voi vastata
+                            </p>
+                            <p style="margin: 8px 0 0 0; font-size: 12px; line-height: 1.5; color: #8da0b6;">
+                                © ' . date('Y') . ' BloomLead. Kaikki oikeudet pidätetään.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>';
     
     return mail($userEmail, $subject, $body, $headerString);
 }
