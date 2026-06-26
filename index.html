@@ -2655,27 +2655,23 @@ Projektipäällikön knoppilista</button>
         function selectOption(option) {
             const optionText = option === 'single' ? 'yksittäisen moduulin' : 'koko paketin';
 
+            // Home page sends module_type to the webhook.
+            const moduleType = option === 'single' ? 'Single Module' : 'Whole Package';
+
             // Show loading state
-            showStatus('Lähetetään sähköpostia...', 'loading');
+            showStatus('Lähetetään...', 'loading');
 
-            // Prepare email data based on selection
-            const emailType = option === 'single' ? 'module' : 'package';
+            const payload = {
+                email: userEmail,
+                page_source: 'home',
+                module_type: moduleType,
+                customer_type: 'new'
+            };
 
-            // Use the real email handler
-            if (window.BloomLeadEmailHandler) {
-                const emailData = window.BloomLeadEmailHandler.prepareEmailData(
-                    emailType,
-                    userEmail,
-                    null // Use default message template
-                );
-
-                // Send via PHP backend
-                console.log('Attempting to send email with data:', emailData); // Debug log
-
-                window.BloomLeadEmailHandler.sendEmail(emailData)
-                    .then(result => {
-                        console.log('Email sent successfully:', result); // Debug log
-                        // Show success message
+            if (window.sendToBloomLeadWebhook) {
+                window.sendToBloomLeadWebhook(payload)
+                    .then(() => {
+                        // 202 Accepted = queued successfully; show the thank-you message.
                         showStatus(`Kiitos kiinnostuksestasi! Valitsit ${optionText}. Saat pian lisätietoja sähköpostiisi.`, 'success', 4000);
 
                         // Close modal after delay
@@ -2687,24 +2683,12 @@ Projektipäällikön knoppilista</button>
                         }, 2000);
                     })
                     .catch(error => {
-                        console.error('Email sending error:', error);
-                        showStatus('Sähköpostin lähetys epäonnistui. Yritä uudelleen.', 'error', 4000);
+                        console.error('Webhook submission error:', error);
+                        showStatus('Lähetys epäonnistui. Yritä uudelleen.', 'error', 4000);
                     });
             } else {
-                // Fallback to simulation if email handler not loaded
-                setTimeout(() => {
-                    console.log('Sending email to:', ['contact@bloomlead.io', 'marke.tyrvainen@elisanet.fi', 'jkartilamalmivaara@gmail.com']);
-                    console.log('User email:', userEmail);
-                    console.log('Selected option:', optionText);
-
-                    showStatus(`Kiitos kiinnostuksestasi! Valitsit ${optionText}`, 'success', 4000);
-
-                    setTimeout(() => {
-                        closeSelectionModal();
-                        document.getElementById('email2').value = '';
-                        userEmail = '';
-                    }, 2000);
-                }, 1000);
+                // Fallback if the webhook helper failed to load
+                showStatus('Lähetys epäonnistui. Yritä uudelleen.', 'error', 4000);
             }
         }
 
