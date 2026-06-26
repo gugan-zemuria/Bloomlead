@@ -3,6 +3,49 @@
  * Enhanced JavaScript for real email sending via PHP backend
  */
 
+/**
+ * BloomLead lead webhook (LLM Controls automation).
+ * All page forms POST their lead here as JSON. The webhook processes
+ * everything asynchronously and replies with HTTP 202 Accepted, which
+ * we treat as a successful submission.
+ */
+const BLOOMLEAD_WEBHOOK_URL = 'https://dev-beta-api.llmcontrols.ai/api/v1/webhook/85af0161-8207-4859-b430-7b85c7520639';
+
+async function sendToBloomLeadWebhook(payload) {
+    const response = await fetch(BLOOMLEAD_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    });
+
+    // 202 Accepted = queued for async processing. Treat any 2xx as success.
+    if (response.status === 202 || response.ok) {
+        return true;
+    }
+
+    throw new Error('Webhook responded with status ' + response.status);
+}
+
+/**
+ * Resolves the webhook "page_source" from the current URL.
+ * IMPORTANT: check "courses-details" before "courses" (substring overlap).
+ */
+function getBloomLeadPageSource() {
+    const path = (window.location.pathname || '').toLowerCase();
+    if (path.includes('courses-details')) return 'course_details';
+    if (path.includes('courses')) return 'courses';
+    return 'home';
+}
+
+/** Maps the Finnish radio value to the English customer_type the webhook expects. */
+function mapCustomerType(value) {
+    return value === 'yrityksenä' ? 'As a Company' : 'As an Individual';
+}
+
+window.sendToBloomLeadWebhook = sendToBloomLeadWebhook;
+window.getBloomLeadPageSource = getBloomLeadPageSource;
+window.mapCustomerType = mapCustomerType;
+
 class BloomLeadEmailHandler {
     constructor() {
         this.apiEndpoint = '/mail/send-email.php'; // Adjust path as needed
@@ -440,34 +483,30 @@ class EmailSubscriptionManager {
             return;
         }
 
-        this.showStatus('Lähetetään sähköpostia...', 'loading');
+        this.showStatus('Lähetetään...', 'loading');
         if (this.sendEmailBtn) this.sendEmailBtn.disabled = true;
 
         try {
-            // Prepare email data using unified handler which ensures auto-reply logic
-            const emailData = {
+            // Send the lead to the BloomLead webhook. Courses + Course details
+            // pages send customer_type; page_source is derived from the URL.
+            const payload = {
                 email: contactEmail,
-                name: contactName,
-                type: this.currentType,
-                subject: subject,
-                message: message,
-                customerType: customerType,
-                timestamp: new Date().toISOString()
+                page_source: window.getBloomLeadPageSource(),
+                customer_type: window.mapCustomerType(customerType)
             };
 
-            // Use the global handler to send
-            const result = await window.BloomLeadEmailHandler.sendEmail(emailData);
-            
-            this.showStatus(result.message || 'Sähköposti lähetetty onnistuneesti! Otamme sinuun yhteyttä pian.', 'success');
-            
+            await window.sendToBloomLeadWebhook(payload);
+
+            this.showStatus('Sähköposti lähetetty onnistuneesti! Otamme sinuun yhteyttä pian.', 'success');
+
             // Close popup after successful send
             setTimeout(() => {
                 this.closeEmailPopup();
             }, 2000);
-            
+
         } catch (error) {
-            console.error('Email sending error:', error);
-            this.showStatus(error.message || 'Sähköpostin lähetys epäonnistui. Yritä uudelleen.', 'error');
+            console.error('Webhook submission error:', error);
+            this.showStatus('Lähetys epäonnistui. Yritä uudelleen.', 'error');
         } finally {
             if (this.sendEmailBtn) this.sendEmailBtn.disabled = false;
         }
