@@ -10,7 +10,6 @@
  * we treat as a successful submission.
  */
 const BLOOMLEAD_WEBHOOK_URL = 'https://dev-beta-api.llmcontrols.ai/api/v1/webhook/85af0161-8207-4859-b430-7b85c7520639';
-
 async function sendToBloomLeadWebhook(payload) {
     const response = await fetch(BLOOMLEAD_WEBHOOK_URL, {
         method: 'POST',
@@ -42,9 +41,25 @@ function mapCustomerType(value) {
     return value === 'yrityksenä' ? 'As a Company' : 'As an Individual';
 }
 
+/**
+ * Resolves the webhook "module_type" from the popup order type.
+ * The user never picks a module — it's fixed per page/order:
+ *   - package-order → the whole six-module package
+ *   - module-order  → the single released module (currently Module 1)
+ * As Modules 2–6 get their own pages, each can override the default by
+ * setting window.BLOOMLEAD_MODULE_TYPE before the popup is submitted.
+ */
+function getBloomLeadModuleType(type) {
+    if (window.BLOOMLEAD_MODULE_TYPE) return window.BLOOMLEAD_MODULE_TYPE;
+    if (type === 'package-order') return 'Whole Package';
+    if (type === 'module-order') return 'Module 1 - Projektin taustoitus ja määrittely & Johtaja luo suunnan';
+    return '';
+}
+
 window.sendToBloomLeadWebhook = sendToBloomLeadWebhook;
 window.getBloomLeadPageSource = getBloomLeadPageSource;
 window.mapCustomerType = mapCustomerType;
+window.getBloomLeadModuleType = getBloomLeadModuleType;
 
 class BloomLeadEmailHandler {
     constructor() {
@@ -488,11 +503,13 @@ class EmailSubscriptionManager {
 
         try {
             // Send the lead to the BloomLead webhook. Courses + Course details
-            // pages send customer_type; page_source is derived from the URL.
+            // pages send customer_type; page_source is derived from the URL and
+            // module_type is fixed per order type (Whole Package / single module).
             const payload = {
                 email: contactEmail,
                 page_source: window.getBloomLeadPageSource(),
-                customer_type: window.mapCustomerType(customerType)
+                customer_type: window.mapCustomerType(customerType),
+                module_type: window.getBloomLeadModuleType(this.currentType)
             };
 
             await window.sendToBloomLeadWebhook(payload);
