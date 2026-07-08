@@ -24,10 +24,6 @@ define('ALLOWED_ORIGINS', [
     'https://localhost'        // For local testing with SSL
 ]);
 
-// Rate limiting (simple file-based)
-define('RATE_LIMIT_FILE', __DIR__ . '/rate_limit.json');
-define('MAX_EMAILS_PER_HOUR', 50); // Increased for testing - Per IP address
-
 // Auto-reply settings (optional)
 define('SEND_AUTO_REPLY', true);
 define('AUTO_REPLY_SUBJECT', 'Kiitos yhteydenotostasi - BloomLead');

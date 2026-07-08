@@ -54,14 +54,6 @@ try {
         throw new Exception('Invalid email address');
     }
     
-    // Rate limiting check - TEMPORARILY DISABLED FOR TESTING
-    // TODO: Re-enable before production deployment
-    /*
-    if (!checkRateLimit()) {
-        throw new Exception('Too many requests. Please try again later.');
-    }
-    */
-    
     // Get optional fields
     $userName = sanitizeString($input['name'] ?? '');
     $customerType = sanitizeString($input['customerType'] ?? '');
@@ -246,43 +238,6 @@ function sendAutoReply($userEmail, $requestType) {
     }
     
     return mail($userEmail, $subject, $body, $headerString);
-}
-
-/**
- * Simple rate limiting
- */
-function checkRateLimit() {
-    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-    $now = time();
-    $hourAgo = $now - 3600;
-    
-    // Load existing rate limit data
-    $rateLimitData = [];
-    if (file_exists(RATE_LIMIT_FILE)) {
-        $rateLimitData = json_decode(file_get_contents(RATE_LIMIT_FILE), true) ?: [];
-    }
-    
-    // Clean old entries
-    $rateLimitData = array_filter($rateLimitData, function($timestamp) use ($hourAgo) {
-        return $timestamp > $hourAgo;
-    });
-    
-    // Count requests from this IP in the last hour
-    $ipRequests = array_filter($rateLimitData, function($timestamp, $key) use ($ip, $hourAgo) {
-        return strpos($key, $ip . '_') === 0 && $timestamp > $hourAgo;
-    }, ARRAY_FILTER_USE_BOTH);
-    
-    if (count($ipRequests) >= MAX_EMAILS_PER_HOUR) {
-        return false;
-    }
-    
-    // Add current request
-    $rateLimitData[$ip . '_' . $now] = $now;
-    
-    // Save rate limit data
-    file_put_contents(RATE_LIMIT_FILE, json_encode($rateLimitData));
-    
-    return true;
 }
 
 /**
