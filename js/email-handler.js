@@ -637,7 +637,11 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         if (document.getElementById('emailSubscriptionPopup')) {
             window.EmailSubscriptionManagerInstance = new EmailSubscriptionManager();
-            
+
+            // Expose the instance as `emailManager` so inline handlers
+            // (e.g. the Peruuta/Cancel button) can call it directly.
+            window.emailManager = window.EmailSubscriptionManagerInstance;
+
             // Expose global helper
             window.showEmailPopup = function(type) {
                 if (window.EmailSubscriptionManagerInstance) {
