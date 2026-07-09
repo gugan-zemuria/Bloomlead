@@ -42,17 +42,32 @@ function mapCustomerType(value) {
 }
 
 /**
+ * Returns the module the current page represents, resolved from the module
+ * registry (js/module-config.js). Falls back to the legacy inline object or
+ * Module 1 so the handler still works on pages that predate the registry.
+ */
+function getBloomLeadActiveModule() {
+    if (typeof window.getBloomLeadModule === 'function') {
+        return window.getBloomLeadModule();
+    }
+    return window.BLOOMLEAD_MODULE_DATA || null;
+}
+
+/**
  * Resolves the webhook "module_type" from the popup order type.
  * The user never picks a module — it's fixed per page/order:
  *   - package-order → the whole six-module package
- *   - module-order  → the single released module (currently Module 1)
- * As Modules 2–6 get their own pages, each can override the default by
- * setting window.BLOOMLEAD_MODULE_TYPE before the popup is submitted.
+ *   - module-order  → the module this page represents (from the registry)
+ * A page can still force a value with window.BLOOMLEAD_MODULE_TYPE.
  */
 function getBloomLeadModuleType(type) {
     if (window.BLOOMLEAD_MODULE_TYPE) return window.BLOOMLEAD_MODULE_TYPE;
     if (type === 'package-order') return 'Whole Package';
-    if (type === 'module-order') return 'Module 1 - Projektin taustoitus ja määrittely & Johtaja luo suunnan';
+    if (type === 'module-order') {
+        var module = getBloomLeadActiveModule();
+        if (module && module.typeLabel) return module.typeLabel;
+        return 'Module 1 - Projektin taustoitus ja määrittely & Johtaja luo suunnan';
+    }
     return '';
 }
 
@@ -60,6 +75,7 @@ window.sendToBloomLeadWebhook = sendToBloomLeadWebhook;
 window.getBloomLeadPageSource = getBloomLeadPageSource;
 window.mapCustomerType = mapCustomerType;
 window.getBloomLeadModuleType = getBloomLeadModuleType;
+window.getBloomLeadActiveModule = getBloomLeadActiveModule;
 
 class BloomLeadEmailHandler {
     constructor() {
@@ -118,6 +134,9 @@ class BloomLeadEmailHandler {
      */
     prepareEmailData(type, userEmail, customMessage = null, customerType = null) {
         let subject, message;
+        // Only meaningful for single-module orders/inquiries; sent to the PHP
+        // backend so it can label the email with the real module (not always 1).
+        let moduleNumber = null;
 
         switch (type) {
             case 'info':
@@ -125,10 +144,13 @@ class BloomLeadEmailHandler {
                 message = customMessage || this.getInfoRequestMessage();
                 break;
 
-            case 'module':
-                subject = 'BloomLead webinaarimoduuli 1 lisätietokysely';
-                message = customMessage || this.getModuleRequestMessage();
+            case 'module': {
+                const module = this.getActiveModule();
+                moduleNumber = module && module.number ? module.number : 1;
+                subject = `BloomLead webinaarimoduuli ${moduleNumber} lisätietokysely`;
+                message = customMessage || this.getModuleRequestMessage(module);
                 break;
+            }
 
             case 'package':
                 subject = 'BloomLead webinaaripaketti lisätietokysely'.toLowerCase();
@@ -140,10 +162,13 @@ class BloomLeadEmailHandler {
                 message = customMessage || this.getPackageOrderMessage(customerType);
                 break;
 
-            case 'module-order':
-                subject = 'BloomLead webinaarimoduuli 1 tilaus';
-                message = customMessage || this.getModuleOrderMessage();
+            case 'module-order': {
+                const module = this.getActiveModule();
+                moduleNumber = module && module.number ? module.number : 1;
+                subject = `BloomLead webinaarimoduuli ${moduleNumber} tilaus`;
+                message = customMessage || this.getModuleOrderMessage(module);
                 break;
+            }
 
             default:
                 subject = 'Yhteydenotto BloomLead-sivustolta';
@@ -155,6 +180,7 @@ class BloomLeadEmailHandler {
             type: type,
             subject: subject,
             message: message,
+            moduleNumber: moduleNumber,
             customerType: customerType,
             timestamp: new Date().toISOString()
         };
@@ -176,20 +202,39 @@ Olen kiinnostunut BloomLead-webinaarista ja haluaisin lisätietoja seuraavista:
 Odotan yhteydenottoanne.`;
     }
 
-    getModuleRequestMessage() {
+    /**
+     * Returns the module the current page represents (from the registry),
+     * with a Module 1 fallback so message builders always have real values.
+     */
+    getActiveModule() {
+        const module = window.getBloomLeadActiveModule
+            ? window.getBloomLeadActiveModule()
+            : (window.BLOOMLEAD_MODULE_DATA || null);
+
+        return module || {
+            number: 1,
+            title: 'Projektin taustoitus ja määrittely & Johtaja luo suunnan',
+            date: '6.2.2026',
+            priceIndividual: '125 € sis.alv',
+            priceCompany: '125 € + alv'
+        };
+    }
+
+    getModuleRequestMessage(module = null) {
+        const m = module || this.getActiveModule();
         return `Hei,
 
 Haluan lisää tietoa seuraavista:
 
-Moduuli: BloomLead webinaarimoduuli 1
-Aihe: Projektin taustoitus ja määrittely & Johtaja luo suunnan
-Julkaistu: 6.2.2026
+Moduuli: BloomLead webinaarimoduuli ${m.number}
+Aihe: ${m.title}
+Julkaistu: ${m.date}
 Kesto: 1,5 h + harjoitukset
-Hinta: 125 € sis.alv tai 125 € + alv yrityshinta
+Hinta: ${m.priceIndividual} tai ${m.priceCompany} yrityshinta
 
-BloomLead webinaarimoduuli 1 sisältää:
+BloomLead webinaarimoduuli ${m.number} sisältää:
 
-• Webinaarimoduuli 1 tallenne, kun maksu on saapunut tilillemme (1-2 päivää maksusta)
+• Webinaarimoduuli ${m.number} tallenne, kun maksu on saapunut tilillemme (1-2 päivää maksusta)
 • Webinaarimoduulin tallenne ja omaan tahtiin tehtäviä harjoituksia
 • Webinaarimoduulin materiaalit
 • Sähköpostituki
@@ -197,21 +242,22 @@ BloomLead webinaarimoduuli 1 sisältää:
 
 Odotan tilauksen vahvistamista, maksutietoja ja ohjeita!`;
     }
-    
-    getModuleOrderMessage() {
+
+    getModuleOrderMessage(module = null) {
+        const m = module || this.getActiveModule();
         return `Hei,
 
-Haluan tilata webinaari moduuli 1 seuraavasti:
+Haluan tilata webinaari moduuli ${m.number} seuraavasti:
 
-Moduuli: BloomLead webinaarimoduuli 1
-Aihe: Projektin taustoitus ja määrittely & Johtaja luo suunnan
-Julkaistu: 6.2.2026
+Moduuli: BloomLead webinaarimoduuli ${m.number}
+Aihe: ${m.title}
+Julkaistu: ${m.date}
 Kesto: 1,5 h + harjoitukset
-Hinta: 125 € sis.alv tai 125 € + alv yrityshinta
+Hinta: ${m.priceIndividual} tai ${m.priceCompany} yrityshinta
 
-BloomLead webinaarimoduuli 1 sisältää:
+BloomLead webinaarimoduuli ${m.number} sisältää:
 
-• Webinaarimoduuli 1 tallenne, kun maksu on saapunut tilillemme (1-2 päivää maksusta)
+• Webinaarimoduuli ${m.number} tallenne, kun maksu on saapunut tilillemme (1-2 päivää maksusta)
 • Webinaarimoduulin tallenne ja omaan tahtiin tehtäviä harjoituksia
 • Webinaarimoduulin materiaalit
 • Sähköpostituki
@@ -434,9 +480,12 @@ class EmailSubscriptionManager {
             }
         } else if (type === 'module-order') {
             if (this.emailTitle) this.emailTitle.textContent = 'Tarkista tilaus';
-            if (this.emailSubjectDisplay) this.emailSubjectDisplay.textContent = 'BloomLead webinaarimoduuli 1 tilaus';
+            const module = window.BloomLeadEmailHandler.getActiveModule();
+            if (this.emailSubjectDisplay) {
+                this.emailSubjectDisplay.textContent = `BloomLead webinaarimoduuli ${module.number} tilaus`;
+            }
             if (this.emailMessage) {
-                this.emailMessage.value = window.BloomLeadEmailHandler.getModuleOrderMessage();
+                this.emailMessage.value = window.BloomLeadEmailHandler.getModuleOrderMessage(module);
             }
         }
     }
@@ -474,16 +523,21 @@ class EmailSubscriptionManager {
         const contactName = this.contactName ? this.contactName.value.trim() : '';
         const message = this.emailMessage ? this.emailMessage.value.trim() : '';
         
-        // Determine subject
+        // Determine subject + which module this order is for (single-module
+        // orders only). moduleNumber is forwarded to the PHP backend so it can
+        // label the email with the real module instead of hard-coding Module 1.
         let subject = 'Yhteydenotto';
-        if (this.emailSubjectDisplay) {
-            subject = this.emailSubjectDisplay.textContent.trim();
-        } else if (this.currentType === 'package-order') {
+        let moduleNumber = null;
+        if (this.currentType === 'package-order') {
              subject = 'BloomLead webinaaripaketin tilaus';
         } else if (this.currentType === 'module-order') {
-             subject = 'BloomLead webinaarimoduuli 1 tilaus';
+             const orderedModule = window.BloomLeadEmailHandler.getActiveModule();
+             moduleNumber = orderedModule && orderedModule.number ? orderedModule.number : 1;
+             subject = `BloomLead webinaarimoduuli ${moduleNumber} tilaus`;
+        } else if (this.emailSubjectDisplay) {
+            subject = this.emailSubjectDisplay.textContent.trim();
         }
-        
+
         // Get customer type selection
         const customerTypeRadio = document.querySelector('input[name="customerType"]:checked');
         const customerType = customerTypeRadio ? customerTypeRadio.value : 'yksityishenkilönä';
@@ -502,17 +556,22 @@ class EmailSubscriptionManager {
         if (this.sendEmailBtn) this.sendEmailBtn.disabled = true;
 
         try {
-            // Send the lead to the BloomLead webhook. Courses + Course details
-            // pages send customer_type; page_source is derived from the URL and
-            // module_type is fixed per order type (Whole Package / single module).
-            const payload = {
+            // Send the order to the PHP backend on cPanel, which composes and
+            // emails it. moduleNumber makes the backend label the email with the
+            // real module instead of hard-coding "Module 1"; the edited textarea
+            // message and customerType are forwarded as-is. (The LLM Controls
+            // webhook is kept for testing only — see sendToBloomLeadWebhook.)
+            const emailData = {
                 email: contactEmail,
-                page_source: window.getBloomLeadPageSource(),
-                customer_type: window.mapCustomerType(customerType),
-                module_type: window.getBloomLeadModuleType(this.currentType)
+                name: contactName,
+                type: this.currentType,
+                subject: subject,
+                message: message,
+                moduleNumber: moduleNumber,
+                customerType: customerType
             };
 
-            await window.sendToBloomLeadWebhook(payload);
+            await window.BloomLeadEmailHandler.sendEmail(emailData);
 
             this.showStatus('Sähköposti lähetetty onnistuneesti! Otamme sinuun yhteyttä pian.', 'success');
 
@@ -522,7 +581,7 @@ class EmailSubscriptionManager {
             }, 2000);
 
         } catch (error) {
-            console.error('Webhook submission error:', error);
+            console.error('Email submission error:', error);
             this.showStatus('Lähetys epäonnistui. Yritä uudelleen.', 'error');
         } finally {
             if (this.sendEmailBtn) this.sendEmailBtn.disabled = false;

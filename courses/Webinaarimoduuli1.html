@@ -2526,17 +2526,10 @@
     <script src="../js/jquery.magnific-popup.min.js"></script>
     <script src="../js/element-in-view.js"></script>
     <script src="../js/main.js"></script>
-    <!-- Module Data Configuration -->
-    <script>
-        window.BLOOMLEAD_MODULE_DATA = {
-            number: 1,
-            title: 'Projektin taustoitus ja määrittely & Johtaja luo suunnan',
-            date: '6.2.2026',
-            priceIndividual: '125 € sis.alv',
-            priceCompany: '125 € + alv',
-            typeLabel: 'Module 1 - Projektin taustoitus ja määrittely & Johtaja luo suunnan'
-        };
-    </script>
+    <!-- This page represents Module 1. Full module metadata (title, date,
+         price, webhook label) lives in js/module-config.js. -->
+    <script>window.BLOOMLEAD_ACTIVE_MODULE = 1;</script>
+    <script src="../js/module-config.js"></script>
     <script src="../js/email-handler.js"></script>
 
     <!-- Email Modal System -->
