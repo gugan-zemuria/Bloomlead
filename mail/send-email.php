@@ -57,10 +57,15 @@ try {
     // Get optional fields
     $userName = sanitizeString($input['name'] ?? '');
     $customerType = sanitizeString($input['customerType'] ?? '');
-    
+
+    // Which webinar module this order/inquiry is for. Resolved from the
+    // explicit moduleNumber field the frontend sends, falling back to the
+    // number embedded in the subject, then to Module 1.
+    $moduleNumber = resolveModuleNumber($input, $subject);
+
     // Prepare email content
     $emailSubject = $subject;
-    $emailBody = buildEmailBody($userEmail, $userName, $requestType, $message, $customerType);
+    $emailBody = buildEmailBody($userEmail, $userName, $requestType, $message, $customerType, $moduleNumber);
     
     // Send email to all recipients
     $success = sendToAllRecipients($emailSubject, $emailBody, $userEmail);
@@ -74,7 +79,7 @@ try {
     $noAutoReplyTypes = ['module-order', 'package-order'];
     
     if (SEND_AUTO_REPLY && !in_array($requestType, $noAutoReplyTypes)) {
-        sendAutoReply($userEmail, $requestType);
+        sendAutoReply($userEmail, $requestType, $moduleNumber);
     }
     
     // Log successful submission (optional)
@@ -109,24 +114,42 @@ function sanitizeString($string) {
 }
 
 /**
+ * Resolve which webinar module (1-6) an order/inquiry is for.
+ * Precedence:
+ *   1. explicit `moduleNumber` field sent by the frontend
+ *   2. the number embedded in the subject ("...webinaarimoduuli N...")
+ *   3. Module 1 (safe default)
+ */
+function resolveModuleNumber($input, $subject) {
+    $explicit = isset($input['moduleNumber']) ? (int) $input['moduleNumber'] : 0;
+    if ($explicit >= 1 && $explicit <= 6) {
+        return $explicit;
+    }
+    if (preg_match('/webinaarimoduuli\s*([1-6])/iu', $subject, $matches)) {
+        return (int) $matches[1];
+    }
+    return 1;
+}
+
+/**
  * Build email body with all information
  */
-function buildEmailBody($userEmail, $userName, $requestType, $message, $customerType = '') {
+function buildEmailBody($userEmail, $userName, $requestType, $message, $customerType = '', $moduleNumber = 1) {
     $timestamp = date('Y-m-d H:i:s');
-    
+
     // Set email header and type based on request type
      if ($requestType === 'module-order') {
         // Course details page - Module order
-        $header = "BloomLead webinaarimoduuli 1 tilaus";
-        $type = "webinaarimoduuli 1";
+        $header = "BloomLead webinaarimoduuli $moduleNumber tilaus";
+        $type = "webinaarimoduuli $moduleNumber";
     } elseif ($requestType === 'package-order') {
         // Courses page - Package order
         $header = "BloomLead webinaaripaketin tilaus";
         $type = "BloomLead webinaaripaketti";
     } elseif ($requestType === 'module') {
         // Home page - Module inquiry
-        $header = "BloomLead webinaarimoduuli 1 lisätietokysely & knoppilista";
-        $type = "webinaarimoduuli 1";
+        $header = "BloomLead webinaarimoduuli $moduleNumber lisätietokysely & knoppilista";
+        $type = "webinaarimoduuli $moduleNumber";
     } elseif ($requestType === 'package') {
         // Home page - Package inquiry
         $header = "bloomlead webinaaripaketti lisätietokysely ja knoppilista";
@@ -191,7 +214,7 @@ function sendToAllRecipients($subject, $body, $replyTo) {
 /**
  * Send auto-reply to user
  */
-function sendAutoReply($userEmail, $requestType) {
+function sendAutoReply($userEmail, $requestType, $moduleNumber = 1) {
     $subject = AUTO_REPLY_SUBJECT;
     
     $headers = [
@@ -211,7 +234,7 @@ function sendAutoReply($userEmail, $requestType) {
         $body .= "\n";
         $body .= "Olemme liittäneet tähän mukaan Projektipäällikön knoppilistan. Oman kokemuksemme mukaan nämä asiat ovat sellaisia, joita on hyvä kuljettaa projektin mukana koko elinkaaren ajan. Ne auttavat vahvasti projektin tavoitteiden saavuttamisessa.\n";
         $body .= "\n";
-        $body .= "Laitamme sinulle 1–2 päivän sisään lisää tietoa BloomLead webinaarimoduuli 1:stä.\n";
+        $body .= "Laitamme sinulle 1–2 päivän sisään lisää tietoa BloomLead webinaarimoduuli {$moduleNumber}:stä.\n";
         $body .= "\n";
         $body .= "Linkki: https://drive.google.com/file/d/1dm8TPu4RuhtSC0ZNlrOA01oRcSqO7Rat/view?usp=drive_link\n";
         $body .= "\n";
