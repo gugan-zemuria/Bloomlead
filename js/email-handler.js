@@ -10,10 +10,14 @@
  * we treat as a successful submission.
  */
 const BLOOMLEAD_WEBHOOK_URL = 'https://dev-beta-api.llmcontrols.ai/api/v1/webhook/85af0161-8207-4859-b430-7b85c7520639';
+const BLOOMLEAD_WEBHOOK_API_KEY = 'sk-w1hmWU3Y6P93wuzY6TvdDDydf4sipyTBjMDXcFuiZeg';
 async function sendToBloomLeadWebhook(payload) {
     const response = await fetch(BLOOMLEAD_WEBHOOK_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': BLOOMLEAD_WEBHOOK_API_KEY
+        },
         body: JSON.stringify(payload)
     });
 
@@ -471,21 +475,14 @@ class EmailSubscriptionManager {
         if (this.contactEmail) this.contactEmail.value = '';
         if (this.contactName) this.contactName.value = '';
         this.validateEmail(); // Reset validation state
-        
-        // Default logic for subjects/titles if elements exist
+
         if (type === 'package-order') {
             if (this.emailTitle) this.emailTitle.textContent = 'Tarkista tilaus';
-            if (this.emailMessage) {
-                 this.emailMessage.value = window.BloomLeadEmailHandler.getPackageOrderMessage('yksityishenkilönä');
-            }
         } else if (type === 'module-order') {
             if (this.emailTitle) this.emailTitle.textContent = 'Tarkista tilaus';
-            const module = window.BloomLeadEmailHandler.getActiveModule();
-            if (this.emailSubjectDisplay) {
+            const module = window.getBloomLeadModule ? window.getBloomLeadModule() : null;
+            if (module && this.emailSubjectDisplay) {
                 this.emailSubjectDisplay.textContent = `BloomLead webinaarimoduuli ${module.number} tilaus`;
-            }
-            if (this.emailMessage) {
-                this.emailMessage.value = window.BloomLeadEmailHandler.getModuleOrderMessage(module);
             }
         }
     }
@@ -520,30 +517,9 @@ class EmailSubscriptionManager {
 
     async sendEmail() {
         const contactEmail = this.contactEmail ? this.contactEmail.value.trim() : '';
-        const contactName = this.contactName ? this.contactName.value.trim() : '';
-        const message = this.emailMessage ? this.emailMessage.value.trim() : '';
-        
-        // Determine subject + which module this order is for (single-module
-        // orders only). moduleNumber is forwarded to the PHP backend so it can
-        // label the email with the real module instead of hard-coding Module 1.
-        let subject = 'Yhteydenotto';
-        let moduleNumber = null;
-        if (this.currentType === 'package-order') {
-             subject = 'BloomLead webinaaripaketin tilaus';
-        } else if (this.currentType === 'module-order') {
-             const orderedModule = window.BloomLeadEmailHandler.getActiveModule();
-             moduleNumber = orderedModule && orderedModule.number ? orderedModule.number : 1;
-             subject = `BloomLead webinaarimoduuli ${moduleNumber} tilaus`;
-        } else if (this.emailSubjectDisplay) {
-            subject = this.emailSubjectDisplay.textContent.trim();
-        }
 
-        // Get customer type selection
-        const customerTypeRadio = document.querySelector('input[name="customerType"]:checked');
-        const customerType = customerTypeRadio ? customerTypeRadio.value : 'yksityishenkilönä';
-        
-        if (!contactEmail || !contactName || !message) {
-            this.showStatus('Täytä kaikki kentät ennen lähettämistä.', 'error');
+        if (!contactEmail) {
+            this.showStatus('Syötä sähköpostiosoite.', 'error');
             return;
         }
 
@@ -552,36 +528,38 @@ class EmailSubscriptionManager {
             return;
         }
 
+        // Get customer type selection
+        const customerTypeRadio = document.querySelector('input[name="customerType"]:checked');
+        const customerType = customerTypeRadio ? customerTypeRadio.value : 'yksityishenkilönä';
+        const webhookCustomerType = customerType === 'yrityksenä' ? 'As a Company' : 'As an Individual';
+
+        // Build module_type based on order type
+        let webhookModuleType = 'Whole Package';
+        if (this.currentType === 'module-order') {
+            const orderedModule = window.getBloomLeadModule ? window.getBloomLeadModule() : null;
+            const modNum = orderedModule && orderedModule.number ? orderedModule.number : 1;
+            webhookModuleType = 'Module ' + modNum;
+        }
+
         this.showStatus('Lähetetään...', 'loading');
         if (this.sendEmailBtn) this.sendEmailBtn.disabled = true;
 
         try {
-            // Send the order to the PHP backend on cPanel, which composes and
-            // emails it. moduleNumber makes the backend label the email with the
-            // real module instead of hard-coding "Module 1"; the edited textarea
-            // message and customerType are forwarded as-is. (The LLM Controls
-            // webhook is kept for testing only — see sendToBloomLeadWebhook.)
-            const emailData = {
+            await window.sendToBloomLeadWebhook({
                 email: contactEmail,
-                name: contactName,
-                type: this.currentType,
-                subject: subject,
-                message: message,
-                moduleNumber: moduleNumber,
-                customerType: customerType
-            };
+                page_source: 'courses',
+                customer_type: webhookCustomerType,
+                module_type: webhookModuleType
+            });
 
-            await window.BloomLeadEmailHandler.sendEmail(emailData);
+            this.showStatus('Kiitos! Saat pian lisätietoja sähköpostiisi.', 'success');
 
-            this.showStatus('Sähköposti lähetetty onnistuneesti! Otamme sinuun yhteyttä pian.', 'success');
-
-            // Close popup after successful send
             setTimeout(() => {
                 this.closeEmailPopup();
             }, 2000);
 
         } catch (error) {
-            console.error('Email submission error:', error);
+            console.error('Webhook submission error:', error);
             this.showStatus('Lähetys epäonnistui. Yritä uudelleen.', 'error');
         } finally {
             if (this.sendEmailBtn) this.sendEmailBtn.disabled = false;
