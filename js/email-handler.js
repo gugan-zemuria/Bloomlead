@@ -5,19 +5,13 @@
 
 /**
  * BloomLead lead webhook (LLM Controls automation).
- * All page forms POST their lead here as JSON. The webhook processes
- * everything asynchronously and replies with HTTP 202 Accepted, which
- * we treat as a successful submission.
+ * Calls a Vercel serverless proxy (/api/webhook) that injects the API key
+ * server-side — the key is never exposed to the browser.
  */
-const BLOOMLEAD_WEBHOOK_URL = 'https://dev-beta-api.llmcontrols.ai/api/v1/webhook/85af0161-8207-4859-b430-7b85c7520639';
-const BLOOMLEAD_WEBHOOK_API_KEY = 'sk-w1hmWU3Y6P93wuzY6TvdDDydf4sipyTBjMDXcFuiZeg';
 async function sendToBloomLeadWebhook(payload) {
-    const response = await fetch(BLOOMLEAD_WEBHOOK_URL, {
+    const response = await fetch('/api/webhook', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': BLOOMLEAD_WEBHOOK_API_KEY
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     });
 
