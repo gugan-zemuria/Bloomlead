@@ -9,7 +9,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    const WEBHOOK_URL = 'https://dev-beta-api.llmcontrols.ai/api/v1/webhook/85af0161-8207-4859-b430-7b85c7520639';
+    const WEBHOOK_URL = 'https://staging-api.llmcontrols.ai/api/v1/webhook/54c2cebf-ad30-4684-a0d5-4f8c37d36e36';
     const API_KEY = process.env.LLMCONTROLS_WEBHOOK_API_KEY;
     if (!API_KEY) {
         console.error('LLMCONTROLS_WEBHOOK_API_KEY is not set');
