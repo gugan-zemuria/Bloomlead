@@ -3,7 +3,8 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const { email, page_source, customer_type, module_type } = req.body || {};
+    // `message` is optional — the home page always sends it empty.
+    const { email, page_source, customer_type, module_type, message } = req.body || {};
 
     if (!email || !page_source || !customer_type || !module_type) {
         return res.status(400).json({ error: 'Missing required fields' });
@@ -23,7 +24,7 @@ export default async function handler(req, res) {
                 'Content-Type': 'application/json',
                 'x-api-key': API_KEY
             },
-            body: JSON.stringify({ email, page_source, customer_type, module_type })
+            body: JSON.stringify({ email, page_source, customer_type, module_type, message: message || '' })
         });
 
         return res.status(response.status).json({ ok: response.ok });

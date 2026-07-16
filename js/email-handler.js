@@ -543,7 +543,9 @@ class EmailSubscriptionManager {
                 email: contactEmail,
                 page_source: 'courses',
                 customer_type: webhookCustomerType,
-                module_type: webhookModuleType
+                module_type: webhookModuleType,
+                // Whatever the user typed/edited in the popup textarea.
+                message: this.emailMessage ? this.emailMessage.value.trim() : ''
             });
 
             this.showStatus('Kiitos! Saat pian lisätietoja sähköpostiisi.', 'success');
