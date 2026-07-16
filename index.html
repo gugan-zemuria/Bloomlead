@@ -2665,7 +2665,9 @@ Projektipäällikön knoppilista</button>
                 email: userEmail,
                 page_source: 'home',
                 module_type: moduleType,
-                customer_type: 'new'
+                customer_type: 'new',
+                // Home page has no message field — always sent empty.
+                message: ''
             };
 
             if (window.sendToBloomLeadWebhook) {
