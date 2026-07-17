@@ -329,7 +329,6 @@ class EmailSubscriptionManager {
         this.emailPopup = document.getElementById('emailSubscriptionPopup');
         this.emailOverlay = document.getElementById('emailPopupOverlay');
         this.emailCloseBtn = document.getElementById('emailCloseBtn');
-        this.editEmailBtn = document.getElementById('editEmailBtn');
         this.sendEmailBtn = document.getElementById('sendEmailBtn');
         this.contactEmail = document.getElementById('contactEmail');
         this.contactName = document.getElementById('contactName');
@@ -343,7 +342,6 @@ class EmailSubscriptionManager {
         // Optional elements (might not exist on all pages)
         this.emailSubjectDisplay = document.getElementById('emailSubjectDisplay');
         
-        this.isEditing = false;
         this.currentType = null;
         
         if (this.emailPopup) {
@@ -354,12 +352,8 @@ class EmailSubscriptionManager {
     initializeEventListeners() {
         if (this.emailCloseBtn) this.emailCloseBtn.addEventListener('click', () => this.closeEmailPopup());
         if (this.emailOverlay) this.emailOverlay.addEventListener('click', () => this.closeEmailPopup());
-        if (this.editEmailBtn) this.editEmailBtn.addEventListener('click', () => this.toggleEditMode());
         if (this.sendEmailBtn) this.sendEmailBtn.addEventListener('click', () => this.sendEmail());
-        
-        // Auto-resize textarea
-        if (this.emailMessage) this.emailMessage.addEventListener('input', () => this.autoResizeTextarea());
-        
+
         // Email validation on input
         if (this.contactEmail) {
             this.contactEmail.addEventListener('input', () => {
@@ -445,8 +439,7 @@ class EmailSubscriptionManager {
         this.setupEmailContent(type);
         this.emailPopup.classList.add('active');
         document.body.style.overflow = 'hidden';
-        this.resetEditMode();
-        
+
         // Update displays
         this.updateCustomerTypeDisplay();
         this.updateSenderEmailDisplay();
@@ -460,7 +453,6 @@ class EmailSubscriptionManager {
         
         this.emailPopup.classList.remove('active');
         document.body.style.overflow = '';
-        this.resetEditMode();
         this.hideStatus();
     }
 
@@ -472,40 +464,18 @@ class EmailSubscriptionManager {
 
         if (type === 'package-order') {
             if (this.emailTitle) this.emailTitle.textContent = 'Tarkista tilaus';
+            if (this.emailMessage) {
+                this.emailMessage.value = window.BloomLeadEmailHandler.getPackageOrderMessage();
+            }
         } else if (type === 'module-order') {
             if (this.emailTitle) this.emailTitle.textContent = 'Tarkista tilaus';
             const module = window.getBloomLeadModule ? window.getBloomLeadModule() : null;
             if (module && this.emailSubjectDisplay) {
                 this.emailSubjectDisplay.textContent = `BloomLead webinaarimoduuli ${module.number} tilaus`;
             }
-        }
-    }
-
-    toggleEditMode() {
-        this.isEditing = !this.isEditing;
-        
-        if (this.isEditing) {
-            this.emailMessage.readOnly = false;
-            this.editEmailBtn.innerHTML = '<i class="fas fa-save"></i> SAVE';
-            this.editEmailBtn.classList.add('editing');
-            this.emailMessage.focus();
-        } else {
-            this.emailMessage.readOnly = true;
-            this.editEmailBtn.innerHTML = '<i class="fas fa-edit"></i> EDIT';
-            this.editEmailBtn.classList.remove('editing');
-            this.showStatus('Changes saved!', 'success', 2000);
-        }
-        
-        // Auto-resize after toggle
-        setTimeout(() => this.autoResizeTextarea(), 100);
-    }
-
-    resetEditMode() {
-        this.isEditing = false;
-        if (this.emailMessage) this.emailMessage.readOnly = true;
-        if (this.editEmailBtn) {
-            this.editEmailBtn.innerHTML = '<i class="fas fa-edit"></i> EDIT';
-            this.editEmailBtn.classList.remove('editing');
+            if (this.emailMessage) {
+                this.emailMessage.value = window.BloomLeadEmailHandler.getModuleOrderMessage(module);
+            }
         }
     }
 
@@ -544,7 +514,7 @@ class EmailSubscriptionManager {
                 page_source: 'courses',
                 customer_type: webhookCustomerType,
                 module_type: webhookModuleType,
-                // Whatever the user typed/edited in the popup textarea.
+                // The pre-filled order message displayed in the popup (read-only).
                 message: this.emailMessage ? this.emailMessage.value.trim() : ''
             });
 
