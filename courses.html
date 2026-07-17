@@ -926,36 +926,6 @@
             font-weight: 600;
         }
 
-        .edit-btn {
-            background: #6366f1;
-            border: none;
-            color: white;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .edit-btn:hover {
-            background: #5856eb;
-            transform: translateY(-1px);
-        }
-
-        .edit-btn.editing {
-            background: #10b981;
-        }
-
-        .edit-btn.editing:hover {
-            background: #059669;
-        }
-
         .message-content {
             background: #f9fafb;
             border: 2px solid #e5e7eb;
@@ -1663,9 +1633,6 @@ seuranta ja jatkuva kehittäminen & <br> Johtaja kasvaa jatkuvasti</h5>
                     <div class="message-section">
                         <div class="message-header">
                             <div class="message-label">Viestin sisältö:</div>
-                            <button class="edit-btn" id="editEmailBtn">
-                                <i class="fas fa-edit"></i> MUOKKAA
-                            </button>
                         </div>
                         <textarea class="message-content" id="emailMessage" readonly></textarea>
                     </div>
