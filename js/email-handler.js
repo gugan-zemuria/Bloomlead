@@ -498,12 +498,7 @@ class EmailSubscriptionManager {
         const webhookCustomerType = customerType === 'yrityksenä' ? 'As a Company' : 'As an Individual';
 
         // Build module_type based on order type
-        let webhookModuleType = 'Whole Package';
-        if (this.currentType === 'module-order') {
-            const orderedModule = window.getBloomLeadModule ? window.getBloomLeadModule() : null;
-            const modNum = orderedModule && orderedModule.number ? orderedModule.number : 1;
-            webhookModuleType = 'Module ' + modNum;
-        }
+        const webhookModuleType = this.currentType === 'module-order' ? 'Single Module' : 'Whole Package';
 
         this.showStatus('Lähetetään...', 'loading');
         if (this.sendEmailBtn) this.sendEmailBtn.disabled = true;
