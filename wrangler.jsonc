@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bloomlead",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-07-17",
+  "observability": {
+    "enabled": true
+  },
+  // Static site served from the repo root; .assetsignore keeps server-side
+  // and internal files (PHP, DB, docs, worker source) out of the public assets.
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  }
+}

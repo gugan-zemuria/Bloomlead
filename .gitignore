@@ -99,3 +99,7 @@ secrets.json
 *.pem
 *.key
 *.crt
+
+# wrangler files
+.wrangler
+.dev.vars*

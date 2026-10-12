@@ -1,0 +1,22 @@
+# Files that must never be served as public static assets on Cloudflare.
+.git
+.gitignore
+.assetsignore
+.DS_Store
+**/.DS_Store
+.env
+.env.*
+.dev.vars*
+.wrangler
+.kiro
+.vscode
+.claude
+node_modules
+wrangler.jsonc
+worker
+api
+functions
+mail
+*.php
+*.db
+*.md
